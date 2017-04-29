@@ -18,6 +18,20 @@ namespace FilmHaus.Models
 
         public DateTime LastLogin { get; set; }
 
+        private string _userNameEmailBackingField;
+
+        public override string UserName
+        {
+            get { return _userNameEmailBackingField; }
+            set { _userNameEmailBackingField = value; }
+        }
+
+        public override string Email
+        {
+            get { return _userNameEmailBackingField; }
+            set { _userNameEmailBackingField = value; }
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
