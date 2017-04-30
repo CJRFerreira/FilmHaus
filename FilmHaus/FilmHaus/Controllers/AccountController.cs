@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FilmHaus.Models;
+using FilmHaus.Models.View;
 
 namespace FilmHaus.Controllers
 {
@@ -26,7 +27,7 @@ namespace FilmHaus.Controllers
         {
             UserManager = userManager;
 
-            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+            UserManager.UserValidator = new UserValidator<User>(UserManager)
             {
                 AllowOnlyAlphanumericUserNames = false
             };
@@ -38,7 +39,7 @@ namespace FilmHaus.Controllers
         {
             UserManager = userManager;
 
-            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+            UserManager.UserValidator = new UserValidator<User>(UserManager)
             {
                 AllowOnlyAlphanumericUserNames = false
             };
@@ -172,7 +173,7 @@ namespace FilmHaus.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new User
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
@@ -401,7 +402,7 @@ namespace FilmHaus.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
