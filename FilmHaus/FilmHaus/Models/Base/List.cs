@@ -11,17 +11,16 @@ namespace FilmHaus.Models.Base
     [Table("List")]
     public class List
     {
+        [Key]
         public Guid ID { get; set; }
 
-        [Key]
-        [ForeignKey("AspNetUsers")]
+        [ForeignKey("Users")]
         public String UserID { get; set; }
 
         public String Title { get; set; }
         public String Description { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfCreation { get; set; }
 
         public virtual ICollection<Film> FilmsInList { get; set; }

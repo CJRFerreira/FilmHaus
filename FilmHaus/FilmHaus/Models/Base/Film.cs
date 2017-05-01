@@ -10,11 +10,12 @@ namespace FilmHaus.Models.Base
     [Table("Film")]
     public class Film
     {
+        [Key]
         public Guid ID { get; set; }
+
         public String FilmName { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfRelease { get; set; }
 
         public Int32 Runtime { get; set; }
