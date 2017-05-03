@@ -36,7 +36,7 @@ namespace FilmHaus.Models.Base
         public enum Status
         {
             Accepted = 0,
-            Rejected = 0
+            Rejected = 1
         }
     }
 }
