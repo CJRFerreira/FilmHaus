@@ -13,7 +13,7 @@ namespace FilmHaus
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesAndUsers();
+            //CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()
