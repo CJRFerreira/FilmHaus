@@ -1,0 +1,32 @@
+﻿#footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: auto;
+    width: auto;
+}
+
+.card-header,
+.card-container,
+.card-footer {
+    padding: 10px 25px;
+}
+
+    .card-container:after,
+    .card-container:before {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+.card {
+    height: auto;
+    width: auto;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.card-heavy {
+    height: auto;
+    width: auto;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+}

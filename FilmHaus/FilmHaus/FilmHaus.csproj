@@ -175,12 +175,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base\Film.cs" />
+    <Compile Include="Models\Base\FilmRole.cs" />
     <Compile Include="Models\Base\Genre.cs" />
     <Compile Include="Models\Base\List.cs" />
+    <Compile Include="Models\Base\Person.cs" />
     <Compile Include="Models\Base\Report.cs" />
     <Compile Include="Models\Base\Review.cs" />
     <Compile Include="Models\Base\Tag.cs" />
     <Compile Include="Models\Connector\FilmGenre.cs" />
+    <Compile Include="Models\Connector\FilmPerson.cs" />
+    <Compile Include="Models\Connector\FilmPersonRole.cs" />
     <Compile Include="Models\Connector\FilmTag.cs" />
     <Compile Include="Models\Connector\ListFilm.cs" />
     <Compile Include="Models\Connector\ListTag.cs" />
@@ -196,11 +200,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Custom\Dashboard.css" />
+    <Content Include="Content\Generic\Helper.css" />
+    <Content Include="Content\Layout\Dashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Layout\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -235,9 +240,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -259,6 +261,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
