@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using FilmHaus.Localization;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FilmHaus.Models.View
@@ -6,7 +8,7 @@ namespace FilmHaus.Models.View
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         public string Email { get; set; }
     }
 
@@ -20,6 +22,8 @@ namespace FilmHaus.Models.View
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
         public string ReturnUrl { get; set; }
+
+        [Display(Name = "RememberMe", ResourceType = typeof(Locale))]
         public bool RememberMe { get; set; }
     }
 
@@ -37,56 +41,57 @@ namespace FilmHaus.Models.View
         [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
 
+        [Display(Name = "RememberMe", ResourceType = typeof(Locale))]
         public bool RememberMe { get; set; }
     }
 
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", ResourceType = typeof(Locale))]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "RememberMe", ResourceType = typeof(Locale))]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "First Name")]
+        [Display(Name = "FirstName", ResourceType = typeof(Locale))]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Last Name")]
+        [Display(Name = "LastName", ResourceType = typeof(Locale))]
         public string LastName { get; set; }
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", ResourceType = typeof(Locale))]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Locale))]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
@@ -95,17 +100,17 @@ namespace FilmHaus.Models.View
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", ResourceType = typeof(Locale))]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Locale))]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -116,7 +121,7 @@ namespace FilmHaus.Models.View
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email", ResourceType = typeof(Locale))]
         public string Email { get; set; }
     }
 }
