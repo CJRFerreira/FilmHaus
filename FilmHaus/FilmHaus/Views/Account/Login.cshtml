@@ -1,14 +1,15 @@
 ﻿@using FilmHaus.Models.View
+@using FilmHaus.Localization
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = Locale.Login;
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-6">
         <section id="loginForm" class="card">
             <div class="card-header">
-                <h4>Already a member? Log in!</h4>
+                <h4>@Locale.AlreadyMember</h4>
                 <hr />
             </div>
 
@@ -30,7 +31,7 @@
     <div class="col-md-6">
         <section id="registerForm" class="card">
             <div class="card-header">
-                <h4>New to FilmHaus? Register!</h4>
+                <h4>@Locale.NewFilmHaus</h4>
                 <hr />
             </div>
             <div class="card-container">

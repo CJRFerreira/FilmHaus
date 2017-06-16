@@ -1,4 +1,5 @@
 ﻿@model FilmHaus.Models.View.LoginViewModel
+@using FilmHaus.Localization
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -27,7 +28,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Log in" class="btn btn-default pull-right" />
+            <input type="submit" value="@Locale.Login" class="btn btn-primary pull-right" />
         </div>
     </div>
 }
