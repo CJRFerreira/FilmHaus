@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmHaus.Localization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,6 +28,7 @@ namespace FilmHaus.Models.Base
 
         public virtual Film Film { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public String Body { get; set; }
 
         public enum Status
@@ -35,10 +37,10 @@ namespace FilmHaus.Models.Base
             Private = 1,
         }
 
-        public bool Flagged { get; set; }
+        public bool? Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Created On")]
+        [Display(Name = "CreatedOn", ResourceType = typeof(Locale)]
         public DateTime DateOfCreation { get; set; }
     }
 }

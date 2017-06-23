@@ -30,7 +30,6 @@ namespace FilmHaus.Models.Base
         public virtual User User { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Reported On")]
         public DateTime ReportedOn { get; set; }
 
         public enum Status

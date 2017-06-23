@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FilmHaus.Localization;
+using FilmHaus.Models.Connector;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +15,11 @@ namespace FilmHaus.Models.Base
         [Key]
         public Guid Id { get; set; }
 
+        [DataType(DataType.Text)]
+        [Display(Name = "Role", ResourceType = typeof(Locale))]
         public String Name { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<FilmPersonRole> FilmPersonRole { get; set; }
     }
 }

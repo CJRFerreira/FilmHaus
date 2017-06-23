@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FilmHaus.Localization;
 
 namespace FilmHaus.Models.Base
 {
@@ -13,9 +14,9 @@ namespace FilmHaus.Models.Base
     // visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
+        [Key]
         [Required]
         [Column("UserId")]
-        [Display(Name = "User Id")]
         public override string Id
         {
             get
@@ -31,15 +32,15 @@ namespace FilmHaus.Models.Base
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        [Display(Name = "First Name")]
+        [Display(Name = "FirstName", ResourceType = typeof(Locale))]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        [Display(Name = "Last Name")]
+        [Display(Name = "LastName", ResourceType = typeof(Locale))]
         public string LastName { get; set; }
 
-        [Display(Name = "Full Name")]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         [NotMapped]
         public string FullName
         {
@@ -50,11 +51,11 @@ namespace FilmHaus.Models.Base
         }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Created On")]
+        [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
         public DateTime CreatedOn { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Last Logged In")]
+        [Display(Name = "LastLogin", ResourceType = typeof(Locale))]
         public DateTime LastLogin { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
