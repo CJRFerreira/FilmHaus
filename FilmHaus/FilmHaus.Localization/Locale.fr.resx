@@ -117,4 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveMembers" xml:space="preserve">
+    <value>Membres Actifs</value>
+  </data>
+  <data name="ActivityReports" xml:space="preserve">
+    <value>Rapports d'activité</value>
+  </data>
+  <data name="Actors" xml:space="preserve">
+    <value>Acteur(s)</value>
+  </data>
+  <data name="AdminFunctions" xml:space="preserve">
+    <value>Fonctions Administrateur</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>Recherche Avancée</value>
+  </data>
+  <data name="AlreadyMember" xml:space="preserve">
+    <value>Déjà membre? Connectez-vous!</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmez le mot de passe</value>
+  </data>
+  <data name="Directors" xml:space="preserve">
+    <value>Directeur (s)</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FilmHaus" xml:space="preserve">
+    <value>FilmHaus</value>
+  </data>
+  <data name="FindFilms" xml:space="preserve">
+    <value>Trouver des Films &amp; des Séries</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="Genres" xml:space="preserve">
+    <value>Genre(s)</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Connectez-vous</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="MovieSuggestions" xml:space="preserve">
+    <value>Suggestions de Films</value>
+  </data>
+  <data name="MyFilms" xml:space="preserve">
+    <value>Mes Films &amp; Séries</value>
+  </data>
+  <data name="MyList" xml:space="preserve">
+    <value>Mes Listes</value>
+  </data>
+  <data name="MyReview" xml:space="preserve">
+    <value>Mes Critiques</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="NewFilmHaus" xml:space="preserve">
+    <value>Nouveau à FilmHaus? Registre!</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Évaluation</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registre</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>Date de sortie</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Souviens-toi de moi?</value>
+  </data>
+  <data name="ReportedReviews" xml:space="preserve">
+    <value>Avis Rapportés</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>À</value>
+  </data>
 </root>
