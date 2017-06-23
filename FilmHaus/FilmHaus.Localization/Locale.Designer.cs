@@ -115,6 +115,24 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        public static string Approve {
+            get {
+                return ResourceManager.GetString("Approve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
@@ -129,6 +147,15 @@ namespace FilmHaus.Localization {
         public static string Directors {
             get {
                 return ResourceManager.GetString("Directors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disapprove.
+        /// </summary>
+        public static string Disapprove {
+            get {
+                return ResourceManager.GetString("Disapprove", resourceCulture);
             }
         }
         
@@ -327,6 +354,15 @@ namespace FilmHaus.Localization {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submitted By.
+        /// </summary>
+        public static string SubmittedBy {
+            get {
+                return ResourceManager.GetString("SubmittedBy", resourceCulture);
             }
         }
         
