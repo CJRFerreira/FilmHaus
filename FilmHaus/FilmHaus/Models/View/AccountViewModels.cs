@@ -57,7 +57,7 @@ namespace FilmHaus.Models.View
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
+    public class UserLoginViewModel
     {
         [Required]
         [EmailAddress]
@@ -73,7 +73,7 @@ namespace FilmHaus.Models.View
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class UserRegisterViewModel
     {
         [Required]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
@@ -99,6 +99,19 @@ namespace FilmHaus.Models.View
         [Display(Name = "ConfirmPassword", ResourceType = typeof(Locale))]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class LoginWrapperModel
+    {
+        private UserLoginViewModel UserLoginViewModel;
+
+        private UserRegisterViewModel UserRegisterViewModel;
+
+        public LoginWrapperModel(UserLoginViewModel userLoginViewModel, UserRegisterViewModel userRegisterViewModel)
+        {
+            UserLoginViewModel = userLoginViewModel;
+            UserRegisterViewModel = userRegisterViewModel;
+        }
     }
 
     public class ResetPasswordViewModel

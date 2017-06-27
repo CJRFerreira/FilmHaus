@@ -40,7 +40,7 @@ namespace FilmHaus.Models.Base
         public bool? Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "CreatedOn", ResourceType = typeof(Locale)]
+        [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
         public DateTime DateOfCreation { get; set; }
     }
 }

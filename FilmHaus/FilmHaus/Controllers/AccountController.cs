@@ -78,15 +78,22 @@ namespace FilmHaus.Controllers
             return View();
         }
 
+        // GET: /Shared/_UserLoginPartial
+        [AllowAnonymous]
+        public ActionResult _UserLoginPartial()
+        {
+            return PartialView();
+        }
+
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(UserLoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Login", new LoginWrapperModel(model, new UserRegisterViewModel()));
             }
 
             // This doesn't count login failures towards account lockout To enable password failures
@@ -106,7 +113,7 @@ namespace FilmHaus.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return View("Login", new LoginWrapperModel(model, new UserRegisterViewModel()));
             }
         }
 
@@ -160,11 +167,18 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        // POST: /Account/Register
+        // GET: /Shared/_UserRegisterPartial
+        [AllowAnonymous]
+        public ActionResult _UserRegisterPartial()
+        {
+            return PartialView();
+        }
+
+        // POST: /Shared/_UserRegisterPartial
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(UserRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -199,7 +213,7 @@ namespace FilmHaus.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Login", new LoginWrapperModel(new UserLoginViewModel(), model));
         }
 
         // GET: /Account/ConfirmEmail
