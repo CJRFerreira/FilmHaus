@@ -103,9 +103,9 @@ namespace FilmHaus.Models.View
 
     public class LoginWrapperModel
     {
-        private UserLoginViewModel UserLoginViewModel;
+        public UserLoginViewModel UserLoginViewModel;
 
-        private UserRegisterViewModel UserRegisterViewModel;
+        public UserRegisterViewModel UserRegisterViewModel;
 
         public LoginWrapperModel(UserLoginViewModel userLoginViewModel, UserRegisterViewModel userRegisterViewModel)
         {
