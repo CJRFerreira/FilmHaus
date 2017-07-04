@@ -268,6 +268,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        /// </summary>
+        public static string Hello {
+            get {
+                return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Login.
         /// </summary>
         public static string LastLogin {
@@ -291,6 +300,24 @@ namespace FilmHaus.Localization {
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log Off.
+        /// </summary>
+        public static string LogOff {
+            get {
+                return ResourceManager.GetString("LogOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage.
+        /// </summary>
+        public static string Manage {
+            get {
+                return ResourceManager.GetString("Manage", resourceCulture);
             }
         }
         
@@ -498,6 +525,15 @@ namespace FilmHaus.Localization {
         public static string To {
             get {
                 return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Actions.
+        /// </summary>
+        public static string UserActions {
+            get {
+                return ResourceManager.GetString("UserActions", resourceCulture);
             }
         }
     }

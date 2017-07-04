@@ -186,6 +186,9 @@
   <data name="Genres" xml:space="preserve">
     <value>Genre(s)</value>
   </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Bonjour</value>
+  </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Dernière Connectez</value>
   </data>
@@ -194,6 +197,12 @@
   </data>
   <data name="Login" xml:space="preserve">
     <value>Connectez-vous</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Se déconnecter</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Gérer</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
@@ -263,5 +272,8 @@
   </data>
   <data name="To" xml:space="preserve">
     <value>À</value>
+  </data>
+  <data name="UserActions" xml:space="preserve">
+    <value>Actions de l'utilisateur</value>
   </data>
 </root>

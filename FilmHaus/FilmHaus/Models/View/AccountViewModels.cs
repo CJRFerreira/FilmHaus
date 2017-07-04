@@ -103,14 +103,18 @@ namespace FilmHaus.Models.View
 
     public class LoginWrapperModel
     {
-        public UserLoginViewModel UserLoginViewModel;
+        public UserLoginViewModel UserLoginViewModel { get; set; }
 
-        public UserRegisterViewModel UserRegisterViewModel;
+        public UserRegisterViewModel UserRegisterViewModel { get; set; }
 
         public LoginWrapperModel(UserLoginViewModel userLoginViewModel, UserRegisterViewModel userRegisterViewModel)
         {
             UserLoginViewModel = userLoginViewModel;
             UserRegisterViewModel = userRegisterViewModel;
+        }
+
+        public LoginWrapperModel() : this(new UserLoginViewModel(), new UserRegisterViewModel())
+        {
         }
     }
 
