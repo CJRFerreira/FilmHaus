@@ -201,9 +201,10 @@ namespace FilmHaus.Controllers
                     // For more information on how to enable account confirmation and password reset
                     // please visit http://go.microsoft.com/fwlink/?LinkID=320771 Send an email with
                     // this link string code = await
-                    // UserManager.GenerateEmailConfirmationTokenAsync(user.Id); var callbackUrl =
-                    // Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
-                    // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id,
+                    // UserManager.GenerateEmailConfirmationTokenAsync(user.FilmId); var callbackUrl
+                    // = Url.Action("ConfirmEmail", "Account", new { userId = user.FilmId, code =
+                    // code },
+                    // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.FilmId,
                     // "Confirm your account", "Please confirm your account by clicking <a href=\"" +
                     // callbackUrl + "\">here</a>");
 
@@ -252,9 +253,10 @@ namespace FilmHaus.Controllers
 
                 // For more information on how to enable account confirmation and password reset
                 // please visit http://go.microsoft.com/fwlink/?LinkID=320771 Send an email with this
-                // link string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id); var
-                // callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code
-                // = code }, protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id,
+                // link string code = await UserManager.GeneratePasswordResetTokenAsync(user.FilmId);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId =
+                // user.FilmId, code
+                // = code }, protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.FilmId,
                 // "Reset Password", "Please reset your password by clicking <a href=\"" +
                 // callbackUrl + "\">here</a>"); return
                 // RedirectToAction("ForgotPasswordConfirmation", "Account");

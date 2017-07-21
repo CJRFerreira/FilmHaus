@@ -14,22 +14,6 @@ namespace FilmHaus.Models.Base
     // visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class User : IdentityUser
     {
-        [Key]
-        [Required]
-        [Column("UserId")]
-        public override string Id
-        {
-            get
-            {
-                return base.Id;
-            }
-
-            set
-            {
-                base.Id = value;
-            }
-        }
-
         [Required]
         [StringLength(50, MinimumLength = 1)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
@@ -78,5 +62,9 @@ namespace FilmHaus.Models.Base
         {
             return new FilmHausDbContext();
         }
+
+        public DbSet<Film> Films { get; set; }
+
+        public System.Data.Entity.DbSet<FilmHaus.Models.Base.List> Lists { get; set; }
     }
 }

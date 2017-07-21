@@ -1,0 +1,58 @@
+﻿@model FilmHaus.Models.Base.Film
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Film</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FilmName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilmName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfRelease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfRelease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Runtime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Runtime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accolades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accolades)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -13,7 +13,10 @@ namespace FilmHaus.Models.Base
     public class Film
     {
         [Key]
-        public Guid Id { get; set; }
+        [Required]
+        public Guid FilmId { get; set; }
+
+        public Uri PicUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public String FilmName { get; set; }
