@@ -34,6 +34,7 @@ namespace FilmHaus.Models.Base
             }
         }
 
+        [NotMapped]
         public virtual ICollection<FilmPerson> FilmPerson { get; set; }
     }
 }

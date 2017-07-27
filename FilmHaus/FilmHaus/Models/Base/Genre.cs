@@ -15,6 +15,7 @@ namespace FilmHaus.Models.Base
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
         public String Name { get; set; }
 

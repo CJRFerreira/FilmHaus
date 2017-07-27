@@ -1,20 +1,28 @@
-﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using FilmHaus.Models.Base;
+using System.ComponentModel.DataAnnotations;
+using FilmHaus.Localization;
 
-namespace FilmHaus.Models.Base
+namespace FilmHaus.Models.View
 {
-    [Table("Film")]
-    public class Film
+    public class FilmViewModel
     {
-        [Key]
-        [Required]
-        public Guid FilmId { get; set; }
+        public FilmViewModel()
+        {
+        }
+
+        public FilmViewModel(Film film)
+        {
+            PicUri = film.PicUri;
+            FilmName = film.FilmName;
+            DateOfRelease = film.DateOfRelease;
+            Runtime = film.Runtime;
+            Rating = film.Rating;
+            Accolades = film.Accolades;
+        }
 
         public Uri PicUri { get; set; }
 
@@ -34,11 +42,5 @@ namespace FilmHaus.Models.Base
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public String Accolades { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<FilmGenre> FilmGenre { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<FilmTag> FilmTag { get; set; }
     }
 }

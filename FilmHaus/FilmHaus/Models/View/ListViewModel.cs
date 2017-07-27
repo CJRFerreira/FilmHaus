@@ -1,26 +1,14 @@
 ﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace FilmHaus.Models.Base
+namespace FilmHaus.Models.View
 {
-    [Table("List")]
-    public class List
+    public class ListViewModel
     {
-        [Key]
-        [Required]
-        public Guid ListId { get; set; }
-
-        [ForeignKey("User")]
-        public string Id { get; set; }
-
-        public virtual User User { get; set; }
-
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public String Title { get; set; }
@@ -35,11 +23,5 @@ namespace FilmHaus.Models.Base
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public Boolean Shared { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<ListFilm> ListFilm { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }
