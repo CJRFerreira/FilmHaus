@@ -1,25 +1,26 @@
 ﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
+using FilmHaus.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace FilmHaus.Models.Base
+namespace FilmHaus.Models.View
 {
-    [Table("FilmRole")]
-    public class FilmRole
+    public class FilmRoleViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
+        public FilmRoleViewModel()
+        {
+        }
+
+        public FilmRoleViewModel(FilmRole filmRole)
+        {
+            Role = filmRole.Role;
+        }
 
         [DataType(DataType.Text)]
         [Display(Name = "Role", ResourceType = typeof(Locale))]
         public String Role { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<FilmPersonRole> FilmPersonRole { get; set; }
     }
 }

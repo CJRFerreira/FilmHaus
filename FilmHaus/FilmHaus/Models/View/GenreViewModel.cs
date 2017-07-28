@@ -1,26 +1,27 @@
 ﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
+using FilmHaus.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace FilmHaus.Models.Base
+namespace FilmHaus.Models.View
 {
-    [Table("Genre")]
-    public class Genre
+    public class GenreViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
+        public GenreViewModel()
+        {
+        }
+
+        public GenreViewModel(Genre genre)
+        {
+            Name = genre.Name;
+        }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
         public String Name { get; set; }
-
-        [NotMapped]
-        public virtual ICollection<FilmGenre> FilmGenre { get; set; }
     }
 }

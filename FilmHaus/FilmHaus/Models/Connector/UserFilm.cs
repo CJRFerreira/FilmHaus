@@ -14,7 +14,7 @@ namespace FilmHaus.Models.Connector
         [Key]
         [Column(Order = 1)]
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public string Id { get; set; }
 
         public virtual User User { get; set; }
 

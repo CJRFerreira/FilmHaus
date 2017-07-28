@@ -12,14 +12,20 @@ namespace FilmHaus.Models.Base
     [Table("Film")]
     public class Film
     {
+        public Film()
+        {
+            this.FilmId = Guid.NewGuid();
+        }
+
         [Key]
         [Required]
         public Guid FilmId { get; set; }
 
+        [DataType(DataType.ImageUrl)]
         public Uri PicUri { get; set; }
 
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
         [Required]
+        [Display(Name = "Title", ResourceType = typeof(Locale))]
         public String FilmName { get; set; }
 
         [DataType(DataType.Date)]

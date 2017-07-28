@@ -12,16 +12,15 @@ namespace FilmHaus.Models.Base
     public class Review
     {
         [Key]
-        public Guid Id { get; set; }
+        [Required]
+        public Guid ReviewId { get; set; }
 
-        [Key]
         [Column(Order = 1)]
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public string Id { get; set; }
 
         public virtual User User { get; set; }
 
-        [Key]
         [Column(Order = 2)]
         [ForeignKey("Film")]
         public Guid FilmId { get; set; }
@@ -31,11 +30,9 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.MultilineText)]
         public String Body { get; set; }
 
-        public enum Status
-        {
-            Public = 0,
-            Private = 1,
-        }
+        [Required]
+        [Display(Name = "Shared", ResourceType = typeof(Locale))]
+        public Boolean Shared { get; set; }
 
         public bool? Flagged { get; set; }
 

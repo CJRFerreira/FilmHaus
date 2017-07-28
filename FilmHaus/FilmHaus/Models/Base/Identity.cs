@@ -7,6 +7,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using FilmHaus.Localization;
+using FilmHaus.Models.Connector;
 
 namespace FilmHaus.Models.Base
 {
@@ -65,6 +66,12 @@ namespace FilmHaus.Models.Base
 
         public DbSet<Film> Films { get; set; }
 
-        public System.Data.Entity.DbSet<FilmHaus.Models.Base.List> Lists { get; set; }
+        public DbSet<UserFilm> UserFilms { get; set; }
+
+        public DbSet<List> Lists { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
+        public DbSet<Report> Reports { get; set; }
     }
 }

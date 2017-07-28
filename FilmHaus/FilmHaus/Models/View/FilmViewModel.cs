@@ -24,6 +24,7 @@ namespace FilmHaus.Models.View
             Accolades = film.Accolades;
         }
 
+        [DataType(DataType.ImageUrl)]
         public Uri PicUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
