@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FilmsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Filters\LanguageActionFilter.cs" />
@@ -283,14 +284,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_UserLoginPartial.cshtml" />
     <Content Include="Views\Shared\_UserRegisterPartial.cshtml" />
+    <Content Include="Views\Films\Create.cshtml" />
+    <Content Include="Views\Films\Delete.cshtml" />
+    <Content Include="Views\Films\Details.cshtml" />
+    <Content Include="Views\Films\Edit.cshtml" />
+    <Content Include="Views\Films\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Films\" />
-    <Folder Include="Views\Lists\" />
-    <Folder Include="Views\Reports\" />
-    <Folder Include="Views\Reviews\" />
-    <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
