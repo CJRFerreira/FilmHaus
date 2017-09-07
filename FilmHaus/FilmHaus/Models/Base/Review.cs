@@ -31,13 +31,11 @@ namespace FilmHaus.Models.Base
         public String Body { get; set; }
 
         [Required]
-        [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public Boolean Shared { get; set; }
 
         public bool? Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
         public DateTime DateOfCreation { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FilmHaus.Models.Base;
+﻿using FilmHaus.Models;
+using FilmHaus.Models.Base;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;

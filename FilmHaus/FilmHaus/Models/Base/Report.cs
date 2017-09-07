@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmHaus.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,10 +33,6 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
 
-        public enum Status
-        {
-            Accepted = 0,
-            Rejected = 1
-        }
+        public ReportStatus ReportStatus { get; set; }
     }
 }

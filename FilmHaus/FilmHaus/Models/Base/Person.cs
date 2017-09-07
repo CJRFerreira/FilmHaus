@@ -16,25 +16,11 @@ namespace FilmHaus.Models.Base
         public Guid Id { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "FirstName", ResourceType = typeof(Locale))]
         public String FirstName { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "LastName", ResourceType = typeof(Locale))]
         public String LastName { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Name", ResourceType = typeof(Locale))]
-        [NotMapped]
-        public String FullName
-        {
-            get
-            {
-                return $"{FirstName} {LastName}";
-            }
-        }
-
-        [NotMapped]
+        
         public virtual ICollection<FilmPerson> FilmPerson { get; set; }
     }
 }

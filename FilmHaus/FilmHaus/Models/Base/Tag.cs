@@ -17,10 +17,8 @@ namespace FilmHaus.Models.Base
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
         public String Name { get; set; }
-
-        [NotMapped]
+        
         public virtual ICollection<FilmTag> FilmTag { get; set; }
     }
 }

@@ -16,10 +16,9 @@ namespace FilmHaus.Models.Base
         public Guid Id { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "Role", ResourceType = typeof(Locale))]
         public String Role { get; set; }
 
-        [NotMapped]
+        
         public virtual ICollection<FilmPersonRole> FilmPersonRole { get; set; }
     }
 }
