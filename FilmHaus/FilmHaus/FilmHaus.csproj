@@ -193,19 +193,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base\Film.cs" />
-    <Compile Include="Models\Base\FilmRole.cs" />
+    <Compile Include="Models\Base\Role.cs" />
     <Compile Include="Models\Base\Genre.cs" />
     <Compile Include="Models\Base\List.cs" />
     <Compile Include="Models\Base\Person.cs" />
     <Compile Include="Models\Base\Report.cs" />
     <Compile Include="Models\Base\Review.cs" />
+    <Compile Include="Models\Base\Show.cs" />
+    <Compile Include="Models\Connector\ListShow.cs" />
+    <Compile Include="Models\Connector\ShowGenre.cs" />
+    <Compile Include="Models\Connector\ShowPersonRole.cs" />
+    <Compile Include="Models\Connector\ShowTag.cs" />
     <Compile Include="Models\Base\Tag.cs" />
     <Compile Include="Models\Connector\FilmGenre.cs" />
-    <Compile Include="Models\Connector\FilmPerson.cs" />
     <Compile Include="Models\Connector\FilmPersonRole.cs" />
     <Compile Include="Models\Connector\FilmTag.cs" />
     <Compile Include="Models\Connector\ListFilm.cs" />
     <Compile Include="Models\Connector\ListTag.cs" />
+    <Compile Include="Models\Connector\UserShow.cs" />
     <Compile Include="Models\Connector\UserFilm.cs" />
     <Compile Include="Models\FilmHausDbContext.cs" />
     <Compile Include="Models\View\AccountViewModels.cs" />

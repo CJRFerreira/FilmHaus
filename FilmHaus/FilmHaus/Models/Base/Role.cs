@@ -9,16 +9,15 @@ using System.Web;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("FilmRole")]
-    public class FilmRole
+    [Table("Role")]
+    public class Role
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid RoleId { get; set; }
 
         [DataType(DataType.Text)]
-        public String Role { get; set; }
+        public String RoleName { get; set; }
 
-        
         public virtual ICollection<FilmPersonRole> FilmPersonRole { get; set; }
     }
 }

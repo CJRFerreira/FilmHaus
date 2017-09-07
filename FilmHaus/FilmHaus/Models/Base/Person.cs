@@ -13,14 +13,14 @@ namespace FilmHaus.Models.Base
     public class Person
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid PersonId { get; set; }
 
         [DataType(DataType.Text)]
         public String FirstName { get; set; }
 
         [DataType(DataType.Text)]
         public String LastName { get; set; }
-        
-        public virtual ICollection<FilmPerson> FilmPerson { get; set; }
+
+        public virtual ICollection<FilmPersonRole> FilmPerson { get; set; }
     }
 }

@@ -8,15 +8,15 @@ using System.Web;
 
 namespace FilmHaus.Models.Connector
 {
-    [Table("FilmPerson")]
-    public class FilmPerson
+    [Table("ShowPersonRole")]
+    public class ShowPersonRole
     {
         [Key]
         [Column(Order = 1)]
-        [ForeignKey("Film")]
-        public Guid FilmId { get; set; }
+        [ForeignKey("Show")]
+        public Guid ShowId { get; set; }
 
-        public virtual Film Film { get; set; }
+        public virtual Show Show { get; set; }
 
         [Key]
         [Column(Order = 2)]
@@ -27,9 +27,9 @@ namespace FilmHaus.Models.Connector
 
         [Key]
         [Column(Order = 3)]
-        [ForeignKey("FilmPersonRole")]
-        public Guid FilmPersonRoleId { get; set; }
+        [ForeignKey("Role")]
+        public Guid RoleId { get; set; }
 
-        public virtual FilmPersonRole FilmPersonRole { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

@@ -14,9 +14,9 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public FilmRoleViewModel(FilmRole filmRole)
+        public FilmRoleViewModel(Role filmRole)
         {
-            Role = filmRole.Role;
+            Role = filmRole.RoleName;
         }
 
         [DataType(DataType.Text)]

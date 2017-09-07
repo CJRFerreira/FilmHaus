@@ -1,5 +1,4 @@
-﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
+﻿using FilmHaus.Models.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,34 +8,34 @@ using System.Web;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Film")]
-    public class Film
+    [Table("Show")]
+    public class Show
     {
-        public Film()
+        public Show()
         {
         }
 
         [Key]
         [Required]
-        public Guid FilmId { get; set; }
+        public Guid ShowId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PicUri { get; set; }
 
         [Required]
-        public String FilmName { get; set; }
+        public String ShowName { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateOfRelease { get; set; }
 
-        public Int32 Runtime { get; set; }
+        public Int32 NumberOfSeasons { get; set; }
 
         public Int32 Rating { get; set; }
 
         public String Accolades { get; set; }
 
-        public virtual ICollection<FilmGenre> FilmGenre { get; set; }
+        public virtual ICollection<ShowGenre> FilmGenre { get; set; }
 
-        public virtual ICollection<FilmTag> FilmTag { get; set; }
+        public virtual ICollection<ShowTag> FilmTag { get; set; }
     }
 }

@@ -13,16 +13,23 @@ namespace FilmHaus.Models.Connector
     {
         [Key]
         [Column(Order = 1)]
-        [ForeignKey("FilmPerson")]
-        public Guid FilmPersonId { get; set; }
+        [ForeignKey("Film")]
+        public Guid FilmId { get; set; }
 
-        public virtual FilmPerson FilmPerson { get; set; }
+        public virtual Film Film { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        [ForeignKey("FilmRole")]
-        public Guid FilmRoleId { get; set; }
+        [ForeignKey("Person")]
+        public Guid PersonId { get; set; }
 
-        public virtual FilmRole FilmRole { get; set; }
+        public virtual Person Person { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
+        [ForeignKey("Role")]
+        public Guid RoleId { get; set; }
+
+        public virtual Role Role { get; set; }
     }
 }
