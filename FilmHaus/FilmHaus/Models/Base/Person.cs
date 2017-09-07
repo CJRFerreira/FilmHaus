@@ -15,6 +15,7 @@ namespace FilmHaus.Models.Base
         [Key]
         public Guid PersonId { get; set; }
 
+        [Required]
         [DataType(DataType.Text)]
         public String FirstName { get; set; }
 

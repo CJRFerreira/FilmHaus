@@ -19,6 +19,22 @@ namespace FilmHaus.Models.View
             Name = tag.Name;
         }
 
+        [DataType(DataType.Text)]
+        [Display(Name = "Tag", ResourceType = typeof(Locale))]
+        public String Name { get; set; }
+    }
+
+    public class CreateTagViewModel
+    {
+        public CreateTagViewModel()
+        {
+        }
+
+        public CreateTagViewModel(Tag tag)
+        {
+            Name = tag.Name;
+        }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Tag", ResourceType = typeof(Locale))]

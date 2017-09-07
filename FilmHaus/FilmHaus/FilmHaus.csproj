@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -215,14 +216,15 @@
     <Compile Include="Models\FilmHausDbContext.cs" />
     <Compile Include="Models\View\AccountViewModels.cs" />
     <Compile Include="Models\Base\Identity.cs" />
-    <Compile Include="Models\View\FilmRoleViewModel.cs" />
-    <Compile Include="Models\View\FilmViewModel.cs" />
-    <Compile Include="Models\View\GenreViewModel.cs" />
-    <Compile Include="Models\View\ListViewModel.cs" />
+    <Compile Include="Models\View\FilmViewModels.cs" />
+    <Compile Include="Models\View\GenreViewModels.cs" />
+    <Compile Include="Models\View\ListViewModels.cs" />
     <Compile Include="Models\View\ManageViewModels.cs" />
-    <Compile Include="Models\View\PersonViewModel.cs" />
-    <Compile Include="Models\View\TagViewModel.cs" />
+    <Compile Include="Models\View\PersonViewModels.cs" />
+    <Compile Include="Models\View\TagViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Films\IFilmService.cs" />
+    <Compile Include="Services\Shows\IShowService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -299,7 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\Film\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
