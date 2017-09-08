@@ -8,27 +8,54 @@ using FilmHaus.Localization;
 
 namespace FilmHaus.Models.View
 {
-    public class FilmViewModel
+    public class ShowViewModel
     {
-        public FilmViewModel()
+        public ShowViewModel()
         {
         }
 
-        public FilmViewModel(Film film)
+        public ShowViewModel(Show show)
         {
-            PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Rating = film.Rating;
-            Accolades = film.Accolades;
+            PosterUri = show.PosterUri;
+            ShowName = show.ShowName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Rating = show.Rating;
+            Accolades = show.Accolades;
         }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public String FilmName { get; set; }
+        public String ShowName { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
+        public DateTime DateOfRelease { get; set; }
+
+        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
+        public Int32 NumberOfSeasons { get; set; }
+
+        [Display(Name = "Rating", ResourceType = typeof(Locale))]
+        public Int32 Rating { get; set; }
+
+        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
+        public String Accolades { get; set; }
+    }
+
+    public class CreateShowViewModel
+    {
+        public CreateShowViewModel()
+        {
+        }
+
+        [DataType(DataType.ImageUrl)]
+        public Uri PosterUri { get; set; }
+
+        [Display(Name = "Title", ResourceType = typeof(Locale))]
+        [Required]
+        public String ShowName { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
@@ -44,10 +71,30 @@ namespace FilmHaus.Models.View
         public String Accolades { get; set; }
     }
 
-    public class CreateFilmViewModel
+    public class EditShowViewModel
     {
-        public CreateFilmViewModel()
+        public EditShowViewModel()
         {
+        }
+
+        public EditShowViewModel(Show show)
+        {
+            PosterUri = show.PosterUri;
+            ShowName = show.ShowName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Rating = show.Rating;
+            Accolades = show.Accolades;
+        }
+
+        public EditShowViewModel(ShowViewModel show)
+        {
+            PosterUri = show.PosterUri;
+            ShowName = show.ShowName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Rating = show.Rating;
+            Accolades = show.Accolades;
         }
 
         [DataType(DataType.ImageUrl)]
@@ -55,61 +102,14 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         [Required]
-        public String FilmName { get; set; }
+        public String ShowName { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTime DateOfRelease { get; set; }
 
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]
-        public Int32 Runtime { get; set; }
-
-        [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public Int32 Rating { get; set; }
-
-        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public String Accolades { get; set; }
-    }
-
-    public class EditFilmViewModel
-    {
-        public EditFilmViewModel()
-        {
-        }
-
-        public EditFilmViewModel(Film film)
-        {
-            PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Rating = film.Rating;
-            Accolades = film.Accolades;
-        }
-
-        public EditFilmViewModel(FilmViewModel film)
-        {
-            PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Rating = film.Rating;
-            Accolades = film.Accolades;
-        }
-
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Required]
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public String FilmName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTime DateOfRelease { get; set; }
-
-        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
-        public Int32 Runtime { get; set; }
+        public Int32 NumberOfSeasons { get; set; }
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
         public Int32 Rating { get; set; }

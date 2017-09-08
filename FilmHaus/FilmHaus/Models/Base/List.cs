@@ -22,17 +22,16 @@ namespace FilmHaus.Models.Base
         public virtual User User { get; set; }
 
         [Required]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
-        public Boolean Shared { get; set; }
-
+        public bool Shared { get; set; }
         
         public virtual ICollection<ListFilm> ListFilm { get; set; }
 

@@ -28,10 +28,10 @@ namespace FilmHaus.Models.Base
         public virtual Film Film { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public String Body { get; set; }
+        public string Body { get; set; }
 
         [Required]
-        public Boolean Shared { get; set; }
+        public bool Shared { get; set; }
 
         public bool? Flagged { get; set; }
 

@@ -57,6 +57,12 @@ namespace FilmHaus.Models.View
             LastName = person.LastName;
         }
 
+        public EditPersonViewModel(PersonViewModel person)
+        {
+            FirstName = person.FirstName;
+            LastName = person.LastName;
+        }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]

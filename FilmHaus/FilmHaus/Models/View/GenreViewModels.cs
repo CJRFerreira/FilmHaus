@@ -47,6 +47,11 @@ namespace FilmHaus.Models.View
             Name = genre.Name;
         }
 
+        public EditGenreViewModel(GenreViewModel genre)
+        {
+            Name = genre.Name;
+        }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]

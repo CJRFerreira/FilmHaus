@@ -35,6 +35,11 @@ namespace FilmHaus.Models.View
             Name = tag.Name;
         }
 
+        public CreateTagViewModel(TagViewModel tag)
+        {
+            Name = tag.Name;
+        }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Tag", ResourceType = typeof(Locale))]

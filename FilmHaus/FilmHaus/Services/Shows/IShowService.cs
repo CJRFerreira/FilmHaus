@@ -1,4 +1,5 @@
 ﻿using FilmHaus.Models.Base;
+using FilmHaus.Models.View;
 using System.Collections.Generic;
 
 namespace FilmHaus.Services.Shows
@@ -7,16 +8,18 @@ namespace FilmHaus.Services.Shows
     {
         Show GetShowByShowId(string id);
 
-        ICollection<Show> GetAllShows();
+        List<Show> GetAllShows();
+        
+        List<Show> GetAllShowsForUser(string id);
+        
+        List<Show> GetShowsBySearchTerm(string searchTerm);
+        
+        List<Show> GetShowsByListId(string id);
 
-        ICollection<Show> GetAllShowsForUser(string id);
-
-        ICollection<Show> GetShowsBySearchTerm(string searchTerm);
-
-        void CreateShow(Show Show);
+        void CreateShow(CreateShowViewModel show);
 
         void DeleteShowByShowId(string id);
 
-        void UpdateShowByShowId(string id);
+        void UpdateShowByShowId(string id, EditShowViewModel show);
     }
 }

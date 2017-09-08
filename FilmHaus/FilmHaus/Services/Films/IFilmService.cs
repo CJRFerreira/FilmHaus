@@ -1,4 +1,5 @@
 ﻿using FilmHaus.Models.Base;
+using FilmHaus.Models.View;
 using System.Collections.Generic;
 
 namespace FilmHaus.Services.Films
@@ -7,16 +8,18 @@ namespace FilmHaus.Services.Films
     {
         Film GetFilmByFilmId(string id);
 
-        ICollection<Film> GetAllFilms();
+        List<Film> GetAllFilms();
 
-        ICollection<Film> GetAllFilmsForUser(string id);
+        List<Film> GetAllFilmsForUser(string id);
 
-        ICollection<Film> GetFilmsBySearchTerm(string searchTerm);
+        List<Film> GetFilmsBySearchTerm(string searchTerm);
 
-        void CreateFilm(Film film);
+        List<Film> GetFilmsByListId(string id);
+
+        void CreateFilm(CreateFilmViewModel film);
 
         void DeleteFilmByFilmId(string id);
 
-        void UpdateFilmByFilmId(string id);
+        void UpdateFilmByFilmId(string id, EditFilmViewModel film);
     }
 }

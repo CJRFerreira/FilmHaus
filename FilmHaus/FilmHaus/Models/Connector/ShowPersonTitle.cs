@@ -8,8 +8,8 @@ using System.Web;
 
 namespace FilmHaus.Models.Connector
 {
-    [Table("ShowPersonRole")]
-    public class ShowPersonRole
+    [Table("ShowPersonTitle")]
+    public class ShowPersonTitle
     {
         [Key]
         [Column(Order = 1)]
@@ -27,9 +27,9 @@ namespace FilmHaus.Models.Connector
 
         [Key]
         [Column(Order = 3)]
-        [ForeignKey("Role")]
-        public Guid RoleId { get; set; }
+        [ForeignKey("Title")]
+        public Guid TitleId { get; set; }
 
-        public virtual Role Role { get; set; }
+        public virtual Title Title { get; set; }
     }
 }

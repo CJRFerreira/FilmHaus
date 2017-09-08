@@ -72,6 +72,14 @@ namespace FilmHaus.Models.View
             Shared = list.Shared;
         }
 
+        public EditListViewModel(ListViewModel list)
+        {
+            Title = list.Title;
+            Description = list.Description;
+            DateOfCreation = list.DateOfCreation;
+            Shared = list.Shared;
+        }
+
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public String Title { get; set; }

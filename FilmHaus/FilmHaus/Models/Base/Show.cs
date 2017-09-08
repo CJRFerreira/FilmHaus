@@ -20,7 +20,7 @@ namespace FilmHaus.Models.Base
         public Guid ShowId { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public Uri PicUri { get; set; }
+        public Uri PosterUri { get; set; }
 
         [Required]
         public String ShowName { get; set; }
