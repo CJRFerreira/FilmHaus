@@ -59,6 +59,18 @@ namespace FilmHaus.Models.View
 
     public class UserLoginViewModel
     {
+        public UserLoginViewModel()
+        {
+
+        }
+
+        public UserLoginViewModel(UserLoginViewModel model)
+        {
+            Email = model.Email;
+            Password = model.Password;
+            RememberMe = model.RememberMe;
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email", ResourceType = typeof(Locale))]

@@ -75,7 +75,7 @@ namespace FilmHaus.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View(new LoginWrapperModel());
+            return View(new UserLoginViewModel());
         }
 
         // GET: /Shared/_UserLoginPartial
@@ -92,9 +92,7 @@ namespace FilmHaus.Controllers
         public async Task<ActionResult> Login(UserLoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
-            {
-                return View("Login", new LoginWrapperModel(model, new UserRegisterViewModel()));
-            }
+                return View("Login", new UserLoginViewModel(model));
 
             // This doesn't count login failures towards account lockout To enable password failures
             // to trigger account lockout, change to shouldLockout: true
