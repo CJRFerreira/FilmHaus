@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using FilmHaus.Models;
 using FilmHaus.Models.View;
 using FilmHaus.Models.Base;
 
@@ -75,14 +74,11 @@ namespace FilmHaus.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View(new UserLoginViewModel());
-        }
 
-        // GET: /Shared/_UserLoginPartial
-        [AllowAnonymous]
-        public ActionResult _UserLoginPartial()
-        {
-            return PartialView();
+            if (!User.Identity.IsAuthenticated)
+                return View();
+            else
+                return View(new UserLoginViewModel());
         }
 
         // POST: /Account/Login
@@ -134,16 +130,14 @@ namespace FilmHaus.Controllers
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
+            
 
             // The following code protects for brute force attacks against the two factor codes. If a
             // user enters incorrect codes for a specified amount of time then the user account will
             // be locked out for a specified amount of time. You can configure the account lockout
             // settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
-            switch (result)
+            switch (await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser))
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(model.ReturnUrl);
@@ -163,13 +157,6 @@ namespace FilmHaus.Controllers
         public ActionResult Register()
         {
             return View();
-        }
-
-        // GET: /Shared/_UserRegisterPartial
-        [AllowAnonymous]
-        public ActionResult _UserRegisterPartial()
-        {
-            return PartialView();
         }
 
         // POST: /Shared/_UserRegisterPartial

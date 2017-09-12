@@ -211,12 +211,12 @@
     <value>Suggestions de Films</value>
   </data>
   <data name="MyFilms" xml:space="preserve">
-    <value>Mes Films &amp; Séries</value>
+    <value>Mes Films</value>
   </data>
-  <data name="MyList" xml:space="preserve">
+  <data name="MyLists" xml:space="preserve">
     <value>Mes Listes</value>
   </data>
-  <data name="MyReview" xml:space="preserve">
+  <data name="MyReviews" xml:space="preserve">
     <value>Mes Critiques</value>
   </data>
   <data name="Name" xml:space="preserve">
@@ -290,5 +290,65 @@
   </data>
   <data name="Shared" xml:space="preserve">
     <value>Partagé</value>
+  </data>
+  <data name="MyShows" xml:space="preserve">
+    <value>Mes émissions de télévision</value>
+  </data>
+  <data name="ActiveReports" xml:space="preserve">
+    <value>Rapports Actifs</value>
+  </data>
+  <data name="ClosedReports" xml:space="preserve">
+    <value>Rapports Fermés</value>
+  </data>
+  <data name="CreateList" xml:space="preserve">
+    <value>Créer une Liste</value>
+  </data>
+  <data name="FeatureFilmTagline" xml:space="preserve">
+    <value>Vos Films Sont Nos Films!</value>
+  </data>
+  <data name="FeatureListTagline" xml:space="preserve">
+    <value>Gardez la Trace de ce que Vous Voulez!</value>
+  </data>
+  <data name="FeatureReviewTagline" xml:space="preserve">
+    <value>Partage tes Pensées!</value>
+  </data>
+  <data name="FilmsShows" xml:space="preserve">
+    <value>Films &amp; Émissions de Télévision</value>
+  </data>
+  <data name="HaveQuestions" xml:space="preserve">
+    <value>Avoir une Question?</value>
+  </data>
+  <data name="MohawkCollege" xml:space="preserve">
+    <value>Mohawk College</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>Mes Rapports</value>
+  </data>
+  <data name="OurSponsor" xml:space="preserve">
+    <value>Notre Commanditaire</value>
+  </data>
+  <data name="PastReports" xml:space="preserve">
+    <value>Rapports Passés</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>Point D'Interrogation</value>
+  </data>
+  <data name="SearchFilms" xml:space="preserve">
+    <value>Recherche de Films</value>
+  </data>
+  <data name="SearchLists" xml:space="preserve">
+    <value>Rechercher des Listes</value>
+  </data>
+  <data name="SearchReviews" xml:space="preserve">
+    <value>Rechercher des Critiques</value>
+  </data>
+  <data name="SearchShows" xml:space="preserve">
+    <value>Rechercher des Émissions Télévisées</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>Voir les Détails</value>
+  </data>
+  <data name="ViewLists" xml:space="preserve">
+    <value>Afficher les Listes</value>
   </data>
 </root>

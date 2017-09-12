@@ -79,6 +79,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Reports.
+        /// </summary>
+        public static string ActiveReports {
+            get {
+                return ResourceManager.GetString("ActiveReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activity Reports.
         /// </summary>
         public static string ActivityReports {
@@ -142,6 +151,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed Reports.
+        /// </summary>
+        public static string ClosedReports {
+            get {
+                return ResourceManager.GetString("ClosedReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Code {
@@ -174,6 +192,15 @@ namespace FilmHaus.Localization {
         public static string CreatedOn {
             get {
                 return ResourceManager.GetString("CreatedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a List.
+        /// </summary>
+        public static string CreateList {
+            get {
+                return ResourceManager.GetString("CreateList", resourceCulture);
             }
         }
         
@@ -250,11 +277,47 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Films Are Our Films!.
+        /// </summary>
+        public static string FeatureFilmTagline {
+            get {
+                return ResourceManager.GetString("FeatureFilmTagline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep Track of What You Want!.
+        /// </summary>
+        public static string FeatureListTagline {
+            get {
+                return ResourceManager.GetString("FeatureListTagline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share Your Thoughts!.
+        /// </summary>
+        public static string FeatureReviewTagline {
+            get {
+                return ResourceManager.GetString("FeatureReviewTagline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FilmHaus.
         /// </summary>
         public static string FilmHaus {
             get {
                 return ResourceManager.GetString("FilmHaus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Films &amp; Shows.
+        /// </summary>
+        public static string FilmsShows {
+            get {
+                return ResourceManager.GetString("FilmsShows", resourceCulture);
             }
         }
         
@@ -300,6 +363,15 @@ namespace FilmHaus.Localization {
         public static string Genres {
             get {
                 return ResourceManager.GetString("Genres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a Question?.
+        /// </summary>
+        public static string HaveQuestions {
+            get {
+                return ResourceManager.GetString("HaveQuestions", resourceCulture);
             }
         }
         
@@ -367,6 +439,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mohawk College.
+        /// </summary>
+        public static string MohawkCollege {
+            get {
+                return ResourceManager.GetString("MohawkCollege", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Movie Suggestions.
         /// </summary>
         public static string MovieSuggestions {
@@ -376,7 +457,7 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Films &amp; Series.
+        ///   Looks up a localized string similar to My Films.
         /// </summary>
         public static string MyFilms {
             get {
@@ -387,18 +468,36 @@ namespace FilmHaus.Localization {
         /// <summary>
         ///   Looks up a localized string similar to My Lists.
         /// </summary>
-        public static string MyList {
+        public static string MyLists {
             get {
-                return ResourceManager.GetString("MyList", resourceCulture);
+                return ResourceManager.GetString("MyLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Reports.
+        /// </summary>
+        public static string MyReports {
+            get {
+                return ResourceManager.GetString("MyReports", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to My Reviews.
         /// </summary>
-        public static string MyReview {
+        public static string MyReviews {
             get {
-                return ResourceManager.GetString("MyReview", resourceCulture);
+                return ResourceManager.GetString("MyReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Shows.
+        /// </summary>
+        public static string MyShows {
+            get {
+                return ResourceManager.GetString("MyShows", resourceCulture);
             }
         }
         
@@ -430,11 +529,29 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our Sponsor.
+        /// </summary>
+        public static string OurSponsor {
+            get {
+                return ResourceManager.GetString("OurSponsor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Past Reports.
+        /// </summary>
+        public static string PastReports {
+            get {
+                return ResourceManager.GetString("PastReports", resourceCulture);
             }
         }
         
@@ -462,6 +579,15 @@ namespace FilmHaus.Localization {
         public static string Public {
             get {
                 return ResourceManager.GetString("Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Mark.
+        /// </summary>
+        public static string QuestionMark {
+            get {
+                return ResourceManager.GetString("QuestionMark", resourceCulture);
             }
         }
         
@@ -547,6 +673,42 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search Films.
+        /// </summary>
+        public static string SearchFilms {
+            get {
+                return ResourceManager.GetString("SearchFilms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Lists.
+        /// </summary>
+        public static string SearchLists {
+            get {
+                return ResourceManager.GetString("SearchLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Reviews.
+        /// </summary>
+        public static string SearchReviews {
+            get {
+                return ResourceManager.GetString("SearchReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Shows.
+        /// </summary>
+        public static string SearchShows {
+            get {
+                return ResourceManager.GetString("SearchShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shared.
         /// </summary>
         public static string Shared {
@@ -597,6 +759,24 @@ namespace FilmHaus.Localization {
         public static string UserActions {
             get {
                 return ResourceManager.GetString("UserActions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Details.
+        /// </summary>
+        public static string ViewDetails {
+            get {
+                return ResourceManager.GetString("ViewDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Lists.
+        /// </summary>
+        public static string ViewLists {
+            get {
+                return ResourceManager.GetString("ViewLists", resourceCulture);
             }
         }
     }

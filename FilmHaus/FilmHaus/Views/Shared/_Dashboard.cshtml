@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - @Locale.FilmHaus</title>
     @Styles.Render("~/Content/main/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -31,36 +31,34 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Home</a>
+                    @Html.ActionLink(Locale.MyFilms, "Index", "Film")
                 </li>
                 <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">Team</a>
+                    @Html.ActionLink(Locale.MyShows, "Index", "Series")
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Locale.MyLists <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Dropdown heading</li>
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li class="dropdown-header">@Locale.UserActions</li>
+                        <li>@Html.ActionLink(Locale.ViewLists, "Index", "List")</li>
+                        <li>@Html.ActionLink(Locale.CreateList, "CreateList", "List")</li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    @Html.ActionLink(Locale.MyReviews, "Index", "Review")
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    @Html.ActionLink(Locale.MyReports, "Index", "Report")
                 </li>
-                <li>
-                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Locale.Search <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">@Locale.UserActions</li>
+                        <li>@Html.ActionLink(Locale.SearchFilms, "SearchFilms", "Search")</li>
+                        <li>@Html.ActionLink(Locale.SearchShows, "SearchShows", "Search")</li>
+                        <li>@Html.ActionLink(Locale.SearchLists, "SearchLists", "Search")</li>
+                        <li>@Html.ActionLink(Locale.SearchReviews, "SearchReviews", "Search")</li>
+                    </ul>
                 </li>
             </ul>
         </nav>

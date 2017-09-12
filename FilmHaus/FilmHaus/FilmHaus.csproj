@@ -251,6 +251,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Images\10ae9fc7d453b0dd525d0edf2ede7961.jpg" />
+    <Content Include="Images\18db9a4cbf129b80974088797eafe9c5.jpg" />
+    <Content Include="Images\8be518b57145907b8019fa684076a407.png" />
+    <Content Include="Images\94acf9fef510cbffa0074c1525d0345f.jpg" />
+    <Content Include="Images\c9c34e5cfd889ecb39b1c005a5df8cb3.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />

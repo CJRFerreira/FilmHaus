@@ -26,3 +26,21 @@
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     border-radius: 5px;
 }
+
+.featurette-image-large {
+    max-width: 500px;
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.featurette-image {
+    max-width: 250px;
+    max-height: 125px;
+    overflow: hidden;
+}
+
+.featurette-image-small {
+    max-width: 150px;
+    max-height: 75px;
+    overflow: hidden;
+}

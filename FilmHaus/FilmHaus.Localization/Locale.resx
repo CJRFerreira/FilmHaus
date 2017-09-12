@@ -211,12 +211,12 @@
     <value>Movie Suggestions</value>
   </data>
   <data name="MyFilms" xml:space="preserve">
-    <value>My Films &amp; Series</value>
+    <value>My Films</value>
   </data>
-  <data name="MyList" xml:space="preserve">
+  <data name="MyLists" xml:space="preserve">
     <value>My Lists</value>
   </data>
-  <data name="MyReview" xml:space="preserve">
+  <data name="MyReviews" xml:space="preserve">
     <value>My Reviews</value>
   </data>
   <data name="Name" xml:space="preserve">
@@ -296,5 +296,65 @@
   </data>
   <data name="Shared" xml:space="preserve">
     <value>Shared</value>
+  </data>
+  <data name="MyShows" xml:space="preserve">
+    <value>My Shows</value>
+  </data>
+  <data name="ActiveReports" xml:space="preserve">
+    <value>Active Reports</value>
+  </data>
+  <data name="ClosedReports" xml:space="preserve">
+    <value>Closed Reports</value>
+  </data>
+  <data name="CreateList" xml:space="preserve">
+    <value>Create a List</value>
+  </data>
+  <data name="FeatureFilmTagline" xml:space="preserve">
+    <value>Your Films Are Our Films!</value>
+  </data>
+  <data name="FeatureListTagline" xml:space="preserve">
+    <value>Keep Track of What You Want!</value>
+  </data>
+  <data name="FeatureReviewTagline" xml:space="preserve">
+    <value>Share Your Thoughts!</value>
+  </data>
+  <data name="FilmsShows" xml:space="preserve">
+    <value>Films &amp; Shows</value>
+  </data>
+  <data name="HaveQuestions" xml:space="preserve">
+    <value>Have a Question?</value>
+  </data>
+  <data name="MohawkCollege" xml:space="preserve">
+    <value>Mohawk College</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>My Reports</value>
+  </data>
+  <data name="OurSponsor" xml:space="preserve">
+    <value>Our Sponsor</value>
+  </data>
+  <data name="PastReports" xml:space="preserve">
+    <value>Past Reports</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>Question Mark</value>
+  </data>
+  <data name="SearchFilms" xml:space="preserve">
+    <value>Search Films</value>
+  </data>
+  <data name="SearchLists" xml:space="preserve">
+    <value>Search Lists</value>
+  </data>
+  <data name="SearchReviews" xml:space="preserve">
+    <value>Search Reviews</value>
+  </data>
+  <data name="SearchShows" xml:space="preserve">
+    <value>Search Shows</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="ViewLists" xml:space="preserve">
+    <value>View Lists</value>
   </data>
 </root>
