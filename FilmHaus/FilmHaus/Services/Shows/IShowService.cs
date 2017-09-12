@@ -9,12 +9,14 @@ namespace FilmHaus.Services.Shows
         Show GetShowByShowId(string id);
 
         List<Show> GetAllShows();
-        
+
         List<Show> GetAllShowsForUser(string id);
-        
+
         List<Show> GetShowsBySearchTerm(string searchTerm);
-        
+
         List<Show> GetShowsByListId(string id);
+
+        int GetAverageShowRating(string id);
 
         void CreateShow(CreateShowViewModel show);
 

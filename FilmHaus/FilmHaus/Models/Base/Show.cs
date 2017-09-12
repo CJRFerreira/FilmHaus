@@ -23,16 +23,14 @@ namespace FilmHaus.Models.Base
         public Uri PosterUri { get; set; }
 
         [Required]
-        public String ShowName { get; set; }
+        public string ShowName { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateOfRelease { get; set; }
 
-        public Int32 NumberOfSeasons { get; set; }
+        public int NumberOfSeasons { get; set; }
 
-        public Int32 Rating { get; set; }
-
-        public String Accolades { get; set; }
+        public string Accolades { get; set; }
 
         public virtual ICollection<ShowGenre> FilmGenre { get; set; }
 

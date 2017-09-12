@@ -31,8 +31,6 @@ namespace FilmHaus.Models.Base
 
         public int Runtime { get; set; }
 
-        public int Rating { get; set; }
-
         public string Accolades { get; set; }
 
         public virtual ICollection<FilmGenre> FilmGenre { get; set; }

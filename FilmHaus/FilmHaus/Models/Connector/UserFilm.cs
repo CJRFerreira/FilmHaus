@@ -24,5 +24,8 @@ namespace FilmHaus.Models.Connector
         public Guid FilmId { get; set; }
 
         public virtual Film Film { get; set; }
+
+        [Range(1, 10)]
+        public int Rating { get; set; }
     }
 }

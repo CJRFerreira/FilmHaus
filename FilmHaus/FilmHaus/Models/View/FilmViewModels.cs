@@ -20,7 +20,6 @@ namespace FilmHaus.Models.View
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Rating = film.Rating;
             Accolades = film.Accolades;
         }
 
@@ -64,9 +63,6 @@ namespace FilmHaus.Models.View
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]
         public Int32 Runtime { get; set; }
 
-        [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public Int32 Rating { get; set; }
-
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public String Accolades { get; set; }
     }
@@ -83,7 +79,6 @@ namespace FilmHaus.Models.View
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Rating = film.Rating;
             Accolades = film.Accolades;
         }
 
@@ -93,7 +88,6 @@ namespace FilmHaus.Models.View
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Rating = film.Rating;
             Accolades = film.Accolades;
         }
 
@@ -110,9 +104,6 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]
         public Int32 Runtime { get; set; }
-
-        [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public Int32 Rating { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public String Accolades { get; set; }

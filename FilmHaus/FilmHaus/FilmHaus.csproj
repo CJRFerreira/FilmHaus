@@ -225,6 +225,7 @@
     <Compile Include="Models\View\PersonViewModels.cs" />
     <Compile Include="Models\View\TagViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Films\FilmService.cs" />
     <Compile Include="Services\Films\IFilmService.cs" />
     <Compile Include="Services\Lists\IListService.cs" />
     <Compile Include="Services\Reviews\IReviewService.cs" />
