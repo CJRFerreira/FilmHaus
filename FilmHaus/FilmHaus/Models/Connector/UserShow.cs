@@ -26,6 +26,6 @@ namespace FilmHaus.Models.Connector
         public virtual Show Show { get; set; }
 
         [Range(1, 10)]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
     }
 }

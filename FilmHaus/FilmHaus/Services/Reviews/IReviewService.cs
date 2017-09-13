@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmHaus.Services.Reviews
 {
-    interface IReviewService
+    public interface IReviewService
     {
         Review GetReviewByReviewId(string id);
 

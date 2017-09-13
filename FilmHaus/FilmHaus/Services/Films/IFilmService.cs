@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FilmHaus.Services.Films
 {
-    internal interface IFilmService
+    public interface IFilmService
     {
         FilmViewModel GetFilmByFilmId(string id);
 

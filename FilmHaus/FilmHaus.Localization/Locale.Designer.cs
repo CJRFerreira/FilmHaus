@@ -313,6 +313,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Film Library.
+        /// </summary>
+        public static string FilmLibrary {
+            get {
+                return ResourceManager.GetString("FilmLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Films &amp; Shows.
         /// </summary>
         public static string FilmsShows {
@@ -399,6 +408,15 @@ namespace FilmHaus.Localization {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        public static string Library {
+            get {
+                return ResourceManager.GetString("Library", resourceCulture);
             }
         }
         
@@ -714,6 +732,15 @@ namespace FilmHaus.Localization {
         public static string Shared {
             get {
                 return ResourceManager.GetString("Shared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Library.
+        /// </summary>
+        public static string ShowLibrary {
+            get {
+                return ResourceManager.GetString("ShowLibrary", resourceCulture);
             }
         }
         

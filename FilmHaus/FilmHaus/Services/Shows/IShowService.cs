@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FilmHaus.Services.Shows
 {
-    internal interface IShowService
+    public interface IShowService
     {
         Show GetShowByShowId(string id);
 

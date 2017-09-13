@@ -357,4 +357,13 @@
   <data name="ViewLists" xml:space="preserve">
     <value>View Lists</value>
   </data>
+  <data name="FilmLibrary" xml:space="preserve">
+    <value>Film Library</value>
+  </data>
+  <data name="Library" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="ShowLibrary" xml:space="preserve">
+    <value>Show Library</value>
+  </data>
 </root>

@@ -73,11 +73,11 @@ namespace FilmHaus.Services.Films
         public int GetAverageFilmRating(string id)
         {
             int filmRating = 0;
-            List<int> allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId.ToString() == id).Select(r => r.Rating).ToList();
+            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId.ToString() == id && f.Rating != null).Select(r => r.Rating).ToList();
 
             foreach (var rating in allRatings)
             {
-                filmRating += rating;
+                filmRating += (int)rating;
             }
 
             return (filmRating / allRatings.Count);

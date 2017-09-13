@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmHaus.Services.Lists
 {
-    interface IListService
+    public interface IListService
     {
         List GetListByListId(string id);
 
@@ -21,7 +21,7 @@ namespace FilmHaus.Services.Lists
         void CreateList(CreateListViewModel film);
 
         void DeleteListByListId(string id);
-                         
+
         void UpdateListByListId(string id, EditListViewModel list);
     }
 }
