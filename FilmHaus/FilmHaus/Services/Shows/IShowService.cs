@@ -6,15 +6,15 @@ namespace FilmHaus.Services.Shows
 {
     public interface IShowService
     {
-        Show GetShowByShowId(string id);
+        ShowViewModel GetShowByShowId(string id);
 
-        List<Show> GetAllShows();
+        List<ShowViewModel> GetAllShows();
 
-        List<Show> GetAllShowsForUser(string id);
+        List<ShowViewModel> GetAllShowsForUser(string id);
 
-        List<Show> GetShowsBySearchTerm(string searchTerm);
+        List<ShowViewModel> GetShowsBySearchTerm(string searchTerm);
 
-        List<Show> GetShowsByListId(string id);
+        List<ShowViewModel> GetShowsByListId(string id);
 
         int GetAverageShowRating(string id);
 

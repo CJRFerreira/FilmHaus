@@ -360,4 +360,7 @@
   <data name="ShowLibrary" xml:space="preserve">
     <value>Bibliothèque d'Émissions Télévisées</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
 </root>

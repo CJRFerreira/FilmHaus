@@ -16,12 +16,26 @@ namespace FilmHaus.Models.View
 
         public ShowViewModel(Show show)
         {
+            ShowId = show.ShowId;
             PosterUri = show.PosterUri;
             ShowName = show.ShowName;
             DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
             Accolades = show.Accolades;
         }
+
+        public ShowViewModel(EditShowViewModel show)
+        {
+            ShowId = show.ShowId;
+            PosterUri = show.PosterUri;
+            ShowName = show.ShowName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Accolades = show.Accolades;
+        }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ShowId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
@@ -75,6 +89,7 @@ namespace FilmHaus.Models.View
 
         public EditShowViewModel(Show show)
         {
+            ShowId = show.ShowId;
             PosterUri = show.PosterUri;
             ShowName = show.ShowName;
             DateOfRelease = show.DateOfRelease;
@@ -84,12 +99,16 @@ namespace FilmHaus.Models.View
 
         public EditShowViewModel(ShowViewModel show)
         {
+            ShowId = show.ShowId;
             PosterUri = show.PosterUri;
             ShowName = show.ShowName;
             DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
             Accolades = show.Accolades;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ShowId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }

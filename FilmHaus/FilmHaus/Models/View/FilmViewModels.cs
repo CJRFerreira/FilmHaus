@@ -14,12 +14,26 @@ namespace FilmHaus.Models.View
 
         public FilmViewModel(Film film)
         {
+            FilmId = film.FilmId;
             PosterUri = film.PosterUri;
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
         }
+
+        public FilmViewModel(EditFilmViewModel film)
+        {
+            FilmId = film.FilmId;
+            PosterUri = film.PosterUri;
+            FilmName = film.FilmName;
+            DateOfRelease = film.DateOfRelease;
+            Runtime = film.Runtime;
+            Accolades = film.Accolades;
+        }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid FilmId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
@@ -73,6 +87,7 @@ namespace FilmHaus.Models.View
 
         public EditFilmViewModel(Film film)
         {
+            FilmId = film.FilmId;
             PosterUri = film.PosterUri;
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
@@ -82,12 +97,16 @@ namespace FilmHaus.Models.View
 
         public EditFilmViewModel(FilmViewModel film)
         {
+            FilmId = film.FilmId;
             PosterUri = film.PosterUri;
             FilmName = film.FilmName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid FilmId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
