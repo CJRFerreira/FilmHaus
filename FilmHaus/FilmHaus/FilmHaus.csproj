@@ -261,7 +261,6 @@
     <Content Include="Images\18db9a4cbf129b80974088797eafe9c5.jpg" />
     <Content Include="Images\8be518b57145907b8019fa684076a407.png" />
     <Content Include="Images\94acf9fef510cbffa0074c1525d0345f.jpg" />
-    <Content Include="Images\c9c34e5cfd889ecb39b1c005a5df8cb3.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\datatables.min.js" />
