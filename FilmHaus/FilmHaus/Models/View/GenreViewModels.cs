@@ -19,9 +19,14 @@ namespace FilmHaus.Models.View
             Name = genre.Name;
         }
 
+        public GenreViewModel(EditGenreViewModel genre)
+        {
+            Name = genre.Name;
+        }
+
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 
     public class CreateGenreViewModel
@@ -33,7 +38,7 @@ namespace FilmHaus.Models.View
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 
     public class EditGenreViewModel
@@ -55,6 +60,6 @@ namespace FilmHaus.Models.View
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }

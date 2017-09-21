@@ -16,7 +16,7 @@ namespace FilmHaus.Models.Base
         public Guid TitleId { get; set; }
 
         [DataType(DataType.Text)]
-        public String TitleName { get; set; }
+        public string TitleName { get; set; }
 
         public virtual ICollection<FilmPersonTitle> FilmPersonTitle { get; set; }
     }

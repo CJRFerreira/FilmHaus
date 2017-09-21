@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
 {
+    [Authorize]
     public class FilmController : Controller
     {
         private IFilmService FilmService { get; set; }
@@ -20,13 +21,15 @@ namespace FilmHaus.Controllers
         // GET: Film
         public ActionResult Index()
         {
-            return View();
+            var films = FilmService.GetAllFilms();
+
+            return View(films);
         }
 
         // GET: Film/Details/5
         public ActionResult Details(string id)
         {
-            return View();
+            return View(FilmService.GetFilmByFilmId(id));
         }
 
         // GET: Film/Create
@@ -43,18 +46,18 @@ namespace FilmHaus.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             catch
             {
-                return View();
+                return View(film);
             }
         }
 
         // GET: Film/Edit/5
         public ActionResult Edit(string id)
         {
-            return View();
+            return View(new EditFilmViewModel(FilmService.GetFilmByFilmId(id)));
         }
 
         // POST: Film/Edit/5
@@ -73,15 +76,9 @@ namespace FilmHaus.Controllers
             }
         }
 
-        // GET: Film/Delete/5
-        public ActionResult Delete(string id)
-        {
-            return View();
-        }
-
         // POST: Film/Delete/5
         [HttpPost]
-        public ActionResult Delete(string filmId, string userId)
+        public ActionResult Delete(string filmId)
         {
             try
             {

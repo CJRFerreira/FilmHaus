@@ -27,15 +27,14 @@ namespace FilmHaus.Models.Base
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
-        
+
         public virtual ICollection<ListFilm> ListFilm { get; set; }
 
-        
         public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }

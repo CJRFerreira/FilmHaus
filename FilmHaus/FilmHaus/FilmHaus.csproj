@@ -191,6 +191,7 @@
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\ReportStatus.cs" />
     <Compile Include="Filters\LanguageActionFilter.cs" />
     <Compile Include="Global.asax.cs">

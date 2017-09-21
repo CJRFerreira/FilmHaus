@@ -27,7 +27,7 @@ namespace FilmHaus.Models.Base
         public string FilmName { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfRelease { get; set; }
+        public DateTimeOffset DateOfRelease { get; set; }
 
         public int Runtime { get; set; }
 

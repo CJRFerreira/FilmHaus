@@ -17,10 +17,10 @@ namespace FilmHaus.Models.Base
 
         [Required]
         [DataType(DataType.Text)]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [DataType(DataType.Text)]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
 
         public virtual ICollection<FilmPersonTitle> FilmPerson { get; set; }
     }

@@ -34,7 +34,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
     }
 
     public class CreateReviewViewModel
@@ -51,7 +51,6 @@ namespace FilmHaus.Models.View
         [Required]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
-
     }
 
     public class EditReviewViewModel
@@ -80,6 +79,5 @@ namespace FilmHaus.Models.View
         [Required]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
-
     }
 }

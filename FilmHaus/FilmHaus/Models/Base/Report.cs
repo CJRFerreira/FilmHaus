@@ -33,6 +33,8 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
 
+        public ReportReason ReportReason { get; set; }
+
         public ReportStatus ReportStatus { get; set; }
     }
 }

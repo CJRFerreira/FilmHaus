@@ -20,13 +20,19 @@ namespace FilmHaus.Models.View
             LastName = person.LastName;
         }
 
+        public PersonViewModel(EditPersonViewModel person)
+        {
+            FirstName = person.FirstName;
+            LastName = person.LastName;
+        }
+
         [DataType(DataType.Text)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "LastName", ResourceType = typeof(Locale))]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class CreatePersonViewModel
@@ -38,11 +44,11 @@ namespace FilmHaus.Models.View
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "LastName", ResourceType = typeof(Locale))]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class EditPersonViewModel
@@ -66,10 +72,10 @@ namespace FilmHaus.Models.View
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
-        public String FirstName { get; set; }
+        public string FirstName { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "LastName", ResourceType = typeof(Locale))]
-        public String LastName { get; set; }
+        public string LastName { get; set; }
     }
 }

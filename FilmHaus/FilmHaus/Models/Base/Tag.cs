@@ -17,8 +17,8 @@ namespace FilmHaus.Models.Base
 
         [Required]
         [DataType(DataType.Text)]
-        public String Name { get; set; }
-        
+        public string Name { get; set; }
+
         public virtual ICollection<FilmTag> FilmTag { get; set; }
     }
 }

@@ -117,7 +117,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTime DateOfRelease { get; set; }
+        public DateTimeOffset DateOfRelease { get; set; }
 
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]
         public int Runtime { get; set; }

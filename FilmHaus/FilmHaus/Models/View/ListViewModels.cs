@@ -22,18 +22,26 @@ namespace FilmHaus.Models.View
             Shared = list.Shared;
         }
 
+        public ListViewModel(EditListViewModel list)
+        {
+            Title = list.Title;
+            Description = list.Description;
+            DateOfCreation = list.DateOfCreation;
+            Shared = list.Shared;
+        }
+
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(Locale))]
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
 
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
-        public Boolean Shared { get; set; }
+        public bool Shared { get; set; }
     }
 
     public class CreateListViewModel
@@ -44,18 +52,18 @@ namespace FilmHaus.Models.View
 
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(Locale))]
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
-        public Boolean Shared { get; set; }
+        public bool Shared { get; set; }
     }
 
     public class EditListViewModel
@@ -82,17 +90,17 @@ namespace FilmHaus.Models.View
 
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(Locale))]
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
-        public Boolean Shared { get; set; }
+        public bool Shared { get; set; }
     }
 }

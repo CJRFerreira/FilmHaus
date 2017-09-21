@@ -36,6 +36,6 @@ namespace FilmHaus.Models.Base
         public bool? Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfCreation { get; set; }
+        public DateTimeOffset DateOfCreation { get; set; }
     }
 }

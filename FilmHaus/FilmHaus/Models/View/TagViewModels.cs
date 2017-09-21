@@ -21,7 +21,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Text)]
         [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 
     public class CreateTagViewModel
@@ -43,6 +43,6 @@ namespace FilmHaus.Models.View
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }
