@@ -26,14 +26,14 @@ namespace FilmHaus.Models.Base
         public string ShowName { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfRelease { get; set; }
+        public DateTimeOffset DateOfRelease { get; set; }
 
         public int NumberOfSeasons { get; set; }
 
         public string Accolades { get; set; }
 
-        public virtual ICollection<ShowGenre> FilmGenre { get; set; }
+        public virtual ICollection<ShowGenre> ShowGenre { get; set; }
 
-        public virtual ICollection<ShowTag> FilmTag { get; set; }
+        public virtual ICollection<ShowTag> ShowTag { get; set; }
     }
 }

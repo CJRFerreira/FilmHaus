@@ -107,7 +107,7 @@ namespace FilmHaus.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View("Login", new LoginWrapperModel(model, new UserRegisterViewModel()));
+                    return View("Login", new UserLoginViewModel(model));
             }
         }
 
@@ -131,7 +131,6 @@ namespace FilmHaus.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            
 
             // The following code protects for brute force attacks against the two factor codes. If a
             // user enters incorrect codes for a specified amount of time then the user account will
@@ -173,8 +172,8 @@ namespace FilmHaus.Controllers
                     LastName = model.LastName,
                     UserName = model.Email,
                     Email = model.Email,
-                    CreatedOn = DateTime.Now,
-                    LastLogin = DateTime.Now
+                    CreatedOn = DateTimeOffset.Now,
+                    LastLogin = DateTimeOffset.Now
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -186,10 +185,9 @@ namespace FilmHaus.Controllers
                     // For more information on how to enable account confirmation and password reset
                     // please visit http://go.microsoft.com/fwlink/?LinkID=320771 Send an email with
                     // this link string code = await
-                    // UserManager.GenerateEmailConfirmationTokenAsync(user.FilmId); var callbackUrl
-                    // = Url.Action("ConfirmEmail", "Account", new { userId = user.FilmId, code =
-                    // code },
-                    // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.FilmId,
+                    // UserManager.GenerateEmailConfirmationTokenAsync(user.Id); var callbackUrl =
+                    // Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+                    // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id,
                     // "Confirm your account", "Please confirm your account by clicking <a href=\"" +
                     // callbackUrl + "\">here</a>");
 
@@ -199,7 +197,7 @@ namespace FilmHaus.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View("Login", new LoginWrapperModel(new UserLoginViewModel(), model));
+            return View("Register", new UserRegisterViewModel(model));
         }
 
         // GET: /Account/ConfirmEmail
@@ -238,10 +236,9 @@ namespace FilmHaus.Controllers
 
                 // For more information on how to enable account confirmation and password reset
                 // please visit http://go.microsoft.com/fwlink/?LinkID=320771 Send an email with this
-                // link string code = await UserManager.GeneratePasswordResetTokenAsync(user.FilmId);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId =
-                // user.FilmId, code
-                // = code }, protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.FilmId,
+                // link string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id); var
+                // callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code
+                // = code }, protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id,
                 // "Reset Password", "Please reset your password by clicking <a href=\"" +
                 // callbackUrl + "\">here</a>"); return
                 // RedirectToAction("ForgotPasswordConfirmation", "Account");

@@ -13,7 +13,7 @@ namespace FilmHaus.Models.Base
     public class Genre
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid GenreId { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

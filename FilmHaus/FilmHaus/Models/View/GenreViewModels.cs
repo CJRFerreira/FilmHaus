@@ -16,13 +16,18 @@ namespace FilmHaus.Models.View
 
         public GenreViewModel(Genre genre)
         {
+            GenreId = genre.GenreId;
             Name = genre.Name;
         }
 
         public GenreViewModel(EditGenreViewModel genre)
         {
+            GenreId = genre.GenreId;
             Name = genre.Name;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid GenreId { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Genre", ResourceType = typeof(Locale))]
@@ -49,13 +54,18 @@ namespace FilmHaus.Models.View
 
         public EditGenreViewModel(Genre genre)
         {
+            GenreId = genre.GenreId;
             Name = genre.Name;
         }
 
         public EditGenreViewModel(GenreViewModel genre)
         {
+            GenreId = genre.GenreId;
             Name = genre.Name;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid GenreId { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

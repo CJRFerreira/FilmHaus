@@ -8,29 +8,29 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class TagViewModel
+    public class TitleViewModel
     {
-        public TagViewModel()
+        public TitleViewModel()
         {
         }
 
-        public TagViewModel(Tag tag)
+        public TitleViewModel(Title title)
         {
-            TagId = tag.TagId;
-            Name = tag.Name;
+            TitleId = title.TitleId;
+            Name = title.TitleName;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TagId { get; set; }
+        public Guid TitleId { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         public string Name { get; set; }
     }
 
-    public class CreateTagViewModel
+    public class CreateTitleViewModel
     {
-        public CreateTagViewModel()
+        public CreateTitleViewModel()
         {
         }
 
@@ -40,29 +40,29 @@ namespace FilmHaus.Models.View
         public string Name { get; set; }
     }
 
-    public class EditTagViewModel
+    public class EditTitleViewModel
     {
-        public EditTagViewModel()
+        public EditTitleViewModel()
         {
         }
 
-        public EditTagViewModel(Tag tag)
+        public EditTitleViewModel(Title title)
         {
-            TagId = tag.TagId;
-            Name = tag.Name;
+            TitleId = title.TitleId;
+            Name = title.TitleName;
         }
 
-        public EditTagViewModel(TagViewModel tag)
+        public EditTitleViewModel(TitleViewModel title)
         {
-            TagId = tag.TagId;
-            Name = tag.Name;
+            TitleId = title.TitleId;
+            Name = title.Name;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TagId { get; set; }
+        public Guid TitleId { get; set; }
 
         [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         public string Name { get; set; }
     }
 }

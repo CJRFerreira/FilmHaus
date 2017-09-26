@@ -31,7 +31,7 @@ namespace FilmHaus.Models.Base
         public virtual User User { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime ReportedOn { get; set; }
+        public DateTimeOffset ReportedOn { get; set; }
 
         public ReportReason ReportReason { get; set; }
 

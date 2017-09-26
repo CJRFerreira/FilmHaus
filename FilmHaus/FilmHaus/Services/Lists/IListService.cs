@@ -10,18 +10,18 @@ namespace FilmHaus.Services.Lists
 {
     public interface IListService
     {
-        List GetListByListId(string id);
+        List GetListByListId(Guid id);
 
         List<List> GetAllLists();
 
         List<List> GetAllSharedLists();
 
-        List<List> GetAllListsForUser(string id);
+        List<List> GetAllListsForUser(Guid id);
 
         void CreateList(CreateListViewModel film);
 
-        void DeleteListByListId(string id);
+        void DeleteListByListId(Guid id);
 
-        void UpdateListByListId(string id, EditListViewModel list);
+        void UpdateListByListId(Guid id, EditListViewModel list);
     }
 }

@@ -61,7 +61,6 @@ namespace FilmHaus.Models.View
     {
         public UserLoginViewModel()
         {
-
         }
 
         public UserLoginViewModel(UserLoginViewModel model)
@@ -87,6 +86,17 @@ namespace FilmHaus.Models.View
 
     public class UserRegisterViewModel
     {
+        public UserRegisterViewModel()
+        {
+        }
+
+        public UserRegisterViewModel(UserRegisterViewModel model)
+        {
+            FirstName = model.FirstName;
+            LastName = model.LastName;
+            Email = model.Email;
+        }
+
         [Required]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
         public string FirstName { get; set; }
@@ -111,23 +121,6 @@ namespace FilmHaus.Models.View
         [Display(Name = "ConfirmPassword", ResourceType = typeof(Locale))]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class LoginWrapperModel
-    {
-        public UserLoginViewModel UserLoginViewModel { get; set; }
-
-        public UserRegisterViewModel UserRegisterViewModel { get; set; }
-
-        public LoginWrapperModel(UserLoginViewModel userLoginViewModel, UserRegisterViewModel userRegisterViewModel)
-        {
-            UserLoginViewModel = userLoginViewModel;
-            UserRegisterViewModel = userRegisterViewModel;
-        }
-
-        public LoginWrapperModel() : this(new UserLoginViewModel(), new UserRegisterViewModel())
-        {
-        }
     }
 
     public class ResetPasswordViewModel

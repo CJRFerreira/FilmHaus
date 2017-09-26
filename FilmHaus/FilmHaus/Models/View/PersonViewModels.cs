@@ -16,15 +16,20 @@ namespace FilmHaus.Models.View
 
         public PersonViewModel(Person person)
         {
+            PersonId = person.PersonId;
             FirstName = person.FirstName;
             LastName = person.LastName;
         }
 
         public PersonViewModel(EditPersonViewModel person)
         {
+            PersonId = person.PersonId;
             FirstName = person.FirstName;
             LastName = person.LastName;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid PersonId { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "FirstName", ResourceType = typeof(Locale))]
@@ -59,15 +64,20 @@ namespace FilmHaus.Models.View
 
         public EditPersonViewModel(Person person)
         {
+            PersonId = person.PersonId;
             FirstName = person.FirstName;
             LastName = person.LastName;
         }
 
         public EditPersonViewModel(PersonViewModel person)
         {
+            PersonId = person.PersonId;
             FirstName = person.FirstName;
             LastName = person.LastName;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid PersonId { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

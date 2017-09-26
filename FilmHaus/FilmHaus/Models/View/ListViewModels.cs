@@ -16,6 +16,8 @@ namespace FilmHaus.Models.View
 
         public ListViewModel(List list)
         {
+            ListId = list.ListId;
+            UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
             DateOfCreation = list.DateOfCreation;
@@ -24,11 +26,19 @@ namespace FilmHaus.Models.View
 
         public ListViewModel(EditListViewModel list)
         {
+            ListId = list.ListId;
+            UserId = list.UserId;
             Title = list.Title;
             Description = list.Description;
             DateOfCreation = list.DateOfCreation;
             Shared = list.Shared;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ListId { get; set; }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public string UserId { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string Title { get; set; }
@@ -74,6 +84,8 @@ namespace FilmHaus.Models.View
 
         public EditListViewModel(List list)
         {
+            ListId = list.ListId;
+            UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
             DateOfCreation = list.DateOfCreation;
@@ -82,11 +94,18 @@ namespace FilmHaus.Models.View
 
         public EditListViewModel(ListViewModel list)
         {
+            ListId = list.ListId;
+            UserId = list.UserId;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.DateOfCreation;
             Shared = list.Shared;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ListId { get; set; }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public string UserId { get; set; }
 
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]

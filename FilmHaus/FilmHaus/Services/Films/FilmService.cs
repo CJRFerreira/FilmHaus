@@ -31,7 +31,7 @@ namespace FilmHaus.Services.Films
             FilmHausDbContext.SaveChanges();
         }
 
-        public void DeleteFilmByFilmId(string id)
+        public void DeleteFilmByFilmId(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -50,14 +50,14 @@ namespace FilmHaus.Services.Films
             .ToList();
         }
 
-        public FilmViewModel GetFilmByFilmId(string id)
+        public FilmViewModel GetFilmByFilmId(Guid id)
         {
-            return FilmHausDbContext.Films.Where(f => f.FilmId.ToString() == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
+            return FilmHausDbContext.Films.Where(f => f.FilmId == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
         }
 
-        public List<FilmViewModel> GetFilmsByListId(string id)
+        public List<FilmViewModel> GetFilmsByListId(Guid id)
         {
-            return FilmHausDbContext.ListFilms.Where(l => l.ListId.ToString() == id).Select(f => new FilmViewModel(f.Film)).ToList();
+            return FilmHausDbContext.ListFilms.Where(l => l.ListId == id).Select(f => new FilmViewModel(f.Film)).ToList();
         }
 
         public List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm)
@@ -65,15 +65,15 @@ namespace FilmHaus.Services.Films
             return FilmHausDbContext.Films.Where(f => f.FilmName.Contains(searchTerm)).Select(f => new FilmViewModel(f)).ToList();
         }
 
-        public void UpdateFilmByFilmId(string id, EditFilmViewModel film)
+        public void UpdateFilmByFilmId(Guid id, EditFilmViewModel film)
         {
             throw new NotImplementedException();
         }
 
-        public int GetAverageFilmRating(string id)
+        public int GetAverageFilmRating(Guid id)
         {
             int filmRating = 0;
-            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId.ToString() == id && f.Rating != null).Select(r => r.Rating).ToList();
+            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId == id && f.Rating != null).Select(r => r.Rating).ToList();
 
             foreach (var rating in allRatings)
             {

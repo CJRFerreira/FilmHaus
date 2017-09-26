@@ -16,11 +16,19 @@ namespace FilmHaus.Models.View
 
         public ReviewViewModel(Review review)
         {
+            ReviewId = review.ReviewId;
+            UserId = review.Id;
             Body = review.Body;
             Shared = review.Shared;
             Flagged = review.Flagged;
             DateOfCreation = review.DateOfCreation;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ReviewId { get; set; }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public string UserId { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "", ResourceType = typeof(Locale))]
@@ -61,15 +69,25 @@ namespace FilmHaus.Models.View
 
         public EditReviewViewModel(Review review)
         {
+            ReviewId = review.ReviewId;
+            UserId = review.Id;
             Body = review.Body;
             Shared = review.Shared;
         }
 
         public EditReviewViewModel(ReviewViewModel review)
         {
+            ReviewId = review.ReviewId;
+            UserId = review.UserId;
             Body = review.Body;
             Shared = review.Shared;
         }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid ReviewId { get; set; }
+
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public string UserId { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]

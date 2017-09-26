@@ -1,12 +1,12 @@
-﻿using FilmHaus.Models.Base;
-using FilmHaus.Models.View;
+﻿using FilmHaus.Models.View;
+using System;
 using System.Collections.Generic;
 
 namespace FilmHaus.Services.Films
 {
     public interface IFilmService
     {
-        FilmViewModel GetFilmByFilmId(string id);
+        FilmViewModel GetFilmByFilmId(Guid id);
 
         List<FilmViewModel> GetAllFilms();
 
@@ -14,14 +14,14 @@ namespace FilmHaus.Services.Films
 
         List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
-        List<FilmViewModel> GetFilmsByListId(string id);
+        List<FilmViewModel> GetFilmsByListId(Guid id);
 
-        int GetAverageFilmRating(string id);
+        int GetAverageFilmRating(Guid id);
 
         void CreateFilm(CreateFilmViewModel film);
 
-        void DeleteFilmByFilmId(string id);
+        void DeleteFilmByFilmId(Guid id);
 
-        void UpdateFilmByFilmId(string id, EditFilmViewModel film);
+        void UpdateFilmByFilmId(Guid id, EditFilmViewModel film);
     }
 }

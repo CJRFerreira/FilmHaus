@@ -13,7 +13,7 @@ namespace FilmHaus.Models.Base
     public class Tag
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid TagId { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
