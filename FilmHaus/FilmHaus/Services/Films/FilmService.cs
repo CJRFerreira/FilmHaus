@@ -33,7 +33,15 @@ namespace FilmHaus.Services.Films
 
         public void DeleteFilmByFilmId(Guid id)
         {
-            throw new NotImplementedException();
+            var film = FilmHausDbContext.Films.Find(id);
+
+            if (film != null)
+            {
+                FilmHausDbContext.Films.Remove(film);
+                FilmHausDbContext.SaveChanges();
+            }
+            else
+                throw new NullReferenceException();
         }
 
         public List<FilmViewModel> GetAllFilms()
@@ -50,9 +58,20 @@ namespace FilmHaus.Services.Films
             .ToList();
         }
 
-        public FilmViewModel GetFilmByFilmId(Guid id)
+        public FilmViewModel GetFilmByFilmId(Guid filmId, string userId)
         {
-            return FilmHausDbContext.Films.Where(f => f.FilmId == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
+            var result = FilmHausDbContext.UserFilms.Find(userId, filmId);
+
+            if (result != null)
+            {
+                return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)
+                {
+                    Rating = result.Rating
+                })
+                .FirstOrDefault();
+            }
+
+            return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)).FirstOrDefault();
         }
 
         public List<FilmViewModel> GetFilmsByListId(Guid id)
@@ -67,7 +86,14 @@ namespace FilmHaus.Services.Films
 
         public void UpdateFilmByFilmId(Guid id, EditFilmViewModel film)
         {
-            throw new NotImplementedException();
+            var result = FilmHausDbContext.Films.Find(id);
+            if (result != null)
+            {
+                FilmHausDbContext.Entry(result).CurrentValues.SetValues(film);
+                FilmHausDbContext.SaveChanges();
+            }
+            else
+                throw new NullReferenceException();
         }
 
         public int GetAverageFilmRating(Guid id)
