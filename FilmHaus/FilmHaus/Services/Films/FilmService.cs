@@ -63,15 +63,17 @@ namespace FilmHaus.Services.Films
             var result = FilmHausDbContext.UserFilms.Find(userId, filmId);
 
             if (result != null)
-            {
                 return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)
                 {
                     Rating = result.Rating
                 })
                 .FirstOrDefault();
-            }
 
-            return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)).FirstOrDefault();
+            return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)
+            {
+                Rating = GetAverageFilmRating(filmId)
+            })
+            .FirstOrDefault();
         }
 
         public List<FilmViewModel> GetFilmsByListId(Guid id)
@@ -96,15 +98,14 @@ namespace FilmHaus.Services.Films
                 throw new NullReferenceException();
         }
 
-        public int GetAverageFilmRating(Guid id)
+        public int GetAverageFilmRating(Guid filmId)
         {
             int filmRating = 0;
-            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId == id && f.Rating != null).Select(r => r.Rating).ToList();
+            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId == filmId && f.Rating != null).Select(r => r.Rating).ToList();
 
             foreach (var rating in allRatings)
-            {
-                filmRating += (int)rating;
-            }
+                if (rating != null)
+                    filmRating += (int)rating;
 
             return (filmRating / allRatings.Count);
         }

@@ -1,0 +1,39 @@
+﻿@using FilmHaus.Localization
+@model FilmHaus.Models.View.ShowLibraryViewModel
+@{
+    ViewBag.Title = Locale.MyShows;
+}
+
+<h2>@Locale.MyShows</h2>
+<hr />
+@if (Model.Shows.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Shows)
+                {
+                <tr>
+                    <td>@item.PosterUri</td>
+                    <td>@item.ShowName</td>
+                    <td>@item.DateOfRelease</td>
+                    <td>@item.Accolades</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="well">
+        <p class="text-info">
+        </p>
+    </div>
+}
