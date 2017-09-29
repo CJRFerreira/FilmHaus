@@ -1,5 +1,6 @@
 ﻿using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string filmId)
         {
-            return View(FilmService.GetFilmByFilmId(id));
+            return View(FilmService.GetFilmByFilmId(Guid.Parse(filmId), this.User.Identity.GetUserId()));
         }
 
         // GET: Film/Create
@@ -82,14 +83,14 @@ namespace FilmHaus.Controllers
         {
             try
             {
-                FilmService.DeleteFilmByFilmId(filmId);
+                FilmService.DeleteFilmByFilmId(Guid.Parse(filmId));
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch NullReferenceException ex
             {
                 return View();
             }
+            }
         }
     }
-}

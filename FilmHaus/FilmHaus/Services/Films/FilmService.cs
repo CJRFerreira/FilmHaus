@@ -58,22 +58,9 @@ namespace FilmHaus.Services.Films
             .ToList();
         }
 
-        public FilmViewModel GetFilmByFilmId(Guid filmId, string userId)
+        public FilmViewModel GetFilmByFilmId(Guid id)
         {
-            var result = FilmHausDbContext.UserFilms.Find(userId, filmId);
-
-            if (result != null)
-                return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)
-                {
-                    Rating = result.Rating
-                })
-                .FirstOrDefault();
-
-            return FilmHausDbContext.Films.Where(f => f.FilmId == filmId).Select(f => new FilmViewModel(f)
-            {
-                Rating = GetAverageFilmRating(filmId)
-            })
-            .FirstOrDefault();
+            return FilmHausDbContext.Films.Where(f => f.FilmId == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
         }
 
         public List<FilmViewModel> GetFilmsByListId(Guid id)

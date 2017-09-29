@@ -6,22 +6,22 @@ namespace FilmHaus.Services.Films
 {
     public interface IFilmService
     {
-        FilmViewModel GetFilmByFilmId(Guid id, string userId);
+        FilmViewModel GetFilmByFilmId(Guid filmId);
 
         List<FilmViewModel> GetAllFilms();
 
-        List<FilmViewModel> GetAllFilmsForUser(string id);
+        List<FilmViewModel> GetAllFilmsForUser(string userId);
 
         List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
-        List<FilmViewModel> GetFilmsByListId(Guid id);
+        List<FilmViewModel> GetFilmsByListId(Guid filmId);
 
-        int GetAverageFilmRating(Guid id);
+        int GetAverageFilmRating(Guid filmId);
 
         void CreateFilm(CreateFilmViewModel film);
 
-        void DeleteFilmByFilmId(Guid id);
+        void DeleteFilmByFilmId(Guid filmId);
 
-        void UpdateFilmByFilmId(Guid id, EditFilmViewModel film);
+        void UpdateFilmByFilmId(Guid filmId, EditFilmViewModel film);
     }
 }
