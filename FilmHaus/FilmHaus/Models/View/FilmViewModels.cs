@@ -3,6 +3,7 @@ using FilmHaus.Models.Base;
 using System.ComponentModel.DataAnnotations;
 using FilmHaus.Localization;
 using System.Collections.Generic;
+using FilmHaus.Enums;
 
 namespace FilmHaus.Models.View
 {
@@ -14,9 +15,9 @@ namespace FilmHaus.Models.View
 
         public FilmViewModel(Film film)
         {
-            FilmId = film.FilmId;
+            MediaId = film.MediaId;
             PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
+            MediaName = film.MediaName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
@@ -24,22 +25,22 @@ namespace FilmHaus.Models.View
 
         public FilmViewModel(EditFilmViewModel film)
         {
-            FilmId = film.FilmId;
+            MediaId = film.MediaId;
             PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
+            MediaName = film.MediaName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid FilmId { get; set; }
+        public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public string FilmName { get; set; }
+        public string MediaName { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
@@ -52,7 +53,7 @@ namespace FilmHaus.Models.View
         public int? Rating { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public string Accolades { get; set; }
+        public AwardStatus Accolades { get; set; }
     }
 
     public class CreateFilmViewModel
@@ -66,7 +67,7 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         [Required]
-        public string FilmName { get; set; }
+        public string MediaName { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
@@ -76,7 +77,7 @@ namespace FilmHaus.Models.View
         public int Runtime { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public string Accolades { get; set; }
+        public AwardStatus Accolades { get; set; }
     }
 
     public class EditFilmViewModel
@@ -87,9 +88,9 @@ namespace FilmHaus.Models.View
 
         public EditFilmViewModel(Film film)
         {
-            FilmId = film.FilmId;
+            MediaId = film.MediaId;
             PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
+            MediaName = film.MediaName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
@@ -97,23 +98,23 @@ namespace FilmHaus.Models.View
 
         public EditFilmViewModel(FilmViewModel film)
         {
-            FilmId = film.FilmId;
+            MediaId = film.MediaId;
             PosterUri = film.PosterUri;
-            FilmName = film.FilmName;
+            MediaName = film.MediaName;
             DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
             Accolades = film.Accolades;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid FilmId { get; set; }
+        public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
 
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public string FilmName { get; set; }
+        public string MediaName { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
@@ -123,6 +124,6 @@ namespace FilmHaus.Models.View
         public int Runtime { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public string Accolades { get; set; }
+        public AwardStatus Accolades { get; set; }
     }
 }

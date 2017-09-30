@@ -28,9 +28,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Details/5
-        public ActionResult Details(string filmId)
+        public ActionResult Details(string MediaId)
         {
-            return View(FilmService.GetFilmByFilmId(Guid.Parse(filmId), this.User.Identity.GetUserId()));
+            return View(FilmService.GetFilmByMediaId(Guid.Parse(MediaId)));
         }
 
         // GET: Film/Create
@@ -56,9 +56,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string MediaId)
         {
-            return View(new EditFilmViewModel(FilmService.GetFilmByFilmId(id)));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(MediaId))));
         }
 
         // POST: Film/Edit/5
@@ -79,18 +79,20 @@ namespace FilmHaus.Controllers
 
         // POST: Film/Delete/5
         [HttpPost]
-        public ActionResult Delete(string filmId)
+        public ActionResult Delete(string MediaId)
         {
             try
             {
-                FilmService.DeleteFilmByFilmId(Guid.Parse(filmId));
+                FilmService.DeleteFilmByMediaId(Guid.Parse(MediaId));
 
                 return RedirectToAction("Index");
             }
-            catch NullReferenceException ex
+            catch (NullReferenceException ex)
             {
-                return View();
+                Console.WriteLine(ex.Message);
+                throw;
             }
-            }
+
         }
     }
+}

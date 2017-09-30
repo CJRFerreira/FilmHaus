@@ -21,8 +21,8 @@ namespace FilmHaus.Services.Films
         {
             FilmHausDbContext.Films.Add(new Film
             {
-                FilmId = Guid.NewGuid(),
-                FilmName = film.FilmName,
+                MediaId = Guid.NewGuid(),
+                MediaName = film.MediaName,
                 DateOfRelease = film.DateOfRelease,
                 Accolades = film.Accolades,
                 PosterUri = film.PosterUri,
@@ -31,7 +31,7 @@ namespace FilmHaus.Services.Films
             FilmHausDbContext.SaveChanges();
         }
 
-        public void DeleteFilmByFilmId(Guid id)
+        public void DeleteFilmByMediaId(Guid id)
         {
             var film = FilmHausDbContext.Films.Find(id);
 
@@ -58,9 +58,9 @@ namespace FilmHaus.Services.Films
             .ToList();
         }
 
-        public FilmViewModel GetFilmByFilmId(Guid id)
+        public FilmViewModel GetFilmByMediaId(Guid id)
         {
-            return FilmHausDbContext.Films.Where(f => f.FilmId == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
+            return FilmHausDbContext.Films.Where(f => f.MediaId == id).Select(f => new FilmViewModel(f)).FirstOrDefault();
         }
 
         public List<FilmViewModel> GetFilmsByListId(Guid id)
@@ -70,10 +70,10 @@ namespace FilmHaus.Services.Films
 
         public List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm)
         {
-            return FilmHausDbContext.Films.Where(f => f.FilmName.Contains(searchTerm)).Select(f => new FilmViewModel(f)).ToList();
+            return FilmHausDbContext.Films.Where(f => f.MediaName.Contains(searchTerm)).Select(f => new FilmViewModel(f)).ToList();
         }
 
-        public void UpdateFilmByFilmId(Guid id, EditFilmViewModel film)
+        public void UpdateFilmByMediaId(Guid id, EditFilmViewModel film)
         {
             var result = FilmHausDbContext.Films.Find(id);
             if (result != null)
@@ -85,10 +85,10 @@ namespace FilmHaus.Services.Films
                 throw new NullReferenceException();
         }
 
-        public int GetAverageFilmRating(Guid filmId)
+        public int GetAverageFilmRating(Guid MediaId)
         {
             int filmRating = 0;
-            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.FilmId == filmId && f.Rating != null).Select(r => r.Rating).ToList();
+            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.MediaId == MediaId && f.Rating != null).Select(r => r.Rating).ToList();
 
             foreach (var rating in allRatings)
                 if (rating != null)

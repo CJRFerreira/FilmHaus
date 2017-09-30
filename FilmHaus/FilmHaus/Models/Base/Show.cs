@@ -9,31 +9,32 @@ using System.Web;
 namespace FilmHaus.Models.Base
 {
     [Table("Show")]
-    public class Show
+    public class Show : Media
     {
         public Show()
         {
         }
 
-        [Key]
-        [Required]
-        public Guid ShowId { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Required]
-        public string ShowName { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTimeOffset DateOfRelease { get; set; }
+        public Show(Show show)
+        {
+            MediaId = show.MediaId;
+            PosterUri = show.PosterUri;
+            MediaName = show.MediaName;
+            DateOfRelease = show.DateOfRelease;
+            Accolades = show.Accolades;
+            NumberOfSeasons = show.NumberOfSeasons;
+        }
 
         public int NumberOfSeasons { get; set; }
-
-        public string Accolades { get; set; }
 
         public virtual ICollection<ShowGenre> ShowGenre { get; set; }
 
         public virtual ICollection<ShowTag> ShowTag { get; set; }
+
+        public virtual ICollection<ListShow> ListShow { get; set; }
+
+        public virtual ICollection<ShowPersonTitle> ShowPersonTitle { get; set; }
+
+        public virtual ICollection<UserShow> UserShow { get; set; }
     }
 }

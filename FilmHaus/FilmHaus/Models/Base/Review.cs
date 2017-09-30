@@ -23,7 +23,7 @@ namespace FilmHaus.Models.Base
 
         [Column(Order = 2)]
         [ForeignKey("Film")]
-        public Guid FilmId { get; set; }
+        public Guid MediaId { get; set; }
 
         public virtual Film Film { get; set; }
 

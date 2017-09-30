@@ -191,6 +191,7 @@
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Enums\AwardStatus.cs" />
     <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\ReportStatus.cs" />
     <Compile Include="Filters\LanguageActionFilter.cs" />
@@ -198,6 +199,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Base\Film.cs" />
+    <Compile Include="Models\Base\Media.cs" />
     <Compile Include="Models\Base\Title.cs" />
     <Compile Include="Models\Base\Genre.cs" />
     <Compile Include="Models\Base\List.cs" />

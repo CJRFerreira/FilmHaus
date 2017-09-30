@@ -10,31 +10,32 @@ using System.Web;
 namespace FilmHaus.Models.Base
 {
     [Table("Film")]
-    public class Film
+    public class Film : Media
     {
         public Film()
         {
         }
 
-        [Key]
-        [Required]
-        public Guid FilmId { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Required]
-        public string FilmName { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTimeOffset DateOfRelease { get; set; }
+        public Film(Film film)
+        {
+            MediaId = film.MediaId;
+            PosterUri = film.PosterUri;
+            MediaName = film.MediaName;
+            DateOfRelease = film.DateOfRelease;
+            Accolades = film.Accolades;
+            Runtime = film.Runtime;
+        }
 
         public int Runtime { get; set; }
-
-        public string Accolades { get; set; }
 
         public virtual ICollection<FilmGenre> FilmGenre { get; set; }
 
         public virtual ICollection<FilmTag> FilmTag { get; set; }
+
+        public virtual ICollection<ListFilm> ListFilm { get; set; }
+
+        public virtual ICollection<FilmPersonTitle> FilmPersonTitle { get; set; }
+
+        public virtual ICollection<UserFilm> UserFilm { get; set; }
     }
 }

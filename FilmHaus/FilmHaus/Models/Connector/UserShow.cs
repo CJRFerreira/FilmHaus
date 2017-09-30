@@ -21,7 +21,7 @@ namespace FilmHaus.Models.Connector
         [Key]
         [Column(Order = 2)]
         [ForeignKey("Show")]
-        public Guid ShowId { get; set; }
+        public Guid MediaId { get; set; }
 
         public virtual Show Show { get; set; }
 

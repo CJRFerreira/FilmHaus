@@ -6,7 +6,7 @@ namespace FilmHaus.Services.Shows
 {
     public interface IShowService
     {
-        ShowViewModel GetShowByShowId(string id);
+        ShowViewModel GetShowByMediaId(string id);
 
         List<ShowViewModel> GetAllShows();
 
@@ -20,8 +20,8 @@ namespace FilmHaus.Services.Shows
 
         void CreateShow(CreateShowViewModel show);
 
-        void DeleteShowByShowId(string id);
+        void DeleteShowByMediaId(string id);
 
-        void UpdateShowByShowId(string id, EditShowViewModel show);
+        void UpdateShowByMediaId(string id, EditShowViewModel show);
     }
 }
