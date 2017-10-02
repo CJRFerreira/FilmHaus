@@ -6,7 +6,7 @@ namespace FilmHaus.Services.Films
 {
     public interface IFilmService
     {
-        FilmViewModel GetFilmByMediaId(Guid MediaId);
+        FilmViewModel GetFilmByMediaId(Guid mediaId);
 
         List<FilmViewModel> GetAllFilms();
 
@@ -14,14 +14,14 @@ namespace FilmHaus.Services.Films
 
         List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
-        List<FilmViewModel> GetFilmsByListId(Guid MediaId);
+        List<FilmViewModel> GetFilmsByListId(Guid mediaId);
 
-        int GetAverageFilmRating(Guid MediaId);
+        int GetAverageFilmRating(Guid mediaId);
 
         void CreateFilm(CreateFilmViewModel film);
 
-        void DeleteFilmByMediaId(Guid MediaId);
+        void DeleteFilmByMediaId(Guid mediaId);
 
-        void UpdateFilmByMediaId(Guid MediaId, EditFilmViewModel film);
+        void UpdateFilmByMediaId(Guid mediaId, EditFilmViewModel film);
     }
 }

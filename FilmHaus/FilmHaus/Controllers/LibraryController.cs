@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
+    [RoutePrefix("Library")]
     public class LibraryController : Controller
     {
         private IFilmService FilmService { get; set; }

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
+    [RoutePrefix("Films")]
     public class FilmController : Controller
     {
         private IFilmService FilmService { get; set; }
@@ -28,9 +29,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Details/5
-        public ActionResult Details(string MediaId)
+        public ActionResult Details(string mediaId)
         {
-            return View(FilmService.GetFilmByMediaId(Guid.Parse(MediaId)));
+            return View(FilmService.GetFilmByMediaId(Guid.Parse(mediaId)));
         }
 
         // GET: Film/Create
@@ -56,9 +57,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Edit/5
-        public ActionResult Edit(string MediaId)
+        public ActionResult Edit(string mediaId)
         {
-            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(MediaId))));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(mediaId))));
         }
 
         // POST: Film/Edit/5
@@ -79,11 +80,11 @@ namespace FilmHaus.Controllers
 
         // POST: Film/Delete/5
         [HttpPost]
-        public ActionResult Delete(string MediaId)
+        public ActionResult Delete(string mediaId)
         {
             try
             {
-                FilmService.DeleteFilmByMediaId(Guid.Parse(MediaId));
+                FilmService.DeleteFilmByMediaId(Guid.Parse(mediaId));
 
                 return RedirectToAction("Index");
             }
@@ -92,7 +93,6 @@ namespace FilmHaus.Controllers
                 Console.WriteLine(ex.Message);
                 throw;
             }
-
         }
     }
 }
