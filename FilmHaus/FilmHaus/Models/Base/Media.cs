@@ -11,7 +11,6 @@ namespace FilmHaus.Models.Base
     {
         public Media()
         {
-
         }
 
         public Media(Media media)
@@ -21,15 +20,19 @@ namespace FilmHaus.Models.Base
             MediaName = media.MediaName;
             DateOfRelease = media.DateOfRelease;
             Accolades = media.Accolades;
+            CreatedOn = media.CreatedOn;
+            ObsoletedOn = media.ObsoletedOn;
         }
 
-        public Media(Guid mediaId, Uri posterUri, string mediaName, DateTimeOffset dateOfRelease, AwardStatus accolades)
+        public Media(Guid mediaId, Uri posterUri, string mediaName, DateTimeOffset dateOfRelease, AwardStatus accolades, DateTimeOffset createdOn, DateTimeOffset obsoletedOn)
         {
             MediaId = mediaId;
             PosterUri = posterUri;
             MediaName = mediaName;
             DateOfRelease = dateOfRelease;
             Accolades = accolades;
+            CreatedOn = createdOn;
+            ObsoletedOn = obsoletedOn;
         }
 
         [Key]
@@ -46,5 +49,11 @@ namespace FilmHaus.Models.Base
         public DateTimeOffset DateOfRelease { get; set; }
 
         public AwardStatus Accolades { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTimeOffset CreatedOn { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTimeOffset? ObsoletedOn { get; set; }
     }
 }

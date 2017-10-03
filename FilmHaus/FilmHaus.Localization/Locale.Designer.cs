@@ -556,6 +556,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of Seasons.
+        /// </summary>
+        public static string NumberOfSeasons {
+            get {
+                return ResourceManager.GetString("NumberOfSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our Sponsor.
         /// </summary>
         public static string OurSponsor {

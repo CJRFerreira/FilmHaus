@@ -1,27 +1,23 @@
-﻿using FilmHaus.Models.Base;
-using FilmHaus.Models.View;
+﻿using FilmHaus.Models.View;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FilmHaus.Services.Reviews
 {
     public interface IReviewService
     {
-        Review GetReviewByReviewId(string id);
+        ReviewViewModel GetReviewByReviewId(Guid reviewId);
 
-        List<Review> GetAllReviews();
+        List<ReviewViewModel> GetAllReviews();
 
-        List<Review> GetAllSharedReviews();
+        List<ReviewViewModel> GetAllSharedReviews();
 
-        List<Review> GetAllReviewsForUser(string id);
+        List<ReviewViewModel> GetAllReviewsForUser(string userId);
 
         void CreateReview(CreateReviewViewModel film);
 
-        void DeleteReviewByReviewId(string id);
+        void DeleteReviewByReviewId(Guid reviewId);
 
-        void UpdateReviewByReviewId(string id, EditReviewViewModel list);
+        void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel list);
     }
 }

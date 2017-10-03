@@ -369,4 +369,7 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="NumberOfSeasons" xml:space="preserve">
+    <value>Number of Seasons</value>
+  </data>
 </root>

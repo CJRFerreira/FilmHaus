@@ -19,6 +19,8 @@ namespace FilmHaus.Models
 
         public DbSet<Film> Films { get; set; }
 
+        public DbSet<Show> Shows { get; set; }
+
         public DbSet<List> Lists { get; set; }
 
         public DbSet<Review> Reviews { get; set; }

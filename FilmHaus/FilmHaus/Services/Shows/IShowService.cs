@@ -1,27 +1,31 @@
-﻿using FilmHaus.Models.Base;
-using FilmHaus.Models.View;
+﻿using FilmHaus.Models.View;
+using System;
 using System.Collections.Generic;
 
 namespace FilmHaus.Services.Shows
 {
     public interface IShowService
     {
-        ShowViewModel GetShowByMediaId(string id);
+        ShowViewModel GetShowByMediaId(Guid mediaId);
 
         List<ShowViewModel> GetAllShows();
 
-        List<ShowViewModel> GetAllShowsForUser(string id);
+        List<ShowViewModel> GetAllActiveShows();
+
+        List<ShowViewModel> GetAllShowsForUser(string userId);
 
         List<ShowViewModel> GetShowsBySearchTerm(string searchTerm);
 
-        List<ShowViewModel> GetShowsByListId(string id);
+        List<ShowViewModel> GetShowsByListId(Guid mediaId);
 
-        int GetAverageShowRating(string id);
+        int GetAverageShowRating(Guid mediaId);
 
         void CreateShow(CreateShowViewModel show);
 
-        void DeleteShowByMediaId(string id);
+        void DeleteShowByMediaId(Guid mediaId);
 
-        void UpdateShowByMediaId(string id, EditShowViewModel show);
+        void ObsoleteShowByMediaId(Guid mediaId);
+
+        void UpdateShowByMediaId(Guid mediaId, EditShowViewModel show);
     }
 }

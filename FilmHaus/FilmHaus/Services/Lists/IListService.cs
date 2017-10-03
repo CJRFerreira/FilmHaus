@@ -1,27 +1,23 @@
-﻿using FilmHaus.Models.Base;
-using FilmHaus.Models.View;
+﻿using FilmHaus.Models.View;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FilmHaus.Services.Lists
 {
     public interface IListService
     {
-        List GetListByListId(Guid id);
+        ListViewModel GetListByListId(Guid listId);
 
-        List<List> GetAllLists();
+        List<ListViewModel> GetAllLists();
 
-        List<List> GetAllSharedLists();
+        List<ListViewModel> GetAllSharedLists();
 
-        List<List> GetAllListsForUser(Guid id);
+        List<ListViewModel> GetAllListsForUser(string userId);
 
-        void CreateList(CreateListViewModel film);
+        void CreateList(CreateListViewModel list);
 
-        void DeleteListByListId(Guid id);
+        void DeleteListByListId(Guid listId);
 
-        void UpdateListByListId(Guid id, EditListViewModel list);
+        void UpdateListByListId(Guid listId, EditListViewModel list);
     }
 }

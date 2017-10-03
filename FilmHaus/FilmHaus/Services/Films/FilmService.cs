@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FilmHaus.Models;
 using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
-using FilmHaus.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace FilmHaus.Services.Films
 {
@@ -26,7 +26,8 @@ namespace FilmHaus.Services.Films
                 DateOfRelease = film.DateOfRelease,
                 Accolades = film.Accolades,
                 PosterUri = film.PosterUri,
-                Runtime = film.Runtime
+                Runtime = film.Runtime,
+                CreatedOn = DateTimeOffset.Now
             });
             FilmHausDbContext.SaveChanges();
         }
@@ -44,45 +45,93 @@ namespace FilmHaus.Services.Films
                 throw new NullReferenceException();
         }
 
+        public void ObsoleteFilmByMediaId(Guid mediaId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Films.Find(mediaId);
+
+                if (result == null)
+                    throw new NullReferenceException();
+
+                result.ObsoletedOn = DateTimeOffset.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<FilmViewModel> GetAllFilms()
         {
-            return FilmHausDbContext.Films.Select(x => new FilmViewModel(x)).ToList();
+            return FilmHausDbContext.Films.Select(x => new FilmViewModel(x)
+            {
+                Rating = GetAverageFilmRating(x.MediaId)
+            })
+            .ToList();
         }
 
         public List<FilmViewModel> GetAllFilmsForUser(string userId)
         {
             return FilmHausDbContext.UserFilms.Where(u => u.Id == userId).Select(x => new FilmViewModel(x.Film)
             {
-                Rating = x.Rating
+                Rating = x.Rating ?? GetAverageFilmRating(x.MediaId)
             })
             .ToList();
         }
 
         public FilmViewModel GetFilmByMediaId(Guid mediaId)
         {
-            return FilmHausDbContext.Films.Where(f => f.MediaId == mediaId).Select(f => new FilmViewModel(f)).FirstOrDefault();
+            return FilmHausDbContext.Films.Where(f => f.MediaId == mediaId).Select(f => new FilmViewModel(f)
+            {
+                Rating = GetAverageFilmRating(f.MediaId)
+            })
+            .FirstOrDefault();
         }
 
         public List<FilmViewModel> GetFilmsByListId(Guid mediaId)
         {
-            return FilmHausDbContext.ListFilms.Where(l => l.ListId == mediaId).Select(f => new FilmViewModel(f.Film)).ToList();
+            return FilmHausDbContext.ListFilms.Where(l => l.ListId == mediaId).Select(f => new FilmViewModel(f.Film)
+            {
+                Rating = GetAverageFilmRating(f.MediaId)
+            })
+            .ToList();
         }
 
         public List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm)
         {
-            return FilmHausDbContext.Films.Where(f => f.MediaName.Contains(searchTerm)).Select(f => new FilmViewModel(f)).ToList();
+            return FilmHausDbContext.Films.Where(f => f.MediaName.Contains(searchTerm)).Select(f => new FilmViewModel(f)
+            {
+                Rating = GetAverageFilmRating(f.MediaId)
+            })
+            .ToList();
         }
 
         public void UpdateFilmByMediaId(Guid mediaId, EditFilmViewModel film)
         {
-            var result = FilmHausDbContext.Films.Find(mediaId);
-            if (result != null)
+            try
             {
-                FilmHausDbContext.Entry(result).CurrentValues.SetValues(film);
+                var result = FilmHausDbContext.Films.Find(mediaId);
+
+                if (result == null)
+                    throw new NullReferenceException();
+
+                result.PosterUri = film.PosterUri;
+                result.MediaName = film.MediaName;
+                result.DateOfRelease = film.DateOfRelease;
+                result.Accolades = film.Accolades;
+                result.Runtime = film.Runtime;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            else
-                throw new NullReferenceException();
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
         }
 
         public int GetAverageFilmRating(Guid mediaId)
@@ -95,6 +144,15 @@ namespace FilmHaus.Services.Films
                     filmRating += (int)rating;
 
             return (filmRating / allRatings.Count);
+        }
+
+        public List<FilmViewModel> GetAllActiveFilms()
+        {
+            return FilmHausDbContext.Films.Where(x => x.ObsoletedOn != null).Select(x => new FilmViewModel(x)
+            {
+                Rating = GetAverageFilmRating(x.MediaId)
+            })
+            .ToList();
         }
     }
 }

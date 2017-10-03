@@ -48,7 +48,7 @@ namespace FilmHaus.Models.View
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTimeOffset DateOfRelease { get; set; }
 
-        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
+        [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
@@ -75,8 +75,8 @@ namespace FilmHaus.Models.View
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTimeOffset DateOfRelease { get; set; }
 
-        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
-        public int Runtime { get; set; }
+        [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
+        public int NumberOfSeasons { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
@@ -122,7 +122,7 @@ namespace FilmHaus.Models.View
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTimeOffset DateOfRelease { get; set; }
 
-        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
+        [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]

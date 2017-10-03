@@ -363,4 +363,7 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="NumberOfSeasons" xml:space="preserve">
+    <value>Nombre de saisons</value>
+  </data>
 </root>
