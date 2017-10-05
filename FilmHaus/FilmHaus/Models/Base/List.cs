@@ -33,6 +33,10 @@ namespace FilmHaus.Models.Base
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
 
+        public virtual ICollection<ListFilm> ListFilm { get; set; }
+
+        public virtual ICollection<ListShow> ListShow { get; set; }
+
         public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }

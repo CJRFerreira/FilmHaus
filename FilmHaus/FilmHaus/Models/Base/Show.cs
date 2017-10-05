@@ -36,5 +36,7 @@ namespace FilmHaus.Models.Base
         public virtual ICollection<ShowPersonTitle> ShowPersonTitle { get; set; }
 
         public virtual ICollection<UserShow> UserShow { get; set; }
+
+        public virtual ICollection<UserShowRating> UserShowRating { get; set; }
     }
 }
