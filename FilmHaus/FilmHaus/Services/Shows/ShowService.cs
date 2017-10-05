@@ -78,7 +78,7 @@ namespace FilmHaus.Services.Shows
         {
             return FilmHausDbContext.UserShows.Where(u => u.Id == userId).Select(x => new ShowViewModel(x.Show)
             {
-                Rating = x.Rating ?? GetAverageShowRating(x.MediaId)
+                Rating = GetAverageShowRating(x.MediaId)
             })
             .ToList();
         }
@@ -128,14 +128,7 @@ namespace FilmHaus.Services.Shows
 
         public int GetAverageShowRating(Guid mediaId)
         {
-            int showRating = 0;
-            var allRatings = FilmHausDbContext.UserShows.Where(s => s.MediaId == mediaId && s.Rating != null).Select(r => r.Rating).ToList();
-
-            foreach (var rating in allRatings)
-                if (rating != null)
-                    showRating += (int)rating;
-
-            return (showRating / allRatings.Count);
+            return 0;
         }
 
         public List<ShowViewModel> GetAllActiveShows()

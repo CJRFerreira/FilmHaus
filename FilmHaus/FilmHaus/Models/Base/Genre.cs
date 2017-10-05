@@ -10,15 +10,10 @@ using System.Web;
 namespace FilmHaus.Models.Base
 {
     [Table("Genre")]
-    public class Genre
+    public class Genre : Detail
     {
-        [Key]
-        public Guid GenreId { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
-
         public virtual ICollection<FilmGenre> FilmGenre { get; set; }
+
+        public virtual ICollection<ShowGenre> ShowGenre { get; set; }
     }
 }

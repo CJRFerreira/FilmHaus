@@ -78,7 +78,7 @@ namespace FilmHaus.Services.Films
         {
             return FilmHausDbContext.UserFilms.Where(u => u.Id == userId).Select(x => new FilmViewModel(x.Film)
             {
-                Rating = x.Rating ?? GetAverageFilmRating(x.MediaId)
+                Rating = GetAverageFilmRating(x.MediaId)
             })
             .ToList();
         }
@@ -136,14 +136,7 @@ namespace FilmHaus.Services.Films
 
         public int GetAverageFilmRating(Guid mediaId)
         {
-            int filmRating = 0;
-            var allRatings = FilmHausDbContext.UserFilms.Where(f => f.MediaId == mediaId && f.Rating != null).Select(r => r.Rating).ToList();
-
-            foreach (var rating in allRatings)
-                if (rating != null)
-                    filmRating += (int)rating;
-
-            return (filmRating / allRatings.Count);
+            return 0;
         }
 
         public List<FilmViewModel> GetAllActiveFilms()

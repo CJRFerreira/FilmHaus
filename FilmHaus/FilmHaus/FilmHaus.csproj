@@ -198,6 +198,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
     <Compile Include="Models\Base\Media.cs" />
     <Compile Include="Models\Base\Title.cs" />
@@ -217,6 +218,8 @@
     <Compile Include="Models\Connector\FilmTag.cs" />
     <Compile Include="Models\Connector\ListFilm.cs" />
     <Compile Include="Models\Connector\ListTag.cs" />
+    <Compile Include="Models\Connector\UserFilmRating.cs" />
+    <Compile Include="Models\Connector\UserShowRating.cs" />
     <Compile Include="Models\Connector\UserShow.cs" />
     <Compile Include="Models\Connector\UserFilm.cs" />
     <Compile Include="Models\FilmHausDbContext.cs" />

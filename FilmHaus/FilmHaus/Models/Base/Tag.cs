@@ -10,15 +10,12 @@ using System.Web;
 namespace FilmHaus.Models.Base
 {
     [Table("Tag")]
-    public class Tag
+    public class Tag : Detail
     {
-        [Key]
-        public Guid TagId { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
-
         public virtual ICollection<FilmTag> FilmTag { get; set; }
+
+        public virtual ICollection<ShowTag> ShowTag { get; set; }
+
+        public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }

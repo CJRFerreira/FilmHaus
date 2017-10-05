@@ -12,20 +12,20 @@ namespace FilmHaus.Models.Connector
     public class ShowPersonTitle
     {
         [Key]
+        public Guid ShowPersonTitleId { get; set; }
+
         [Column(Order = 1)]
         [ForeignKey("Show")]
         public Guid MediaId { get; set; }
 
         public virtual Show Show { get; set; }
 
-        [Key]
         [Column(Order = 2)]
         [ForeignKey("Person")]
         public Guid PersonId { get; set; }
 
         public virtual Person Person { get; set; }
 
-        [Key]
         [Column(Order = 3)]
         [ForeignKey("Title")]
         public Guid TitleId { get; set; }
