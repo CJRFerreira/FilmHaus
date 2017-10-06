@@ -9,9 +9,9 @@ using FilmHaus.Enums;
 
 namespace FilmHaus.Models.View
 {
-    public class ShowViewModel
+    public class ShowViewModel : MediaViewModel
     {
-        public ShowViewModel()
+        public ShowViewModel() : base()
         {
         }
 
@@ -35,56 +35,23 @@ namespace FilmHaus.Models.View
             Accolades = show.Accolades;
         }
 
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid MediaId { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
-        public string MediaName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfRelease { get; set; }
-
         [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
-
-        [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public int Rating { get; set; }
-
-        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public AwardStatus Accolades { get; set; }
     }
 
-    public class CreateShowViewModel
+    public class CreateShowViewModel : CreateMediaViewModel
     {
-        public CreateShowViewModel()
+        public CreateShowViewModel() : base()
         {
         }
 
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
-        [Required]
-        public string MediaName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfRelease { get; set; }
-
         [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
-
-        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public AwardStatus Accolades { get; set; }
     }
 
-    public class EditShowViewModel
+    public class EditShowViewModel : EditMediaViewModel
     {
-        public EditShowViewModel()
+        public EditShowViewModel() : base()
         {
         }
 
@@ -108,24 +75,7 @@ namespace FilmHaus.Models.View
             Accolades = show.Accolades;
         }
 
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid MediaId { get; set; }
-
-        [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
-
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
-        [Required]
-        public string MediaName { get; set; }
-
-        [DataType(DataType.Date)]
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfRelease { get; set; }
-
         [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
-
-        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public AwardStatus Accolades { get; set; }
     }
 }

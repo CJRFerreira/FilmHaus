@@ -8,7 +8,7 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class GenreViewModel
+    public class GenreViewModel : DetailViewModel
     {
         public GenreViewModel()
         {
@@ -16,37 +16,25 @@ namespace FilmHaus.Models.View
 
         public GenreViewModel(Genre genre)
         {
-            GenreId = genre.GenreId;
+            DetailId = genre.DetailId;
             Name = genre.Name;
         }
 
         public GenreViewModel(EditGenreViewModel genre)
         {
-            GenreId = genre.GenreId;
+            DetailId = genre.DetailId;
             Name = genre.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid GenreId { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class CreateGenreViewModel
+    public class CreateGenreViewModel : CreateDetailViewModel
     {
         public CreateGenreViewModel()
         {
         }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class EditGenreViewModel
+    public class EditGenreViewModel : EditDetailViewModel
     {
         public EditGenreViewModel()
         {
@@ -54,22 +42,14 @@ namespace FilmHaus.Models.View
 
         public EditGenreViewModel(Genre genre)
         {
-            GenreId = genre.GenreId;
+            DetailId = genre.DetailId;
             Name = genre.Name;
         }
 
         public EditGenreViewModel(GenreViewModel genre)
         {
-            GenreId = genre.GenreId;
+            DetailId = genre.DetailId;
             Name = genre.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid GenreId { get; set; }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Genre", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 }

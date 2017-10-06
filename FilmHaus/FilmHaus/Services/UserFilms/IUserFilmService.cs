@@ -4,10 +4,10 @@ namespace FilmHaus.Services.UserFilms
 {
     public interface IUserFilmService
     {
-        void AddFilmToUserLibrary(string userId, Guid filmID);
+        void AddFilmToUserLibrary(Guid userFilmId);
 
-        void RemoveFilmFromUserLibrary(string userId, Guid filmID);
+        void RemoveFilmFromUserLibrary(Guid userFilmId);
 
-        void ChangeRatingForUserFilm(string userId, Guid filmID, int? rating);
+        void ChangeRatingForUserFilm(Guid userFilmId, int? rating);
     }
 }

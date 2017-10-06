@@ -8,61 +8,42 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class TagViewModel
+    public class TagViewModel : DetailViewModel
     {
-        public TagViewModel()
+        public TagViewModel() : base()
         {
         }
 
         public TagViewModel(Tag tag)
         {
-            TagId = tag.TagId;
+            DetailId = tag.DetailId;
             Name = tag.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TagId { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class CreateTagViewModel
+    public class CreateTagViewModel : CreateDetailViewModel
     {
-        public CreateTagViewModel()
+        public CreateTagViewModel() : base()
         {
         }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class EditTagViewModel
+    public class EditTagViewModel : EditDetailViewModel
     {
-        public EditTagViewModel()
+        public EditTagViewModel() : base()
         {
         }
 
         public EditTagViewModel(Tag tag)
         {
-            TagId = tag.TagId;
+            DetailId = tag.DetailId;
             Name = tag.Name;
         }
 
         public EditTagViewModel(TagViewModel tag)
         {
-            TagId = tag.TagId;
+            DetailId = tag.DetailId;
             Name = tag.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TagId { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 }

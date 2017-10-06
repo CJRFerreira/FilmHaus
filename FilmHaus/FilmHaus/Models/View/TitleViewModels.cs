@@ -8,61 +8,42 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class TitleViewModel
+    public class TitleViewModel : DetailViewModel
     {
-        public TitleViewModel()
+        public TitleViewModel() : base()
         {
         }
 
         public TitleViewModel(Title title)
         {
-            TitleId = title.TitleId;
-            Name = title.TitleName;
+            DetailId = title.DetailId;
+            Name = title.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TitleId { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Name", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class CreateTitleViewModel
+    public class CreateTitleViewModel : CreateDetailViewModel
     {
-        public CreateTitleViewModel()
+        public CreateTitleViewModel() : base()
         {
         }
-
-        [Required]
-        [DataType(DataType.Text)]
-        [Display(Name = "Tag", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 
-    public class EditTitleViewModel
+    public class EditTitleViewModel : EditDetailViewModel
     {
-        public EditTitleViewModel()
+        public EditTitleViewModel() : base()
         {
         }
 
         public EditTitleViewModel(Title title)
         {
-            TitleId = title.TitleId;
-            Name = title.TitleName;
+            DetailId = title.DetailId;
+            Name = title.Name;
         }
 
         public EditTitleViewModel(TitleViewModel title)
         {
-            TitleId = title.TitleId;
+            DetailId = title.DetailId;
             Name = title.Name;
         }
-
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public Guid TitleId { get; set; }
-
-        [DataType(DataType.Text)]
-        [Display(Name = "Name", ResourceType = typeof(Locale))]
-        public string Name { get; set; }
     }
 }
