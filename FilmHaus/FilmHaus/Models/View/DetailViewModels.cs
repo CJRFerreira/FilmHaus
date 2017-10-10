@@ -42,7 +42,7 @@ namespace FilmHaus.Models.View
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Genre", ResourceType = typeof(Locale))]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         public string Name { get; set; }
     }
 
@@ -69,7 +69,7 @@ namespace FilmHaus.Models.View
 
         [Required]
         [DataType(DataType.Text)]
-        [Display(Name = "Genre", ResourceType = typeof(Locale))]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         public string Name { get; set; }
     }
 }

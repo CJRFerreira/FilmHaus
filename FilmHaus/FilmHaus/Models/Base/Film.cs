@@ -24,6 +24,7 @@ namespace FilmHaus.Models.Base
             DateOfRelease = film.DateOfRelease;
             Accolades = film.Accolades;
             Runtime = film.Runtime;
+            CreatedOn = film.CreatedOn;
         }
 
         public int Runtime { get; set; }

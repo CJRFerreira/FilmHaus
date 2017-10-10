@@ -45,15 +45,17 @@ namespace FilmHaus.Models.Base
         [Required]
         public string MediaName { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTimeOffset DateOfRelease { get; set; }
 
         public AwardStatus Accolades { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTimeOffset CreatedOn { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTimeOffset? CreatedOn { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTimeOffset? ObsoletedOn { get; set; }
     }
 }
