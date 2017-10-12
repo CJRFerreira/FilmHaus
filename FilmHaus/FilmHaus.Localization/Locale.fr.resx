@@ -172,7 +172,7 @@
     <value>FilmHaus</value>
   </data>
   <data name="FindFilms" xml:space="preserve">
-    <value>Trouver des Films &amp; des Séries</value>
+    <value>Trouver des Films</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Prénom</value>
@@ -365,5 +365,47 @@
   </data>
   <data name="NumberOfSeasons" xml:space="preserve">
     <value>Nombre de saisons</value>
+  </data>
+  <data name="CreateFilm" xml:space="preserve">
+    <value>Créer un Film</value>
+  </data>
+  <data name="CreateShow" xml:space="preserve">
+    <value>Créer une Émissions de Télévision</value>
+  </data>
+  <data name="EditFilm" xml:space="preserve">
+    <value>Modifier un Film</value>
+  </data>
+  <data name="EditShow" xml:space="preserve">
+    <value>Modifier une Émissions de Télévision</value>
+  </data>
+  <data name="Film" xml:space="preserve">
+    <value>Film</value>
+  </data>
+  <data name="Films" xml:space="preserve">
+    <value>Films</value>
+  </data>
+  <data name="FindShows" xml:space="preserve">
+    <value>Trouver des Émissions de Télévision</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Catalogue</value>
+  </data>
+  <data name="Obsolete" xml:space="preserve">
+    <value>Obsolète</value>
+  </data>
+  <data name="ObsoleteFilm" xml:space="preserve">
+    <value>Obsolète un Film</value>
+  </data>
+  <data name="ObsoleteShow" xml:space="preserve">
+    <value>Obsolète une Émissions de Télévision</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Émissions de Télévision</value>
+  </data>
+  <data name="Shows" xml:space="preserve">
+    <value>Émissions Télévisées</value>
   </data>
 </root>

@@ -372,4 +372,46 @@
   <data name="NumberOfSeasons" xml:space="preserve">
     <value>Number of Seasons</value>
   </data>
+  <data name="CreateFilm" xml:space="preserve">
+    <value>Create Film</value>
+  </data>
+  <data name="CreateShow" xml:space="preserve">
+    <value>Create Show</value>
+  </data>
+  <data name="EditFilm" xml:space="preserve">
+    <value>Edit a Film</value>
+  </data>
+  <data name="EditShow" xml:space="preserve">
+    <value>Edit a Show</value>
+  </data>
+  <data name="Film" xml:space="preserve">
+    <value>Film</value>
+  </data>
+  <data name="Films" xml:space="preserve">
+    <value>Films</value>
+  </data>
+  <data name="FindShows" xml:space="preserve">
+    <value>Find Shows</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="Obsolete" xml:space="preserve">
+    <value>Obsolete</value>
+  </data>
+  <data name="ObsoleteFilm" xml:space="preserve">
+    <value>Obsolete a Film</value>
+  </data>
+  <data name="ObsoleteShow" xml:space="preserve">
+    <value>Obsolete a Show</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Shows" xml:space="preserve">
+    <value>Shows</value>
+  </data>
 </root>

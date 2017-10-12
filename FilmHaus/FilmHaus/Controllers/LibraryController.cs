@@ -10,9 +10,9 @@ namespace FilmHaus.Controllers
     [RoutePrefix("Library")]
     public class LibraryController : Controller
     {
-        private IFilmService FilmService { get; set; }
+        private IFilmService FilmService { get; }
 
-        private IShowService ShowService { get; set; }
+        private IShowService ShowService { get; }
 
         public LibraryController(IFilmService filmService, IShowService showService)
         {

@@ -196,11 +196,29 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Film.
+        /// </summary>
+        public static string CreateFilm {
+            get {
+                return ResourceManager.GetString("CreateFilm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a List.
         /// </summary>
         public static string CreateList {
             get {
                 return ResourceManager.GetString("CreateList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Show.
+        /// </summary>
+        public static string CreateShow {
+            get {
+                return ResourceManager.GetString("CreateShow", resourceCulture);
             }
         }
         
@@ -268,6 +286,24 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit a Film.
+        /// </summary>
+        public static string EditFilm {
+            get {
+                return ResourceManager.GetString("EditFilm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit a Show.
+        /// </summary>
+        public static string EditShow {
+            get {
+                return ResourceManager.GetString("EditShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -304,6 +340,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Film.
+        /// </summary>
+        public static string Film {
+            get {
+                return ResourceManager.GetString("Film", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FilmHaus.
         /// </summary>
         public static string FilmHaus {
@@ -322,6 +367,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Films.
+        /// </summary>
+        public static string Films {
+            get {
+                return ResourceManager.GetString("Films", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Films &amp; Shows.
         /// </summary>
         public static string FilmsShows {
@@ -336,6 +390,15 @@ namespace FilmHaus.Localization {
         public static string FindFilms {
             get {
                 return ResourceManager.GetString("FindFilms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find Shows.
+        /// </summary>
+        public static string FindShows {
+            get {
+                return ResourceManager.GetString("FindShows", resourceCulture);
             }
         }
         
@@ -399,6 +462,15 @@ namespace FilmHaus.Localization {
         public static string Id {
             get {
                 return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index.
+        /// </summary>
+        public static string Index {
+            get {
+                return ResourceManager.GetString("Index", resourceCulture);
             }
         }
         
@@ -565,6 +637,33 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obsolete.
+        /// </summary>
+        public static string Obsolete {
+            get {
+                return ResourceManager.GetString("Obsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete a Film.
+        /// </summary>
+        public static string ObsoleteFilm {
+            get {
+                return ResourceManager.GetString("ObsoleteFilm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete a Show.
+        /// </summary>
+        public static string ObsoleteShow {
+            get {
+                return ResourceManager.GetString("ObsoleteShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our Sponsor.
         /// </summary>
         public static string OurSponsor {
@@ -700,6 +799,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -754,11 +862,29 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string Show {
+            get {
+                return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Library.
         /// </summary>
         public static string ShowLibrary {
             get {
                 return ResourceManager.GetString("ShowLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shows.
+        /// </summary>
+        public static string Shows {
+            get {
+                return ResourceManager.GetString("Shows", resourceCulture);
             }
         }
         

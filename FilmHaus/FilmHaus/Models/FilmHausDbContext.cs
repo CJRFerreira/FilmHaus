@@ -1,6 +1,7 @@
 ﻿using FilmHaus.Models.Base;
 using FilmHaus.Models.Connector;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace FilmHaus.Models
@@ -17,9 +18,54 @@ namespace FilmHaus.Models
             return new FilmHausDbContext();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Media>()
+                .Property(m => m.MediaId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<Film>().Map(f =>
+            {
+                f.MapInheritedProperties();
+                f.ToTable("Film");
+            });
+
+            modelBuilder.Entity<Show>().Map(s =>
+            {
+                s.MapInheritedProperties();
+                s.ToTable("Show");
+            });
+
+            modelBuilder.Entity<Detail>()
+                .Property(d => d.DetailId)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            modelBuilder.Entity<Genre>().Map(g =>
+            {
+                g.MapInheritedProperties();
+                g.ToTable("Genre");
+            });
+
+            modelBuilder.Entity<Tag>().Map(t =>
+            {
+                t.MapInheritedProperties();
+                t.ToTable("Tag");
+            });
+
+            modelBuilder.Entity<Title>().Map(t =>
+            {
+                t.MapInheritedProperties();
+                t.ToTable("Title");
+            });
+        }
+
         public DbSet<Film> Films { get; set; }
 
         public DbSet<Show> Shows { get; set; }
+
+        public DbSet<Media> Media { get; set; }
 
         public DbSet<List> Lists { get; set; }
 
