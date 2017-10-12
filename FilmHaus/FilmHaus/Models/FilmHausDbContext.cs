@@ -43,6 +43,10 @@ namespace FilmHaus.Models
 
         public DbSet<UserShow> UserShows { get; set; }
 
+        public DbSet<UserFilmRating> UserFilmRatings { get; set; }
+
+        public DbSet<UserShowRating> UserShowRatings { get; set; }
+
         public DbSet<FilmTag> FilmTags { get; set; }
 
         public DbSet<ShowTag> ShowTags { get; set; }
@@ -54,6 +58,10 @@ namespace FilmHaus.Models
         public DbSet<ListFilm> ListFilms { get; set; }
 
         public DbSet<ListShow> ListShows { get; set; }
+
+        public DbSet<ReviewFilm> ReviewFilms { get; set; }
+
+        public DbSet<ReviewShow> ReviewShows { get; set; }
 
         public DbSet<ListTag> ListTags { get; set; }
     }

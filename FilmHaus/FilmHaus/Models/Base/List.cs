@@ -13,7 +13,6 @@ namespace FilmHaus.Models.Base
     public class List
     {
         [Key]
-        [Required]
         public Guid ListId { get; set; }
 
         [ForeignKey("User")]

@@ -12,7 +12,7 @@ namespace FilmHaus.Models.Connector
     public class ListShow
     {
         [Key]
-        public Guid ListShpwId { get; set; }
+        public Guid ListShowId { get; set; }
 
         [ForeignKey("Show"), Column(Order = 0)]
         [Index(name: "IX_ListShow", order: 0, IsUnique = true)]

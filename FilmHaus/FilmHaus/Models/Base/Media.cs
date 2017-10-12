@@ -36,7 +36,6 @@ namespace FilmHaus.Models.Base
         }
 
         [Key]
-        [Required]
         public Guid MediaId { get; set; }
 
         public Uri PosterUri { get; set; }

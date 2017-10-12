@@ -22,6 +22,7 @@ namespace FilmHaus.Models.Base
         [StringLength(50, MinimumLength = 1)]
         public string LastName { get; set; }
 
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }
 

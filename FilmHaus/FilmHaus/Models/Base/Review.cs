@@ -12,7 +12,6 @@ namespace FilmHaus.Models.Base
     public class Review
     {
         [Key]
-        [Required]
         public Guid ReviewId { get; set; }
 
         [ForeignKey("User")]

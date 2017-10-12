@@ -59,9 +59,9 @@ namespace FilmHaus.Services.Shows
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -120,15 +120,21 @@ namespace FilmHaus.Services.Shows
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
 
         public int GetAverageShowRating(Guid mediaId)
         {
-            return 0;
+            int showRating = 0;
+            var allRating = FilmHausDbContext.UserShowRatings.Where(usr => usr.MediaId == mediaId && usr.Rating != null).Select(usr => usr.Rating).ToList();
+
+            foreach (var rating in allRating)
+                showRating += (int)rating;
+
+            return (showRating / allRating.Count);
         }
 
         public List<ShowViewModel> GetAllActiveShows()

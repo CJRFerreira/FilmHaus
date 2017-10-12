@@ -22,6 +22,8 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.Text)]
         public string LastName { get; set; }
 
-        public virtual ICollection<FilmPersonTitle> FilmPerson { get; set; }
+        public virtual ICollection<FilmPersonTitle> FilmPersonTitle { get; set; }
+
+        public virtual ICollection<ShowPersonTitle> ShowPersonTitle { get; set; }
     }
 }

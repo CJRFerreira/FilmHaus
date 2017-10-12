@@ -12,7 +12,7 @@ namespace FilmHaus.Models.Connector
     public class ReviewShow
     {
         [Key]
-        public Guid ReviewFilmId { get; set; }
+        public Guid ReviewShowId { get; set; }
 
         [ForeignKey("Show"), Column(Order = 0)]
         [Index(name: "IX_ReviewShow", order: 0, IsUnique = true)]
