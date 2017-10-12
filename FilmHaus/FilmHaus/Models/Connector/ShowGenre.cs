@@ -11,15 +11,13 @@ namespace FilmHaus.Models.Connector
         [Key]
         public Guid ShowGenreId { get; set; }
 
-        [Column(Order = 1)]
-        [ForeignKey("Show")]
+        [ForeignKey("Show"), Column(Order = 0)]
         public Guid MediaId { get; set; }
 
         public virtual Show Show { get; set; }
 
-        [Column(Order = 2)]
-        [ForeignKey("Genre")]
-        public Guid GenreId { get; set; }
+        [ForeignKey("Genre"), Column(Order = 1)]
+        public Guid DetailId { get; set; }
 
         public virtual Genre Genre { get; set; }
     }

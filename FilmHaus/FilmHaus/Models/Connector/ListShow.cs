@@ -14,22 +14,18 @@ namespace FilmHaus.Models.Connector
         [Key]
         public Guid ListShpwId { get; set; }
 
-        [Column(Order = 1)]
-        [ForeignKey("Show")]
+        [ForeignKey("Show"), Column(Order = 0)]
         [Index(name: "IX_ListShow", order: 0, IsUnique = true)]
         public Guid MediaId { get; set; }
 
         public virtual Show Show { get; set; }
 
-        [Timestamp]
-        public DateTimeOffset CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
-        [Timestamp]
         [Index(name: "IX_ListShow", order: 1, IsUnique = true)]
-        public DateTimeOffset? ObsoletedOn { get; set; }
+        public DateTime? ObsoletedOn { get; set; }
 
-        [Column(Order = 2)]
-        [ForeignKey("List")]
+        [ForeignKey("List"), Column(Order = 1)]
         public Guid ListId { get; set; }
 
         public virtual List List { get; set; }

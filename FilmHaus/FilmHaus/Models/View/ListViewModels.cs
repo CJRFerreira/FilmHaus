@@ -48,7 +48,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
 
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
@@ -69,7 +69,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
@@ -116,7 +116,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]

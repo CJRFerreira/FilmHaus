@@ -42,7 +42,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
     }
 
     public class CreateReviewViewModel

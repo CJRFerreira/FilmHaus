@@ -24,7 +24,7 @@ namespace FilmHaus.Models.Base
             ObsoletedOn = media.ObsoletedOn;
         }
 
-        public Media(Guid mediaId, Uri posterUri, string mediaName, DateTimeOffset dateOfRelease, AwardStatus accolades, DateTimeOffset createdOn, DateTimeOffset obsoletedOn)
+        public Media(Guid mediaId, Uri posterUri, string mediaName, DateTime dateOfRelease, AwardStatus accolades, DateTime createdOn, DateTime obsoletedOn)
         {
             MediaId = mediaId;
             PosterUri = posterUri;
@@ -39,23 +39,19 @@ namespace FilmHaus.Models.Base
         [Required]
         public Guid MediaId { get; set; }
 
-        [DataType(DataType.ImageUrl)]
         public Uri PosterUri { get; set; }
 
         [Required]
         public string MediaName { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateTimeOffset DateOfRelease { get; set; }
+        public DateTime DateOfRelease { get; set; }
 
         public AwardStatus Accolades { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTimeOffset? CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
-        [DataType(DataType.DateTime)]
-        public DateTimeOffset? ObsoletedOn { get; set; }
+        public DateTime? ObsoletedOn { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace FilmHaus.Services.Shows
                 Accolades = show.Accolades,
                 PosterUri = show.PosterUri,
                 NumberOfSeasons = show.NumberOfSeasons,
-                CreatedOn = DateTimeOffset.Now
+                CreatedOn = DateTime.Now
             });
             FilmHausDbContext.SaveChanges();
         }
@@ -42,7 +42,7 @@ namespace FilmHaus.Services.Shows
                 FilmHausDbContext.SaveChanges();
             }
             else
-                throw new NullReferenceException();
+                throw new ArgumentNullException();
         }
 
         public void ObsoleteShowByMediaId(Guid mediaId)
@@ -52,14 +52,14 @@ namespace FilmHaus.Services.Shows
                 var result = FilmHausDbContext.Shows.Find(mediaId);
 
                 if (result == null)
-                    throw new NullReferenceException();
+                    throw new ArgumentNullException();
 
-                result.ObsoletedOn = DateTimeOffset.Now;
+                result.ObsoletedOn = DateTime.Now;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -109,7 +109,7 @@ namespace FilmHaus.Services.Shows
                 var result = FilmHausDbContext.Shows.Find(mediaId);
 
                 if (result == null)
-                    throw new NullReferenceException();
+                    throw new ArgumentNullException();
 
                 result.PosterUri = show.PosterUri;
                 result.MediaName = show.MediaName;
@@ -120,7 +120,7 @@ namespace FilmHaus.Services.Shows
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

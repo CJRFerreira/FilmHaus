@@ -207,6 +207,8 @@
     <Compile Include="Models\Base\Report.cs" />
     <Compile Include="Models\Base\Review.cs" />
     <Compile Include="Models\Base\Show.cs" />
+    <Compile Include="Models\Connector\ReviewShow.cs" />
+    <Compile Include="Models\Connector\ReviewFilm.cs" />
     <Compile Include="Models\Connector\ListShow.cs" />
     <Compile Include="Models\Connector\ShowGenre.cs" />
     <Compile Include="Models\Connector\ShowPersonTitle.cs" />

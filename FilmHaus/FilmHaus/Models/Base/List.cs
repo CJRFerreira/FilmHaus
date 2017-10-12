@@ -27,7 +27,7 @@ namespace FilmHaus.Models.Base
         public string Description { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]

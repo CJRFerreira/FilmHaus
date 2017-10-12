@@ -12,7 +12,7 @@ namespace FilmHaus.Models.Base
     [Table("Film")]
     public class Film : Media
     {
-        public Film()
+        public Film() : base()
         {
         }
 
@@ -29,16 +29,18 @@ namespace FilmHaus.Models.Base
 
         public int Runtime { get; set; }
 
-        public virtual ICollection<FilmGenre> FilmGenre { get; set; }
+        public virtual ICollection<FilmGenre> FilmGenres { get; set; }
 
-        public virtual ICollection<FilmTag> FilmTag { get; set; }
+        public virtual ICollection<FilmTag> FilmTags { get; set; }
 
-        public virtual ICollection<ListFilm> ListFilm { get; set; }
+        public virtual ICollection<ListFilm> ListFilms { get; set; }
 
-        public virtual ICollection<FilmPersonTitle> FilmPersonTitle { get; set; }
+        public virtual ICollection<FilmPersonTitle> FilmPersonTitles { get; set; }
 
-        public virtual ICollection<UserFilm> UserFilm { get; set; }
+        public virtual ICollection<UserFilm> UserFilms { get; set; }
 
-        public virtual ICollection<UserFilmRating> UserFilmRating { get; set; }
+        public virtual ICollection<UserFilmRating> UserFilmRatings { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

@@ -15,17 +15,10 @@ namespace FilmHaus.Models.Base
         [Required]
         public Guid ReviewId { get; set; }
 
-        [Column(Order = 1)]
         [ForeignKey("User")]
         public string Id { get; set; }
 
         public virtual User User { get; set; }
-
-        [Column(Order = 2)]
-        [ForeignKey("Film")]
-        public Guid MediaId { get; set; }
-
-        public virtual Film Film { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
@@ -36,6 +29,6 @@ namespace FilmHaus.Models.Base
         public bool? Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTimeOffset DateOfCreation { get; set; }
+        public DateTime DateOfCreation { get; set; }
     }
 }

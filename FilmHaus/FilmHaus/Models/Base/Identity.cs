@@ -22,11 +22,11 @@ namespace FilmHaus.Models.Base
         [StringLength(50, MinimumLength = 1)]
         public string LastName { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTimeOffset CreatedOn { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime CreatedOn { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTimeOffset LastLogin { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime LastLogin { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

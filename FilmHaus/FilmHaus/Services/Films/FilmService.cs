@@ -27,7 +27,7 @@ namespace FilmHaus.Services.Films
                 Accolades = film.Accolades,
                 PosterUri = film.PosterUri,
                 Runtime = film.Runtime,
-                CreatedOn = DateTimeOffset.Now
+                CreatedOn = DateTime.Now
             });
             FilmHausDbContext.SaveChanges();
         }
@@ -42,7 +42,7 @@ namespace FilmHaus.Services.Films
                 FilmHausDbContext.SaveChanges();
             }
             else
-                throw new NullReferenceException();
+                throw new ArgumentNullException();
         }
 
         public void ObsoleteFilmByMediaId(Guid mediaId)
@@ -52,14 +52,14 @@ namespace FilmHaus.Services.Films
                 var result = FilmHausDbContext.Films.Find(mediaId);
 
                 if (result == null)
-                    throw new NullReferenceException();
+                    throw new ArgumentNullException();
 
-                result.ObsoletedOn = DateTimeOffset.Now;
+                result.ObsoletedOn = DateTime.Now;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -117,7 +117,7 @@ namespace FilmHaus.Services.Films
                 var result = FilmHausDbContext.Films.Find(mediaId);
 
                 if (result == null)
-                    throw new NullReferenceException();
+                    throw new ArgumentNullException();
 
                 result.PosterUri = film.PosterUri;
                 result.MediaName = film.MediaName;
@@ -128,7 +128,7 @@ namespace FilmHaus.Services.Films
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

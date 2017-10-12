@@ -172,8 +172,8 @@ namespace FilmHaus.Controllers
                     LastName = model.LastName,
                     UserName = model.Email,
                     Email = model.Email,
-                    CreatedOn = DateTimeOffset.Now,
-                    LastLogin = DateTimeOffset.Now
+                    CreatedOn = DateTime.Now,
+                    LastLogin = DateTime.Now
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

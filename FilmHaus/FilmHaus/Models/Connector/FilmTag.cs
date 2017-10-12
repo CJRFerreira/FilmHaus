@@ -14,15 +14,13 @@ namespace FilmHaus.Models.Connector
         [Key]
         public Guid FilmTagId { get; set; }
 
-        [Column(Order = 1)]
-        [ForeignKey("Film")]
+        [ForeignKey("Film"), Column(Order = 0)]
         public Guid MediaId { get; set; }
 
         public virtual Film Film { get; set; }
 
-        [Column(Order = 2)]
-        [ForeignKey("Tag")]
-        public Guid TagId { get; set; }
+        [ForeignKey("Tag"), Column(Order = 1)]
+        public Guid DetailId { get; set; }
 
         public virtual Tag Tag { get; set; }
     }

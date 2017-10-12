@@ -42,7 +42,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfRelease { get; set; }
+        public DateTime DateOfRelease { get; set; }
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
         public int? Rating { get; set; }
@@ -116,7 +116,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTimeOffset DateOfRelease { get; set; }
+        public DateTime DateOfRelease { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
