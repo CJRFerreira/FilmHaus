@@ -366,11 +366,17 @@
   <data name="NumberOfSeasons" xml:space="preserve">
     <value>Nombre de saisons</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirmer</value>
+  </data>
   <data name="CreateFilm" xml:space="preserve">
     <value>Créer un Film</value>
   </data>
   <data name="CreateShow" xml:space="preserve">
     <value>Créer une Émissions de Télévision</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer ceci?</value>
   </data>
   <data name="EditFilm" xml:space="preserve">
     <value>Modifier un Film</value>
