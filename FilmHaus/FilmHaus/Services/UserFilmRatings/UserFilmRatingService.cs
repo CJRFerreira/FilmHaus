@@ -1,30 +1,77 @@
 ﻿using System;
 using FilmHaus.Models;
+using FilmHaus.Models.Connector;
+using System.Data.Entity;
 
-namespace FilmHaus.Services.UserFilms
+namespace FilmHaus.Services.UserFilmRatings
 {
-    public class UserFilmService : IUserFilmService
+    public class UserFilmRatingService : IUserFilmRatingService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
-        public UserFilmService(FilmHausDbContext filmHausDbContext)
+        public UserFilmRatingService(FilmHausDbContext filmHausDbContext)
         {
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddFilmToUserLibrary(Guid userFilmId)
+        public void AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.UserFilmRatings.Add(new UserFilmRating
+            {
+                UserFilmRatingId = Guid.NewGuid(),
+                Id = userId,
+                MediaId = mediaId,
+                CreatedOn = DateTime.Now
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
-        public void RemoveFilmFromUserLibrary(Guid userFilmId)
+        public void ChangeRatingInUserLibrary(Guid userFilmId, int rating)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var oldRating = FilmHausDbContext.UserFilmRatings.Find(userFilmId);
+
+                if (oldRating == null)
+                    throw new ArgumentNullException();
+
+                oldRating.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.UserFilmRatings.Add(new UserFilmRating
+                {
+                    UserFilmRatingId = Guid.NewGuid(),
+                    Id = oldRating.Id,
+                    MediaId = oldRating.MediaId,
+                    CreatedOn = DateTime.Now
+                });
+
+                FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public void ChangeRatingForUserFilm(Guid userFilmId, int? rating)
+        public void ObsoleteRatingInUserLibrary(Guid userFilmId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.UserFilmRatings.Find(userFilmId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

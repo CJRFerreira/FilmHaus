@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace FilmHaus.Services.UserFilms
+namespace FilmHaus.Services.UserFilmRatings
 {
-    public interface IUserFilmService
+    public interface IUserFilmRatingService
     {
-        void AddFilmToUserLibrary(Guid userFilmId);
+        void AddRatingToUserLibrary(string userId, Guid mediaId, int rating);
 
-        void RemoveFilmFromUserLibrary(Guid userFilmId);
+        void ChangeRatingInUserLibrary(Guid userFilmId, int rating);
 
-        void ChangeRatingForUserFilm(Guid userFilmId, int? rating);
+        void ObsoleteRatingInUserLibrary(Guid userFilmId);
     }
 }
