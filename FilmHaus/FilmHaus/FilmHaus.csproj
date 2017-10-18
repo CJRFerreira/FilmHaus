@@ -199,6 +199,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710181857220_Initial.cs" />
+    <Compile Include="Migrations\201710181857220_Initial.Designer.cs">
+      <DependentUpon>201710181857220_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
     <Compile Include="Models\Base\Media.cs" />
@@ -241,6 +246,7 @@
     <Compile Include="Models\View\TitleViewModels.cs" />
     <Compile Include="Models\View\TagViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Reviews\ReviewService.cs" />
     <Compile Include="Services\UserFilmRatings\IUserFilmRatingService.cs" />
     <Compile Include="Services\UserFilmRatings\UserFilmRatingService.cs" />
     <Compile Include="Services\UserFilms\UserFilmService.cs" />
@@ -357,6 +363,11 @@
       <Project>{76A34CF2-D8E5-427B-881B-098B7818DA89}</Project>
       <Name>FilmHaus.Localization</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710181857220_Initial.resx">
+      <DependentUpon>201710181857220_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

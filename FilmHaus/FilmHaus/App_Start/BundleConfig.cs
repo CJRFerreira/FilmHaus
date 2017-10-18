@@ -24,9 +24,6 @@ namespace FilmHaus
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                      "~/Scripts/datatables.min.js"));
-
             bundles.Add(new StyleBundle("~/Content/alt/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Layout/Site.css",
@@ -34,7 +31,6 @@ namespace FilmHaus
 
             bundles.Add(new StyleBundle("~/Content/main/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/datatables.min.css",
                       "~/Content/Layout/Dashboard.css",
                       "~/Content/Generic/Helper.css"));
         }

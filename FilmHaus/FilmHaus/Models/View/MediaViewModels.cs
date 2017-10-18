@@ -35,7 +35,7 @@ namespace FilmHaus.Models.View
         public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
+        public string PosterUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string MediaName { get; set; }
@@ -66,7 +66,7 @@ namespace FilmHaus.Models.View
         }
 
         [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
+        public string PosterUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         [Required]
@@ -108,7 +108,7 @@ namespace FilmHaus.Models.View
         public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public Uri PosterUri { get; set; }
+        public string PosterUri { get; set; }
 
         [Required]
         [Display(Name = "Title", ResourceType = typeof(Locale))]

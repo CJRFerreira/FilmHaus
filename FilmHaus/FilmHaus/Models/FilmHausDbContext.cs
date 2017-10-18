@@ -22,6 +22,18 @@ namespace FilmHaus.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Report>()
+                    .HasRequired(m => m.ReportingUser)
+                    .WithMany(t => t.AsReporter)
+                    .HasForeignKey(m => m.ReportingUserId)
+                    .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Report>()
+                        .HasRequired(m => m.UserReported)
+                        .WithMany(t => t.AsReportee)
+                        .HasForeignKey(m => m.UserReportedId)
+                        .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Media>()
                 .Property(m => m.MediaId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
@@ -29,13 +41,13 @@ namespace FilmHaus.Models
             modelBuilder.Entity<Film>().Map(f =>
             {
                 f.MapInheritedProperties();
-                f.ToTable("Film");
+                f.ToTable("Films");
             });
 
             modelBuilder.Entity<Show>().Map(s =>
             {
                 s.MapInheritedProperties();
-                s.ToTable("Show");
+                s.ToTable("Shows");
             });
 
             modelBuilder.Entity<Detail>()
@@ -45,19 +57,19 @@ namespace FilmHaus.Models
             modelBuilder.Entity<Genre>().Map(g =>
             {
                 g.MapInheritedProperties();
-                g.ToTable("Genre");
+                g.ToTable("Genres");
             });
 
             modelBuilder.Entity<Tag>().Map(t =>
             {
                 t.MapInheritedProperties();
-                t.ToTable("Tag");
+                t.ToTable("Tags");
             });
 
             modelBuilder.Entity<Title>().Map(t =>
             {
                 t.MapInheritedProperties();
-                t.ToTable("Title");
+                t.ToTable("Titles");
             });
         }
 

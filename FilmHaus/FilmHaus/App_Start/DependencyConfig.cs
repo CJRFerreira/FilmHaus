@@ -26,7 +26,7 @@ namespace FilmHaus
             builder.RegisterFilterProvider();
 
             builder.RegisterType<FilmService>().As<IFilmService>();
-            //builder.RegisterType<ShowService>().As<IShowService>();
+            builder.RegisterType<ShowService>().As<IShowService>();
             //builder.RegisterType<ListService>().As<IListService>();
             //builder.RegisterType<ReviewService>().As<IReviewService>();
 

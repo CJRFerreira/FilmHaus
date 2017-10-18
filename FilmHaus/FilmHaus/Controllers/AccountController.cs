@@ -158,7 +158,7 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        // POST: /Shared/_UserRegisterPartial
+        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -205,9 +205,8 @@ namespace FilmHaus.Controllers
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
-            {
                 return View("Error");
-            }
+
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
@@ -229,10 +228,8 @@ namespace FilmHaus.Controllers
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
-                }
 
                 // For more information on how to enable account confirmation and password reset
                 // please visit http://go.microsoft.com/fwlink/?LinkID=320771 Send an email with this

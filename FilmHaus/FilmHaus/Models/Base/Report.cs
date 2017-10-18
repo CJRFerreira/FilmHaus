@@ -9,7 +9,8 @@ namespace FilmHaus.Models.Base
     public class Report
     {
         [Key]
-        public Guid Id { get; set; }
+        [Index(name: "IX_Report", order: 0, IsUnique = true)]
+        public Guid ReportId { get; set; }
 
         [Column(Order = 1)]
         [ForeignKey("Review")]
@@ -17,18 +18,23 @@ namespace FilmHaus.Models.Base
 
         public virtual Review Review { get; set; }
 
-        [Column(Order = 2)]
-        [ForeignKey("User")]
-        public Guid ReportingUserId { get; set; }
+        [Required]
+        public string ReportingUserId { get; set; }
 
-        [Column(Order = 3)]
-        [ForeignKey("User")]
-        public Guid UserReportedId { get; set; }
+        [ForeignKey("ReportingUserId"), Column(Order = 2)]
+        public virtual User ReportingUser { get; set; }
 
-        public virtual User User { get; set; }
+        [Required]
+        public string UserReportedId { get; set; }
+
+        [ForeignKey("UserReportedId"), Column(Order = 3)]
+        public virtual User UserReported { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
+
+        [Index(name: "IX_Report", order: 1, IsUnique = true)]
+        public DateTime ResolvedOn { get; set; }
 
         public ReportReason ReportReason { get; set; }
 

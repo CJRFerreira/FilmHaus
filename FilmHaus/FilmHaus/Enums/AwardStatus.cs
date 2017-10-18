@@ -5,13 +5,10 @@ using System.Web;
 
 namespace FilmHaus.Enums
 {
-    public class AwardStatus
+    public enum AwardStatus
     {
-        public enum ReportReason
-        {
-            Nominated = 0,
-            Won = 1,
-            None = 2
-        }
+        Nominated = 0,
+        Won = 1,
+        None = 2
     }
 }

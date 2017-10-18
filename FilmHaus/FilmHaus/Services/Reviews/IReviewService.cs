@@ -12,12 +12,26 @@ namespace FilmHaus.Services.Reviews
 
         List<ReviewViewModel> GetAllSharedReviews();
 
+        List<ReviewViewModel> GetAllFlaggedReviews();
+
+        List<ReviewViewModel> GetAllFlaggedReviewsForShow(Guid reviewId);
+
+        List<ReviewViewModel> GetAllFlaggedReviewsForFilm(Guid reviewId);
+
+        List<ReviewViewModel> GetAllFlaggedReviewsForUser(string userId);
+
         List<ReviewViewModel> GetAllReviewsForUser(string userId);
 
-        void CreateReview(CreateReviewViewModel film);
+        List<ReviewViewModel> GetAllReviewsForShow(Guid reviewId);
+
+        List<ReviewViewModel> GetAllReviewsForFilm(Guid reviewId);
+
+        void CreateReview(CreateReviewViewModel review);
 
         void DeleteReviewByReviewId(Guid reviewId);
 
-        void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel list);
+        void ObsoleteReviewByReviewId(Guid reviewId);
+
+        void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel review);
     }
 }

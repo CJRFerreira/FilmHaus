@@ -40,6 +40,10 @@ namespace FilmHaus.Models.Base
 
         public virtual ICollection<UserShowRating> UserShowRatings { get; set; }
 
+        public virtual ICollection<Report> AsReporter { get; set; }
+
+        public virtual ICollection<Report> AsReportee { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

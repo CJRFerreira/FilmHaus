@@ -1,6 +1,7 @@
 ﻿using FilmHaus.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
@@ -21,7 +22,7 @@ namespace FilmHaus.Models.Base
             ObsoletedOn = media.ObsoletedOn;
         }
 
-        public Media(Guid mediaId, Uri posterUri, string mediaName, DateTime dateOfRelease, AwardStatus accolades, DateTime createdOn, DateTime obsoletedOn)
+        public Media(Guid mediaId, string posterUri, string mediaName, DateTime dateOfRelease, AwardStatus accolades, DateTime createdOn, DateTime obsoletedOn)
         {
             MediaId = mediaId;
             PosterUri = posterUri;
@@ -33,9 +34,11 @@ namespace FilmHaus.Models.Base
         }
 
         [Key]
+        [Index(name: "IX_Media", order: 0, IsUnique = true)]
         public Guid MediaId { get; set; }
 
-        public Uri PosterUri { get; set; }
+        [DataType(DataType.ImageUrl)]
+        public string PosterUri { get; set; }
 
         [Required]
         public string MediaName { get; set; }
@@ -48,6 +51,7 @@ namespace FilmHaus.Models.Base
         [Required]
         public DateTime CreatedOn { get; set; }
 
+        [Index(name: "IX_Media", order: 1, IsUnique = true)]
         public DateTime? ObsoletedOn { get; set; }
     }
 }
