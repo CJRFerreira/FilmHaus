@@ -1,5 +1,5 @@
 ﻿@using FilmHaus.Localization
-@model FilmHaus.Models.View.FilmViewModel
+@model FilmHaus.Models.View.ShowViewModel
 
 @{
     ViewBag.Title = Locale.Details;
@@ -42,11 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Runtime)
+            @Html.DisplayNameFor(model => model.NumberOfSeasons)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Runtime)
+            @Html.DisplayFor(model => model.NumberOfSeasons)
         </dd>
     </dl>
 </div>

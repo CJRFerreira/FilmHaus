@@ -1,4 +1,5 @@
 ﻿using FilmHaus.Localization;
+using FilmHaus.Models.Connector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,5 +30,11 @@ namespace FilmHaus.Models.Base
 
         [DataType(DataType.Date)]
         public DateTime DateOfCreation { get; set; }
+
+        public virtual ICollection<Report> ReviewReports { get; set; }
+
+        public virtual ICollection<ReviewFilm> ReviewFilm { get; set; }
+
+        public virtual ICollection<ReviewShow> ReviewShow { get; set; }
     }
 }

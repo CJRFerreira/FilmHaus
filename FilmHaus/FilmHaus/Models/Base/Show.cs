@@ -11,7 +11,7 @@ namespace FilmHaus.Models.Base
     [Table("Show")]
     public class Show : Media
     {
-        public Show()
+        public Show() : base()
         {
         }
 
@@ -27,16 +27,18 @@ namespace FilmHaus.Models.Base
 
         public int NumberOfSeasons { get; set; }
 
-        public virtual ICollection<ShowGenre> ShowGenre { get; set; }
+        public virtual ICollection<ShowGenre> ShowGenres { get; set; }
 
-        public virtual ICollection<ShowTag> ShowTag { get; set; }
+        public virtual ICollection<ShowTag> ShowTags { get; set; }
 
-        public virtual ICollection<ListShow> ListShow { get; set; }
+        public virtual ICollection<ListShow> ListShows { get; set; }
 
-        public virtual ICollection<ShowPersonTitle> ShowPersonTitle { get; set; }
+        public virtual ICollection<ShowPersonTitle> ShowPersonTitles { get; set; }
 
-        public virtual ICollection<UserShow> UserShow { get; set; }
+        public virtual ICollection<UserShow> UserShows { get; set; }
 
-        public virtual ICollection<UserShowRating> UserShowRating { get; set; }
+        public virtual ICollection<UserShowRating> UserShowRatings { get; set; }
+
+        public virtual ICollection<ReviewShow> ReviewShows { get; set; }
     }
 }

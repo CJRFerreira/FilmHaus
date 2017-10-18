@@ -1,12 +1,11 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using FilmHaus.Localization;
+using System.Collections.Generic;
+using FilmHaus.Models.Connector;
 
 namespace FilmHaus.Models.Base
 {
@@ -28,6 +27,18 @@ namespace FilmHaus.Models.Base
 
         [DataType(DataType.DateTime)]
         public DateTime LastLogin { get; set; }
+
+        public virtual ICollection<List> UserLists { get; set; }
+
+        public virtual ICollection<Review> UserReviews { get; set; }
+
+        public virtual ICollection<UserFilm> UserFilms { get; set; }
+
+        public virtual ICollection<UserFilmRating> UserFilmRatings { get; set; }
+
+        public virtual ICollection<UserShow> UserShows { get; set; }
+
+        public virtual ICollection<UserShowRating> UserShowRatings { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

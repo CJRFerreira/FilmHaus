@@ -1,5 +1,4 @@
-﻿using FilmHaus.Localization;
-using FilmHaus.Models.Connector;
+﻿using FilmHaus.Models.Connector;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
