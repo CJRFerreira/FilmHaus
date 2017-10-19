@@ -26,10 +26,10 @@ namespace FilmHaus.Models.Base
         [Required]
         public bool Shared { get; set; }
 
-        public bool? Flagged { get; set; }
+        public bool Flagged { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public virtual ICollection<Report> ReviewReports { get; set; }
 

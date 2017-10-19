@@ -9,7 +9,7 @@ namespace FilmHaus.Controllers
     [RoutePrefix("Film")]
     public class FilmsController : Controller
     {
-        private IFilmService FilmService { get; }
+        public IFilmService FilmService { get; private set; }
 
         public FilmsController(IFilmService filmService)
         {

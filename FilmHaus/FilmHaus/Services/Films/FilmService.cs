@@ -10,7 +10,7 @@ namespace FilmHaus.Services.Films
 {
     public class FilmService : IFilmService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        protected FilmHausDbContext FilmHausDbContext { get; set; }
 
         public FilmService(FilmHausDbContext filmHausDbContext)
         {

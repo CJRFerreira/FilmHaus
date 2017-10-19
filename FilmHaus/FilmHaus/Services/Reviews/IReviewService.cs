@@ -12,21 +12,27 @@ namespace FilmHaus.Services.Reviews
 
         List<ReviewViewModel> GetAllSharedReviews();
 
+        List<ReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId);
+
+        List<ReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId);
+
         List<ReviewViewModel> GetAllFlaggedReviews();
 
-        List<ReviewViewModel> GetAllFlaggedReviewsForShow(Guid reviewId);
+        List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId);
 
-        List<ReviewViewModel> GetAllFlaggedReviewsForFilm(Guid reviewId);
+        List<ReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId);
 
-        List<ReviewViewModel> GetAllFlaggedReviewsForUser(string userId);
+        List<ReviewViewModel> GetAllFlaggedReviewsByUserId(string userId);
 
-        List<ReviewViewModel> GetAllReviewsForUser(string userId);
+        List<ReviewViewModel> GetAllReviewsByUserId(string userId);
 
-        List<ReviewViewModel> GetAllReviewsForShow(Guid reviewId);
+        List<ReviewViewModel> GetAllReviewsByShowId(Guid mediaId);
 
-        List<ReviewViewModel> GetAllReviewsForFilm(Guid reviewId);
+        List<ReviewViewModel> GetAllReviewsByFilmId(Guid mediaId);
 
-        void CreateReview(CreateReviewViewModel review);
+        void CreateReviewForFilm(CreateReviewViewModel review, string userId);
+
+        void CreateReviewForShow(CreateReviewViewModel review, string userId);
 
         void DeleteReviewByReviewId(Guid reviewId);
 

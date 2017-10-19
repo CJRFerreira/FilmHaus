@@ -5,6 +5,8 @@ using System.Web;
 using FilmHaus.Models.View;
 using FilmHaus.Models;
 using FilmHaus.Models.Base;
+using FilmHaus.Models.Connector;
+using System.Data.Entity;
 
 namespace FilmHaus.Services.Reviews
 {
@@ -17,12 +19,60 @@ namespace FilmHaus.Services.Reviews
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void CreateReview(CreateReviewViewModel review)
+        public void CreateReviewForFilm(CreateReviewViewModel review, string userId)
         {
-            FilmHausDbContext.Reviews.Add(new Review()
+            var newReview = new Review()
             {
-                ReviewId = Guid.NewGuid()
-            });
+                ReviewId = Guid.NewGuid(),
+                Id = userId,
+                Body = review.Body,
+                Shared = review.Shared,
+                CreatedOn = DateTime.Now,
+                Flagged = false,
+            };
+
+            FilmHausDbContext.Reviews.Add(newReview);
+
+            var newReviewFilm = new ReviewFilm()
+            {
+                ReviewFilmId = Guid.NewGuid(),
+                ReviewId = newReview.ReviewId,
+                MediaId = review.MediaId,
+                CreatedOn = newReview.CreatedOn,
+                ObsoletedOn = null
+            };
+
+            FilmHausDbContext.ReviewFilms.Add(newReviewFilm);
+
+            FilmHausDbContext.SaveChanges();
+        }
+
+        public void CreateReviewForShow(CreateReviewViewModel review, string userId)
+        {
+            var newReview = new Review()
+            {
+                ReviewId = Guid.NewGuid(),
+                Id = userId,
+                Body = review.Body,
+                Shared = review.Shared,
+                CreatedOn = DateTime.Now,
+                Flagged = false,
+            };
+
+            FilmHausDbContext.Reviews.Add(newReview);
+
+            var newReviewShow = new ReviewShow()
+            {
+                ReviewShowId = Guid.NewGuid(),
+                ReviewId = newReview.ReviewId,
+                MediaId = review.MediaId,
+                CreatedOn = newReview.CreatedOn,
+                ObsoletedOn = null
+            };
+
+            FilmHausDbContext.ReviewShows.Add(newReviewShow);
+
+            FilmHausDbContext.SaveChanges();
         }
 
         public void DeleteReviewByReviewId(Guid reviewId)
@@ -35,17 +85,27 @@ namespace FilmHaus.Services.Reviews
             throw new NotImplementedException();
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsForFilm(Guid reviewId)
+        public List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId && r.Review.Flagged)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsForShow(Guid reviewId)
+        public List<ReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId && r.Review.Shared)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsForUser(string userId)
+        public List<ReviewViewModel> GetAllFlaggedReviewsByUserId(string userId)
         {
             throw new NotImplementedException();
         }
@@ -55,19 +115,46 @@ namespace FilmHaus.Services.Reviews
             throw new NotImplementedException();
         }
 
-        public List<ReviewViewModel> GetAllReviewsForFilm(Guid reviewId)
+        public List<ReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
         }
 
-        public List<ReviewViewModel> GetAllReviewsForShow(Guid reviewId)
+        public List<ReviewViewModel> GetAllReviewsByShowId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
         }
 
-        public List<ReviewViewModel> GetAllReviewsForUser(string userId)
+        public List<ReviewViewModel> GetAllReviewsByUserId(string userId)
         {
-            throw new NotImplementedException();
+            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Id == userId)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
+
+            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Id == userId)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
+
+            result.AddRange(supplement);
+            result.Sort();
+
+            return result;
         }
 
         public List<ReviewViewModel> GetAllSharedReviews()
@@ -87,7 +174,43 @@ namespace FilmHaus.Services.Reviews
 
         public void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel review)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.Body = review.Body;
+                result.Shared = review.Shared;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public List<ReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
+        {
+            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId && r.Review.Shared)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
+        }
+
+        public List<ReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId)
+        {
+            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId && r.Review.Shared)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace FilmHaus.Models.View
             Body = review.Body;
             Shared = review.Shared;
             Flagged = review.Flagged;
-            DateOfCreation = review.DateOfCreation;
+            CreatedOn = review.CreatedOn;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
@@ -29,6 +29,8 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public string UserId { get; set; }
+
+        public MediaViewModel Media { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "", ResourceType = typeof(Locale))]
@@ -42,7 +44,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 
     public class CreateReviewViewModel
@@ -50,6 +52,8 @@ namespace FilmHaus.Models.View
         public CreateReviewViewModel()
         {
         }
+
+        public Guid MediaId { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
