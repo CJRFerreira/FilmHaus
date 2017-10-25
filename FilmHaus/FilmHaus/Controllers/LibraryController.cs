@@ -1,6 +1,8 @@
 ﻿using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
 using FilmHaus.Services.Shows;
+using FilmHaus.Services.UserFilms;
+using FilmHaus.Services.UserShows;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
@@ -10,14 +12,14 @@ namespace FilmHaus.Controllers
     [RoutePrefix("Library")]
     public class LibraryController : Controller
     {
-        private IFilmService FilmService { get; }
+        private IUserFilmService UserFilmService { get; }
 
-        private IShowService ShowService { get; }
+        private IUserShowService UserShowService { get; }
 
-        public LibraryController(IFilmService filmService, IShowService showService)
+        public LibraryController(IUserFilmService userFilmService, IUserShowService userShowService)
         {
-            FilmService = filmService;
-            ShowService = showService;
+            UserFilmService = userFilmService;
+            UserShowService = userShowService;
         }
 
         // GET: Library
@@ -27,8 +29,8 @@ namespace FilmHaus.Controllers
 
             return View(new LibraryViewModel
                 (
-                    films: FilmService.GetAllFilmsForUser(userId),
-                    shows: ShowService.GetAllShowsForUser(userId)
+                    films: UserFilmService.GetAllFilmsForUser(userId),
+                    shows: UserShowService.GetAllShowsForUser(userId)
                 ));
         }
 
@@ -37,7 +39,7 @@ namespace FilmHaus.Controllers
         {
             return View(new FilmLibraryViewModel
                 (
-                    films: FilmService.GetAllFilmsForUser(this.User.Identity.GetUserId())
+                    films: UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId())
                 ));
         }
 
@@ -46,7 +48,7 @@ namespace FilmHaus.Controllers
         {
             return View(new ShowLibraryViewModel
                 (
-                    shows: ShowService.GetAllShowsForUser(this.User.Identity.GetUserId())
+                    shows: UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId())
                 ));
         }
     }

@@ -39,7 +39,7 @@ namespace FilmHaus.Controllers
             return View("Index");
         }
 
-        public ActionResult Details(ShowViewModel viewModel)
+        public ActionResult Details(GeneralShowViewModel viewModel)
         {
             if (viewModel != null)
                 return View(viewModel);
@@ -81,7 +81,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Edit/5
-        public ActionResult Edit(ShowViewModel viewModel)
+        public ActionResult Edit(GeneralShowViewModel viewModel)
         {
             return View(new EditShowViewModel(viewModel));
         }
@@ -127,9 +127,9 @@ namespace FilmHaus.Controllers
             {
                 ShowService.ObsoleteShowByMediaId(Guid.Parse(mediaId));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             return RedirectToAction("Index");
         }

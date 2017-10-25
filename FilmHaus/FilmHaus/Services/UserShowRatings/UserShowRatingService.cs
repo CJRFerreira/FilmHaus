@@ -75,9 +75,9 @@ namespace FilmHaus.Services.UserShowRatings
             }
         }
 
-        public int GetAverageShowRating(Guid mediaId)
+        public double? GetAverageShowRating(Guid mediaId)
         {
-            return (int)FilmHausDbContext.UserShowRatings.Where(usr => usr.MediaId == mediaId && usr.Rating != null).Select(usr => usr.Rating).Average();
+            return FilmHausDbContext.Shows.Where(ufr => ufr.MediaId == mediaId).Select(ShowQueryExtensions.GetAverageShowRating()).FirstOrDefault();
         }
     }
 }

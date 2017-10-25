@@ -11,7 +11,7 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public LibraryViewModel(List<UserFilmViewModel> films, List<ShowViewModel> shows)
+        public LibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
@@ -19,7 +19,7 @@ namespace FilmHaus.Models.View
 
         public List<UserFilmViewModel> Films { get; set; }
 
-        public List<ShowViewModel> Shows { get; set; }
+        public List<UserShowViewModel> Shows { get; set; }
     }
 
     public class FilmLibraryViewModel
@@ -42,11 +42,11 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public ShowLibraryViewModel(List<ShowViewModel> shows)
+        public ShowLibraryViewModel(List<UserShowViewModel> shows)
         {
             Shows = shows;
         }
 
-        public List<ShowViewModel> Shows { get; set; }
+        public List<UserShowViewModel> Shows { get; set; }
     }
 }

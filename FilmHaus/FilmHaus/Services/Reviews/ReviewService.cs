@@ -115,7 +115,7 @@ namespace FilmHaus.Services.Reviews
             var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new ShowViewModel(r.Show)
+                    Media = new GeneralShowViewModel(r.Show)
                 })
                 .ToList();
 
@@ -147,7 +147,7 @@ namespace FilmHaus.Services.Reviews
             var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Id == userId)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new ShowViewModel(r.Show)
+                    Media = new GeneralShowViewModel(r.Show)
                 })
                 .ToList();
 
@@ -169,7 +169,7 @@ namespace FilmHaus.Services.Reviews
             var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Shared == true)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new ShowViewModel(r.Show)
+                    Media = new GeneralShowViewModel(r.Show)
                 })
                 .ToList();
 
