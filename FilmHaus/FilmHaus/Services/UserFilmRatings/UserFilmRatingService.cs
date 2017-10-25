@@ -1,7 +1,9 @@
 ﻿using System;
+using FilmHaus.Services;
 using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
+using System.Linq;
 
 namespace FilmHaus.Services.UserFilmRatings
 {
@@ -68,10 +70,15 @@ namespace FilmHaus.Services.UserFilmRatings
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch
+            catch (InvalidOperationException ex)
             {
-                throw;
+                throw ex;
             }
+        }
+
+        public double? GetAverageFilmRating(Guid mediaId)
+        {
+            return FilmHausDbContext.Films.Where(ufr => ufr.MediaId == mediaId).Select(FilmQueryExtensions.GetAverageFilmRating()).FirstOrDefault();
         }
     }
 }

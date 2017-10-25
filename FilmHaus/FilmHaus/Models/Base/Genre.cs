@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Genre")]
     public class Genre : Detail
     {
         public virtual ICollection<FilmGenre> FilmGenre { get; set; }

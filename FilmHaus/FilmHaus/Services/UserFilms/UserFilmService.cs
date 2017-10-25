@@ -1,5 +1,9 @@
-﻿using System;
-using FilmHaus.Models;
+﻿using FilmHaus.Models;
+using FilmHaus.Models.View;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using static FilmHaus.Services.FilmQueryExtensions;
 
 namespace FilmHaus.Services.UserFilms
 {
@@ -12,7 +16,7 @@ namespace FilmHaus.Services.UserFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddFilmToUserLibrary(Guid userFilmId)
+        public void AddFilmToUserLibrary(Guid mediaId, string userId)
         {
             throw new NotImplementedException();
         }
@@ -22,9 +26,9 @@ namespace FilmHaus.Services.UserFilms
             throw new NotImplementedException();
         }
 
-        public void ChangeRatingForUserFilm(Guid userFilmId, int? rating)
+        public List<UserFilmViewModel> GetAllFilmsForUser(string userId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.UserFilms.Where(u => u.Id == userId).Select(GetUserFilmViewModel()).ToList();
         }
     }
 }

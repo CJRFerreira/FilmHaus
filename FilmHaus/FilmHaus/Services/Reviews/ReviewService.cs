@@ -77,12 +77,52 @@ namespace FilmHaus.Services.Reviews
 
         public void DeleteReviewByReviewId(Guid reviewId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var review = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (review != null)
+                {
+                    foreach (var rf in FilmHausDbContext.ReviewFilms.Where(rf => rf.ReviewId == review.ReviewId).Select(rf => rf).ToList())
+                        FilmHausDbContext.ReviewFilms.Remove(rf);
+                    FilmHausDbContext.SaveChanges();
+
+                    foreach (var rs in FilmHausDbContext.ReviewShows.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
+                        FilmHausDbContext.ReviewShows.Remove(rs);
+                    FilmHausDbContext.SaveChanges();
+
+                    FilmHausDbContext.Reviews.Remove(review);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
         public List<ReviewViewModel> GetAllFlaggedReviews()
         {
-            throw new NotImplementedException();
+            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
+
+            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
+
+            result.AddRange(supplement);
+            result.Sort();
+
+            return result;
         }
 
         public List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
@@ -159,7 +199,24 @@ namespace FilmHaus.Services.Reviews
 
         public List<ReviewViewModel> GetAllSharedReviews()
         {
-            throw new NotImplementedException();
+            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Shared == true)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new FilmViewModel(r.Film)
+                })
+                .ToList();
+
+            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Shared == true)
+                .Select(r => new ReviewViewModel(r.Review)
+                {
+                    Media = new ShowViewModel(r.Show)
+                })
+                .ToList();
+
+            result.AddRange(supplement);
+            result.Sort();
+
+            return result;
         }
 
         public ReviewViewModel GetReviewByReviewId(Guid reviewId)

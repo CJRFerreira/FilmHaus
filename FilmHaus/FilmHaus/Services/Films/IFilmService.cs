@@ -6,19 +6,15 @@ namespace FilmHaus.Services.Films
 {
     public interface IFilmService
     {
-        FilmViewModel GetFilmByMediaId(Guid mediaId);
+        GeneralFilmViewModel GetFilmByMediaId(Guid mediaId);
 
-        List<FilmViewModel> GetAllFilms();
+        List<GeneralFilmViewModel> GetAllFilms();
 
-        List<FilmViewModel> GetAllActiveFilms();
+        List<GeneralFilmViewModel> GetAllActiveFilms();
 
-        List<FilmViewModel> GetAllFilmsForUser(string userId);
+        List<GeneralFilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
-        List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm);
-
-        List<FilmViewModel> GetFilmsByListId(Guid mediaId);
-
-        int GetAverageFilmRating(Guid mediaId);
+        List<GeneralFilmViewModel> GetFilmsByListId(Guid mediaId);
 
         void CreateFilm(CreateFilmViewModel film);
 

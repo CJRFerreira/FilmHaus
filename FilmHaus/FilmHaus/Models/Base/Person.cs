@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Person")]
     public class Person
     {
         [Key]

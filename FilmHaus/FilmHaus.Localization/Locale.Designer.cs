@@ -403,7 +403,7 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find Films &amp; Series.
+        ///   Looks up a localized string similar to Find Films.
         /// </summary>
         public static string FindFilms {
             get {

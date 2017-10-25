@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Film")]
     public class Film : Media
     {
         public Film() : base()

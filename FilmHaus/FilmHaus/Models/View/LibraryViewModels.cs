@@ -11,13 +11,13 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public LibraryViewModel(List<FilmViewModel> films, List<ShowViewModel> shows)
+        public LibraryViewModel(List<UserFilmViewModel> films, List<ShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
         }
 
-        public List<FilmViewModel> Films { get; set; }
+        public List<UserFilmViewModel> Films { get; set; }
 
         public List<ShowViewModel> Shows { get; set; }
     }
@@ -28,12 +28,12 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public FilmLibraryViewModel(List<FilmViewModel> films)
+        public FilmLibraryViewModel(List<UserFilmViewModel> films)
         {
             Films = films;
         }
 
-        public List<FilmViewModel> Films { get; set; }
+        public List<UserFilmViewModel> Films { get; set; }
     }
 
     public class ShowLibraryViewModel

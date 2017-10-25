@@ -2,6 +2,7 @@
 using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
+using System.Linq;
 
 namespace FilmHaus.Services.UserShowRatings
 {
@@ -72,6 +73,11 @@ namespace FilmHaus.Services.UserShowRatings
             {
                 throw;
             }
+        }
+
+        public int GetAverageShowRating(Guid mediaId)
+        {
+            return (int)FilmHausDbContext.UserShowRatings.Where(usr => usr.MediaId == mediaId && usr.Rating != null).Select(usr => usr.Rating).Average();
         }
     }
 }

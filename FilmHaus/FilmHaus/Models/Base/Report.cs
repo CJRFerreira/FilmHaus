@@ -8,12 +8,11 @@ namespace FilmHaus.Models.Base
     [Table("Report")]
     public class Report
     {
-        [Key]
-        [Index(name: "IX_Report", order: 0, IsUnique = true)]
+        [Key, Index(name: "IX_Report", order: 0, IsUnique = true)]
         public Guid ReportId { get; set; }
 
-        [Column(Order = 1)]
-        [ForeignKey("Review")]
+        [ForeignKey("Review"), Column(Order = 1)]
+        [Index(name: "IX_Report", order: 1, IsUnique = true)]
         public Guid ReviewReportedId { get; set; }
 
         public virtual Review Review { get; set; }
@@ -33,7 +32,7 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
 
-        [Index(name: "IX_Report", order: 1, IsUnique = true)]
+        [Index(name: "IX_Report", order: 2, IsUnique = true)]
         public DateTime ResolvedOn { get; set; }
 
         public ReportReason ReportReason { get; set; }

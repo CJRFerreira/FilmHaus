@@ -1,13 +1,15 @@
-﻿using System;
+﻿using FilmHaus.Models.View;
+using System;
+using System.Collections.Generic;
 
 namespace FilmHaus.Services.UserFilms
 {
     public interface IUserFilmService
     {
-        void AddFilmToUserLibrary(Guid userFilmId);
+        void AddFilmToUserLibrary(Guid mediaId, string userId);
 
         void RemoveFilmFromUserLibrary(Guid userFilmId);
 
-        void ChangeRatingForUserFilm(Guid userFilmId, int? rating);
+        List<UserFilmViewModel> GetAllFilmsForUser(string userId);
     }
 }

@@ -9,7 +9,6 @@ using System.Web;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Review")]
     public class Review
     {
         [Key]

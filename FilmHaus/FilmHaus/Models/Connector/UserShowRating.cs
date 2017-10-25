@@ -32,6 +32,6 @@ namespace FilmHaus.Models.Connector
         public DateTime? ObsoletedOn { get; set; }
 
         [Range(1, 10)]
-        public int? Rating { get; set; }
+        public int Rating { get; set; }
     }
 }

@@ -35,6 +35,7 @@ namespace FilmHaus.Models.View
         public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
+        [Display(Name = "Poster", ResourceType = typeof(Locale))]
         public string PosterUri { get; set; }
 
         [Display(Name = "Title", ResourceType = typeof(Locale))]
@@ -45,7 +46,7 @@ namespace FilmHaus.Models.View
         public DateTime DateOfRelease { get; set; }
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public int? Rating { get; set; }
+        public double? Rating { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }

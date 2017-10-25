@@ -33,11 +33,20 @@
                         }
                     </ul>
                 </li>
-                <li>
-                    @Html.ActionLink(Locale.MyFilms, "Index", "Films")
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.Library <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">@Locale.UserActions</li>
+                        <li>@Html.ActionLink(Locale.Index, "Index", "Library")</li>
+                        <li>@Html.ActionLink(Locale.MyFilms, "MyFilms", "Library")</li>
+                        <li>@Html.ActionLink(Locale.MyShows, "MyShows", "Library")</li>
+                    </ul>
                 </li>
                 <li>
-                    @Html.ActionLink(Locale.MyShows, "Index", "Series")
+                    @Html.ActionLink(Locale.FindFilms, "Index", "Films")
+                </li>
+                <li>
+                    @Html.ActionLink(Locale.FindShows, "Index", "Shows")
                 </li>
                 @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.MyLists <span class="caret"></span></a>

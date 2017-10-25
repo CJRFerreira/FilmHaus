@@ -9,5 +9,7 @@ namespace FilmHaus.Services.UserShowRatings
         void ChangeRatingInUserLibrary(Guid userShowId, int rating);
 
         void ObsoleteRatingInUserLibrary(Guid userShowId);
+
+        int GetAverageShowRating(Guid mediaId);
     }
 }

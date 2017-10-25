@@ -18,8 +18,6 @@ namespace FilmHaus.Services.Shows
 
         List<ShowViewModel> GetShowsByListId(Guid mediaId);
 
-        int GetAverageShowRating(Guid mediaId);
-
         void CreateShow(CreateShowViewModel show);
 
         void DeleteShowByMediaId(Guid mediaId);

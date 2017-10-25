@@ -8,7 +8,6 @@ using System.Web;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Show")]
     public class Show : Media
     {
         public Show() : base()
