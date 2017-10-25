@@ -10,6 +10,8 @@ namespace FilmHaus.Services.UserFilms
 
         void RemoveFilmFromUserLibrary(Guid userFilmId);
 
+        void ObsoleteFilmInUserLibrary(Guid userFilmId);
+
         List<UserFilmViewModel> GetAllFilmsForUser(string userId);
     }
 }

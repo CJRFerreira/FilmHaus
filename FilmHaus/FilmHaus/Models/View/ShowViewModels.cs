@@ -9,13 +9,13 @@ using FilmHaus.Enums;
 
 namespace FilmHaus.Models.View
 {
-    public class ShowViewModel : MediaViewModel
+    public class UserShowViewModel : MediaViewModel
     {
-        public ShowViewModel() : base()
+        public UserShowViewModel() : base()
         {
         }
 
-        public ShowViewModel(Show show)
+        public UserShowViewModel(Show show)
         {
             MediaId = show.MediaId;
             PosterUri = show.PosterUri;
@@ -25,7 +25,37 @@ namespace FilmHaus.Models.View
             Accolades = show.Accolades;
         }
 
-        public ShowViewModel(EditShowViewModel show)
+        public UserShowViewModel(EditShowViewModel show)
+        {
+            MediaId = show.MediaId;
+            PosterUri = show.PosterUri;
+            MediaName = show.MediaName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Accolades = show.Accolades;
+        }
+
+        [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
+        public int NumberOfSeasons { get; set; }
+    }
+
+    public class GeneralShowViewModel : MediaViewModel
+    {
+        public GeneralShowViewModel() : base()
+        {
+        }
+
+        public GeneralShowViewModel(Show show)
+        {
+            MediaId = show.MediaId;
+            PosterUri = show.PosterUri;
+            MediaName = show.MediaName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Accolades = show.Accolades;
+        }
+
+        public GeneralShowViewModel(EditShowViewModel show)
         {
             MediaId = show.MediaId;
             PosterUri = show.PosterUri;
@@ -65,7 +95,17 @@ namespace FilmHaus.Models.View
             Accolades = show.Accolades;
         }
 
-        public EditShowViewModel(ShowViewModel show)
+        public EditShowViewModel(UserShowViewModel show)
+        {
+            MediaId = show.MediaId;
+            PosterUri = show.PosterUri;
+            MediaName = show.MediaName;
+            DateOfRelease = show.DateOfRelease;
+            NumberOfSeasons = show.NumberOfSeasons;
+            Accolades = show.Accolades;
+        }
+
+        public EditShowViewModel(GeneralShowViewModel show)
         {
             MediaId = show.MediaId;
             PosterUri = show.PosterUri;

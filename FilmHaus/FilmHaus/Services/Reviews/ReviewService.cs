@@ -108,7 +108,7 @@ namespace FilmHaus.Services.Reviews
             var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new FilmViewModel(r.Film)
+                    Media = new GeneralFilmViewModel(r.Film)
                 })
                 .ToList();
 
@@ -125,26 +125,6 @@ namespace FilmHaus.Services.Reviews
             return result;
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId && r.Review.Flagged)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new FilmViewModel(r.Film)
-                })
-                .ToList();
-        }
-
-        public List<ReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId && r.Review.Shared)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new ShowViewModel(r.Show)
-                })
-                .ToList();
-        }
-
         public List<ReviewViewModel> GetAllFlaggedReviewsByUserId(string userId)
         {
             throw new NotImplementedException();
@@ -155,32 +135,12 @@ namespace FilmHaus.Services.Reviews
             throw new NotImplementedException();
         }
 
-        public List<ReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new FilmViewModel(r.Film)
-                })
-                .ToList();
-        }
-
-        public List<ReviewViewModel> GetAllReviewsByShowId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new ShowViewModel(r.Show)
-                })
-                .ToList();
-        }
-
         public List<ReviewViewModel> GetAllReviewsByUserId(string userId)
         {
             var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Id == userId)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new FilmViewModel(r.Film)
+                    Media = new GeneralFilmViewModel(r.Film)
                 })
                 .ToList();
 
@@ -202,7 +162,7 @@ namespace FilmHaus.Services.Reviews
             var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Shared == true)
                 .Select(r => new ReviewViewModel(r.Review)
                 {
-                    Media = new FilmViewModel(r.Film)
+                    Media = new GeneralFilmViewModel(r.Film)
                 })
                 .ToList();
 
@@ -220,11 +180,6 @@ namespace FilmHaus.Services.Reviews
         }
 
         public ReviewViewModel GetReviewByReviewId(Guid reviewId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ObsoleteReviewByReviewId(Guid reviewId)
         {
             throw new NotImplementedException();
         }
@@ -248,26 +203,6 @@ namespace FilmHaus.Services.Reviews
             {
                 throw;
             }
-        }
-
-        public List<ReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewFilms.Where(r => r.Film.MediaId == mediaId && r.Review.Shared)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new FilmViewModel(r.Film)
-                })
-                .ToList();
-        }
-
-        public List<ReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId)
-        {
-            return FilmHausDbContext.ReviewShows.Where(r => r.Show.MediaId == mediaId && r.Review.Shared)
-                .Select(r => new ReviewViewModel(r.Review)
-                {
-                    Media = new ShowViewModel(r.Show)
-                })
-                .ToList();
         }
     }
 }

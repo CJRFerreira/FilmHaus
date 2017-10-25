@@ -1,7 +1,9 @@
 ﻿using FilmHaus.Models;
+using FilmHaus.Models.Connector;
 using FilmHaus.Models.View;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using static FilmHaus.Services.FilmQueryExtensions;
 
@@ -18,12 +20,54 @@ namespace FilmHaus.Services.UserFilms
 
         public void AddFilmToUserLibrary(Guid mediaId, string userId)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.UserFilms.Add(new UserFilm
+            {
+                UserFilmId = Guid.NewGuid(),
+                MediaId = mediaId,
+                Id = userId,
+                CreatedOn = DateTime.Now
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
         public void RemoveFilmFromUserLibrary(Guid userFilmId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var film = FilmHausDbContext.UserFilms.Find(userFilmId);
+
+                if (film != null)
+                {
+                    FilmHausDbContext.UserFilms.Remove(film);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ObsoleteFilmInUserLibrary(Guid userFilmId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.UserFilms.Find(userFilmId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
         public List<UserFilmViewModel> GetAllFilmsForUser(string userId)

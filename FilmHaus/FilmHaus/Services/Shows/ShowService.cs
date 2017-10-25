@@ -2,10 +2,12 @@
 using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
 using FilmHaus.Services.UserShowRatings;
+using LinqKit;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using static FilmHaus.Services.ShowQueryExtensions;
 
 namespace FilmHaus.Services.Shows
 {
@@ -76,79 +78,24 @@ namespace FilmHaus.Services.Shows
             }
         }
 
-        public List<ShowViewModel> GetAllShows()
+        public List<GeneralShowViewModel> GetAllShows()
         {
-            return FilmHausDbContext.Shows.Select(s => new ShowViewModel()
-            {
-                MediaId = s.MediaId,
-                MediaName = s.MediaName,
-                PosterUri = s.PosterUri,
-                DateOfRelease = s.DateOfRelease,
-                Accolades = s.Accolades,
-                NumberOfSeasons = s.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(s.MediaId)
-            })
-            .ToList();
+            return FilmHausDbContext.Shows.AsExpandable().Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public List<ShowViewModel> GetAllShowsForUser(string userId)
+        public GeneralShowViewModel GetShowByMediaId(Guid mediaId)
         {
-            return FilmHausDbContext.UserShows.Where(u => u.Id == userId).Select(s => new ShowViewModel()
-            {
-                MediaId = s.Show.MediaId,
-                MediaName = s.Show.MediaName,
-                PosterUri = s.Show.PosterUri,
-                DateOfRelease = s.Show.DateOfRelease,
-                Accolades = s.Show.Accolades,
-                NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(s.MediaId)
-            })
-            .ToList();
+            return FilmHausDbContext.Shows.AsExpandable().Where(f => f.MediaId == mediaId).Select(GetGeneralShowViewModel()).FirstOrDefault();
         }
 
-        public ShowViewModel GetShowByMediaId(Guid mediaId)
+        public List<GeneralShowViewModel> GetShowsByListId(Guid mediaId)
         {
-            return FilmHausDbContext.Shows.Where(s => s.MediaId == mediaId).Select(s => new ShowViewModel()
-            {
-                MediaId = s.MediaId,
-                MediaName = s.MediaName,
-                PosterUri = s.PosterUri,
-                DateOfRelease = s.DateOfRelease,
-                Accolades = s.Accolades,
-                NumberOfSeasons = s.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(s.MediaId)
-            })
-            .FirstOrDefault();
+            return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == mediaId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public List<ShowViewModel> GetShowsByListId(Guid mediaId)
+        public List<GeneralShowViewModel> GetShowsBySearchTerm(string searchTerm)
         {
-            return FilmHausDbContext.ListShows.Where(l => l.ListId == mediaId).Select(s => new ShowViewModel()
-            {
-                MediaId = s.Show.MediaId,
-                MediaName = s.Show.MediaName,
-                PosterUri = s.Show.PosterUri,
-                DateOfRelease = s.Show.DateOfRelease,
-                Accolades = s.Show.Accolades,
-                NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(s.MediaId)
-            })
-            .ToList();
-        }
-
-        public List<ShowViewModel> GetShowsBySearchTerm(string searchTerm)
-        {
-            return FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).Select(s => new ShowViewModel()
-            {
-                MediaId = s.MediaId,
-                MediaName = s.MediaName,
-                PosterUri = s.PosterUri,
-                DateOfRelease = s.DateOfRelease,
-                Accolades = s.Accolades,
-                NumberOfSeasons = s.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(s.MediaId)
-            })
-            .ToList();
+            return FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralShowViewModel()).ToList();
         }
 
         public void UpdateShowByMediaId(Guid mediaId, EditShowViewModel show)
@@ -175,19 +122,9 @@ namespace FilmHaus.Services.Shows
             }
         }
 
-        public List<ShowViewModel> GetAllActiveShows()
+        public List<GeneralShowViewModel> GetAllActiveShows()
         {
-            return FilmHausDbContext.Shows.Where(x => x.ObsoletedOn != null).Select(f => new ShowViewModel()
-            {
-                MediaId = f.MediaId,
-                MediaName = f.MediaName,
-                PosterUri = f.PosterUri,
-                DateOfRelease = f.DateOfRelease,
-                Accolades = f.Accolades,
-                NumberOfSeasons = f.NumberOfSeasons,
-                Rating = UserShowRatingService.GetAverageShowRating(f.MediaId)
-            })
-            .ToList();
+            return FilmHausDbContext.Shows.Where(f => f.ObsoletedOn != null).Select(GetGeneralShowViewModel()).ToList();
         }
     }
 }

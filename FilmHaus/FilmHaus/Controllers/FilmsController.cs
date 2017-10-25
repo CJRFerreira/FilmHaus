@@ -33,7 +33,7 @@ namespace FilmHaus.Controllers
             return View("Index");
         }
 
-        public ActionResult Details(FilmViewModel viewModel)
+        public ActionResult Details(GeneralFilmViewModel viewModel)
         {
             if (viewModel != null)
                 return View(viewModel);
@@ -75,7 +75,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Films/Edit/5
-        public ActionResult Edit(FilmViewModel viewModel)
+        public ActionResult Edit(GeneralFilmViewModel viewModel)
         {
             return View(new EditFilmViewModel(viewModel));
         }

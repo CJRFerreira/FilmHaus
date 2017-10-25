@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FilmHaus.Models.View;
+using System;
+using System.Collections.Generic;
 
 namespace FilmHaus.Services.UserShows
 {
@@ -7,5 +9,9 @@ namespace FilmHaus.Services.UserShows
         void AddShowToUserLibrary(Guid mediaId, string userId);
 
         void RemoveShowFromUserLibrary(Guid userShowId);
+
+        void ObsoleteShowInUserLibrary(Guid userShowId);
+
+        List<UserShowViewModel> GetAllShowsForUser(string userId);
     }
 }
