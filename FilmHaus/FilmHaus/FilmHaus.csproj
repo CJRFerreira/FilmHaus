@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FilmsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Enums\ReviewType.cs" />
     <Compile Include="Enums\AwardStatus.cs" />
     <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\ReportStatus.cs" />

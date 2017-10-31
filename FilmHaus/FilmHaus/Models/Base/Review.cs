@@ -1,4 +1,5 @@
-﻿using FilmHaus.Localization;
+﻿using FilmHaus.Enums;
+using FilmHaus.Localization;
 using FilmHaus.Models.Connector;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace FilmHaus.Models.Base
 
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
+
+        [Required]
+        public ReviewType ReviewType { get; set; }
 
         public virtual ICollection<Report> ReviewReports { get; set; }
 

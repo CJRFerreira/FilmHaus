@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using FilmHaus.Enums;
 using FilmHaus.Models.View;
 using FilmHaus.Models;
 using FilmHaus.Models.Base;
@@ -29,6 +29,7 @@ namespace FilmHaus.Services.Reviews
                 Shared = review.Shared,
                 CreatedOn = DateTime.Now,
                 Flagged = false,
+                ReviewType = ReviewType.Film
             };
 
             FilmHausDbContext.Reviews.Add(newReview);
@@ -57,6 +58,7 @@ namespace FilmHaus.Services.Reviews
                 Shared = review.Shared,
                 CreatedOn = DateTime.Now,
                 Flagged = false,
+                ReviewType = ReviewType.Show
             };
 
             FilmHausDbContext.Reviews.Add(newReview);
@@ -83,13 +85,21 @@ namespace FilmHaus.Services.Reviews
 
                 if (review != null)
                 {
-                    foreach (var rf in FilmHausDbContext.ReviewFilms.Where(rf => rf.ReviewId == review.ReviewId).Select(rf => rf).ToList())
-                        FilmHausDbContext.ReviewFilms.Remove(rf);
-                    FilmHausDbContext.SaveChanges();
+                    if (review.ReviewType == ReviewType.Film)
+                        foreach (var rf in FilmHausDbContext.ReviewFilms.Where(rf => rf.ReviewId == review.ReviewId).Select(rf => rf).ToList())
+                            FilmHausDbContext.ReviewFilms.Remove(rf);
 
-                    foreach (var rs in FilmHausDbContext.ReviewShows.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
-                        FilmHausDbContext.ReviewShows.Remove(rs);
-                    FilmHausDbContext.SaveChanges();
+                    if (review.ReviewType == ReviewType.Show)
+                        foreach (var rs in FilmHausDbContext.ReviewShows.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
+                            FilmHausDbContext.ReviewShows.Remove(rs);
+
+                    if (review.ReviewType == ReviewType.Season)
+                        foreach (var rs in FilmHausDbContext.ReviewShows.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
+                            FilmHausDbContext.ReviewShows.Remove(rs);
+
+                    if (review.ReviewType == ReviewType.Episode)
+                        foreach (var re in FilmHausDbContext.ReviewShows.Where(re => re.ReviewId == review.ReviewId).Select(re => re).ToList())
+                            FilmHausDbContext.ReviewShows.Remove(re);
 
                     FilmHausDbContext.Reviews.Remove(review);
                     FilmHausDbContext.SaveChanges();
