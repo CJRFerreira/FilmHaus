@@ -18,7 +18,7 @@ namespace FilmHaus.Services
             return s => s.UserShowRatings.Select(usr => usr.Rating).Average();
         }
 
-        public static Expression<Func<UserShow, double?>> GetUserShowRating()
+        public static Expression<Func<UserShow, int>> GetUserShowRating()
         {
             return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(usr => usr.Rating).FirstOrDefault();
         }
@@ -34,7 +34,7 @@ namespace FilmHaus.Services
                 DateOfRelease = s.Show.DateOfRelease,
                 Accolades = s.Show.Accolades,
                 NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = userRating.Invoke(s)
+                Rating = (double)userRating.Invoke(s)
             };
         }
 

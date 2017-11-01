@@ -718,6 +718,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Poster.
+        /// </summary>
+        public static string Poster {
+            get {
+                return ResourceManager.GetString("Poster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Private.
         /// </summary>
         public static string Private {
@@ -795,6 +804,15 @@ namespace FilmHaus.Localization {
         public static string ReportedReviews {
             get {
                 return ResourceManager.GetString("ReportedReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reviews.
+        /// </summary>
+        public static string Reviews {
+            get {
+                return ResourceManager.GetString("Reviews", resourceCulture);
             }
         }
         

@@ -1,13 +1,12 @@
 ﻿@using FilmHaus.Localization
-@model FilmHaus.Models.View.GeneralFilmViewModel
+@model FilmHaus.Models.View.ReviewViewModel
 
 @{
-    ViewBag.Title = Locale.Delete;
+    ViewBag.Title = Locale.Details;
 }
 
-<h2>@Locale.Delete</h2>
+<h2>@Locale.Details</h2>
 
-<h3>@Locale.DeleteConfirm</h3>
 <div>
     <h4>@Locale.Film</h4>
     <hr />
@@ -15,7 +14,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.PosterUri)
         </dt>
-
         <dd>
             <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" />
         </dd>
@@ -34,15 +32,25 @@
         <dd>
             @Html.DisplayFor(model => model.DateOfRelease)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Accolades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accolades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfSeasons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfSeasons)
+        </dd>
     </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="@Locale.Confirm" class="btn btn-default" />
-            @Html.ActionLink(Locale.Cancel, "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MediaId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

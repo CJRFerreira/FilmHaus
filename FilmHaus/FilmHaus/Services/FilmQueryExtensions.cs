@@ -18,7 +18,7 @@ namespace FilmHaus.Services
             return f => f.UserFilmRatings.Select(ufr => ufr.Rating).Average();
         }
 
-        public static Expression<Func<UserFilm, double?>> GetUserFilmRating()
+        public static Expression<Func<UserFilm, int>> GetUserFilmRating()
         {
             return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id).Select(ufr => ufr.Rating).FirstOrDefault();
         }
@@ -34,7 +34,7 @@ namespace FilmHaus.Services
                 DateOfRelease = f.Film.DateOfRelease,
                 Accolades = f.Film.Accolades,
                 Runtime = f.Film.Runtime,
-                Rating = userRating.Invoke(f)
+                Rating = (double)userRating.Invoke(f)
             };
         }
 

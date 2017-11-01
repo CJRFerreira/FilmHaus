@@ -16,13 +16,13 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Search/Films
-        public ActionResult Films()
+        public ActionResult Films(string searchTerm)
         {
             return View();
         }
 
         // GET: Search/Shows
-        public ActionResult Shows()
+        public ActionResult Shows(string searchTerm)
         {
             return View();
         }

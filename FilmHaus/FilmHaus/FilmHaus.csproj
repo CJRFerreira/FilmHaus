@@ -105,6 +105,14 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -190,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
@@ -215,6 +224,10 @@
     <Compile Include="Migrations\201710251520161_Update #2 - Table Rename.cs" />
     <Compile Include="Migrations\201710251520161_Update #2 - Table Rename.Designer.cs">
       <DependentUpon>201710251520161_Update #2 - Table Rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711012011219_Review Model Changes.cs" />
+    <Compile Include="Migrations\201711012011219_Review Model Changes.Designer.cs">
+      <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
@@ -292,6 +305,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Generic\Helper.css" />
     <Content Include="Content\Layout\Dashboard.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -360,8 +374,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Library\Index.cshtml" />
-    <Content Include="Views\Library\Films.cshtml" />
-    <Content Include="Views\Library\Shows.cshtml" />
+    <Content Include="Views\Library\MyFilms.cshtml" />
+    <Content Include="Views\Library\MyShows.cshtml" />
     <Content Include="Views\Films\Create.cshtml" />
     <Content Include="Views\Films\Delete.cshtml" />
     <Content Include="Views\Films\Details.cshtml" />
@@ -372,6 +386,13 @@
     <Content Include="Views\Shows\Details.cshtml" />
     <Content Include="Views\Shows\Edit.cshtml" />
     <Content Include="Views\Shows\Index.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Shared\_CreateReviewPartial.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\Films.cshtml" />
+    <Content Include="Views\Search\Shows.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -395,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710251520161_Update #2 - Table Rename.resx">
       <DependentUpon>201710251520161_Update #2 - Table Rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711012011219_Review Model Changes.resx">
+      <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

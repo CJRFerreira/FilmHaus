@@ -17,7 +17,7 @@ namespace FilmHaus.Models.View
         public ReviewViewModel(Review review)
         {
             ReviewId = review.ReviewId;
-            UserId = review.Id;
+            Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
             Flagged = review.Flagged;
@@ -28,7 +28,7 @@ namespace FilmHaus.Models.View
         public Guid ReviewId { get; set; }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public string UserId { get; set; }
+        public string Id { get; set; }
 
         public MediaViewModel Media { get; set; }
 
@@ -55,6 +55,9 @@ namespace FilmHaus.Models.View
 
         public Guid MediaId { get; set; }
 
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public string Id { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "", ResourceType = typeof(Locale))]
@@ -74,7 +77,7 @@ namespace FilmHaus.Models.View
         public EditReviewViewModel(Review review)
         {
             ReviewId = review.ReviewId;
-            UserId = review.Id;
+            Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
         }
@@ -82,7 +85,7 @@ namespace FilmHaus.Models.View
         public EditReviewViewModel(ReviewViewModel review)
         {
             ReviewId = review.ReviewId;
-            UserId = review.UserId;
+            Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
         }
@@ -91,7 +94,7 @@ namespace FilmHaus.Models.View
         public Guid ReviewId { get; set; }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public string UserId { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]

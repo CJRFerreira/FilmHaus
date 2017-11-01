@@ -1,6 +1,7 @@
 ﻿using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using FilmHaus.Models.View;
+using LinqKit;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -72,7 +73,7 @@ namespace FilmHaus.Services.UserFilms
 
         public List<UserFilmViewModel> GetAllFilmsForUser(string userId)
         {
-            return FilmHausDbContext.UserFilms.Where(u => u.Id == userId).Select(GetUserFilmViewModel()).ToList();
+            return FilmHausDbContext.UserFilms.AsExpandable().Where(uf => uf.Id == userId && uf.ObsoletedOn == null).Select(GetUserFilmViewModel()).ToList();
         }
     }
 }

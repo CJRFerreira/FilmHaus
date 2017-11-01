@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using FilmHaus.Models.View;
-using FilmHaus.Models;
-using FilmHaus.Models.Base;
-using FilmHaus.Models.Connector;
 using System.Data.Entity;
+using System.Linq;
+using FilmHaus.Models;
+using FilmHaus.Models.View;
+using FilmHaus.Models.Connector;
+using static FilmHaus.Services.ReviewQueryExtensions;
 
 namespace FilmHaus.Services.ReviewFilms
 {
@@ -21,17 +20,17 @@ namespace FilmHaus.Services.ReviewFilms
 
         public List<ReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public List<ReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public void CreateReviewFilm(Guid reviewId, Guid mediaId)
@@ -41,7 +40,8 @@ namespace FilmHaus.Services.ReviewFilms
                 ReviewFilmId = Guid.NewGuid(),
                 ReviewId = reviewId,
                 MediaId = mediaId,
-                CreatedOn = DateTime.Now
+                CreatedOn = DateTime.Now,
+                ObsoletedOn = null
             });
             FilmHausDbContext.SaveChanges();
         }

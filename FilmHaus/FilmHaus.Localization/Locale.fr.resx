@@ -414,4 +414,10 @@
   <data name="Shows" xml:space="preserve">
     <value>Émissions Télévisées</value>
   </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Critiques</value>
+  </data>
+  <data name="Poster" xml:space="preserve">
+    <value>Affiche</value>
+  </data>
 </root>

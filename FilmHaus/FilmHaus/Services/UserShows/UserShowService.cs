@@ -6,6 +6,7 @@ using FilmHaus.Models.Connector;
 using System.Data.Entity;
 using System.Linq;
 using static FilmHaus.Services.ShowQueryExtensions;
+using LinqKit;
 
 namespace FilmHaus.Services.UserShows
 {
@@ -72,7 +73,7 @@ namespace FilmHaus.Services.UserShows
 
         public List<UserShowViewModel> GetAllShowsForUser(string userId)
         {
-            return FilmHausDbContext.UserShows.Where(u => u.Id == userId).Select(GetUserShowViewModel()).ToList();
+            return FilmHausDbContext.UserShows.AsExpandable().Where(us => us.Id == userId && us.ObsoletedOn == null).Select(GetUserShowViewModel()).ToList();
         }
     }
 }
