@@ -9,7 +9,6 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Library")]
     public class LibraryController : Controller
     {
         private IUserFilmService UserFilmService { get; }
@@ -37,19 +36,13 @@ namespace FilmHaus.Controllers
         // GET: Library/MyFilms
         public ActionResult MyFilms()
         {
-            return View(new FilmLibraryViewModel
-                (
-                    films: UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId())
-                ));
+            return View(UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId()));
         }
 
         // GET: Library/MyShows
         public ActionResult MyShows()
         {
-            return View(new ShowLibraryViewModel
-                (
-                    shows: UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId())
-                ));
+            return View(UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId()));
         }
     }
 }

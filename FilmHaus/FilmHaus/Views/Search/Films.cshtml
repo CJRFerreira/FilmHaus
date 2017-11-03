@@ -1,39 +1,37 @@
 ﻿@using FilmHaus.Localization
-@model FilmHaus.Models.View.FilmLibraryViewModel
+@model IEnumerable<FilmHaus.Models.View.GeneralFilmViewModel>
 @{
     ViewBag.Title = Locale.MyFilms;
 }
 
 <h2>@Locale.MyFilms</h2>
 <hr />
-@if (Model.Films.Count > 0)
-{
-    <table class="table table-striped">
-        <thead>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PosterUri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRelease)
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td>@item.PosterUri</td>
+                <td>@item.MediaName</td>
+                <td>@item.DateOfRelease</td>
+                <td>@item.Accolades</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Films)
-                {
-                <tr>
-                    <td>@item.PosterUri</td>
-                    <td>@item.MediaName</td>
-                    <td>@item.DateOfRelease</td>
-                    <td>@item.Accolades</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="well">
-        <p class="text-info">
-        </p>
-    </div>
-}
+        }
+    </tbody>
+</table>

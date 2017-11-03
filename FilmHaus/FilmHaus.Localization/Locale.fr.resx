@@ -292,7 +292,7 @@
     <value>Partagé</value>
   </data>
   <data name="MyShows" xml:space="preserve">
-    <value>Mes émissions de télévision</value>
+    <value>Mes Émissions de Télévision</value>
   </data>
   <data name="ActiveReports" xml:space="preserve">
     <value>Rapports Actifs</value>
@@ -419,5 +419,11 @@
   </data>
   <data name="Poster" xml:space="preserve">
     <value>Affiche</value>
+  </data>
+  <data name="NoFilms" xml:space="preserve">
+    <value>Vous n'avez actuellement aucun film dans votre bibliothèque</value>
+  </data>
+  <data name="NoShows" xml:space="preserve">
+    <value>Vous n'avez actuellement aucun émissions de télévision dans votre bibliothèque</value>
   </data>
 </root>

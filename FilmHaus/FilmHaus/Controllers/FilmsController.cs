@@ -6,7 +6,6 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Film")]
     public class FilmsController : Controller
     {
         public IFilmService FilmService { get; private set; }

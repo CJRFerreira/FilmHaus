@@ -11,7 +11,6 @@ using FilmHaus.Models.View;
 namespace FilmHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Manage")]
     public class ManageController : Controller
     {
         private SignInManager _signInManager;

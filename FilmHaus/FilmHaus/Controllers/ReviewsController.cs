@@ -10,7 +10,6 @@ using System.Web.Mvc;
 namespace ReviewHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Review")]
     public class ReviewsController : Controller
     {
         public IReviewService ReviewService { get; private set; }

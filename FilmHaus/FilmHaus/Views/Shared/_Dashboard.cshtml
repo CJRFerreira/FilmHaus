@@ -19,7 +19,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <h3 class="h3">@Locale.FilmHaus</h3>
+                    <a href="#">@Locale.FilmHaus</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Locale.Hello @User.Identity.Name<span class="caret"></span></a>
@@ -61,17 +61,15 @@
                     </li>
                     <li>
                         <a href="@Html.Action("Index", "Report")"> <span class="glyphicon glyphicon-pencil"></span> @Locale.MyReports</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span> @Locale.Search <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-header">@Locale.UserActions</li>
-                            <li>@Html.ActionLink(Locale.SearchFilms, "SearchFilms", "Search")</li>
-                            <li>@Html.ActionLink(Locale.SearchShows, "SearchShows", "Search")</li>
-                            <li>@Html.ActionLink(Locale.SearchLists, "SearchLists", "Search")</li>
-                            <li>@Html.ActionLink(Locale.SearchReviews, "SearchReviews", "Search")</li>
-                        </ul>
                     </li>*@
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span> @Locale.Search <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">@Locale.UserActions</li>
+                        <li>@Html.ActionLink(Locale.SearchFilms, "Films", "Search")</li>
+                        <li>@Html.ActionLink(Locale.SearchShows, "Shows", "Search")</li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->

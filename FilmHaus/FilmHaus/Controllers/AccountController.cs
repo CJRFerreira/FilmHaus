@@ -1,4 +1,5 @@
-﻿using FilmHaus.Models.Base;
+﻿using FilmHaus.Localization;
+using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -73,8 +74,8 @@ namespace FilmHaus.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            if (!User.Identity.IsAuthenticated)
-                return View();
+            if (User.Identity.IsAuthenticated)
+                return View("Index", "Home");
             else
                 return View(new UserLoginViewModel());
         }
@@ -94,7 +95,10 @@ namespace FilmHaus.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (String.IsNullOrEmpty(returnUrl))
+                        return View("Index", "Library");
+                    else
+                        return RedirectToLocal(returnUrl);
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -104,7 +108,7 @@ namespace FilmHaus.Controllers
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("InvalidLogin", Errors.InvalidLogin);
                     return View("Login", new UserLoginViewModel(model));
             }
         }
@@ -189,6 +193,8 @@ namespace FilmHaus.Controllers
                 // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id, "Confirm
                 // your account", "Please confirm your account by clicking <a href=\"" + callbackUrl
                 // + "\">here</a>");
+
+                await UserManager.AddToRoleAsync(user.Id, "User");
 
                 return RedirectToAction("Index", "Home");
             }

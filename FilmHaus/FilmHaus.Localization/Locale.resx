@@ -426,4 +426,10 @@
   <data name="Poster" xml:space="preserve">
     <value>Poster</value>
   </data>
+  <data name="NoFilms" xml:space="preserve">
+    <value>You currently have no films in your library</value>
+  </data>
+  <data name="NoShows" xml:space="preserve">
+    <value>You currently have no shows in your library</value>
+  </data>
 </root>

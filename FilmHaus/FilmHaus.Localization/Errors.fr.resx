@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DateRequired" xml:space="preserve">
+    <value>La date est requise!</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Email est requis!</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Ce champ est requis!</value>
+  </data>
+  <data name="InvalidLogin" xml:space="preserve">
+    <value>Email / mot de passe invalide!</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Le nom est requis!</value>
+  </data>
+  <data name="PasswordCriteria" xml:space="preserve">
+    <value>Le mot de passe entré ne répond pas aux normes! (&gt; 8 lettres, 1 chiffre, 1 caractère spécial)</value>
+  </data>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>Confirmer le mot de passe et le mot de passe ne correspondent pas!</value>
+  </data>
 </root>

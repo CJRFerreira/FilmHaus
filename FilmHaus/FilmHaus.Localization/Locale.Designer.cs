@@ -646,6 +646,24 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You currently have no films in your library.
+        /// </summary>
+        public static string NoFilms {
+            get {
+                return ResourceManager.GetString("NoFilms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You currently have no shows in your library.
+        /// </summary>
+        public static string NoShows {
+            get {
+                return ResourceManager.GetString("NoShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of Seasons.
         /// </summary>
         public static string NumberOfSeasons {

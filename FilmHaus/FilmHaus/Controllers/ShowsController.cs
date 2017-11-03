@@ -12,7 +12,6 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Show")]
     public class ShowsController : Controller
     {
         private IShowService ShowService { get; }

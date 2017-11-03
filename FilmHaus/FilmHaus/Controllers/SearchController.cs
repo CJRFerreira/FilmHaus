@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
 {
-    [RoutePrefix("Search")]
+    [Authorize]
     public class SearchController : Controller
     {
         // GET: Search
