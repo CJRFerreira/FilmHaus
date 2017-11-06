@@ -34,6 +34,8 @@ namespace FilmHaus.Models.View
             Shows = shows;
         }
 
+        public SearchViewModel SearchViewModel { get; set; }
+
         public List<GeneralFilmViewModel> Films { get; set; }
 
         public List<GeneralShowViewModel> Shows { get; set; }
