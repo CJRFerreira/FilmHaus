@@ -5,13 +5,13 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class LibraryViewModel
+    public class UserLibraryViewModel
     {
-        public LibraryViewModel()
+        public UserLibraryViewModel()
         {
         }
 
-        public LibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        public UserLibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
@@ -20,5 +20,22 @@ namespace FilmHaus.Models.View
         public List<UserFilmViewModel> Films { get; set; }
 
         public List<UserShowViewModel> Shows { get; set; }
+    }
+
+    public class SearchLibraryViewModel
+    {
+        public SearchLibraryViewModel()
+        {
+        }
+
+        public SearchLibraryViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        {
+            Films = films;
+            Shows = shows;
+        }
+
+        public List<GeneralFilmViewModel> Films { get; set; }
+
+        public List<GeneralShowViewModel> Shows { get; set; }
     }
 }

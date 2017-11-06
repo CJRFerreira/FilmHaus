@@ -432,4 +432,7 @@
   <data name="NoShows" xml:space="preserve">
     <value>You currently have no shows in your library</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>

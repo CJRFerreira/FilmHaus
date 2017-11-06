@@ -4,6 +4,7 @@ using FilmHaus.Services.Shows;
 using FilmHaus.Services.UserFilms;
 using FilmHaus.Services.UserShows;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
@@ -22,11 +23,12 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Library
+        [HttpGet]
         public ActionResult Index()
         {
             var userId = this.User.Identity.GetUserId();
 
-            return View(new LibraryViewModel
+            return View(new UserLibraryViewModel
                 (
                     films: UserFilmService.GetAllFilmsForUser(userId),
                     shows: UserShowService.GetAllShowsForUser(userId)
@@ -34,15 +36,49 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Library/MyFilms
+        [HttpGet]
         public ActionResult MyFilms()
         {
             return View(UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId()));
         }
 
         // GET: Library/MyShows
+        [HttpGet]
         public ActionResult MyShows()
         {
             return View(UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId()));
+        }
+
+        // GET: Library/AddFilmToLibrary
+        [HttpPost]
+        public ActionResult AddFilmToLibrary(Guid mediaId, string userId)
+        {
+            UserFilmService.AddFilmToUserLibrary(mediaId, userId);
+            return View("MyFilms");
+        }
+
+        // GET: Library/AddShowToLibrary
+        [HttpPost]
+        public ActionResult AddShowToLibrary(Guid mediaId, string userId)
+        {
+            UserShowService.AddShowToUserLibrary(mediaId, userId);
+            return View("MyShows");
+        }
+
+        // GET: Library/RemoveFilmFromLibrary
+        [HttpPost]
+        public ActionResult RemoveFilmFromLibrary(Guid mediaId, string userId)
+        {
+            UserFilmService.ObsoleteFilmInUserLibrary(mediaId, userId);
+            return View("MyFilms");
+        }
+
+        // GET: Library/RemoveShowFromLibrary
+        [HttpPost]
+        public ActionResult RemoveShowFromLibrary(Guid mediaId, string userId)
+        {
+            UserShowService.ObsoleteShowInUserLibrary(mediaId, userId);
+            return View("MyShows");
         }
     }
 }

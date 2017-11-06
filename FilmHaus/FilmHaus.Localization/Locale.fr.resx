@@ -426,4 +426,7 @@
   <data name="NoShows" xml:space="preserve">
     <value>Vous n'avez actuellement aucun émissions de télévision dans votre bibliothèque</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
 </root>

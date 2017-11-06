@@ -1,39 +1,51 @@
 ﻿@using FilmHaus.Localization
 @model IEnumerable<FilmHaus.Models.View.GeneralShowViewModel>
+
 @{
     ViewBag.Title = Locale.Shows;
 }
 
 <h2>@Locale.Shows</h2>
 <hr />
-@if (Model.Count > 0)
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PosterUri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRelease)
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.MediaId">
+                <td>
+                    <img src="@Url.Content(item.PosterUri.ToString())" alt="@item.MediaName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MediaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfRelease)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
+                        Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                    }
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-                {
-                <tr>
-                    <td>@item.PosterUri</td>
-                    <td>@item.MediaName</td>
-                    <td>@item.DateOfRelease</td>
-                    <td>@item.Accolades</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <div class="well">
-        <p class="text-info">
-        </p>
-    </div>
-}
+        }
+    </tbody>
+</table>

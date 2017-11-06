@@ -817,6 +817,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reported Reviews.
         /// </summary>
         public static string ReportedReviews {

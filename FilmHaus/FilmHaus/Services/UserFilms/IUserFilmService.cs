@@ -12,6 +12,8 @@ namespace FilmHaus.Services.UserFilms
 
         void ObsoleteFilmInUserLibrary(Guid userFilmId);
 
+        void ObsoleteFilmInUserLibrary(Guid mediaId, string userId);
+
         List<UserFilmViewModel> GetAllFilmsForUser(string userId);
     }
 }
