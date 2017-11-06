@@ -41,9 +41,13 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Films/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Admin"))
+                return View(new CreateFilmViewModel());
+
+            return View("Index");
         }
 
         // POST: Films/Create To protect from overposting attacks, please enable the specific

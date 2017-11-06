@@ -42,12 +42,15 @@
                         <li>@Html.ActionLink(Locale.MyShows, "MyShows", "Library")</li>
                     </ul>
                 </li>
-                <li>
-                    @Html.ActionLink(Locale.FindFilms, "Index", "Films")
-                </li>
-                <li>
-                    @Html.ActionLink(Locale.FindShows, "Index", "Shows")
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        @Html.ActionLink(Locale.FindFilms, "Index", "Films")
+                    </li>
+                    <li>
+                        @Html.ActionLink(Locale.FindShows, "Index", "Shows")
+                    </li>
+                }
                 @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.MyLists <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -97,7 +100,7 @@
         $(document).ready(function () {
             var trigger = $('.hamburger'),
                 overlay = $('.overlay'),
-               isClosed = false;
+                isClosed = false;
 
             trigger.click(function () {
                 hamburger_cross();

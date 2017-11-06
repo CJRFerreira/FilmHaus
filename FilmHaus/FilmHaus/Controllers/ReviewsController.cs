@@ -1,5 +1,7 @@
 ﻿using FilmHaus.Models.View;
+using FilmHaus.Services.ReviewFilms;
 using FilmHaus.Services.Reviews;
+using FilmHaus.Services.ReviewShows;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
@@ -14,9 +16,15 @@ namespace ReviewHaus.Controllers
     {
         public IReviewService ReviewService { get; private set; }
 
-        public ReviewsController(IReviewService reviewService)
+        public IReviewFilmService ReviewFilmService { get; private set; }
+
+        public IReviewShowService ReviewShowService { get; private set; }
+
+        public ReviewsController(IReviewService reviewService, IReviewFilmService reviewFilmService, IReviewShowService reviewShowService)
         {
             ReviewService = reviewService;
+            ReviewFilmService = reviewFilmService;
+            ReviewShowService = reviewShowService;
         }
 
         // GET: Review
@@ -52,6 +60,7 @@ namespace ReviewHaus.Controllers
             return View("Index");
         }
 
+        // GET: Review/Details/5
         public ActionResult Details(ReviewViewModel viewModel)
         {
             if (viewModel != null)
@@ -67,6 +76,7 @@ namespace ReviewHaus.Controllers
 
             if (result.Id == this.User.Identity.GetUserId())
                 return View(new EditReviewViewModel(result));
+
             return View("Index");
         }
 
