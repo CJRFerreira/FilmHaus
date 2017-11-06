@@ -74,7 +74,7 @@ namespace FilmHaus.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            if (User.Identity.IsAuthenticated)
+            if (Request.IsAuthenticated)
                 return View("Index", "Home");
             else
                 return View(new UserLoginViewModel());
@@ -96,7 +96,7 @@ namespace FilmHaus.Controllers
             {
                 case SignInStatus.Success:
                     if (String.IsNullOrEmpty(returnUrl))
-                        return View("Index", "Library");
+                        return RedirectToAction("Index", "Library");
                     else
                         return RedirectToLocal(returnUrl);
 
@@ -108,7 +108,7 @@ namespace FilmHaus.Controllers
 
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("InvalidLogin", Errors.InvalidLogin);
+                    ModelState.AddModelError("", Errors.InvalidLogin);
                     return View("Login", new UserLoginViewModel(model));
             }
         }
@@ -157,7 +157,10 @@ namespace FilmHaus.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            if (Request.IsAuthenticated)
+                return View("Index", "Home");
+            else
+                return View(new UserRegisterViewModel());
         }
 
         // POST: /Account/Register
@@ -201,7 +204,7 @@ namespace FilmHaus.Controllers
             AddErrors(result);
 
             // If we got this far, something failed, redisplay form
-            return View("Register", new UserRegisterViewModel(model));
+            return View("Register", model);
         }
 
         // GET: /Account/ConfirmEmail

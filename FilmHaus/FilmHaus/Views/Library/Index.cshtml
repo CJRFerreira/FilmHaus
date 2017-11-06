@@ -11,10 +11,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>@Locale.Poster</th>
+                <th>@Locale.Name</th>
+                <th>@Locale.ReleaseDate</th>
+                <th>@Locale.UserActions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,14 @@
                     <td>@item.PosterUri</td>
                     <td>@item.MediaName</td>
                     <td>@item.DateOfRelease</td>
-                    <td>@item.Accolades</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
+                        @if (User.IsInRole("Admin"))
+                        {
+                            Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
+                            Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
@@ -34,6 +41,7 @@ else
 {
     <div class="well">
         <p class="text-info">
+            @Locale.NoFilms
         </p>
     </div>
 }
@@ -43,10 +51,10 @@ else
     <table class="table table-striped">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>@Locale.Poster</th>
+                <th>@Locale.Name</th>
+                <th>@Locale.ReleaseDate</th>
+                <th>@Locale.UserActions</th>
             </tr>
         </thead>
         <tbody>
@@ -56,7 +64,14 @@ else
                     <td>@item.PosterUri</td>
                     <td>@item.MediaName</td>
                     <td>@item.DateOfRelease</td>
-                    <td>@item.Accolades</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
+                        @if (User.IsInRole("Admin"))
+                        {
+                            Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
+                            Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
@@ -66,6 +81,7 @@ else
 {
     <div class="well">
         <p class="text-info">
+            @Locale.NoShows
         </p>
     </div>
 }
