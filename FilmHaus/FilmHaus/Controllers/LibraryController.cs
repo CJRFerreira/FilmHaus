@@ -5,6 +5,7 @@ using FilmHaus.Services.UserFilms;
 using FilmHaus.Services.UserShows;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
@@ -35,11 +36,36 @@ namespace FilmHaus.Controllers
                 ));
         }
 
+        // GET: Library
+        [HttpGet]
+        public ActionResult Index(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        {
+            return View(new UserLibraryViewModel
+                (
+                    films: films,
+                    shows: shows
+                ));
+        }
+
+        // GET: Library
+        [HttpGet]
+        public ActionResult Index(UserLibraryViewModel model)
+        {
+            return View(model);
+        }
+
         // GET: Library/MyFilms
         [HttpGet]
         public ActionResult MyFilms()
         {
             return View(UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId()));
+        }
+
+        // GET: Library/MyFilms
+        [HttpGet]
+        public ActionResult MyFilms(IEnumerable<UserFilmViewModel> model)
+        {
+            return View(model);
         }
 
         // GET: Library/MyShows
@@ -49,7 +75,14 @@ namespace FilmHaus.Controllers
             return View(UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId()));
         }
 
-        // GET: Library/AddFilmToLibrary
+        // GET: Library/MyShows
+        [HttpGet]
+        public ActionResult MyShows(IEnumerable<UserShowViewModel> model)
+        {
+            return View(model);
+        }
+
+        // POST: Library/AddFilmToLibrary
         [HttpPost]
         public ActionResult AddFilmToLibrary(Guid mediaId, string userId)
         {
@@ -57,15 +90,7 @@ namespace FilmHaus.Controllers
             return View("MyFilms");
         }
 
-        // GET: Library/AddShowToLibrary
-        [HttpPost]
-        public ActionResult AddShowToLibrary(Guid mediaId, string userId)
-        {
-            UserShowService.AddShowToUserLibrary(mediaId, userId);
-            return View("MyShows");
-        }
-
-        // GET: Library/RemoveFilmFromLibrary
+        // POST: Library/RemoveFilmFromLibrary
         [HttpPost]
         public ActionResult RemoveFilmFromLibrary(Guid mediaId, string userId)
         {
@@ -73,11 +98,35 @@ namespace FilmHaus.Controllers
             return View("MyFilms");
         }
 
-        // GET: Library/RemoveShowFromLibrary
+        // POST: Library/RemoveFilmFromLibrary
+        [HttpPost]
+        public ActionResult RemoveFilmFromLibrary(Guid userFilmId)
+        {
+            UserFilmService.ObsoleteFilmInUserLibrary(userFilmId);
+            return View("MyFilms");
+        }
+
+        // POST: Library/AddShowToLibrary
+        [HttpPost]
+        public ActionResult AddShowToLibrary(Guid mediaId, string userId)
+        {
+            UserShowService.AddShowToUserLibrary(mediaId, userId);
+            return View("MyShows");
+        }
+
+        // POST: Library/RemoveShowFromLibrary
         [HttpPost]
         public ActionResult RemoveShowFromLibrary(Guid mediaId, string userId)
         {
             UserShowService.ObsoleteShowInUserLibrary(mediaId, userId);
+            return View("MyShows");
+        }
+
+        // POST: Library/RemoveShowFromLibrary
+        [HttpPost]
+        public ActionResult RemoveShowFromLibrary(Guid userShowId)
+        {
+            UserShowService.ObsoleteShowInUserLibrary(userShowId);
             return View("MyShows");
         }
     }
