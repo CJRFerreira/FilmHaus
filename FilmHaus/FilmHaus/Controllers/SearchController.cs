@@ -37,14 +37,14 @@ namespace FilmHaus.Controllers
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && (int)f.Rating >= searchViewModel.Rating)
+                && f.Rating >= searchViewModel.Rating)
                 .ToList();
 
             var shows = ShowService.GetAllActiveShows()
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && (int)s.Rating >= searchViewModel.Rating)
+                && s.Rating >= searchViewModel.Rating)
                 .ToList();
 
             return View("Index", new SearchLibraryViewModel()
@@ -62,7 +62,7 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        // POST: Search/Films
+        // POST: Search/SearchFilms
         [HttpPost]
         public ActionResult SearchFilms(SearchViewModel searchViewModel)
         {
@@ -70,7 +70,7 @@ namespace FilmHaus.Controllers
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && (int)f.Rating >= searchViewModel.Rating)
+                && f.Rating >= searchViewModel.Rating)
                 .ToList()
                 );
         }
@@ -82,7 +82,7 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        // POST: Search/Shows
+        // POST: Search/SearchShows
         [HttpPost]
         public ActionResult SearchShows(SearchViewModel searchViewModel)
         {
@@ -90,7 +90,7 @@ namespace FilmHaus.Controllers
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && (int)s.Rating >= searchViewModel.Rating)
+                && s.Rating >= searchViewModel.Rating)
                 .ToList()
                 );
         }

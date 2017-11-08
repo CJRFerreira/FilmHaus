@@ -1,8 +1,7 @@
-﻿@using FilmHaus.Localization
-@using Microsoft.AspNet.Identity
+﻿@using FilmHaus.Localization;
+@using Microsoft.AspNet.Identity;
 @using PagedList.Mvc;
 @model PagedList.IPagedList<FilmHaus.Models.View.ReviewViewModel>
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = Locale.Index;
@@ -57,7 +56,7 @@
                     }
                 </td>
             </tr>
-                        }
+         }
     </tbody>
 </table>
 <br />

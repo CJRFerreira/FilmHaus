@@ -71,9 +71,16 @@ namespace FilmHaus.Services.UserShows
             }
         }
 
+        public void ObsoleteShowInUserLibrary(Guid mediaId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<UserShowViewModel> GetAllShowsForUser(string userId)
         {
             return FilmHausDbContext.UserShows.AsExpandable().Where(us => us.Id == userId && us.ObsoletedOn == null).Select(GetUserShowViewModel()).ToList();
         }
+
+        
     }
 }

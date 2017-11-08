@@ -1,5 +1,5 @@
 ﻿@using FilmHaus.Localization
-@model IEnumerable<FilmHaus.Models.View.GeneralShowViewModel>
+@model FilmHaus.Models.View.SearchShowsViewModel
 
 @{
     ViewBag.Title = Locale.Shows;
@@ -7,17 +7,37 @@
 
 <h2>@Locale.Shows</h2>
 <hr />
+@using (Html.BeginForm("SearchAll", "Search", FormMethod.Post, new { @class = "form form-inline" }))
+{
+    <div class="form-group">
+        @Html.DisplayFor(m => m.SearchTerm)
+        @Html.EditorFor(m => m.SearchTerm)
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(m => m.ReleaseYear)
+        @Html.EditorFor(m => m.ReleaseYear)
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(m => m.Rating)
+        @Html.EditorFor(m => m.Rating)
+    </div>
+    <div class="form-group">
+        @Html.DisplayFor(m => m.Accolades)
+        @Html.EnumDropDownListFor(m => m.Accolades)
+    </div>
+    <input type="submit" value="@Locale.SearchShows" class="btn btn-primary" />
+}
 <table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PosterUri)
+                @Locale.Poster
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MediaName)
+                @Locale.Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateOfRelease)
+                @Locale.ReleaseDate
             </th>
             <th>
                 @Locale.UserActions
@@ -25,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Results)
         {
             <tr id="@item.MediaId">
                 <td>

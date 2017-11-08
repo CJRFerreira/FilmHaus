@@ -75,5 +75,10 @@ namespace FilmHaus.Services.UserFilms
         {
             return FilmHausDbContext.UserFilms.AsExpandable().Where(uf => uf.Id == userId && uf.ObsoletedOn == null).Select(GetUserFilmViewModel()).ToList();
         }
+
+        public void ObsoleteFilmInUserLibrary(Guid mediaId, string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
