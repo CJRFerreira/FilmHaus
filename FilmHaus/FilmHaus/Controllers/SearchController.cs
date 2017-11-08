@@ -64,15 +64,16 @@ namespace FilmHaus.Controllers
 
         // POST: Search/SearchFilms
         [HttpPost]
-        public ActionResult SearchFilms(SearchViewModel searchViewModel)
+        public ActionResult SearchFilms(SearchFilmsViewModel searchViewModel)
         {
-            return View("Films", FilmService.GetAllActiveFilms()
+            searchViewModel.Results = FilmService.GetAllActiveFilms()
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
                 && f.Rating >= searchViewModel.Rating)
-                .ToList()
-                );
+                .ToList();
+
+            return View("Films", searchViewModel);
         }
 
         // GET: Search/Shows
@@ -84,15 +85,16 @@ namespace FilmHaus.Controllers
 
         // POST: Search/SearchShows
         [HttpPost]
-        public ActionResult SearchShows(SearchViewModel searchViewModel)
+        public ActionResult SearchShows(SearchShowsViewModel searchViewModel)
         {
-            return View("Shows", ShowService.GetAllActiveShows()
+            searchViewModel.Results = ShowService.GetAllActiveShows()
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear
                 && s.Rating >= searchViewModel.Rating)
-                .ToList()
-                );
+                .ToList();
+
+            return View("Shows", searchViewModel);
         }
     }
 }

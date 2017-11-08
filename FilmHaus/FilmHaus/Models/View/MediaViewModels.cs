@@ -67,10 +67,11 @@ namespace FilmHaus.Models.View
         }
 
         [DataType(DataType.ImageUrl)]
+        [Display(Name = "Poster", ResourceType = typeof(Locale))]
         public string PosterUri { get; set; }
 
-        [Display(Name = "Title", ResourceType = typeof(Locale))]
         [Required]
+        [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string MediaName { get; set; }
 
         [DataType(DataType.Date)]
@@ -109,6 +110,7 @@ namespace FilmHaus.Models.View
         public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
+        [Display(Name = "Poster", ResourceType = typeof(Locale))]
         public string PosterUri { get; set; }
 
         [Required]
