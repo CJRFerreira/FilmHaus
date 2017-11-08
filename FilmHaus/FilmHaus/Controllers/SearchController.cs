@@ -66,7 +66,7 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchFilms(SearchFilmsViewModel searchViewModel)
         {
-            searchViewModel.Results = FilmService.GetAllActiveFilms()
+            searchViewModel.Films = FilmService.GetAllActiveFilms()
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
@@ -87,7 +87,7 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchShows(SearchShowsViewModel searchViewModel)
         {
-            searchViewModel.Results = ShowService.GetAllActiveShows()
+            searchViewModel.Shows = ShowService.GetAllActiveShows()
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear

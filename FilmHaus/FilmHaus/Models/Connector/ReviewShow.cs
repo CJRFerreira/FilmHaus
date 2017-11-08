@@ -20,14 +20,15 @@ namespace FilmHaus.Models.Connector
 
         public virtual Show Show { get; set; }
 
+        [ForeignKey("Review"), Column(Order = 1)]
+        [Index(name: "IX_ReviewShow", order: 1, IsUnique = true)]
+        public Guid ReviewId { get; set; }
+
+        public virtual Review Review { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         [Index(name: "IX_ReviewShow", order: 1, IsUnique = true)]
         public DateTime? ObsoletedOn { get; set; }
-
-        [ForeignKey("Review"), Column(Order = 1)]
-        public Guid ReviewId { get; set; }
-
-        public virtual Review Review { get; set; }
     }
 }

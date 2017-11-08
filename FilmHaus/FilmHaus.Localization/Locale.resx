@@ -435,4 +435,10 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

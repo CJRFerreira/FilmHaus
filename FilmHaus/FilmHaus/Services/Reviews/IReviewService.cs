@@ -1,4 +1,5 @@
-﻿using FilmHaus.Models.View;
+﻿using FilmHaus.Models.Base;
+using FilmHaus.Models.View;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +7,8 @@ namespace FilmHaus.Services.Reviews
 {
     public interface IReviewService
     {
+        Review CreateReview(CreateReviewViewModel review, string userId);
+
         void CreateReviewForFilm(CreateReviewViewModel review, string userId);
 
         void CreateReviewForShow(CreateReviewViewModel review, string userId);
@@ -14,16 +17,18 @@ namespace FilmHaus.Services.Reviews
 
         void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel review);
 
-        ReviewViewModel GetReviewByReviewId(Guid reviewId);
+        BaseReviewViewModel GetReviewByReviewId(Guid reviewId);
 
-        List<ReviewViewModel> GetAllSharedReviews();
+        ExpandedReviewViewModel GetReviewWithMediaByReviewId(Guid reviewId);
 
-        List<ReviewViewModel> GetAllReviewsByUserId(string userId);
+        ReviewLibraryViewModel GetAllSharedReviews();
 
-        List<ReviewViewModel> GetAllReviews();
+        ReviewLibraryViewModel GetAllReviewsByUserId(string userId);
 
-        List<ReviewViewModel> GetAllFlaggedReviewsByUserId(string userId);
+        ReviewLibraryViewModel GetAllReviews();
 
-        List<ReviewViewModel> GetAllFlaggedReviews();
+        ReviewLibraryViewModel GetAllFlaggedReviewsByUserId(string userId);
+
+        ReviewLibraryViewModel GetAllFlaggedReviews();
     }
 }

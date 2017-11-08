@@ -28,8 +28,20 @@ namespace FilmHaus.Models.View
         {
         }
 
+        public SearchLibraryViewModel(SearchViewModel searchViewModel)
+        {
+            SearchViewModel = searchViewModel;
+        }
+
         public SearchLibraryViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
         {
+            Films = films;
+            Shows = shows;
+        }
+
+        public SearchLibraryViewModel(SearchViewModel searchViewModel, List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        {
+            SearchViewModel = searchViewModel;
             Films = films;
             Shows = shows;
         }
@@ -39,5 +51,22 @@ namespace FilmHaus.Models.View
         public List<GeneralFilmViewModel> Films { get; set; }
 
         public List<GeneralShowViewModel> Shows { get; set; }
+    }
+
+    public class ReviewLibraryViewModel
+    {
+        public ReviewLibraryViewModel()
+        {
+        }
+
+        public ReviewLibraryViewModel(List<ExpandedReviewViewModel> films, List<ExpandedReviewViewModel> shows)
+        {
+            FilmReviews = films;
+            ShowReviews = shows;
+        }
+
+        public List<ExpandedReviewViewModel> FilmReviews { get; set; }
+
+        public List<ExpandedReviewViewModel> ShowReviews { get; set; }
     }
 }

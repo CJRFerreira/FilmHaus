@@ -32,6 +32,16 @@ namespace FilmHaus.Controllers
             return View("Index");
         }
 
+        public ActionResult Details(Guid mediaId)
+        {
+            var result = FilmService.GetFilmByMediaId(mediaId);
+
+            if (result != null)
+                return View(result);
+
+            return View("Index");
+        }
+
         public ActionResult Details(GeneralFilmViewModel viewModel)
         {
             if (viewModel != null)

@@ -1,4 +1,5 @@
-﻿using FilmHaus.Localization;
+﻿using FilmHaus.Enums;
+using FilmHaus.Localization;
 using FilmHaus.Models.Base;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class ReviewViewModel
+    public class BaseReviewViewModel
     {
-        public ReviewViewModel()
+        public BaseReviewViewModel()
         {
         }
 
-        public ReviewViewModel(Review review)
+        public BaseReviewViewModel(Review review)
         {
             ReviewId = review.ReviewId;
             Id = review.Id;
@@ -30,8 +31,6 @@ namespace FilmHaus.Models.View
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public string Id { get; set; }
 
-        public MediaViewModel Media { get; set; }
-
         [DataType(DataType.MultilineText)]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public string Body { get; set; }
@@ -45,6 +44,21 @@ namespace FilmHaus.Models.View
         [DataType(DataType.Date)]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public DateTime CreatedOn { get; set; }
+
+        public ReviewType ReviewType { get; set; }
+    }
+
+    public class ExpandedReviewViewModel : BaseReviewViewModel
+    {
+        public ExpandedReviewViewModel() : base()
+        {
+        }
+
+        public ExpandedReviewViewModel(Review review) : base(review)
+        {
+        }
+
+        public MediaViewModel Media { get; set; }
     }
 
     public class CreateReviewViewModel
@@ -53,10 +67,13 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public Guid MediaId { get; set; }
+        public CreateReviewViewModel(Guid mediaId, ReviewType reviewType)
+        {
+            MediaId = mediaId;
+            ReviewType = reviewType;
+        }
 
-        [Display(Name = "Id", ResourceType = typeof(Locale))]
-        public string Id { get; set; }
+        public Guid MediaId { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
@@ -66,6 +83,9 @@ namespace FilmHaus.Models.View
         [Required]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
+
+        [Required]
+        public ReviewType ReviewType { get; set; }
     }
 
     public class EditReviewViewModel
@@ -82,7 +102,7 @@ namespace FilmHaus.Models.View
             Shared = review.Shared;
         }
 
-        public EditReviewViewModel(ReviewViewModel review)
+        public EditReviewViewModel(BaseReviewViewModel review)
         {
             ReviewId = review.ReviewId;
             Id = review.Id;
@@ -96,6 +116,9 @@ namespace FilmHaus.Models.View
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public string Id { get; set; }
 
+        [Display(Name = "Id", ResourceType = typeof(Locale))]
+        public Guid MediaId { get; set; }
+
         [Required]
         [DataType(DataType.MultilineText)]
         [Display(Name = "", ResourceType = typeof(Locale))]
@@ -104,5 +127,8 @@ namespace FilmHaus.Models.View
         [Required]
         [Display(Name = "", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
+
+        [Required]
+        public ReviewType ReviewType { get; set; }
     }
 }

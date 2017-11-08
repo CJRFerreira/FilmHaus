@@ -24,7 +24,34 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
         public int? Rating { get; set; }
+    }
 
+    public class SearchAllViewModel
+    {
+        public SearchAllViewModel()
+        {
+        }
+
+        public SearchAllViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        {
+            Films = films;
+            Shows = shows;
+        }
+
+        public string SearchTerm { get; set; }
+
+        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
+        public AwardStatus? Accolades { get; set; }
+
+        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
+        public int? ReleaseYear { get; set; }
+
+        [Display(Name = "Rating", ResourceType = typeof(Locale))]
+        public int? Rating { get; set; }
+
+        public List<GeneralFilmViewModel> Films { get; set; }
+
+        public List<GeneralShowViewModel> Shows { get; set; }
     }
 
     public class SearchShowsViewModel
@@ -33,24 +60,9 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public string SearchTerm { get; set; }
-
-        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
-        public AwardStatus? Accolades { get; set; }
-
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public int? ReleaseYear { get; set; }
-
-        [Display(Name = "Rating", ResourceType = typeof(Locale))]
-        public int? Rating { get; set; }
-
-        public List<GeneralShowViewModel> Results { get; set; }
-    }
-
-    public class SearchFilmsViewModel
-    {
-        public SearchFilmsViewModel()
+        public SearchShowsViewModel(List<GeneralShowViewModel> shows)
         {
+            Shows = shows;
         }
 
         public string SearchTerm { get; set; }
@@ -64,6 +76,31 @@ namespace FilmHaus.Models.View
         [Display(Name = "Rating", ResourceType = typeof(Locale))]
         public int? Rating { get; set; }
 
-        public List<GeneralFilmViewModel> Results { get; set; }
+        public List<GeneralShowViewModel> Shows { get; set; }
+    }
+
+    public class SearchFilmsViewModel
+    {
+        public SearchFilmsViewModel()
+        {
+        }
+
+        public SearchFilmsViewModel(List<GeneralFilmViewModel> films)
+        {
+            Films = films;
+        }
+
+        public string SearchTerm { get; set; }
+
+        [Display(Name = "Accolades", ResourceType = typeof(Locale))]
+        public AwardStatus? Accolades { get; set; }
+
+        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
+        public int? ReleaseYear { get; set; }
+
+        [Display(Name = "Rating", ResourceType = typeof(Locale))]
+        public int? Rating { get; set; }
+
+        public List<GeneralFilmViewModel> Films { get; set; }
     }
 }

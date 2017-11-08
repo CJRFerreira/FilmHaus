@@ -19,12 +19,12 @@ namespace FilmHaus.Services
             return r => r.ReviewShow.Where(rs => rs.ReviewId == r.ReviewId).Select(rs => rs.Show).FirstOrDefault();
         }
 
-        public static Expression<Func<Review, ReviewViewModel>> GetReviewViewModelWithFilm()
+        public static Expression<Func<Review, ExpandedReviewViewModel>> GetReviewViewModelWithFilm()
         {
             var getFilm = GetFilmFromReview();
             var getFilmViewModel = FilmQueryExtensions.GetGeneralFilmViewModel();
 
-            return r => new ReviewViewModel
+            return r => new ExpandedReviewViewModel
             {
                 ReviewId = r.ReviewId,
                 Body = r.Body,
@@ -35,12 +35,12 @@ namespace FilmHaus.Services
             };
         }
 
-        public static Expression<Func<Review, ReviewViewModel>> GetReviewViewModelWithShow()
+        public static Expression<Func<Review, ExpandedReviewViewModel>> GetReviewViewModelWithShow()
         {
             var getShow = GetShowFromReview();
             var getShowViewModel = ShowQueryExtensions.GetGeneralShowViewModel();
 
-            return r => new ReviewViewModel
+            return r => new ExpandedReviewViewModel
             {
                 ReviewId = r.ReviewId,
                 Body = r.Body,

@@ -18,17 +18,17 @@ namespace FilmHaus.Services.ReviewFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<ReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
+        public List<ExpandedReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
         {
             return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
+        public List<ExpandedReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
         {
             return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
-        public List<ReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
+        public List<ExpandedReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
         {
             return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }

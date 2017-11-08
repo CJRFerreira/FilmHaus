@@ -211,6 +211,7 @@
     <Compile Include="Enums\AwardStatus.cs" />
     <Compile Include="Enums\ReportReason.cs" />
     <Compile Include="Enums\ReportStatus.cs" />
+    <Compile Include="Exceptions\InvalidReviewTypeException.cs" />
     <Compile Include="Filters\LanguageActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -389,13 +390,12 @@
     <Content Include="Views\Shows\Details.cshtml" />
     <Content Include="Views\Shows\Edit.cshtml" />
     <Content Include="Views\Shows\Index.cshtml" />
-    <Content Include="Views\Reviews\Details.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Shared\_CreateReviewPartial.cshtml" />
+    <Content Include="Views\Reviews\_CreateReviewPartial.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\Films.cshtml" />
     <Content Include="Views\Search\Shows.cshtml" />
+    <Content Include="Views\Reviews\_EditReviewPartial.cshtml" />
+    <Content Include="Views\Reviews\_ReviewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

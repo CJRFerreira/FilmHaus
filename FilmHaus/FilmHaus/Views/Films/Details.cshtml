@@ -1,5 +1,7 @@
-﻿@using FilmHaus.Localization
-@model FilmHaus.Models.View.GeneralFilmViewModel
+﻿@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@using Microsoft.AspNet.Identity;
+@model GeneralFilmViewModel
 
 @{
     ViewBag.Title = Locale.Details;
@@ -54,3 +56,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.MediaId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@Html.Partial("CreateReviewPartial", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))

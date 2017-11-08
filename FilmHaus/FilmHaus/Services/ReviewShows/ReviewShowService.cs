@@ -19,17 +19,17 @@ namespace FilmHaus.Services.ReviewShows
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<ReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId)
         {
             throw new NotImplementedException();
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId)
         {
             throw new NotImplementedException();
         }
 
-        public List<ReviewViewModel> GetAllReviewsByShowId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllReviewsByShowId(Guid mediaId)
         {
             throw new NotImplementedException();
         }

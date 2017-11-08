@@ -51,13 +51,15 @@ namespace FilmHaus.Models.View
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
 
+        public BaseReviewViewModel UserReview { get; set; }
+
         public ICollection<PersonViewModel> Collaborators { get; set; }
 
         public ICollection<GenreViewModel> Genres { get; set; }
 
         public ICollection<TagViewModel> Tags { get; set; }
 
-        public ICollection<ReviewViewModel> Reviews { get; set; }
+        public ICollection<BaseReviewViewModel> Reviews { get; set; }
     }
 
     public abstract class CreateMediaViewModel

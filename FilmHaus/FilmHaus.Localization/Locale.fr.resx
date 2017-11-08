@@ -429,4 +429,10 @@
   <data name="Remove" xml:space="preserve">
     <value>Retirer</value>
   </data>
+  <data name="Review" xml:space="preserve">
+    <value>Critique</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
 </root>

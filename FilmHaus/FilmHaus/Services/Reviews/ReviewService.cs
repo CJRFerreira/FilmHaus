@@ -10,6 +10,8 @@ using FilmHaus.Models.Connector;
 using FilmHaus.Services.ReviewFilms;
 using FilmHaus.Services.ReviewShows;
 using LinqKit;
+using static FilmHaus.Services.ReviewQueryExtensions;
+using FilmHaus.Exceptions;
 
 namespace FilmHaus.Services.Reviews
 {
@@ -28,7 +30,7 @@ namespace FilmHaus.Services.Reviews
             ReviewFilmService = reviewFilmService;
         }
 
-        public void CreateReviewForFilm(CreateReviewViewModel review, string userId)
+        public Review CreateReview(CreateReviewViewModel review, string userId)
         {
             var newReview = new Review()
             {
@@ -38,8 +40,15 @@ namespace FilmHaus.Services.Reviews
                 Shared = review.Shared,
                 CreatedOn = DateTime.Now,
                 Flagged = false,
-                ReviewType = ReviewType.Film
+                ReviewType = review.ReviewType
             };
+
+            return newReview;
+        }
+
+        public void CreateReviewForFilm(CreateReviewViewModel review, string userId)
+        {
+            var newReview = CreateReview(review, userId);
 
             FilmHausDbContext.Reviews.Add(newReview);
             FilmHausDbContext.SaveChanges();
@@ -49,16 +58,7 @@ namespace FilmHaus.Services.Reviews
 
         public void CreateReviewForShow(CreateReviewViewModel review, string userId)
         {
-            var newReview = new Review()
-            {
-                ReviewId = Guid.NewGuid(),
-                Id = userId,
-                Body = review.Body,
-                Shared = review.Shared,
-                CreatedOn = DateTime.Now,
-                Flagged = false,
-                ReviewType = ReviewType.Show
-            };
+            var newReview = CreateReview(review, userId);
 
             FilmHausDbContext.Reviews.Add(newReview);
             FilmHausDbContext.SaveChanges();
@@ -71,32 +71,39 @@ namespace FilmHaus.Services.Reviews
             try
             {
                 var review = FilmHausDbContext.Reviews.Find(reviewId);
+                if (review == null)
+                    throw new KeyNotFoundException($"No entity found for key: {reviewId}");
 
-                if (review != null)
+                switch (review.ReviewType)
                 {
-                    if (review.ReviewType == ReviewType.Film)
+                    case ReviewType.Film:
                         foreach (var rf in FilmHausDbContext.ReviewFilms.Where(rf => rf.ReviewId == review.ReviewId).Select(rf => rf).ToList())
                             FilmHausDbContext.ReviewFilms.Remove(rf);
+                        break;
 
-                    if (review.ReviewType == ReviewType.Show)
+                    case ReviewType.Show:
                         foreach (var rs in FilmHausDbContext.ReviewShows.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
                             FilmHausDbContext.ReviewShows.Remove(rs);
+                        break;
 
-                    //if (review.ReviewType == ReviewType.Season)
-                    //    foreach (var rs in FilmHausDbContext.ReviewSeasons.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
-                    //        FilmHausDbContext.ReviewShows.Remove(rs);
+                    case ReviewType.Season:
+                        //foreach (var rs in FilmHausDbContext.ReviewSeasons.Where(rs => rs.ReviewId == review.ReviewId).Select(rs => rs).ToList())
+                        //    FilmHausDbContext.ReviewShows.Remove(rs);
+                        break;
 
-                    //if (review.ReviewType == ReviewType.Episode)
-                    //    foreach (var re in FilmHausDbContext.ReviewEpisodes.Where(re => re.ReviewId == review.ReviewId).Select(re => re).ToList())
-                    //        FilmHausDbContext.ReviewShows.Remove(re);
+                    case ReviewType.Episode:
+                        //foreach (var re in FilmHausDbContext.ReviewEpisodes.Where(re => re.ReviewId == review.ReviewId).Select(re => re).ToList())
+                        //    FilmHausDbContext.ReviewShows.Remove(re);
+                        break;
 
-                    FilmHausDbContext.SaveChanges();
-
-                    FilmHausDbContext.Reviews.Remove(review);
-                    FilmHausDbContext.SaveChanges();
+                    default:
+                        throw new InvalidReviewTypeException($"Invalid Review Type! Given: {review.ReviewType}");
                 }
-                else
-                    throw new ArgumentNullException();
+
+                FilmHausDbContext.SaveChanges();
+
+                FilmHausDbContext.Reviews.Remove(review);
+                FilmHausDbContext.SaveChanges();
             }
             catch (InvalidOperationException ex)
             {
@@ -104,97 +111,82 @@ namespace FilmHaus.Services.Reviews
             }
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviews()
+        public ReviewLibraryViewModel GetAllFlaggedReviews()
         {
-            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true)
+            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithFilm())
+                .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true)
+            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithShow())
+                .Select(GetReviewViewModelWithShow())
                 .ToList();
 
-            result.AddRange(supplement);
-            result.Sort();
-
-            return result;
+            return new ReviewLibraryViewModel(films, shows);
         }
 
-        public List<ReviewViewModel> GetAllFlaggedReviewsByUserId(string userId)
+        public ReviewLibraryViewModel GetAllFlaggedReviewsByUserId(string userId)
         {
-            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithFilm())
+                .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithShow())
+                .Select(GetReviewViewModelWithShow())
                 .ToList();
 
-            result.AddRange(supplement);
-            result.Sort();
-
-            return result;
+            return new ReviewLibraryViewModel(films, shows);
         }
 
-        public List<ReviewViewModel> GetAllReviews()
+        public ReviewLibraryViewModel GetAllReviews()
         {
-            var result = FilmHausDbContext.ReviewFilms
+            var films = FilmHausDbContext.ReviewFilms
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithFilm())
+                .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var supplement = FilmHausDbContext.ReviewShows
+            var shows = FilmHausDbContext.ReviewShows
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithShow())
+                .Select(GetReviewViewModelWithShow())
                 .ToList();
 
-            result.AddRange(supplement);
-            result.Sort();
-
-            return result;
+            return new ReviewLibraryViewModel(films, shows);
         }
 
-        public List<ReviewViewModel> GetAllReviewsByUserId(string userId)
+        public ReviewLibraryViewModel GetAllReviewsByUserId(string userId)
         {
-            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Id == userId)
+            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Id == userId)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithFilm())
+                .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Id == userId)
+            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Id == userId)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithShow())
+                .Select(GetReviewViewModelWithShow())
                 .ToList();
 
-            result.AddRange(supplement);
-            result.Sort();
-
-            return result;
+            return new ReviewLibraryViewModel(films, shows);
         }
 
-        public List<ReviewViewModel> GetAllSharedReviews()
+        public ReviewLibraryViewModel GetAllSharedReviews()
         {
-            var result = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Shared == true)
+            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Shared == true)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithFilm())
+                .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var supplement = FilmHausDbContext.ReviewShows.Where(r => r.Review.Shared == true)
+            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Shared == true)
                 .Select(r => r.Review)
-                .Select(ReviewQueryExtensions.GetReviewViewModelWithShow())
+                .Select(GetReviewViewModelWithShow())
                 .ToList();
 
-            result.AddRange(supplement);
-            result.Sort();
-
-            return result;
+            return new ReviewLibraryViewModel(films, shows);
         }
 
-        public ReviewViewModel GetReviewByReviewId(Guid reviewId)
+        public BaseReviewViewModel GetReviewByReviewId(Guid reviewId)
         {
             try
             {
@@ -206,23 +198,60 @@ namespace FilmHaus.Services.Reviews
                 switch (result.ReviewType)
                 {
                     case ReviewType.Film:
-                        var reviewFilmQuery = ReviewQueryExtensions.GetReviewViewModelWithFilm();
+                        var reviewFilmQuery = GetReviewViewModelWithFilm();
                         return reviewFilmQuery.Invoke(result);
 
                     case ReviewType.Show:
-                        var reviewShowQuery = ReviewQueryExtensions.GetReviewViewModelWithShow();
+                        var reviewShowQuery = GetReviewViewModelWithShow();
                         return reviewShowQuery.Invoke(result);
 
                     case ReviewType.Season:
-                    //var reviewSeasonQuery = ReviewQueryExtensions.GetReviewViewModelWithSeason();
+                    //var reviewSeasonQuery = GetReviewViewModelWithSeason();
                     //return reviewSeasonQuery.Invoke(result);
 
                     case ReviewType.Episode:
-                    //var reviewEpisodeQuery = ReviewQueryExtensions.GetReviewViewModelWithEpisode();
+                    //var reviewEpisodeQuery = GetReviewViewModelWithEpisode();
                     //return reviewEpisodeQuery.Invoke(result);
 
                     default:
-                        return new ReviewViewModel(result);
+                        return new BaseReviewViewModel(result);
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ExpandedReviewViewModel GetReviewWithMediaByReviewId(Guid reviewId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                switch (result.ReviewType)
+                {
+                    case ReviewType.Film:
+                        var reviewFilmQuery = GetReviewViewModelWithFilm();
+                        return reviewFilmQuery.Invoke(result);
+
+                    case ReviewType.Show:
+                        var reviewShowQuery = GetReviewViewModelWithShow();
+                        return reviewShowQuery.Invoke(result);
+
+                    case ReviewType.Season:
+                    //var reviewSeasonQuery = GetReviewViewModelWithSeason();
+                    //return reviewSeasonQuery.Invoke(result);
+
+                    case ReviewType.Episode:
+                    //var reviewEpisodeQuery = GetReviewViewModelWithEpisode();
+                    //return reviewEpisodeQuery.Invoke(result);
+
+                    default:
+                        return new ExpandedReviewViewModel(result);
                 }
             }
             catch (InvalidOperationException ex)
