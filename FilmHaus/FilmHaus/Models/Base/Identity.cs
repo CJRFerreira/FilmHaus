@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using FilmHaus.Models.Connector;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
@@ -21,12 +22,19 @@ namespace FilmHaus.Models.Base
         [StringLength(50, MinimumLength = 1)]
         public string LastName { get; set; }
 
+        [NotMapped]
+        [DataType(DataType.Text)]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
+
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }
-
-        [DataType(DataType.DateTime)]
-        public DateTime LastLogin { get; set; }
 
         public virtual ICollection<List> UserLists { get; set; }
 

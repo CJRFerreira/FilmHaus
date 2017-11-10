@@ -20,10 +20,11 @@ namespace FilmHaus.Models.Base
         [Required]
         public string Title { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime DateOfCreation { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
@@ -32,7 +33,5 @@ namespace FilmHaus.Models.Base
         public virtual ICollection<ListFilm> ListFilm { get; set; }
 
         public virtual ICollection<ListShow> ListShow { get; set; }
-
-        public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }

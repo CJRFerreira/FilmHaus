@@ -20,7 +20,7 @@ namespace FilmHaus.Models.View
             UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.DateOfCreation;
+            DateOfCreation = list.CreatedOn;
             Shared = list.Shared;
         }
 
@@ -88,7 +88,7 @@ namespace FilmHaus.Models.View
             UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.DateOfCreation;
+            DateOfCreation = list.CreatedOn;
             Shared = list.Shared;
         }
 

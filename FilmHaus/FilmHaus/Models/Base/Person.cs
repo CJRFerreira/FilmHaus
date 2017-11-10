@@ -18,6 +18,20 @@ namespace FilmHaus.Models.Base
         [DataType(DataType.Text)]
         public string LastName { get; set; }
 
+        [NotMapped]
+        [DataType(DataType.Text)]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime CreatedOn { get; set; }
+
         public virtual ICollection<FilmPersonTitle> FilmPersonTitle { get; set; }
 
         public virtual ICollection<ShowPersonTitle> ShowPersonTitle { get; set; }

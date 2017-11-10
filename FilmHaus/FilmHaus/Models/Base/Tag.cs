@@ -9,7 +9,5 @@ namespace FilmHaus.Models.Base
         public virtual ICollection<FilmTag> FilmTag { get; set; }
 
         public virtual ICollection<ShowTag> ShowTag { get; set; }
-
-        public virtual ICollection<ListTag> ListTag { get; set; }
     }
 }
