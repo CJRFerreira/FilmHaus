@@ -4,7 +4,6 @@ using FilmHaus.Services.ReviewFilms;
 using FilmHaus.Services.Reviews;
 using FilmHaus.Services.ReviewShows;
 using Microsoft.AspNet.Identity;
-using PagedList;
 using System;
 using System.Linq;
 using System.Web.Mvc;
