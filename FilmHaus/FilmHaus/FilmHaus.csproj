@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201711012011219_Review Model Changes.Designer.cs">
       <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711110057176_Update #4 - Drop ListTag.cs" />
+    <Compile Include="Migrations\201711110057176_Update #4 - Drop ListTag.Designer.cs">
+      <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -437,6 +441,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711012011219_Review Model Changes.resx">
       <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711110057176_Update #4 - Drop ListTag.resx">
+      <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -22,6 +22,37 @@ namespace FilmHaus.Models.View
         public List<UserShowViewModel> Shows { get; set; }
     }
 
+    public class SearchUserLibraryViewModel
+    {
+        public SearchUserLibraryViewModel()
+        {
+        }
+
+        public SearchUserLibraryViewModel(SearchViewModel searchViewModel)
+        {
+            SearchViewModel = searchViewModel;
+        }
+
+        public SearchUserLibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        {
+            Films = films;
+            Shows = shows;
+        }
+
+        public SearchUserLibraryViewModel(SearchViewModel searchViewModel, List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        {
+            SearchViewModel = searchViewModel;
+            Films = films;
+            Shows = shows;
+        }
+
+        public SearchViewModel SearchViewModel { get; set; }
+
+        public List<UserFilmViewModel> Films { get; set; }
+
+        public List<UserShowViewModel> Shows { get; set; }
+    }
+
     public class SearchLibraryViewModel
     {
         public SearchLibraryViewModel()
@@ -68,5 +99,22 @@ namespace FilmHaus.Models.View
         public List<ExpandedReviewViewModel> FilmReviews { get; set; }
 
         public List<ExpandedReviewViewModel> ShowReviews { get; set; }
+    }
+
+    public class ListLibraryViewModel
+    {
+        public ListLibraryViewModel()
+        {
+        }
+
+        public ListLibraryViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        {
+            Films = films;
+            Shows = shows;
+        }
+
+        public List<GeneralFilmViewModel> Films { get; set; }
+
+        public List<GeneralShowViewModel> Shows { get; set; }
     }
 }

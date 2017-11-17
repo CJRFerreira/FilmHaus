@@ -6,12 +6,13 @@ using FilmHaus.Models;
 using FilmHaus.Models.View;
 using FilmHaus.Models.Connector;
 using static FilmHaus.Services.ReviewQueryExtensions;
+using LinqKit;
 
 namespace FilmHaus.Services.ReviewFilms
 {
     public class ReviewFilmService : IReviewFilmService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
         public ReviewFilmService(FilmHausDbContext filmHausDbContext)
         {
@@ -20,17 +21,17 @@ namespace FilmHaus.Services.ReviewFilms
 
         public List<ExpandedReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public List<ExpandedReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public List<ExpandedReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
         }
 
         public void CreateReviewFilm(Guid reviewId, Guid mediaId)

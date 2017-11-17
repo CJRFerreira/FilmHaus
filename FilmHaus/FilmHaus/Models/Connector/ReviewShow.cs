@@ -26,9 +26,10 @@ namespace FilmHaus.Models.Connector
 
         public virtual Review Review { get; set; }
 
+        [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }
 
-        [Index(name: "IX_ReviewShow", order: 1, IsUnique = true)]
+        [Index(name: "IX_ReviewShow", order: 2, IsUnique = true)]
         public DateTime? ObsoletedOn { get; set; }
     }
 }

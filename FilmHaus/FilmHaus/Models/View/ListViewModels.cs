@@ -54,6 +54,7 @@ namespace FilmHaus.Models.View
         public bool Shared { get; set; }
     }
 
+
     public class CreateListViewModel
     {
         public CreateListViewModel()
