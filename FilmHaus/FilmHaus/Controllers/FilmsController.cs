@@ -84,13 +84,7 @@ namespace FilmHaus.Controllers
         // GET: Films/Edit/5
         public ActionResult Edit(string mediaId)
         {
-            return View();
-        }
-
-        // GET: Films/Edit/5
-        public ActionResult Edit(GeneralFilmViewModel viewModel)
-        {
-            return View(new EditFilmViewModel(viewModel));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(mediaId))));
         }
 
         // POST: Films/Edit/5 To protect from overposting attacks, please enable the specific

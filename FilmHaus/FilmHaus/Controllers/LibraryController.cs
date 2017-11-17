@@ -36,24 +36,6 @@ namespace FilmHaus.Controllers
                 ));
         }
 
-        // GET: Library
-        [HttpGet]
-        public ActionResult Index(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
-        {
-            return View(new UserLibraryViewModel
-                (
-                    films: films,
-                    shows: shows
-                ));
-        }
-
-        // GET: Library
-        [HttpGet]
-        public ActionResult Index(UserLibraryViewModel model)
-        {
-            return View(model);
-        }
-
         // GET: Library/MyFilms
         [HttpGet]
         public ActionResult MyFilms()
@@ -61,25 +43,11 @@ namespace FilmHaus.Controllers
             return View(UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId()));
         }
 
-        // GET: Library/MyFilms
-        [HttpGet]
-        public ActionResult MyFilms(IEnumerable<UserFilmViewModel> model)
-        {
-            return View(model);
-        }
-
         // GET: Library/MyShows
         [HttpGet]
         public ActionResult MyShows()
         {
             return View(UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId()));
-        }
-
-        // GET: Library/MyShows
-        [HttpGet]
-        public ActionResult MyShows(IEnumerable<UserShowViewModel> model)
-        {
-            return View(model);
         }
 
         // POST: Library/AddFilmToLibrary

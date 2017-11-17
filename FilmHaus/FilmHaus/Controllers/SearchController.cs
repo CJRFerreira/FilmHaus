@@ -59,7 +59,10 @@ namespace FilmHaus.Controllers
         [HttpGet]
         public ActionResult Films()
         {
-            return View();
+            return View(new SearchFilmsViewModel
+            {
+                Films = FilmService.GetAllActiveFilms()
+            });
         }
 
         // POST: Search/SearchFilms
@@ -80,7 +83,10 @@ namespace FilmHaus.Controllers
         [HttpGet]
         public ActionResult Shows()
         {
-            return View();
+            return View(new SearchShowsViewModel
+            {
+                Shows = ShowService.GetAllActiveShows()
+            });
         }
 
         // POST: Search/SearchShows

@@ -7,7 +7,7 @@
 
 <h2>@Locale.Shows</h2>
 <hr />
-@using (Html.BeginForm("SearchAll", "Search", FormMethod.Post, new { @class = "form form-inline" }))
+@using (Html.BeginForm("SearchShows", "Search", FormMethod.Post, new { @class = "form form-inline" }))
 {
     <div class="form-group">
         @Html.DisplayFor(m => m.SearchTerm)
@@ -45,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Results)
+        @foreach (var item in Model.Shows)
         {
             <tr id="@item.MediaId">
                 <td>

@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201711110057176_Update #4 - Drop ListTag.Designer.cs">
       <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711172036462_Update #5 - Updated DbContext.cs" />
+    <Compile Include="Migrations\201711172036462_Update #5 - Updated DbContext.Designer.cs">
+      <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -444,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711110057176_Update #4 - Drop ListTag.resx">
       <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711172036462_Update #5 - Updated DbContext.resx">
+      <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

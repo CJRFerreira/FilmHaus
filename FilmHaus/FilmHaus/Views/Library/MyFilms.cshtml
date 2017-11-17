@@ -25,7 +25,7 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-            {
+        {
             <tr id="@item.MediaId">
                 <td>
                     <img src="@Url.Content(item.PosterUri.ToString())" alt="@item.MediaName" />
