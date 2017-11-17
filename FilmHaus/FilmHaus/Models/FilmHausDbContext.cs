@@ -120,7 +120,5 @@ namespace FilmHaus.Models
         public DbSet<ReviewFilm> ReviewFilms { get; set; }
 
         public DbSet<ReviewShow> ReviewShows { get; set; }
-
-        public DbSet<ListTag> ListTags { get; set; }
     }
 }

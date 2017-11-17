@@ -178,14 +178,14 @@ namespace FilmHaus.Controllers
                 LastName = model.LastName,
                 UserName = model.Email,
                 Email = model.Email,
-                CreatedOn = DateTime.Now,
-                LastLogin = DateTime.Now
+                CreatedOn = DateTime.Now
             };
 
             var result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
+                await UserManager.AddToRoleAsync(user.Id, "User");
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                 // For more information on how to enable account confirmation and password reset
@@ -196,8 +196,6 @@ namespace FilmHaus.Controllers
                 // protocol: Request.Url.Scheme); await UserManager.SendEmailAsync(user.Id, "Confirm
                 // your account", "Please confirm your account by clicking <a href=\"" + callbackUrl
                 // + "\">here</a>");
-
-                await UserManager.AddToRoleAsync(user.Id, "User");
 
                 return RedirectToAction("Index", "Home");
             }

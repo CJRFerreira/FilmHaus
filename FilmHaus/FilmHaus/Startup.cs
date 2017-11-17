@@ -25,10 +25,10 @@ namespace FilmHaus
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<User>(new UserStore<User>(context));
 
-            if (!roleManager.RoleExists("Admin"))
+            if (!roleManager.RoleExists("Administrator"))
             {
                 var role = new IdentityRole();
-                role.Name = "Admin";
+                role.Name = "Administrator";
                 roleManager.Create(role);
 
                 var admin = new User
@@ -44,7 +44,7 @@ namespace FilmHaus
                 var userCheck = userManager.Create(admin, adminPassword);
                 if (userCheck.Succeeded)
                 {
-                    var result = userManager.AddToRole(admin.Id, "Admin");
+                    var result = userManager.AddToRole(admin.Id, "Administrator");
                 }
             }
 
