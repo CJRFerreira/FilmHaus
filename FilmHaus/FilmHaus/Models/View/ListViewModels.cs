@@ -20,7 +20,7 @@ namespace FilmHaus.Models.View
             UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.CreatedOn;
+            CreatedOn = list.CreatedOn;
             Shared = list.Shared;
         }
 
@@ -30,7 +30,7 @@ namespace FilmHaus.Models.View
             UserId = list.UserId;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.DateOfCreation;
+            CreatedOn = list.CreatedOn;
             Shared = list.Shared;
         }
 
@@ -48,12 +48,11 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
     }
-
 
     public class CreateListViewModel
     {
@@ -70,7 +69,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
@@ -89,7 +88,7 @@ namespace FilmHaus.Models.View
             UserId = list.Id;
             Title = list.Title;
             Description = list.Description;
-            DateOfCreation = list.CreatedOn;
+            CreatedOn = list.CreatedOn;
             Shared = list.Shared;
         }
 
@@ -117,7 +116,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "CreatedOn", ResourceType = typeof(Locale))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]

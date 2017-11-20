@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using LinqKit;
 using FilmHaus.Enums;
 using FilmHaus.Models;
 using FilmHaus.Models.View;
 using FilmHaus.Models.Base;
-using FilmHaus.Models.Connector;
 using FilmHaus.Services.ReviewFilms;
 using FilmHaus.Services.ReviewShows;
-using LinqKit;
-using static FilmHaus.Services.ReviewQueryExtensions;
 using FilmHaus.Exceptions;
+using static FilmHaus.Services.ReviewQueryExtensions;
 
 namespace FilmHaus.Services.Reviews
 {
@@ -19,9 +18,9 @@ namespace FilmHaus.Services.Reviews
     {
         private FilmHausDbContext FilmHausDbContext { get; set; }
 
-        private IReviewFilmService ReviewFilmService { get; set; }
+        private IReviewFilmService ReviewFilmService { get; }
 
-        private IReviewShowService ReviewShowService { get; set; }
+        private IReviewShowService ReviewShowService { get; }
 
         public ReviewService(FilmHausDbContext filmHausDbContext, IReviewFilmService reviewFilmService, IReviewShowService reviewShowService)
         {

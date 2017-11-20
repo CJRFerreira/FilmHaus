@@ -7,5 +7,12 @@ namespace FilmHaus.Services.Persons
 {
     public interface IPersonService
     {
+        void Create(CreatePersonViewModel person);
+
+        PersonViewModel Retrieve(Guid personId);
+
+        void Update(Guid personId, EditPersonViewModel person);
+
+        void Delete(Guid personId);
     }
 }

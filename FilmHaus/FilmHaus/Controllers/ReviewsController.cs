@@ -29,41 +29,21 @@ namespace FilmHaus.Controllers
         [HttpGet]
         public ActionResult Details(Guid reviewId)
         {
-            var review = ReviewService.GetReviewByReviewId(reviewId);
+            var result = ReviewService.GetReviewByReviewId(reviewId);
 
-            if (review != null)
-                return View();
-
-            return RedirectToAction("Index", "Library");
-        }
-
-        // GET: Review/Details/5
-        [HttpGet]
-        public ActionResult Details(BaseReviewViewModel viewModel)
-        {
-            if (viewModel != null)
-                return View(viewModel);
+            if (result != null)
+                return View(result);
 
             return RedirectToAction("Index", "Library");
         }
 
         // GET: Reviews/Edit/5
-        public ActionResult Edit(Guid reviewId)
+        public ActionResult Edit(string reviewId)
         {
-            var result = ReviewService.GetReviewByReviewId(reviewId);
+            var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
 
             if (result.Id == this.User.Identity.GetUserId())
                 return View(new EditReviewViewModel(result));
-
-            return RedirectToAction("Index", "Library");
-        }
-
-        // GET: Reviews/Edit/5
-        [HttpGet]
-        public ActionResult Edit(BaseReviewViewModel viewModel)
-        {
-            if (viewModel.Id == this.User.Identity.GetUserId())
-                return PartialView(new EditReviewViewModel(viewModel));
 
             return RedirectToAction("Index", "Library");
         }

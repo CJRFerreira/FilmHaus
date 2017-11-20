@@ -38,14 +38,6 @@ namespace FilmHaus.Controllers
             return View("Index");
         }
 
-        public ActionResult Details(GeneralShowViewModel viewModel)
-        {
-            if (viewModel != null)
-                return View(viewModel);
-
-            return View("Index", ShowService.GetAllShows());
-        }
-
         // GET: Shows/Create
         public ActionResult Create()
         {
@@ -77,12 +69,6 @@ namespace FilmHaus.Controllers
         public ActionResult Edit(string mediaId)
         {
             return View();
-        }
-
-        // GET: Shows/Edit/5
-        public ActionResult Edit(GeneralShowViewModel viewModel)
-        {
-            return View(new EditShowViewModel(viewModel));
         }
 
         // POST: Shows/Edit/5 To protect from overposting attacks, please enable the specific

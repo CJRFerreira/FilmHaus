@@ -23,6 +23,7 @@ namespace FilmHaus.Models.View
             Shared = review.Shared;
             Flagged = review.Flagged;
             CreatedOn = review.CreatedOn;
+            ReviewType = review.ReviewType;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
@@ -100,6 +101,7 @@ namespace FilmHaus.Models.View
             Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
+            ReviewType = review.ReviewType;
         }
 
         public EditReviewViewModel(BaseReviewViewModel review)
@@ -108,6 +110,7 @@ namespace FilmHaus.Models.View
             Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
+            ReviewType = review.ReviewType;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
