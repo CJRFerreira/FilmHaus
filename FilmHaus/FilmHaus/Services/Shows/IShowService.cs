@@ -10,8 +10,6 @@ namespace FilmHaus.Services.Shows
 
         List<GeneralShowViewModel> GetAllShows();
 
-        List<GeneralShowViewModel> GetAllActiveShows();
-
         List<GeneralShowViewModel> GetShowsBySearchTerm(string searchTerm);
 
         List<GeneralShowViewModel> GetShowsByListId(Guid mediaId);
@@ -19,8 +17,6 @@ namespace FilmHaus.Services.Shows
         void CreateShow(CreateShowViewModel show);
 
         void DeleteShowByMediaId(Guid mediaId);
-
-        void ObsoleteShowByMediaId(Guid mediaId);
 
         void UpdateShowByMediaId(Guid mediaId, EditShowViewModel show);
     }

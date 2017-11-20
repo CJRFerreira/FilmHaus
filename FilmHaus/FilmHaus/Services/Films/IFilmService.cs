@@ -10,8 +10,6 @@ namespace FilmHaus.Services.Films
 
         List<GeneralFilmViewModel> GetAllFilms();
 
-        List<GeneralFilmViewModel> GetAllActiveFilms();
-
         List<GeneralFilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
         List<GeneralFilmViewModel> GetFilmsByListId(Guid mediaId);
@@ -19,8 +17,6 @@ namespace FilmHaus.Services.Films
         void CreateFilm(CreateFilmViewModel film);
 
         void DeleteFilmByMediaId(Guid mediaId);
-
-        void ObsoleteFilmByMediaId(Guid mediaId);
 
         void UpdateFilmByMediaId(Guid mediaId, EditFilmViewModel film);
     }

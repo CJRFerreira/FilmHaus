@@ -126,7 +126,7 @@ namespace FilmHaus.Controllers
         {
             try
             {
-                FilmService.ObsoleteFilmByMediaId(Guid.Parse(mediaId));
+                FilmService.DeleteFilmByMediaId(Guid.Parse(mediaId));
             }
             catch (Exception)
             {

@@ -124,7 +124,7 @@ namespace FilmHaus.Controllers
         {
             try
             {
-                ShowService.ObsoleteShowByMediaId(Guid.Parse(mediaId));
+                ShowService.DeleteShowByMediaId(Guid.Parse(mediaId));
             }
             catch (Exception ex)
             {

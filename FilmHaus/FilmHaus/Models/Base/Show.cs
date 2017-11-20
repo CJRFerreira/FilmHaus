@@ -22,6 +22,7 @@ namespace FilmHaus.Models.Base
             DateOfRelease = show.DateOfRelease;
             Accolades = show.Accolades;
             NumberOfSeasons = show.NumberOfSeasons;
+            CreatedOn = show.CreatedOn;
         }
 
         public int NumberOfSeasons { get; set; }

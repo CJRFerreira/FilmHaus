@@ -43,7 +43,7 @@
                         <li>@Html.ActionLink(Locale.MyShows, "MyShows", "Library")</li>
                     </ul>
                 </li>
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Administrator"))
                 {
                     <li>
                         @Html.ActionLink(Locale.FindFilms, "Index", "Films")

@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201711172036462_Update #5 - Updated DbContext.Designer.cs">
       <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711201826129_Update #6 - Removed Media Index.cs" />
+    <Compile Include="Migrations\201711201826129_Update #6 - Removed Media Index.Designer.cs">
+      <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -451,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711172036462_Update #5 - Updated DbContext.resx">
       <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201826129_Update #6 - Removed Media Index.resx">
+      <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

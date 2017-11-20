@@ -58,26 +58,6 @@ namespace FilmHaus.Services.Films
             }
         }
 
-        public void ObsoleteFilmByMediaId(Guid mediaId)
-        {
-            try
-            {
-                var result = FilmHausDbContext.Films.Find(mediaId);
-
-                if (result == null)
-                    throw new ArgumentNullException();
-
-                result.ObsoletedOn = DateTime.Now;
-
-                FilmHausDbContext.Entry(result).State = EntityState.Modified;
-                FilmHausDbContext.SaveChanges();
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw ex;
-            }
-        }
-
         public List<GeneralFilmViewModel> GetAllFilms()
         {
             return FilmHausDbContext.Films.AsExpandable().Select(GetGeneralFilmViewModel()).ToList();
@@ -120,11 +100,6 @@ namespace FilmHaus.Services.Films
             {
                 throw ex;
             }
-        }
-
-        public List<GeneralFilmViewModel> GetAllActiveFilms()
-        {
-            return FilmHausDbContext.Films.Where(f => f.ObsoletedOn != null).Select(GetGeneralFilmViewModel()).ToList();
         }
     }
 }

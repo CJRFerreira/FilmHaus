@@ -33,14 +33,14 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchAll(SearchViewModel searchViewModel)
         {
-            var films = FilmService.GetAllActiveFilms()
+            var films = FilmService.GetAllFilms()
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
                 && f.Rating >= searchViewModel.Rating)
                 .ToList();
 
-            var shows = ShowService.GetAllActiveShows()
+            var shows = ShowService.GetAllShows()
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear
@@ -61,7 +61,7 @@ namespace FilmHaus.Controllers
         {
             return View(new SearchFilmsViewModel
             {
-                Films = FilmService.GetAllActiveFilms()
+                Films = FilmService.GetAllFilms()
             });
         }
 
@@ -69,7 +69,7 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchFilms(SearchFilmsViewModel searchViewModel)
         {
-            searchViewModel.Films = FilmService.GetAllActiveFilms()
+            searchViewModel.Films = FilmService.GetAllFilms()
                 .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
                 && f.Accolades == searchViewModel.Accolades
                 && f.DateOfRelease.Year == searchViewModel.ReleaseYear
@@ -85,7 +85,7 @@ namespace FilmHaus.Controllers
         {
             return View(new SearchShowsViewModel
             {
-                Shows = ShowService.GetAllActiveShows()
+                Shows = ShowService.GetAllShows()
             });
         }
 
@@ -93,7 +93,7 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchShows(SearchShowsViewModel searchViewModel)
         {
-            searchViewModel.Shows = ShowService.GetAllActiveShows()
+            searchViewModel.Shows = ShowService.GetAllShows()
                 .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
                 && s.Accolades == searchViewModel.Accolades
                 && s.DateOfRelease.Year == searchViewModel.ReleaseYear

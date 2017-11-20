@@ -19,10 +19,9 @@ namespace FilmHaus.Models.Base
             DateOfRelease = media.DateOfRelease;
             Accolades = media.Accolades;
             CreatedOn = media.CreatedOn;
-            ObsoletedOn = media.ObsoletedOn;
         }
 
-        public Media(Guid mediaId, string posterUri, string mediaName, DateTime dateOfRelease, AwardStatus accolades, DateTime createdOn, DateTime obsoletedOn)
+        public Media(Guid mediaId, string posterUri, string mediaName, DateTime dateOfRelease, AwardStatus accolades, DateTime createdOn)
         {
             MediaId = mediaId;
             PosterUri = posterUri;
@@ -30,11 +29,9 @@ namespace FilmHaus.Models.Base
             DateOfRelease = dateOfRelease;
             Accolades = accolades;
             CreatedOn = createdOn;
-            ObsoletedOn = obsoletedOn;
         }
 
         [Key]
-        [Index(name: "IX_Media", order: 0, IsUnique = true)]
         public Guid MediaId { get; set; }
 
         [DataType(DataType.ImageUrl)]
@@ -50,8 +47,5 @@ namespace FilmHaus.Models.Base
 
         [Required]
         public DateTime CreatedOn { get; set; }
-
-        [Index(name: "IX_Media", order: 1, IsUnique = true)]
-        public DateTime? ObsoletedOn { get; set; }
     }
 }
