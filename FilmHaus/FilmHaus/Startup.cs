@@ -35,6 +35,7 @@ namespace FilmHaus
                 {
                     FirstName = "Christian",
                     LastName = "Ferreira",
+                    UserName = "christian.ferreira@mohawkcollege.ca",
                     Email = "christian.ferreira@mohawkcollege.ca",
                     EmailConfirmed = true,
                     CreatedOn = DateTime.Now
@@ -58,6 +59,7 @@ namespace FilmHaus
                 {
                     FirstName = "Bob",
                     LastName = "Burger",
+                    UserName = "bob.burger@bobsburgers.com",
                     Email = "bob.burger@bobsburgers.com",
                     EmailConfirmed = true,
                     CreatedOn = DateTime.Now
@@ -81,6 +83,7 @@ namespace FilmHaus
                 {
                     FirstName = "John",
                     LastName = "Doe",
+                    UserName = "john.doe@realemail.co.uk",
                     Email = "john.doe@realemail.co.uk",
                     EmailConfirmed = true,
                     CreatedOn = DateTime.Now
