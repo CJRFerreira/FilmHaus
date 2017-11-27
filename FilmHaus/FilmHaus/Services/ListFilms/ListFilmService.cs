@@ -6,6 +6,7 @@ using FilmHaus.Models;
 using FilmHaus.Models.View;
 using FilmHaus.Models.Connector;
 using static FilmHaus.Services.FilmQueryExtensions;
+using static FilmHaus.Services.ListQueryExtensions;
 using LinqKit;
 
 namespace FilmHaus.Services.ListFilms
@@ -19,9 +20,14 @@ namespace FilmHaus.Services.ListFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<GeneralFilmViewModel> GetAllFilmsByListId(Guid listId)
+        public List<GeneralFilmViewModel> GetAllFilmsForList(Guid listId)
         {
             return FilmHausDbContext.ListFilms.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Film).Select(GetGeneralFilmViewModel()).ToList();
+        }
+
+        public List<ListViewModel> GetAllListsWithFilm(Guid mediaId)
+        {
+            return FilmHausDbContext.ListFilms.AsExpandable().Where(lf => lf.MediaId == mediaId).Select(lf => lf.List).Select(GetListViewModel()).ToList();
         }
 
         public void AddFilmToList(Guid listId, Guid mediaId)
@@ -44,7 +50,7 @@ namespace FilmHaus.Services.ListFilms
                 var listFilm = FilmHausDbContext.ListFilms.Find(listFilmId);
 
                 if (listFilm == null)
-                    throw new ArgumentNullException();
+                    throw new KeyNotFoundException();
 
                 FilmHausDbContext.ListFilms.Remove(listFilm);
                 FilmHausDbContext.SaveChanges();
@@ -62,7 +68,7 @@ namespace FilmHaus.Services.ListFilms
                 var listFilm = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
 
                 if (listFilm != null)
-                    throw new ArgumentNullException();
+                    throw new KeyNotFoundException();
 
                 FilmHausDbContext.ListFilms.Remove(listFilm);
                 FilmHausDbContext.SaveChanges();
@@ -80,7 +86,7 @@ namespace FilmHaus.Services.ListFilms
                 var result = FilmHausDbContext.ListFilms.Find(listFilmId);
 
                 if (result == null)
-                    throw new ArgumentNullException();
+                    throw new KeyNotFoundException();
 
                 result.ObsoletedOn = DateTime.Now;
 
@@ -100,7 +106,7 @@ namespace FilmHaus.Services.ListFilms
                 var result = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
 
                 if (result == null)
-                    throw new ArgumentNullException();
+                    throw new KeyNotFoundException();
 
                 result.ObsoletedOn = DateTime.Now;
 

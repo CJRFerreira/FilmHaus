@@ -12,15 +12,9 @@ namespace FilmHaus.Services.Genres
     {
         private FilmHausDbContext FilmHausDbContext { get; set; }
 
-        private IFilmGenreService FilmGenreService { get; set; }
-
-        private IShowGenreService ShowGenreService { get; set; }
-
-        public GenreService(FilmHausDbContext filmHausDbContext, IFilmGenreService filmGenreService, IShowGenreService showGenreService)
+        public GenreService(FilmHausDbContext filmHausDbContext)
         {
             FilmHausDbContext = filmHausDbContext;
-            ShowGenreService = showGenreService;
-            FilmGenreService = filmGenreService;
         }
 
         public void Create(CreateGenreViewModel genre)

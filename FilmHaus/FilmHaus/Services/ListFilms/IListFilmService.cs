@@ -6,7 +6,9 @@ namespace FilmHaus.Services.ListFilms
 {
     public interface IListFilmService
     {
-        List<GeneralFilmViewModel> GetAllFilmsByListId(Guid listId);
+        List<GeneralFilmViewModel> GetAllFilmsForList(Guid listId);
+
+        List<ListViewModel> GetAllListsWithFilm(Guid mediaId);
 
         void AddFilmToList(Guid listId, Guid mediaId);
 

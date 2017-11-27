@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using FilmHaus.Models.View;
 using FilmHaus.Models;
-using FilmHaus.Models.Base;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
+using static FilmHaus.Services.ShowQueryExtensions;
+using LinqKit;
 
 namespace FilmHaus.Services.ListShows
 {
@@ -21,32 +21,96 @@ namespace FilmHaus.Services.ListShows
 
         public List<GeneralShowViewModel> GetAllShowsByListId(Guid listId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public void CreateListShow(Guid listId, Guid mediaId)
+        public void AddShowToList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.ListShows.Add(new ListShow
+            {
+                ListShowId = Guid.NewGuid(),
+                MediaId = mediaId,
+                ListId = listId,
+                CreatedOn = DateTime.Now,
+                ObsoletedOn = null
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
-        public void DeleteListShow(Guid listShowId)
+        public void RemoveShowInList(Guid listShowId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listShow = FilmHausDbContext.ListShows.Find(listShowId);
+
+                if (listShow == null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.ListShows.Remove(listShow);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void DeleteListShow(Guid listId, Guid mediaId)
+        public void RemoveShowInList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listShow = FilmHausDbContext.ListShows.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
+
+                if (listShow != null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.ListShows.Remove(listShow);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void ObsoleteListShow(Guid listShowId)
+        public void ObsoleteShowInList(Guid listShowId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListShows.Find(listShowId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void ObsoleteListShow(Guid listId, Guid mediaId)
+        public void ObsoleteShowInList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListShows.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
     }
 }

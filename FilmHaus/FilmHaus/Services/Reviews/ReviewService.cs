@@ -194,27 +194,7 @@ namespace FilmHaus.Services.Reviews
                 if (result == null)
                     throw new ArgumentNullException();
 
-                switch (result.ReviewType)
-                {
-                    case ReviewType.Film:
-                        var reviewFilmQuery = GetReviewViewModelWithFilm();
-                        return reviewFilmQuery.Invoke(result);
-
-                    case ReviewType.Show:
-                        var reviewShowQuery = GetReviewViewModelWithShow();
-                        return reviewShowQuery.Invoke(result);
-
-                    case ReviewType.Season:
-                    //var reviewSeasonQuery = GetReviewViewModelWithSeason();
-                    //return reviewSeasonQuery.Invoke(result);
-
-                    case ReviewType.Episode:
-                    //var reviewEpisodeQuery = GetReviewViewModelWithEpisode();
-                    //return reviewEpisodeQuery.Invoke(result);
-
-                    default:
-                        return new BaseReviewViewModel(result);
-                }
+                return new BaseReviewViewModel(result);
             }
             catch (InvalidOperationException ex)
             {

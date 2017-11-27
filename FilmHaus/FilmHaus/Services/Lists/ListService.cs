@@ -74,7 +74,7 @@ namespace FilmHaus.Services.Lists
                 var result = FilmHausDbContext.Lists.Find(listId);
 
                 if (result == null)
-                    throw new ArgumentNullException();
+                    throw new KeyNotFoundException();
 
                 result.Description = list.Description;
                 result.Shared = list.Shared;
@@ -93,7 +93,7 @@ namespace FilmHaus.Services.Lists
             var result = FilmHausDbContext.Lists.Find(listId);
 
             if (result == null)
-                throw new ArgumentNullException();
+                throw new KeyNotFoundException();
 
             return new ListViewModel(result);
         }
@@ -103,7 +103,7 @@ namespace FilmHaus.Services.Lists
             return new ListLibraryViewModel
             {
                 List = GetListByListId(listId),
-                Films = ListFilmService.GetAllFilmsByListId(listId),
+                Films = ListFilmService.GetAllFilmsForList(listId),
                 Shows = ListShowService.GetAllShowsByListId(listId)
             };
         }

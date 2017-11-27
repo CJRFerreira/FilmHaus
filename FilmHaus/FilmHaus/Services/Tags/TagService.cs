@@ -12,10 +12,6 @@ namespace FilmHaus.Services.Tags
     {
         private FilmHausDbContext FilmHausDbContext { get; set; }
 
-        private IFilmTagService FilmTagService { get; set; }
-
-        private IShowTagService ShowTagService { get; set; }
-
         public TagService(FilmHausDbContext filmHausDbContext)
         {
             FilmHausDbContext = filmHausDbContext;

@@ -5,7 +5,6 @@ using FilmHaus.Services.Reviews;
 using FilmHaus.Services.ReviewShows;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
@@ -27,9 +26,9 @@ namespace FilmHaus.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(Guid reviewId)
+        public ActionResult Details(string reviewId)
         {
-            var result = ReviewService.GetReviewByReviewId(reviewId);
+            var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
 
             if (result != null)
                 return View(result);
@@ -38,6 +37,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [HttpGet]
         public ActionResult Edit(string reviewId)
         {
             var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
@@ -73,11 +73,13 @@ namespace FilmHaus.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult Create(Guid mediaId, ReviewType reviewType)
         {
             return PartialView("CreateReviewPartial", new CreateReviewViewModel(mediaId, reviewType));
         }
 
+        [HttpPost]
         public ActionResult Create(CreateReviewViewModel viewModel)
         {
             switch (viewModel.ReviewType)
