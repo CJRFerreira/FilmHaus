@@ -15,7 +15,7 @@ namespace FilmHaus.Services.Lists
 
         ListViewModel GetListByListId(Guid listId);
 
-        ListViewModel GetListWithMediaByListId(Guid listId);
+        ListLibraryViewModel GetListWithMediaByListId(Guid listId);
 
         List<ListViewModel> GetAllSharedLists();
 

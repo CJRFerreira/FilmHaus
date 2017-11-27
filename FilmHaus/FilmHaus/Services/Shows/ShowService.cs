@@ -54,7 +54,7 @@ namespace FilmHaus.Services.Shows
             }
             catch (InvalidOperationException ex)
             {
-                throw ex;
+                throw;
             }
         }
 

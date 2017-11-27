@@ -1,4 +1,8 @@
-﻿using FilmHaus.Models;
+﻿using System;
+using FilmHaus.Models;
+using FilmHaus.Models.View;
+using FilmHaus.Models.Base;
+using System.Data.Entity;
 
 namespace FilmHaus.Services.Persons
 {
@@ -9,6 +13,69 @@ namespace FilmHaus.Services.Persons
         public PersonService(FilmHausDbContext filmHausDbContext)
         {
             FilmHausDbContext = filmHausDbContext;
+        }
+
+        public void Create(CreatePersonViewModel person)
+        {
+            FilmHausDbContext.Persons.Add(new Person
+            {
+                PersonId = Guid.NewGuid(),
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                CreatedOn = DateTime.Now
+            });
+            FilmHausDbContext.SaveChanges();
+        }
+
+        public PersonViewModel Retrieve(Guid personId)
+        {
+            var result = FilmHausDbContext.Persons.Find(personId);
+
+            if (result == null)
+                throw new ArgumentNullException();
+
+            return new PersonViewModel(result);
+        }
+
+        public void Update(Guid personId, EditPersonViewModel person)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Persons.Find(personId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.FirstName = person.FirstName;
+                result.LastName = person.LastName;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Delete(Guid personId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Persons.Find(personId);
+
+                if (result != null)
+                {
+                    FilmHausDbContext.Persons.Remove(result);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw;
+            }
         }
     }
 }
