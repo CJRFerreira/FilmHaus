@@ -8,14 +8,14 @@ namespace FilmHaus.Services.ListFilms
     {
         List<GeneralFilmViewModel> GetAllFilmsByListId(Guid listId);
 
-        void CreateListFilm(Guid listId, Guid mediaId);
+        void AddFilmToList(Guid listId, Guid mediaId);
 
-        void DeleteListFilm(Guid listFilmId);
+        void RemoveFilmInList(Guid listFilmId);
 
-        void DeleteListFilm(Guid listId, Guid mediaId);
+        void RemoveFilmInList(Guid listId, Guid mediaId);
 
-        void ObsoleteListFilm(Guid listFilmId);
+        void ObsoleteFilmInList(Guid listFilmId);
 
-        void ObsoleteListFilm(Guid listId, Guid mediaId);
+        void ObsoleteFilmInList(Guid listId, Guid mediaId);
     }
 }

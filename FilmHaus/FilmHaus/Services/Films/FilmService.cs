@@ -68,14 +68,9 @@ namespace FilmHaus.Services.Films
             return FilmHausDbContext.Films.AsExpandable().Where(f => f.MediaId == mediaId).Select(GetGeneralFilmViewModel()).FirstOrDefault();
         }
 
-        public List<GeneralFilmViewModel> GetFilmsByListId(Guid mediaId)
-        {
-            return FilmHausDbContext.ListFilms.AsExpandable().Where(l => l.ListId == mediaId).Select(l => l.Film).Select(GetGeneralFilmViewModel()).ToList();
-        }
-
         public List<GeneralFilmViewModel> GetFilmsBySearchTerm(string searchTerm)
         {
-            return FilmHausDbContext.Films.Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralFilmViewModel()).ToList();
+            return FilmHausDbContext.Films.AsExpandable().Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralFilmViewModel()).ToList();
         }
 
         public void UpdateFilmByMediaId(Guid mediaId, EditFilmViewModel film)

@@ -12,8 +12,6 @@ namespace FilmHaus.Services.Films
 
         List<GeneralFilmViewModel> GetFilmsBySearchTerm(string searchTerm);
 
-        List<GeneralFilmViewModel> GetFilmsByListId(Guid mediaId);
-
         void CreateFilm(CreateFilmViewModel film);
 
         void DeleteFilmByMediaId(Guid mediaId);

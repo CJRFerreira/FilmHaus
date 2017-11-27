@@ -5,7 +5,8 @@ using System.Linq;
 using FilmHaus.Models;
 using FilmHaus.Models.View;
 using FilmHaus.Models.Connector;
-using static FilmHaus.Services.ReviewQueryExtensions;
+using static FilmHaus.Services.FilmQueryExtensions;
+using LinqKit;
 
 namespace FilmHaus.Services.ListFilms
 {
@@ -20,32 +21,96 @@ namespace FilmHaus.Services.ListFilms
 
         public List<GeneralFilmViewModel> GetAllFilmsByListId(Guid listId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ListFilms.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Film).Select(GetGeneralFilmViewModel()).ToList();
         }
 
-        public void CreateListFilm(Guid listId, Guid mediaId)
+        public void AddFilmToList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.ListFilms.Add(new ListFilm
+            {
+                ListFilmId = Guid.NewGuid(),
+                MediaId = mediaId,
+                ListId = listId,
+                CreatedOn = DateTime.Now,
+                ObsoletedOn = null
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
-        public void DeleteListFilm(Guid listFilmId)
+        public void RemoveFilmInList(Guid listFilmId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listFilm = FilmHausDbContext.ListFilms.Find(listFilmId);
+
+                if (listFilm == null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.ListFilms.Remove(listFilm);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void DeleteListFilm(Guid listId, Guid mediaId)
+        public void RemoveFilmInList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listFilm = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
+
+                if (listFilm != null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.ListFilms.Remove(listFilm);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void ObsoleteListFilm(Guid listFilmId)
+        public void ObsoleteFilmInList(Guid listFilmId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListFilms.Find(listFilmId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
 
-        public void ObsoleteListFilm(Guid listId, Guid mediaId)
+        public void ObsoleteFilmInList(Guid listId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
         }
     }
 }

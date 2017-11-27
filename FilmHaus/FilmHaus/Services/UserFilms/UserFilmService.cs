@@ -26,7 +26,8 @@ namespace FilmHaus.Services.UserFilms
                 UserFilmId = Guid.NewGuid(),
                 MediaId = mediaId,
                 Id = userId,
-                CreatedOn = DateTime.Now
+                CreatedOn = DateTime.Now,
+                ObsoletedOn = null
             });
             FilmHausDbContext.SaveChanges();
         }
@@ -35,15 +36,31 @@ namespace FilmHaus.Services.UserFilms
         {
             try
             {
-                var film = FilmHausDbContext.UserFilms.Find(userFilmId);
+                var userFilm = FilmHausDbContext.UserFilms.Find(userFilmId);
 
-                if (film != null)
-                {
-                    FilmHausDbContext.UserFilms.Remove(film);
-                    FilmHausDbContext.SaveChanges();
-                }
-                else
+                if (userFilm != null)
                     throw new ArgumentNullException();
+
+                FilmHausDbContext.UserFilms.Remove(userFilm);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void RemoveFilmFromUserLibrary(Guid mediaId, string userId)
+        {
+            try
+            {
+                var userFilm = FilmHausDbContext.UserFilms.Where(uf => (uf.Id == userId && uf.MediaId == mediaId) && uf.ObsoletedOn == null).FirstOrDefault();
+
+                if (userFilm != null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.UserFilms.Remove(userFilm);
+                FilmHausDbContext.SaveChanges();
             }
             catch (InvalidOperationException ex)
             {
@@ -71,14 +88,29 @@ namespace FilmHaus.Services.UserFilms
             }
         }
 
+        public void ObsoleteFilmInUserLibrary(Guid mediaId, string userId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.UserFilms.Where(uf => (uf.Id == userId && uf.MediaId == mediaId) && uf.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<UserFilmViewModel> GetAllFilmsForUser(string userId)
         {
             return FilmHausDbContext.UserFilms.AsExpandable().Where(uf => uf.Id == userId && uf.ObsoletedOn == null).Select(GetUserFilmViewModel()).ToList();
-        }
-
-        public void ObsoleteFilmInUserLibrary(Guid mediaId, string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
