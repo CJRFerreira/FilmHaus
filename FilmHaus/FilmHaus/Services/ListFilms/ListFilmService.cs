@@ -13,7 +13,7 @@ namespace FilmHaus.Services.ListFilms
 {
     public class ListFilmService : IListFilmService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
         public ListFilmService(FilmHausDbContext filmHausDbContext)
         {

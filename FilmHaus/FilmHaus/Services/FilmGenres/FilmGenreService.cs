@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using static FilmHaus.Services.FilmQueryExtensions;
+using static FilmHaus.Services.GenreQueryExtensions;
 
 namespace FilmHaus.Services.FilmGenres
 {
     public class FilmGenreService : IFilmGenreService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
         public FilmGenreService(FilmHausDbContext filmHausDbContext)
         {

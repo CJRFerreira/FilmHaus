@@ -12,7 +12,7 @@ namespace FilmHaus.Services.FilmTags
 {
     public class FilmTagService : IFilmTagService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
         public FilmTagService(FilmHausDbContext filmHausDbContext)
         {

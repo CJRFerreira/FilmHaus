@@ -281,7 +281,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilmGenres\IFilmGenreService.cs" />
     <Compile Include="Services\FilmGenres\FilmGenreService.cs" />
+    <Compile Include="Services\GenreQueryExtensions.cs" />
     <Compile Include="Services\PersonQueryExtensions.cs" />
+    <Compile Include="Services\Reports\IReportService.cs" />
+    <Compile Include="Services\Reports\ReportService.cs" />
     <Compile Include="Services\ShowPersonTitles\IShowPersonTitleService.cs" />
     <Compile Include="Services\ShowPersonTitles\ShowPersonTitleService.cs" />
     <Compile Include="Services\FilmTags\IFilmTagService.cs" />
