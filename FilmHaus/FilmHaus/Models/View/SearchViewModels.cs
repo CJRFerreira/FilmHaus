@@ -56,7 +56,7 @@ namespace FilmHaus.Models.View
             Shows = shows;
         }
 
-        public SearchAllViewModel(SearchAllViewModel searchAllViewModel)
+        public SearchAllViewModel(SearchAllViewModel searchAllViewModel) : base(searchAllViewModel)
         {
             SearchTerm = searchAllViewModel.SearchTerm;
             Accolades = searchAllViewModel.Accolades;
@@ -82,12 +82,8 @@ namespace FilmHaus.Models.View
             Shows = shows;
         }
 
-        public SearchShowsViewModel(SearchShowsViewModel searchShowsViewModel)
+        public SearchShowsViewModel(SearchShowsViewModel searchShowsViewModel) : base(searchShowsViewModel)
         {
-            SearchTerm = searchShowsViewModel.SearchTerm;
-            Accolades = searchShowsViewModel.Accolades;
-            ReleaseYear = searchShowsViewModel.ReleaseYear;
-            Rating = searchShowsViewModel.Rating;
             Shows = searchShowsViewModel.Shows;
         }
 
@@ -105,12 +101,8 @@ namespace FilmHaus.Models.View
             Films = films;
         }
 
-        public SearchFilmsViewModel(SearchFilmsViewModel searchFilmsViewModel)
+        public SearchFilmsViewModel(SearchFilmsViewModel searchFilmsViewModel) : base(searchFilmsViewModel)
         {
-            SearchTerm = searchFilmsViewModel.SearchTerm;
-            Accolades = searchFilmsViewModel.Accolades;
-            ReleaseYear = searchFilmsViewModel.ReleaseYear;
-            Rating = searchFilmsViewModel.Rating;
             Films = searchFilmsViewModel.Films;
         }
 
