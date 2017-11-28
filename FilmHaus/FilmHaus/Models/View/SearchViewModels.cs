@@ -58,10 +58,6 @@ namespace FilmHaus.Models.View
 
         public SearchAllViewModel(SearchAllViewModel searchAllViewModel) : base(searchAllViewModel)
         {
-            SearchTerm = searchAllViewModel.SearchTerm;
-            Accolades = searchAllViewModel.Accolades;
-            ReleaseYear = searchAllViewModel.ReleaseYear;
-            Rating = searchAllViewModel.Rating;
             Films = searchAllViewModel.Films;
             Shows = searchAllViewModel.Shows;
         }
