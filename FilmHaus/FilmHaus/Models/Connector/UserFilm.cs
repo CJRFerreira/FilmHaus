@@ -8,7 +8,6 @@ using System.Web;
 
 namespace FilmHaus.Models.Connector
 {
-    [Table("UserFilm")]
     public class UserFilm
     {
         [Key]

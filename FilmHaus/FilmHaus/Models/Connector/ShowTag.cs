@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Connector
 {
-    [Table("ShowTag")]
     public class ShowTag
     {
         [Key]

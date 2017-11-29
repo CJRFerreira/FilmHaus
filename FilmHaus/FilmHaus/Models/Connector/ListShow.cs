@@ -8,7 +8,6 @@ using System.Web;
 
 namespace FilmHaus.Models.Connector
 {
-    [Table("ListShow")]
     public class ListShow
     {
         [Key]

@@ -8,19 +8,19 @@ using System.Web;
 
 namespace FilmHaus.Models.Connector
 {
-    public class FilmGenre
+    public class ListTag
     {
         [Key]
-        public Guid FilmGenreId { get; set; }
+        public Guid ListTagId { get; set; }
 
-        [ForeignKey("Film"), Column(Order = 0)]
-        public Guid MediaId { get; set; }
+        [ForeignKey("List"), Column(Order = 0)]
+        public Guid ListId { get; set; }
 
-        public virtual Film Film { get; set; }
+        public virtual List List { get; set; }
 
-        [ForeignKey("Genre"), Column(Order = 1)]
+        [ForeignKey("Tag"), Column(Order = 1)]
         public Guid DetailId { get; set; }
 
-        public virtual Genre Genre { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

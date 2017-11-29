@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201711201826129_Update #6 - Removed Media Index.Designer.cs">
       <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711291621349_Update #7 - Created ListTag.cs" />
+    <Compile Include="Migrations\201711291621349_Update #7 - Created ListTag.Designer.cs">
+      <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -247,6 +251,7 @@
     <Compile Include="Models\Base\Report.cs" />
     <Compile Include="Models\Base\Review.cs" />
     <Compile Include="Models\Base\Show.cs" />
+    <Compile Include="Models\Connector\ListTag.cs" />
     <Compile Include="Models\Connector\ReviewShow.cs" />
     <Compile Include="Models\Connector\ReviewFilm.cs" />
     <Compile Include="Models\Connector\ListShow.cs" />
@@ -281,6 +286,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilmGenres\IFilmGenreService.cs" />
     <Compile Include="Services\FilmGenres\FilmGenreService.cs" />
+    <Compile Include="Services\ListTags\ListTagService.cs" />
+    <Compile Include="Services\ListTags\IListTagService.cs" />
     <Compile Include="Services\GenreQueryExtensions.cs" />
     <Compile Include="Services\PersonQueryExtensions.cs" />
     <Compile Include="Services\Reports\IReportService.cs" />
@@ -462,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711201826129_Update #6 - Removed Media Index.resx">
       <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711291621349_Update #7 - Created ListTag.resx">
+      <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

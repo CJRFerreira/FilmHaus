@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmHaus.Models.Base
 {
-    [Table("Report")]
     public class Report
     {
         [Key, Index(name: "IX_Report", order: 0, IsUnique = true)]
