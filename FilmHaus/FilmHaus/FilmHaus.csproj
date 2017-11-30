@@ -240,6 +240,14 @@
     <Compile Include="Migrations\201711291621349_Update #7 - Created ListTag.Designer.cs">
       <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711292032385_Update #8 - Created ListTag 2.cs" />
+    <Compile Include="Migrations\201711292032385_Update #8 - Created ListTag 2.Designer.cs">
+      <DependentUpon>201711292032385_Update #8 - Created ListTag 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.cs" />
+    <Compile Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.Designer.cs">
+      <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -472,6 +480,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711291621349_Update #7 - Created ListTag.resx">
       <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711292032385_Update #8 - Created ListTag 2.resx">
+      <DependentUpon>201711292032385_Update #8 - Created ListTag 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.resx">
+      <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,15 +14,9 @@ namespace FilmHaus.Models.Base
         {
         }
 
-        public Show(Show show)
+        public Show(Show show) : base(show)
         {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
-            Accolades = show.Accolades;
             NumberOfSeasons = show.NumberOfSeasons;
-            CreatedOn = show.CreatedOn;
         }
 
         public int NumberOfSeasons { get; set; }

@@ -25,6 +25,7 @@ namespace FilmHaus.Models.Connector
 
         public virtual Review Review { get; set; }
 
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { get; set; }
 

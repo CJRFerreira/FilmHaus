@@ -6,6 +6,17 @@ namespace FilmHaus.Models.Base
 {
     public abstract class Detail
     {
+        public Detail()
+        {
+        }
+
+        public Detail(Detail detail)
+        {
+            DetailId = detail.DetailId;
+            Name = detail.Name;
+            CreatedOn = detail.CreatedOn;
+        }
+
         [Key]
         public Guid DetailId { get; set; }
 

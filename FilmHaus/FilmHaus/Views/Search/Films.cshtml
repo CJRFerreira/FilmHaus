@@ -9,20 +9,20 @@
 @using (Html.BeginForm("SearchFilms", "Search", FormMethod.Post, new { @class = "form form-inline" }))
 {
     <div class="form-group">
-        @Html.DisplayFor(m => m.SearchTerm)
-        @Html.EditorFor(m => m.SearchTerm)
+        @Html.LabelFor(m => m.SearchTerm)
+        @Html.TextBoxFor(m => m.SearchTerm, htmlAttributes: new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.DisplayFor(m => m.ReleaseYear)
-        @Html.EditorFor(m => m.ReleaseYear)
+        @Html.LabelFor(m => m.ReleaseYear)
+        @Html.TextBoxFor(m => m.ReleaseYear, htmlAttributes: new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.DisplayFor(m => m.Rating)
-        @Html.EditorFor(m => m.Rating)
+        @Html.LabelFor(m => m.Rating)
+        @Html.TextBoxFor(m => m.Rating, htmlAttributes: new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.DisplayFor(m => m.Accolades)
-        @Html.EnumDropDownListFor(m => m.Accolades)
+        @Html.LabelFor(m => m.Accolades)
+        @Html.EnumDropDownListFor(m => m.Accolades, htmlAttributes: new { @class = "form-control" })
     </div>
     <input type="submit" value="@Locale.SearchFilms" class="btn btn-primary pull-right" />
 }

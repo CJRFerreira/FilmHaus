@@ -10,15 +10,9 @@ namespace FilmHaus.Models.Base
         {
         }
 
-        public Film(Film film)
+        public Film(Film film) : base(film)
         {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
-            Accolades = film.Accolades;
             Runtime = film.Runtime;
-            CreatedOn = film.CreatedOn;
         }
 
         public int Runtime { get; set; }

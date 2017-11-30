@@ -28,14 +28,16 @@ namespace FilmHaus.Models.Base
         [ForeignKey("UserReportedId"), Column(Order = 3)]
         public virtual User UserReported { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
 
         [Index(name: "IX_Report", order: 2, IsUnique = true)]
-        public DateTime ResolvedOn { get; set; }
+        public DateTime? ResolvedOn { get; set; }
 
+        [Required]
         public ReportReason ReportReason { get; set; }
 
-        public ReportStatus ReportStatus { get; set; }
+        public ReportStatus? ReportStatus { get; set; }
     }
 }
