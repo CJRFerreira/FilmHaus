@@ -109,6 +109,8 @@ namespace FilmHaus.Models
 
         public DbSet<ShowTag> ShowTags { get; set; }
 
+        public DbSet<ListTag> ListTags { get; set; }
+
         public DbSet<FilmGenre> FilmGenres { get; set; }
 
         public DbSet<ShowGenre> ShowGenres { get; set; }

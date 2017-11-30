@@ -18,5 +18,30 @@ namespace FilmHaus.Services.FilmTags
         {
             FilmHausDbContext = filmHausDbContext;
         }
+
+        public List<GenreViewModel> GetAllTagsForFilm(Guid mediaId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<GeneralFilmViewModel> GetAllFilmsWithTag(Guid tagId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTagToFilm(Guid genreId, Guid mediaId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveTagFromFilm(Guid filmTagId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveTagFromFilmm(Guid tagId, Guid mediaId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
