@@ -30,8 +30,7 @@ namespace FilmHaus.Models.View
             Rating = searchViewModel.Rating;
         }
 
-        [Required]
-        [Display(Name = "Search", ResourceType = typeof(Locale))]
+        [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string SearchTerm { get; set; }
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
@@ -50,7 +49,8 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchAllViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows) : base(searchTerm, accolades, releaseYear, rating)
+        public SearchAllViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+            : base(searchTerm, accolades, releaseYear, rating)
         {
             Films = films;
             Shows = shows;
@@ -73,7 +73,8 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchShowsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralShowViewModel> shows) : base(searchTerm, accolades, releaseYear, rating)
+        public SearchShowsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralShowViewModel> shows)
+            : base(searchTerm, accolades, releaseYear, rating)
         {
             Shows = shows;
         }
@@ -92,7 +93,8 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchFilmsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films) : base(searchTerm, accolades, releaseYear, rating)
+        public SearchFilmsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films)
+            : base(searchTerm, accolades, releaseYear, rating)
         {
             Films = films;
         }
