@@ -17,7 +17,7 @@ namespace FilmHaus.Services.Persons
 
         public void Create(CreatePersonViewModel person)
         {
-            FilmHausDbContext.Persons.Add(new Person
+            FilmHausDbContext.People.Add(new Person
             {
                 PersonId = Guid.NewGuid(),
                 FirstName = person.FirstName,
@@ -29,7 +29,7 @@ namespace FilmHaus.Services.Persons
 
         public PersonViewModel Retrieve(Guid personId)
         {
-            var result = FilmHausDbContext.Persons.Find(personId);
+            var result = FilmHausDbContext.People.Find(personId);
 
             if (result == null)
                 throw new ArgumentNullException();
@@ -41,7 +41,7 @@ namespace FilmHaus.Services.Persons
         {
             try
             {
-                var result = FilmHausDbContext.Persons.Find(personId);
+                var result = FilmHausDbContext.People.Find(personId);
 
                 if (result == null)
                     throw new ArgumentNullException();
@@ -62,11 +62,11 @@ namespace FilmHaus.Services.Persons
         {
             try
             {
-                var result = FilmHausDbContext.Persons.Find(personId);
+                var result = FilmHausDbContext.People.Find(personId);
 
                 if (result != null)
                 {
-                    FilmHausDbContext.Persons.Remove(result);
+                    FilmHausDbContext.People.Remove(result);
                     FilmHausDbContext.SaveChanges();
                 }
                 else
