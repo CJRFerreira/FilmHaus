@@ -74,38 +74,12 @@ namespace FilmHaus.Migrations
             // context.People.AddOrUpdate( p => p.FullName, new Person { FullName = "Andrew Peters"
             // }, new Person { FullName = "Brice Lambson" }, new Person { FullName = "Rowan Miller" } );
 
-            SeedModels(context);
+            SeedBaseModels(context);
+            SeedConnectorModels(context);
         }
 
-        private void SeedModels(FilmHausDbContext filmHausDbContext)
+        private void SeedConnectorModels(FilmHausDbContext filmHausDbContext)
         {
-            foreach (var film in Films)
-                filmHausDbContext.Films.AddOrUpdate(film);
-
-            foreach (var show in Shows)
-                filmHausDbContext.Shows.AddOrUpdate(show);
-
-            foreach (var list in Lists)
-                filmHausDbContext.Lists.AddOrUpdate(list);
-
-            foreach (var review in Reviews)
-                filmHausDbContext.Reviews.AddOrUpdate(review);
-
-            foreach (var report in Reports)
-                filmHausDbContext.Reports.AddOrUpdate(report);
-
-            foreach (var genre in Genres)
-                filmHausDbContext.Genres.AddOrUpdate(genre);
-
-            foreach (var title in Titles)
-                filmHausDbContext.Titles.AddOrUpdate(title);
-
-            foreach (var tag in Tags)
-                filmHausDbContext.Tags.AddOrUpdate(tag);
-
-            foreach (var person in People)
-                filmHausDbContext.People.AddOrUpdate(person);
-
             foreach (var fpt in FilmPersonTitles)
                 filmHausDbContext.FilmPersonTitles.AddOrUpdate(fpt);
 
@@ -152,6 +126,36 @@ namespace FilmHaus.Migrations
                 filmHausDbContext.UserShowRatings.AddOrUpdate(usr);
         }
 
+        private void SeedBaseModels(FilmHausDbContext filmHausDbContext)
+        {
+            foreach (var film in Films)
+                filmHausDbContext.Films.AddOrUpdate(film);
+
+            foreach (var show in Shows)
+                filmHausDbContext.Shows.AddOrUpdate(show);
+
+            foreach (var list in Lists)
+                filmHausDbContext.Lists.AddOrUpdate(list);
+
+            foreach (var review in Reviews)
+                filmHausDbContext.Reviews.AddOrUpdate(review);
+
+            foreach (var report in Reports)
+                filmHausDbContext.Reports.AddOrUpdate(report);
+
+            foreach (var genre in Genres)
+                filmHausDbContext.Genres.AddOrUpdate(genre);
+
+            foreach (var title in Titles)
+                filmHausDbContext.Titles.AddOrUpdate(title);
+
+            foreach (var tag in Tags)
+                filmHausDbContext.Tags.AddOrUpdate(tag);
+
+            foreach (var person in People)
+                filmHausDbContext.People.AddOrUpdate(person);
+        }
+
         private void GenerateConnectorData()
         {
             throw new NotImplementedException();
@@ -172,38 +176,94 @@ namespace FilmHaus.Migrations
 
         private void GenerateFilms()
         {
+            Films.Add(new Film
+            {
+                MediaId = Guid.Parse("3B14C9FF-E104-4847-B243-F1ADE305363C")
+            });
         }
 
         private void GenerateShows()
         {
+            Shows.Add(new Show
+            {
+                MediaId = Guid.Parse("387271A1-4009-4667-BC49-5053BBC8E841")
+            });
         }
 
         private void GenerateLists()
         {
+            Lists.Add(new List
+            {
+                ListId = Guid.Parse("55747052-7799-4AB7-8035-9A539178A163")
+            });
         }
 
         private void GenerateReviews()
         {
+            Reviews.Add(new Review
+            {
+                ReviewId = Guid.Parse("FDAC7BC5-AFA3-4720-AFB5-A5EF9243F10C")
+            });
+
+            Reviews.Add(new Review
+            {
+                ReviewId = Guid.Parse("CAE6B81F-F97F-42C8-AAF3-0E1FCF14D17C")
+            });
         }
 
         private void GenerateReports()
         {
+            Reports.Add(new Report
+            {
+            });
+
+            Reports.Add(new Report
+            {
+            });
         }
 
         private void GenerateGenres()
         {
+            Genres.Add(new Genre
+            {
+            });
+
+            Genres.Add(new Genre
+            {
+            });
         }
 
         private void GenerateTags()
         {
+            Tags.Add(new Tag
+            {
+            });
+
+            Tags.Add(new Tag
+            {
+            });
         }
 
         private void GenerateTitles()
         {
+            Titles.Add(new Title
+            {
+            });
+
+            Titles.Add(new Title
+            {
+            });
         }
 
         private void GeneratePeople()
         {
+            People.Add(new Person
+            {
+            });
+
+            People.Add(new Person
+            {
+            });
         }
     }
 }
