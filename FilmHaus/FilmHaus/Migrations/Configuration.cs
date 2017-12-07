@@ -10,53 +10,53 @@ namespace FilmHaus.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<FilmHausDbContext>
     {
-        private List<Film> Films { get; set; }
+        private List<Film> Films { get; set; } = new List<Film>();
 
-        private List<Show> Shows { get; set; }
+        private List<Show> Shows { get; set; } = new List<Show>();
 
-        private List<List> Lists { get; set; }
+        private List<List> Lists { get; set; } = new List<List>();
 
-        private List<Review> Reviews { get; set; }
+        private List<Review> Reviews { get; set; } = new List<Review>();
 
-        private List<Report> Reports { get; set; }
+        private List<Report> Reports { get; set; } = new List<Report>();
 
-        private List<Genre> Genres { get; set; }
+        private List<Genre> Genres { get; set; } = new List<Genre>();
 
-        private List<Person> People { get; set; }
+        private List<Person> People { get; set; } = new List<Person>();
 
-        private List<Title> Titles { get; set; }
+        private List<Title> Titles { get; set; } = new List<Title>();
 
-        private List<Tag> Tags { get; set; }
+        private List<Tag> Tags { get; set; } = new List<Tag>();
 
-        private List<FilmPersonTitle> FilmPersonTitles { get; set; }
+        private List<FilmPersonTitle> FilmPersonTitles { get; set; } = new List<FilmPersonTitle>();
 
-        private List<ShowPersonTitle> ShowPersonTitles { get; set; }
+        private List<ShowPersonTitle> ShowPersonTitles { get; set; } = new List<ShowPersonTitle>();
 
-        private List<UserFilm> UserFilms { get; set; }
+        private List<UserFilm> UserFilms { get; set; } = new List<UserFilm>();
 
-        private List<UserShow> UserShows { get; set; }
+        private List<UserShow> UserShows { get; set; } = new List<UserShow>();
 
-        private List<UserFilmRating> UserFilmRatings { get; set; }
+        private List<UserFilmRating> UserFilmRatings { get; set; } = new List<UserFilmRating>();
 
-        private List<UserShowRating> UserShowRatings { get; set; }
+        private List<UserShowRating> UserShowRatings { get; set; } = new List<UserShowRating>();
 
-        private List<FilmTag> FilmTags { get; set; }
+        private List<FilmTag> FilmTags { get; set; } = new List<FilmTag>();
 
-        private List<ShowTag> ShowTags { get; set; }
+        private List<ShowTag> ShowTags { get; set; } = new List<ShowTag>();
 
-        private List<ListTag> ListTags { get; set; }
+        private List<ListTag> ListTags { get; set; } = new List<ListTag>();
 
-        private List<FilmGenre> FilmGenres { get; set; }
+        private List<FilmGenre> FilmGenres { get; set; } = new List<FilmGenre>();
 
-        private List<ShowGenre> ShowGenres { get; set; }
+        private List<ShowGenre> ShowGenres { get; set; } = new List<ShowGenre>();
 
-        private List<ListFilm> ListFilms { get; set; }
+        private List<ListFilm> ListFilms { get; set; } = new List<ListFilm>();
 
-        private List<ListShow> ListShows { get; set; }
+        private List<ListShow> ListShows { get; set; } = new List<ListShow>();
 
-        private List<ReviewFilm> ReviewFilms { get; set; }
+        private List<ReviewFilm> ReviewFilms { get; set; } = new List<ReviewFilm>();
 
-        private List<ReviewShow> ReviewShows { get; set; }
+        private List<ReviewShow> ReviewShows { get; set; } = new List<ReviewShow>();
 
         public Configuration()
         {
@@ -99,32 +99,32 @@ namespace FilmHaus.Migrations
             foreach (var st in ShowTags)
                 filmHausDbContext.ShowTags.AddOrUpdate(st);
 
-            foreach (var lf in ListFilms)
-                filmHausDbContext.ListFilms.AddOrUpdate(lf);
+            //foreach (var lf in ListFilms)
+            //    filmHausDbContext.ListFilms.AddOrUpdate(lf);
 
-            foreach (var ls in ListShows)
-                filmHausDbContext.ListShows.AddOrUpdate(ls);
+            //foreach (var ls in ListShows)
+            //    filmHausDbContext.ListShows.AddOrUpdate(ls);
 
-            foreach (var lt in ListTags)
-                filmHausDbContext.ListTags.AddOrUpdate(lt);
+            //foreach (var lt in ListTags)
+            //    filmHausDbContext.ListTags.AddOrUpdate(lt);
 
-            foreach (var rf in ReviewFilms)
-                filmHausDbContext.ReviewFilms.AddOrUpdate(rf);
+            //foreach (var rf in ReviewFilms)
+            //    filmHausDbContext.ReviewFilms.AddOrUpdate(rf);
 
-            foreach (var rs in ReviewShows)
-                filmHausDbContext.ReviewShows.AddOrUpdate(rs);
+            //foreach (var rs in ReviewShows)
+            //    filmHausDbContext.ReviewShows.AddOrUpdate(rs);
 
-            foreach (var uf in UserFilms)
-                filmHausDbContext.UserFilms.AddOrUpdate(uf);
+            //foreach (var uf in UserFilms)
+            //    filmHausDbContext.UserFilms.AddOrUpdate(uf);
 
-            foreach (var us in UserShows)
-                filmHausDbContext.UserShows.AddOrUpdate(us);
+            //foreach (var us in UserShows)
+            //    filmHausDbContext.UserShows.AddOrUpdate(us);
 
-            foreach (var ufr in UserFilmRatings)
-                filmHausDbContext.UserFilmRatings.AddOrUpdate(ufr);
+            //foreach (var ufr in UserFilmRatings)
+            //    filmHausDbContext.UserFilmRatings.AddOrUpdate(ufr);
 
-            foreach (var usr in UserShowRatings)
-                filmHausDbContext.UserShowRatings.AddOrUpdate(usr);
+            //foreach (var usr in UserShowRatings)
+            //    filmHausDbContext.UserShowRatings.AddOrUpdate(usr);
         }
 
         private void SeedBaseModels(FilmHausDbContext filmHausDbContext)
@@ -135,14 +135,14 @@ namespace FilmHaus.Migrations
             foreach (var show in Shows)
                 filmHausDbContext.Shows.AddOrUpdate(show);
 
-            foreach (var list in Lists)
-                filmHausDbContext.Lists.AddOrUpdate(list);
+            //foreach (var list in Lists)
+            //    filmHausDbContext.Lists.AddOrUpdate(list);
 
-            foreach (var review in Reviews)
-                filmHausDbContext.Reviews.AddOrUpdate(review);
+            //foreach (var review in Reviews)
+            //    filmHausDbContext.Reviews.AddOrUpdate(review);
 
-            foreach (var report in Reports)
-                filmHausDbContext.Reports.AddOrUpdate(report);
+            //foreach (var report in Reports)
+            //    filmHausDbContext.Reports.AddOrUpdate(report);
 
             foreach (var genre in Genres)
                 filmHausDbContext.Genres.AddOrUpdate(genre);
@@ -200,7 +200,7 @@ namespace FilmHaus.Migrations
             {
                 ShowPersonTitleId = Guid.Parse("A579FEAF-8A32-4354-A19C-790A2077FE6F"),
                 MediaId = Guid.Parse("387271A1-4009-4667-BC49-5053BBC8E841"),
-                PersonId = Guid.Parse("83ED21CF-04E4-4DA3-81A8-A6816E2BE91E"),
+                PersonId = Guid.Parse("797FFB80-AB97-4A2C-883B-4630982D1E67"),
                 DetailId = Guid.Parse("D74FF8E0-8333-46C7-B3BB-DC52C0D5C09C")
             });
 
@@ -208,7 +208,7 @@ namespace FilmHaus.Migrations
             {
                 ShowPersonTitleId = Guid.Parse("80AE0A98-9280-4923-BC0D-12EC5C873894"),
                 MediaId = Guid.Parse("387271A1-4009-4667-BC49-5053BBC8E841"),
-                PersonId = Guid.Parse("83ED21CF-04E4-4DA3-81A8-A6816E2BE91E"),
+                PersonId = Guid.Parse("15954285-7423-4504-A9F8-6A2E6BFF6FD1"),
                 DetailId = Guid.Parse("D74FF8E0-8333-46C7-B3BB-DC52C0D5C09C")
             });
         }
@@ -456,7 +456,7 @@ namespace FilmHaus.Migrations
 
             People.Add(new Person
             {
-                PersonId = Guid.Parse("83ED21CF-04E4-4DA3-81A8-A6816E2BE91E"),
+                PersonId = Guid.Parse("797FFB80-AB97-4A2C-883B-4630982D1E67"),
                 FirstName = "Matthew",
                 LastName = "McConaughey",
                 CreatedOn = DateTime.Now
@@ -464,7 +464,7 @@ namespace FilmHaus.Migrations
 
             People.Add(new Person
             {
-                PersonId = Guid.Parse("83ED21CF-04E4-4DA3-81A8-A6816E2BE91E"),
+                PersonId = Guid.Parse("15954285-7423-4504-A9F8-6A2E6BFF6FD1"),
                 FirstName = "Woody",
                 LastName = "Harrelson",
                 CreatedOn = DateTime.Now

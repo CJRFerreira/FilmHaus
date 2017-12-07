@@ -29,7 +29,7 @@
         {
             <tr id="@item.MediaId">
                 <td>
-                    <img src="@Url.Content(item.PosterUri.ToString())" alt="@item.MediaName" />
+                    <img src="@Url.Content(item.PosterUri.ToString())" alt="@item.MediaName" class="featurette-image" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MediaName)
@@ -38,11 +38,11 @@
                     @Html.DisplayFor(modelItem => item.DateOfRelease)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
                     @if (User.IsInRole("Admin"))
                     {
-                        Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
-                        Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                        Html.ActionLink("Edit", "Edit", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                        Html.ActionLink("Delete", "Delete", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
                     }
                 </td>
             </tr>
