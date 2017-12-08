@@ -17,7 +17,7 @@
             @Html.DisplayNameFor(model => model.PosterUri)
         </dt>
         <dd>
-            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" />
+            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image"/>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.MediaName)
@@ -56,4 +56,4 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.MediaId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-@Html.Partial("CreateReviewPartial", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))
+@Html.Partial("~/Views/Reviews/_CreateReviewPartial.cshtml", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))

@@ -33,10 +33,10 @@ namespace FilmHaus.Models.View
         public string Id { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Description", ResourceType = typeof(Locale))]
         public string Body { get; set; }
 
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
 
         [Display(Name = "", ResourceType = typeof(Locale))]
@@ -78,11 +78,11 @@ namespace FilmHaus.Models.View
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Description", ResourceType = typeof(Locale))]
         public string Body { get; set; }
 
         [Required]
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
 
         [Required]
@@ -124,11 +124,11 @@ namespace FilmHaus.Models.View
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Description", ResourceType = typeof(Locale))]
         public string Body { get; set; }
 
         [Required]
-        [Display(Name = "", ResourceType = typeof(Locale))]
+        [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
 
         [Required]
