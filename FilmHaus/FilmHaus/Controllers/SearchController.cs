@@ -1,4 +1,5 @@
-﻿using FilmHaus.Models.View;
+﻿using FilmHaus.Enums;
+using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
 using FilmHaus.Services.Shows;
 using System;
@@ -33,25 +34,11 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchAll(SearchViewModel searchViewModel)
         {
-            var films = FilmService.GetAllFilms()
-                .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
-                && f.Accolades == searchViewModel.Accolades
-                && f.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && f.Rating >= searchViewModel.Rating)
-                .ToList();
-
-            var shows = ShowService.GetAllShows()
-                .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
-                && s.Accolades == searchViewModel.Accolades
-                && s.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && s.Rating >= searchViewModel.Rating)
-                .ToList();
-
             return View("Index", new SearchLibraryViewModel()
             {
                 SearchViewModel = searchViewModel,
-                Films = films,
-                Shows = shows
+                Films = EnactFilmSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades),
+                Shows = EnactShowSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades)
             });
         }
 
@@ -69,12 +56,7 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchFilms(SearchFilmsViewModel searchViewModel)
         {
-            searchViewModel.Films = FilmService.GetAllFilms()
-                .Where(f => f.MediaName.Contains(searchViewModel.SearchTerm)
-                && f.Accolades == searchViewModel.Accolades
-                && f.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && f.Rating >= searchViewModel.Rating)
-                .ToList();
+            searchViewModel.Films = EnactFilmSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades);
 
             return View("Films", searchViewModel);
         }
@@ -93,14 +75,47 @@ namespace FilmHaus.Controllers
         [HttpPost]
         public ActionResult SearchShows(SearchShowsViewModel searchViewModel)
         {
-            searchViewModel.Shows = ShowService.GetAllShows()
-                .Where(s => s.MediaName.Contains(searchViewModel.SearchTerm)
-                && s.Accolades == searchViewModel.Accolades
-                && s.DateOfRelease.Year == searchViewModel.ReleaseYear
-                && s.Rating >= searchViewModel.Rating)
-                .ToList();
+            searchViewModel.Shows = EnactShowSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades);
 
             return View("Shows", searchViewModel);
+        }
+
+        private List<GeneralFilmViewModel> EnactFilmSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
+        {
+            var results = FilmService.GetAllFilms();
+
+            if (!String.IsNullOrEmpty(searchTerm))
+                results = results.Where(r => r.MediaName.Contains(searchTerm)).ToList();
+
+            if (releaseYear != null)
+                results = results.Where(r => r.DateOfRelease.Year == releaseYear).ToList();
+
+            if (rating != null)
+                results = results.Where(r => (r.Rating == rating) || (r.Rating == rating - 1) || (r.Rating == rating + 1)).ToList();
+
+            if (accolades != null)
+                results = results.Where(r => r.Accolades == accolades).ToList();
+
+            return results;
+        }
+
+        private List<GeneralShowViewModel> EnactShowSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
+        {
+            var results = ShowService.GetAllShows();
+
+            if (!String.IsNullOrEmpty(searchTerm))
+                results = results.Where(r => r.MediaName.Contains(searchTerm)).ToList();
+
+            if (releaseYear != null)
+                results = results.Where(r => r.DateOfRelease.Year == releaseYear).ToList();
+
+            if (rating != null)
+                results = results.Where(r => (r.Rating == rating) || (r.Rating == rating - 1) || (r.Rating == rating + 1)).ToList();
+
+            if (accolades != null)
+                results = results.Where(r => r.Accolades == accolades).ToList();
+
+            return results;
         }
     }
 }

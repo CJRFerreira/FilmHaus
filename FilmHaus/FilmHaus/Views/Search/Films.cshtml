@@ -60,11 +60,11 @@
                     @Html.DisplayFor(modelItem => item.DateOfRelease)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
-                    @if (User.IsInRole("Admin"))
+                    @Html.ActionLink("Details", "Details", new { id = item.MediaId }, new { @class = "btn btn-info" })
+                    @if (User.IsInRole("Administrator"))
                     {
-                        Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
-                        Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                        Html.ActionLink("Edit", "Edit", new { id = item.MediaId }, new { @class = "btn btn-primary" });
+                        Html.ActionLink("Delete", "Delete", new { id = item.MediaId }, new { @class = "btn btn-warning" });
                     }
                 </td>
             </tr>

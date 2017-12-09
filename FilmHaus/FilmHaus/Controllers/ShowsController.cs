@@ -28,9 +28,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Show/Details/5
-        public ActionResult Details(string mediaId)
+        public ActionResult Details(string id)
         {
-            var result = ShowService.GetShowByMediaId(Guid.Parse(mediaId));
+            var result = ShowService.GetShowByMediaId(Guid.Parse(id));
 
             if (result != null)
                 return View(result);
@@ -66,9 +66,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Edit/5
-        public ActionResult Edit(string mediaId)
+        public ActionResult Edit(string id)
         {
-            return View();
+            return View(new EditShowViewModel(ShowService.GetShowByMediaId(Guid.Parse(id))));
         }
 
         // POST: Shows/Edit/5 To protect from overposting attacks, please enable the specific
@@ -93,9 +93,9 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Delete/5
-        public ActionResult Delete(string mediaId)
+        public ActionResult Delete(string id)
         {
-            var result = ShowService.GetShowByMediaId(Guid.Parse(mediaId));
+            var result = ShowService.GetShowByMediaId(Guid.Parse(id));
 
             if (result != null)
                 return View(result);
@@ -106,11 +106,11 @@ namespace FilmHaus.Controllers
         // POST: Shows/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string mediaId)
+        public ActionResult DeleteConfirmed(string id)
         {
             try
             {
-                ShowService.DeleteShowByMediaId(Guid.Parse(mediaId));
+                ShowService.DeleteShowByMediaId(Guid.Parse(id));
             }
             catch (Exception ex)
             {

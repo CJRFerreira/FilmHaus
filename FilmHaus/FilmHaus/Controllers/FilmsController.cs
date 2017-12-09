@@ -22,24 +22,24 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Details/5
-        public ActionResult Details(string mediaId)
+        public ActionResult Details(string id)
         {
-            var result = FilmService.GetFilmByMediaId(Guid.Parse(mediaId));
+            var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
 
             if (result != null)
                 return View(result);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // GET: Films/Create
         [HttpGet]
         public ActionResult Create()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Administrator"))
                 return View(new CreateFilmViewModel());
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // POST: Films/Create To protect from overposting attacks, please enable the specific
@@ -60,13 +60,13 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return View("Details");
+            return RedirectToAction("Index");
         }
 
         // GET: Films/Edit/5
-        public ActionResult Edit(string mediaId)
+        public ActionResult Edit(string id)
         {
-            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(mediaId))));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(id))));
         }
 
         // POST: Films/Edit/5 To protect from overposting attacks, please enable the specific
@@ -87,28 +87,28 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // GET: Films/Delete/5
-        public ActionResult Delete(string mediaId)
+        public ActionResult Delete(string id)
         {
-            var result = FilmService.GetFilmByMediaId(Guid.Parse(mediaId));
+            var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
 
             if (result != null)
                 return View(result);
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         // POST: Films/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string mediaId)
+        public ActionResult DeleteConfirmed(string id)
         {
             try
             {
-                FilmService.DeleteFilmByMediaId(Guid.Parse(mediaId));
+                FilmService.DeleteFilmByMediaId(Guid.Parse(id));
             }
             catch (Exception)
             {

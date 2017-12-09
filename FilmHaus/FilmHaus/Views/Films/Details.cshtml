@@ -1,59 +1,44 @@
 ﻿@using FilmHaus.Localization;
 @using FilmHaus.Models.View;
-@using Microsoft.AspNet.Identity;
 @model GeneralFilmViewModel
 
 @{
     ViewBag.Title = Locale.Details;
 }
 
-<h2>@Locale.Details</h2>
-
-<div>
-    <h4>@Locale.Film</h4>
+<section>
+    <h2>@Locale.Details - @Model.MediaName </h2>
+    <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @Html.ActionLink(Locale.Edit, "Edit", new { id = Model.MediaId }, new { @class = "btn btn-info" })
+        @Html.ActionLink(Locale.Index, "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</section>
+<section>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PosterUri)
-        </dt>
-        <dd>
-            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image"/>
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MediaName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MediaName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfRelease)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOfRelease)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Accolades)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Accolades)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Runtime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Runtime)
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MediaId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image-large" />
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateOfRelease, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.DateOfRelease</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Accolades, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.Accolades</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.Runtime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @Html.Partial("~/Views/Reviews/_CreateReviewPartial.cshtml", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))

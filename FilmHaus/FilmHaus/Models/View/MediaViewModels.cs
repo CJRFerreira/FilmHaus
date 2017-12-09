@@ -78,7 +78,7 @@ namespace FilmHaus.Models.View
 
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
-        public DateTime DateOfRelease { get; set; }
+        public DateTime DateOfRelease { get; set; } = DateTime.Now;
 
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
