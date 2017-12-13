@@ -13,5 +13,14 @@ namespace FilmHaus.Services
 {
     internal static class PersonQueryExtensions
     {
+        public static Expression<Func<Person, PersonViewModel>> GetUserFilmViewModel()
+        {
+            return f => new PersonViewModel()
+            {
+                PersonId = f.PersonId,
+                FirstName = f.FirstName,
+                LastName = f.LastName
+            };
+        }
     }
 }

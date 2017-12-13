@@ -281,6 +281,7 @@
     <Compile Include="Models\View\DetailViewModels.cs" />
     <Compile Include="Models\View\MediaViewModels.cs" />
     <Compile Include="Models\View\LibraryViewModels.cs" />
+    <Compile Include="Models\View\PersonTitleViewModels.cs" />
     <Compile Include="Models\View\ReviewViewModels.cs" />
     <Compile Include="Models\View\SearchViewModels.cs" />
     <Compile Include="Models\View\ShowViewModels.cs" />
