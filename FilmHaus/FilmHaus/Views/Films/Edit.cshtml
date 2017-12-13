@@ -7,7 +7,7 @@
 
 <h2>@Locale.Edit - @Model.MediaName</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Films", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

@@ -7,7 +7,7 @@
 
 <h2>@Locale.Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Films", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
