@@ -6,6 +6,8 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
+    [RoutePrefix("Films")]
+    [Route("{action=index}")]
     public class FilmsController : Controller
     {
         public IFilmService FilmService { get; private set; }
@@ -22,6 +24,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film/Details/5
+        [Route("{action=index}")]
         public ActionResult Details(string id)
         {
             var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
@@ -34,6 +37,7 @@ namespace FilmHaus.Controllers
 
         // GET: Films/Create
         [HttpGet]
+        [Route("Create")]
         public ActionResult Create()
         {
             if (User.IsInRole("Administrator"))
