@@ -13,9 +13,9 @@ namespace FilmHaus.Services
 {
     internal static class ReportQueryExtensions
     {
-        public static Expression<Func<Report, ReportViewModel>> GetReportViewModel()
+        public static Expression<Func<Report, BaseReportViewModel>> GetReportViewModel()
         {
-            return r => new ReportViewModel()
+            return r => new BaseReportViewModel()
             {
                 ReportId = r.ReportId,
                 ReviewReportedId = r.ReviewReportedId,

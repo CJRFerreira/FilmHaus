@@ -34,7 +34,7 @@ namespace FilmHaus.Services
                 DateOfRelease = f.Film.DateOfRelease,
                 Accolades = f.Film.Accolades,
                 Runtime = f.Film.Runtime,
-                Rating = (double)userRating.Invoke(f)
+                Rating = userRating.Invoke(f)
             };
         }
 

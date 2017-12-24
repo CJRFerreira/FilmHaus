@@ -9,9 +9,9 @@ using System.Web;
 
 namespace FilmHaus.Models.View
 {
-    public class ReportViewModel
+    public class BaseReportViewModel
     {
-        public ReportViewModel()
+        public BaseReportViewModel()
         {
         }
 
@@ -33,6 +33,16 @@ namespace FilmHaus.Models.View
         public ReportReason ReportReason { get; set; }
 
         public ReportStatus? ReportStatus { get; set; }
+    }
+
+    public class ExpandedReportViewModel : BaseReportViewModel
+    {
+        public ExpandedReportViewModel() : base()
+        {
+
+        }
+
+        public BaseReviewViewModel Review { get; set; }
     }
 
     public class CreateReportViewModel
