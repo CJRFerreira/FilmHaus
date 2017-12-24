@@ -14,6 +14,25 @@ namespace FilmHaus.Models.View
         public ReportViewModel()
         {
         }
+
+        public Guid ReportId { get; set; }
+
+        public Guid ReviewReportedId { get; set; }
+
+        public string ReportingUserId { get; set; }
+
+
+        public string UserReportedId { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime ReportedOn { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? ResolvedOn { get; set; }
+
+        public ReportReason ReportReason { get; set; }
+
+        public ReportStatus? ReportStatus { get; set; }
     }
 
     public class CreateReportViewModel
@@ -21,6 +40,16 @@ namespace FilmHaus.Models.View
         public CreateReportViewModel()
         {
         }
+
+        public Guid ReviewReportedId { get; set; }
+
+        public string ReportingUserId { get; set; }
+
+        public string UserReportedId { get; set; }
+
+        [Required]
+        public ReportReason ReportReason { get; set; }
+
     }
 
     public class EditReportViewModel
@@ -28,5 +57,14 @@ namespace FilmHaus.Models.View
         public EditReportViewModel()
         {
         }
+
+        public Guid ReportId { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime ReportedOn { get; set; }
+
+        public ReportReason ReportReason { get; set; }
+
+        public ReportStatus? ReportStatus { get; set; }
     }
 }

@@ -299,6 +299,7 @@
     <Compile Include="Services\ListTags\ListTagService.cs" />
     <Compile Include="Services\ListTags\IListTagService.cs" />
     <Compile Include="Services\GenreQueryExtensions.cs" />
+    <Compile Include="Services\ReportQueryExtensions.cs" />
     <Compile Include="Services\PersonQueryExtensions.cs" />
     <Compile Include="Services\Reports\IReportService.cs" />
     <Compile Include="Services\Reports\ReportService.cs" />
@@ -311,7 +312,6 @@
     <Compile Include="Services\ListFilms\IListFilmService.cs" />
     <Compile Include="Services\ListFilms\ListFilmService.cs" />
     <Compile Include="Services\ReviewQueryExtensions.cs" />
-    <Compile Include="Services\ReportQueryExtensions.cs" />
     <Compile Include="Services\ListQueryExtensions.cs" />
     <Compile Include="Services\Lists\IListService.cs" />
     <Compile Include="Services\Lists\ListService.cs" />
