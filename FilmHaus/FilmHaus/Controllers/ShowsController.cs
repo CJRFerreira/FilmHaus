@@ -12,6 +12,8 @@ using System.Web.Mvc;
 namespace FilmHaus.Controllers
 {
     [Authorize]
+    [RoutePrefix("Shows")]
+    [Route("Index")]
     public class ShowsController : Controller
     {
         private IShowService ShowService { get; }
@@ -22,15 +24,17 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Show
+        [Route("Index")]
         public ActionResult Index()
         {
             return View(ShowService.GetAllShows());
         }
 
         // GET: Show/Details/5
-        public ActionResult Details(string id)
+        [Route("Details/{mediaId:guid}")]
+        public ActionResult Details(Guid mediaId)
         {
-            var result = ShowService.GetShowByMediaId(Guid.Parse(id));
+            var result = ShowService.GetShowByMediaId(mediaId);
 
             if (result != null)
                 return View(result);
@@ -39,6 +43,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Create
+        [Route("Create")]
         public ActionResult Create()
         {
             return View();
@@ -66,9 +71,10 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Edit/5
-        public ActionResult Edit(string id)
+        [Route("Edit/{mediaId:guid}")]
+        public ActionResult Edit(Guid mediaId)
         {
-            return View(new EditShowViewModel(ShowService.GetShowByMediaId(Guid.Parse(id))));
+            return View(new EditShowViewModel(ShowService.GetShowByMediaId(mediaId)));
         }
 
         // POST: Shows/Edit/5 To protect from overposting attacks, please enable the specific
@@ -93,9 +99,10 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Shows/Delete/5
-        public ActionResult Delete(string id)
+        [Route("Delete/{mediaId:guid}")]
+        public ActionResult Delete(Guid mediaId)
         {
-            var result = ShowService.GetShowByMediaId(Guid.Parse(id));
+            var result = ShowService.GetShowByMediaId(mediaId);
 
             if (result != null)
                 return View(result);
@@ -104,17 +111,18 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Shows/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(Guid mediaId)
         {
             try
             {
-                ShowService.DeleteShowByMediaId(Guid.Parse(id));
+                ShowService.DeleteShowByMediaId(mediaId);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             return RedirectToAction("Index");
         }

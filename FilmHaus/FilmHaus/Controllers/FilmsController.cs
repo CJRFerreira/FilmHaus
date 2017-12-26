@@ -7,7 +7,7 @@ namespace FilmHaus.Controllers
 {
     [Authorize]
     [RoutePrefix("Films")]
-    [Route("{action=index}")]
+    [Route("Index")]
     public class FilmsController : Controller
     {
         public IFilmService FilmService { get; private set; }
@@ -18,16 +18,17 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Film
+        [Route("Index")]
         public ActionResult Index()
         {
             return View(FilmService.GetAllFilms());
         }
 
         // GET: Film/Details/5
-        [Route("{action=index}")]
-        public ActionResult Details(string id)
+        [Route("Details/{mediaId:guid}")]
+        public ActionResult Details(Guid mediaId)
         {
-            var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
+            var result = FilmService.GetFilmByMediaId(mediaId);
 
             if (result != null)
                 return View(result);
@@ -68,9 +69,10 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Films/Edit/5
-        public ActionResult Edit(string id)
+        [Route("Edit/{mediaId:guid}")]
+        public ActionResult Edit(Guid mediaId)
         {
-            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(Guid.Parse(id))));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(mediaId)));
         }
 
         // POST: Films/Edit/5 To protect from overposting attacks, please enable the specific
@@ -95,6 +97,7 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Films/Delete/5
+        [Route("Delete/{mediaId:guid}")]
         public ActionResult Delete(string id)
         {
             var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
@@ -106,15 +109,16 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Films/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(Guid mediaId)
         {
             try
             {
-                FilmService.DeleteFilmByMediaId(Guid.Parse(id));
+                FilmService.DeleteFilmByMediaId(mediaId);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }

@@ -453,7 +453,7 @@
     <Content Include="Views\Reviews\_EditReviewPartial.cshtml" />
     <Content Include="Views\Reviews\_ReviewPartial.cshtml" />
     <Content Include="Views\Reports\_CreateReportPartial.cshtml" />
-    <Content Include="Views\Reports\_EditReporttPartial.cshtml" />
+    <Content Include="Views\Reports\_EditReportPartial.cshtml" />
     <Content Include="Views\Reports\_ReportPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
