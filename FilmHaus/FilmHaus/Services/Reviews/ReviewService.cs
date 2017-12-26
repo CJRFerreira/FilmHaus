@@ -31,7 +31,7 @@ namespace FilmHaus.Services.Reviews
 
         public Review CreateReview(CreateReviewViewModel review, string userId)
         {
-            var newReview = new Review()
+            return new Review()
             {
                 ReviewId = Guid.NewGuid(),
                 Id = userId,
@@ -41,8 +41,6 @@ namespace FilmHaus.Services.Reviews
                 Flagged = false,
                 ReviewType = review.ReviewType
             };
-
-            return newReview;
         }
 
         public void CreateReviewForFilm(CreateReviewViewModel review, string userId)
@@ -257,6 +255,66 @@ namespace FilmHaus.Services.Reviews
             catch (InvalidOperationException ex)
             {
                 throw ex;
+            }
+        }
+
+        public void BanReviewByReviewId(Guid reviewId, ReportReason reportReason)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ReportReason = reportReason;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void FlagReviewByReviewId(Guid reviewId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.Flagged = true;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void UnflagReviewByReviewId(Guid reviewId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.Flagged = false;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
             }
         }
     }

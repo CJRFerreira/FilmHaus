@@ -1,4 +1,5 @@
-﻿using FilmHaus.Models.Base;
+﻿using FilmHaus.Enums;
+using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,6 @@ namespace FilmHaus.Services.Reviews
 {
     public interface IReviewService
     {
-        Review CreateReview(CreateReviewViewModel review, string userId);
-
         void CreateReviewForFilm(CreateReviewViewModel review, string userId);
 
         void CreateReviewForShow(CreateReviewViewModel review, string userId);
@@ -16,6 +15,12 @@ namespace FilmHaus.Services.Reviews
         void DeleteReviewByReviewId(Guid reviewId);
 
         void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel review);
+
+        void BanReviewByReviewId(Guid reviewId, ReportReason reportReason);
+
+        void FlagReviewByReviewId(Guid reviewId);
+
+        void UnflagReviewByReviewId(Guid reviewId);
 
         BaseReviewViewModel GetReviewByReviewId(Guid reviewId);
 

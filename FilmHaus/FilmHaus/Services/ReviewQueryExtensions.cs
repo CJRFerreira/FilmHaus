@@ -31,6 +31,7 @@ namespace FilmHaus.Services
                 Shared = r.Shared,
                 Flagged = r.Flagged,
                 CreatedOn = r.CreatedOn,
+                ReviewType = r.ReviewType,
                 Media = getFilmViewModel.Invoke(getFilm.Invoke(r))
             };
         }
@@ -47,7 +48,21 @@ namespace FilmHaus.Services
                 Shared = r.Shared,
                 Flagged = r.Flagged,
                 CreatedOn = r.CreatedOn,
+                ReviewType = r.ReviewType,
                 Media = getShowViewModel.Invoke(getShow.Invoke(r))
+            };
+        }
+
+        public static Expression<Func<Review, BaseReviewViewModel>> GetReviewViewModel()
+        {
+            return r => new BaseReviewViewModel
+            {
+                ReviewId = r.ReviewId,
+                Body = r.Body,
+                Shared = r.Shared,
+                Flagged = r.Flagged,
+                CreatedOn = r.CreatedOn,
+                ReviewType = r.ReviewType
             };
         }
     }

@@ -13,14 +13,11 @@ namespace FilmHaus.Services.Shows
 {
     public class ShowService : IShowService
     {
-        private FilmHausDbContext FilmHausDbContext { get; set; }
+        private FilmHausDbContext FilmHausDbContext { get; }
 
-        protected IUserShowRatingService UserShowRatingService { get; set; }
-
-        public ShowService(FilmHausDbContext filmHausDbContext, IUserShowRatingService userShowRatingService)
+        public ShowService(FilmHausDbContext filmHausDbContext)
         {
             FilmHausDbContext = filmHausDbContext;
-            UserShowRatingService = userShowRatingService;
         }
 
         public void CreateShow(CreateShowViewModel show)
@@ -44,15 +41,13 @@ namespace FilmHaus.Services.Shows
             {
                 var show = FilmHausDbContext.Shows.Find(mediaId);
 
-                if (show != null)
-                {
-                    FilmHausDbContext.Shows.Remove(show);
-                    FilmHausDbContext.SaveChanges();
-                }
-                else
+                if (show == null)
                     throw new ArgumentNullException();
+
+                FilmHausDbContext.Shows.Remove(show);
+                FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch 
             {
                 throw;
             }
@@ -96,9 +91,9 @@ namespace FilmHaus.Services.Shows
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
         }
     }

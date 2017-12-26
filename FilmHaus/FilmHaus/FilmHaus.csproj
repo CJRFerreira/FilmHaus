@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.Designer.cs">
       <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712261755468_Update #10 - Review Expansion.cs" />
+    <Compile Include="Migrations\201712261755468_Update #10 - Review Expansion.Designer.cs">
+      <DependentUpon>201712261755468_Update #10 - Review Expansion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -491,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.resx">
       <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261755468_Update #10 - Review Expansion.resx">
+      <DependentUpon>201712261755468_Update #10 - Review Expansion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

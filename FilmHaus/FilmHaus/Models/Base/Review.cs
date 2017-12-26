@@ -28,6 +28,8 @@ namespace FilmHaus.Models.Base
 
         public bool Flagged { get; set; }
 
+        public ReportReason? ReportReason { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime CreatedOn { get; set; }
 
