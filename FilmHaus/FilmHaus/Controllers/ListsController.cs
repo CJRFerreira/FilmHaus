@@ -78,7 +78,7 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyLists");
         }
 
         // GET: Lists/Edit/5
@@ -111,7 +111,7 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { listId = viewModel.ListId });
         }
 
         // POST: Lists/AddFilmToList
@@ -119,7 +119,7 @@ namespace FilmHaus.Controllers
         public ActionResult AddFilmToList(Guid mediaId, Guid listId)
         {
             ListFilmService.AddFilmToList(listId, mediaId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { listId });
         }
 
         // POST: List/RemoveFilmFromList
@@ -127,7 +127,7 @@ namespace FilmHaus.Controllers
         public ActionResult RemoveFilmFromList(Guid mediaId, Guid listId)
         {
             ListFilmService.ObsoleteFilmInList(listId, mediaId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { listId });
         }
 
         // POST: Lists/AddShowToList
@@ -135,7 +135,7 @@ namespace FilmHaus.Controllers
         public ActionResult AddShowToList(Guid mediaId, Guid listId)
         {
             ListShowService.AddShowToList(listId, mediaId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { listId });
         }
 
         // POST: List/RemoveShowFromList
@@ -143,7 +143,7 @@ namespace FilmHaus.Controllers
         public ActionResult RemoveShowFromList(Guid mediaId, Guid listId)
         {
             ListShowService.ObsoleteShowInList(listId, mediaId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { listId });
         }
     }
 }
