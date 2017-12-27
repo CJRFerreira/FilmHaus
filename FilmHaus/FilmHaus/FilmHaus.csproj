@@ -192,6 +192,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -255,6 +257,10 @@
     <Compile Include="Migrations\201712261806595_Update #11 - Report Index.cs" />
     <Compile Include="Migrations\201712261806595_Update #11 - Report Index.Designer.cs">
       <DependentUpon>201712261806595_Update #11 - Report Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.cs" />
+    <Compile Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.Designer.cs">
+      <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
@@ -505,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712261806595_Update #11 - Report Index.resx">
       <DependentUpon>201712261806595_Update #11 - Report Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.resx">
+      <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -41,6 +41,6 @@ namespace FilmHaus.Models.Base
         [Required]
         public ReportReason ReportReason { get; set; }
 
-        public ReportStatus? ReportStatus { get; set; }
+        public ReportStatus ReportStatus { get; set; }
     }
 }

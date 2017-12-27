@@ -60,7 +60,7 @@ namespace FilmHaus.Controllers
             {
                 FilmService.CreateFilm(viewModel);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }
@@ -88,7 +88,7 @@ namespace FilmHaus.Controllers
             {
                 FilmService.UpdateFilmByMediaId(viewModel.MediaId, viewModel);
             }
-            catch (Exception)
+            catch
             {
                 throw;
             }

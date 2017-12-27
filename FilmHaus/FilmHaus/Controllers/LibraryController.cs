@@ -66,14 +66,6 @@ namespace FilmHaus.Controllers
             return View("MyFilms");
         }
 
-        // POST: Library/RemoveFilmFromLibrary
-        [HttpPost]
-        public ActionResult RemoveFilmFromLibrary(Guid userFilmId)
-        {
-            UserFilmService.ObsoleteFilmInUserLibrary(userFilmId);
-            return View("MyFilms");
-        }
-
         // POST: Library/AddShowToLibrary
         [HttpPost]
         public ActionResult AddShowToLibrary(Guid mediaId, string userId)
@@ -87,14 +79,6 @@ namespace FilmHaus.Controllers
         public ActionResult RemoveShowFromLibrary(Guid mediaId, string userId)
         {
             UserShowService.ObsoleteShowInUserLibrary(mediaId, userId);
-            return View("MyShows");
-        }
-
-        // POST: Library/RemoveShowFromLibrary
-        [HttpPost]
-        public ActionResult RemoveShowFromLibrary(Guid userShowId)
-        {
-            UserShowService.ObsoleteShowInUserLibrary(userShowId);
             return View("MyShows");
         }
     }
