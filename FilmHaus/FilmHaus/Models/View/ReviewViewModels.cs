@@ -101,7 +101,6 @@ namespace FilmHaus.Models.View
             Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
-            ReviewType = review.ReviewType;
         }
 
         public EditReviewViewModel(BaseReviewViewModel review)
@@ -110,7 +109,6 @@ namespace FilmHaus.Models.View
             Id = review.Id;
             Body = review.Body;
             Shared = review.Shared;
-            ReviewType = review.ReviewType;
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
@@ -130,8 +128,5 @@ namespace FilmHaus.Models.View
         [Required]
         [Display(Name = "Shared", ResourceType = typeof(Locale))]
         public bool Shared { get; set; }
-
-        [Required]
-        public ReviewType ReviewType { get; set; }
     }
 }
