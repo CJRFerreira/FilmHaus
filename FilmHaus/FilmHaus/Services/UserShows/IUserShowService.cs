@@ -14,6 +14,6 @@ namespace FilmHaus.Services.UserShows
 
         void ObsoleteShowInUserLibrary(Guid mediaId, string userId);
 
-        List<UserShowViewModel> GetAllShowsForUser(string userId);
+        List<ShowViewModel> GetAllShowsForUser(string userId);
     }
 }

@@ -49,7 +49,7 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchAllViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        public SearchAllViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<FilmViewModel> films, List<ShowViewModel> shows)
             : base(searchTerm, accolades, releaseYear, rating)
         {
             Films = films;
@@ -62,9 +62,9 @@ namespace FilmHaus.Models.View
             Shows = searchAllViewModel.Shows;
         }
 
-        public List<GeneralFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
 
-        public List<GeneralShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 
     public class SearchShowsViewModel : SearchViewModel
@@ -73,7 +73,7 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchShowsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralShowViewModel> shows)
+        public SearchShowsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<ShowViewModel> shows)
             : base(searchTerm, accolades, releaseYear, rating)
         {
             Shows = shows;
@@ -84,7 +84,7 @@ namespace FilmHaus.Models.View
             Shows = searchShowsViewModel.Shows;
         }
 
-        public List<GeneralShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 
     public class SearchFilmsViewModel : SearchViewModel
@@ -93,7 +93,7 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public SearchFilmsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<GeneralFilmViewModel> films)
+        public SearchFilmsViewModel(string searchTerm, AwardStatus? accolades, int? releaseYear, int? rating, List<FilmViewModel> films)
             : base(searchTerm, accolades, releaseYear, rating)
         {
             Films = films;
@@ -104,6 +104,6 @@ namespace FilmHaus.Models.View
             Films = searchFilmsViewModel.Films;
         }
 
-        public List<GeneralFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
     }
 }

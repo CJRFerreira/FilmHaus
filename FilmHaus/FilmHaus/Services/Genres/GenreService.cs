@@ -72,7 +72,7 @@ namespace FilmHaus.Services.Genres
                 else
                     throw new ArgumentNullException();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
                 throw;
             }

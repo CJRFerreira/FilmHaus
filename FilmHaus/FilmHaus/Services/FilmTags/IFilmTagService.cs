@@ -8,7 +8,7 @@ namespace FilmHaus.Services.FilmTags
     {
         List<GenreViewModel> GetAllTagsForFilm(Guid mediaId);
 
-        List<GeneralFilmViewModel> GetAllFilmsWithTag(Guid tagId);
+        List<FilmViewModel> GetAllFilmsWithTag(Guid tagId);
 
         void AddTagToFilm(Guid genreId, Guid mediaId);
 

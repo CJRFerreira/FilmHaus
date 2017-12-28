@@ -8,7 +8,7 @@ namespace FilmHaus.Services.ShowGenres
     {
         List<GenreViewModel> GetAllGenresForShow(Guid mediaId);
 
-        List<GeneralShowViewModel> GetAllShowsForGenre(Guid genreId);
+        List<ShowViewModel> GetAllShowsForGenre(Guid genreId);
 
         void AddGenreToShow(Guid genreId, Guid mediaId);
 

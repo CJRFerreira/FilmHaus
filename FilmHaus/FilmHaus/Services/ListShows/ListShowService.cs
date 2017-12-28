@@ -19,7 +19,7 @@ namespace FilmHaus.Services.ListShows
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<GeneralShowViewModel> GetAllShowsByListId(Guid listId)
+        public List<ShowViewModel> GetAllShowsByListId(Guid listId)
         {
             return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
         }

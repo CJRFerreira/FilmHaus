@@ -58,17 +58,17 @@ namespace FilmHaus.Services.Films
             }
         }
 
-        public List<GeneralFilmViewModel> GetAllFilms()
+        public List<FilmViewModel> GetAllFilms()
         {
             return FilmHausDbContext.Films.AsExpandable().Select(GetGeneralFilmViewModel()).ToList();
         }
 
-        public GeneralFilmViewModel GetFilmByMediaId(Guid mediaId)
+        public FilmViewModel GetFilmByMediaId(Guid mediaId)
         {
             return FilmHausDbContext.Films.AsExpandable().Where(f => f.MediaId == mediaId).Select(GetGeneralFilmViewModel()).FirstOrDefault();
         }
 
-        public List<GeneralFilmViewModel> GetFilmsBySearchTerm(string searchTerm)
+        public List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm)
         {
             return FilmHausDbContext.Films.AsExpandable().Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralFilmViewModel()).ToList();
         }

@@ -8,7 +8,7 @@ namespace FilmHaus.Services.FilmGenres
     {
         List<GenreViewModel> GetAllGenresForFilm(Guid mediaId);
 
-        List<GeneralFilmViewModel> GetAllFilmsForGenre(Guid genreId);
+        List<FilmViewModel> GetAllFilmsForGenre(Guid genreId);
 
         void AddGenreToFilm(Guid genreId, Guid mediaId);
 

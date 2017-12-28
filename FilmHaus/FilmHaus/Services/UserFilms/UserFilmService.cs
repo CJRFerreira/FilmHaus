@@ -108,7 +108,7 @@ namespace FilmHaus.Services.UserFilms
             }
         }
 
-        public List<UserFilmViewModel> GetAllFilmsForUser(string userId)
+        public List<FilmViewModel> GetAllFilmsForUser(string userId)
         {
             return FilmHausDbContext.UserFilms.AsExpandable().Where(uf => uf.Id == userId && uf.ObsoletedOn == null).Select(GetUserFilmViewModel()).ToList();
         }

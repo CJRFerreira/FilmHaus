@@ -20,7 +20,7 @@ namespace FilmHaus.Services.ListFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<GeneralFilmViewModel> GetAllFilmsForList(Guid listId)
+        public List<FilmViewModel> GetAllFilmsForList(Guid listId)
         {
             return FilmHausDbContext.ListFilms.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Film).Select(GetGeneralFilmViewModel()).ToList();
         }

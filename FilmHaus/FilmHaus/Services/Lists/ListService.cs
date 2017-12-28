@@ -61,7 +61,7 @@ namespace FilmHaus.Services.Lists
                 FilmHausDbContext.Lists.Remove(result);
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
                 throw;
             }

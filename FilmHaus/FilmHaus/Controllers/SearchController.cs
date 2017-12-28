@@ -80,7 +80,7 @@ namespace FilmHaus.Controllers
             return View("Shows", searchViewModel);
         }
 
-        private List<GeneralFilmViewModel> EnactFilmSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
+        private List<FilmViewModel> EnactFilmSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
         {
             var results = FilmService.GetAllFilms();
 
@@ -99,7 +99,7 @@ namespace FilmHaus.Controllers
             return results;
         }
 
-        private List<GeneralShowViewModel> EnactShowSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
+        private List<ShowViewModel> EnactShowSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
         {
             var results = ShowService.GetAllShows();
 
@@ -110,7 +110,7 @@ namespace FilmHaus.Controllers
                 results = results.Where(r => r.DateOfRelease.Year == releaseYear).ToList();
 
             if (rating != null)
-                results = results.Where(r => (r.Rating == rating) || (r.Rating == rating - 1) || (r.Rating == rating + 1)).ToList();
+                results = results.Where(r => (r.Rating >= rating - 1) && (r.Rating <= rating + 1)).ToList();
 
             if (accolades != null)
                 results = results.Where(r => r.Accolades == accolades).ToList();

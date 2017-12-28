@@ -76,7 +76,7 @@ namespace FilmHaus.Services.UserShows
             throw new NotImplementedException();
         }
 
-        public List<UserShowViewModel> GetAllShowsForUser(string userId)
+        public List<ShowViewModel> GetAllShowsForUser(string userId)
         {
             return FilmHausDbContext.UserShows.AsExpandable().Where(us => us.Id == userId && us.ObsoletedOn == null).Select(GetUserShowViewModel()).ToList();
         }

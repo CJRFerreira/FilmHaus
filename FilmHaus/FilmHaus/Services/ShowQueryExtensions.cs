@@ -23,10 +23,10 @@ namespace FilmHaus.Services
             return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(usr => usr.Rating).FirstOrDefault();
         }
 
-        public static Expression<Func<UserShow, UserShowViewModel>> GetUserShowViewModel()
+        public static Expression<Func<UserShow, ShowViewModel>> GetUserShowViewModel()
         {
             var userRating = GetUserShowRating();
-            return s => new UserShowViewModel()
+            return s => new ShowViewModel()
             {
                 MediaId = s.MediaId,
                 MediaName = s.Show.MediaName,
@@ -38,10 +38,10 @@ namespace FilmHaus.Services
             };
         }
 
-        public static Expression<Func<Show, GeneralShowViewModel>> GetGeneralShowViewModel()
+        public static Expression<Func<Show, ShowViewModel>> GetGeneralShowViewModel()
         {
             var averageRating = GetAverageShowRating();
-            return s => new GeneralShowViewModel()
+            return s => new ShowViewModel()
             {
                 MediaId = s.MediaId,
                 MediaName = s.MediaName,

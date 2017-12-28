@@ -53,22 +53,22 @@ namespace FilmHaus.Services.Shows
             }
         }
 
-        public List<GeneralShowViewModel> GetAllShows()
+        public List<ShowViewModel> GetAllShows()
         {
             return FilmHausDbContext.Shows.AsExpandable().Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public GeneralShowViewModel GetShowByMediaId(Guid mediaId)
+        public ShowViewModel GetShowByMediaId(Guid mediaId)
         {
             return FilmHausDbContext.Shows.AsExpandable().Where(f => f.MediaId == mediaId).Select(GetGeneralShowViewModel()).FirstOrDefault();
         }
 
-        public List<GeneralShowViewModel> GetShowsByListId(Guid mediaId)
+        public List<ShowViewModel> GetShowsByListId(Guid mediaId)
         {
             return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == mediaId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public List<GeneralShowViewModel> GetShowsBySearchTerm(string searchTerm)
+        public List<ShowViewModel> GetShowsBySearchTerm(string searchTerm)
         {
             return FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralShowViewModel()).ToList();
         }

@@ -24,7 +24,7 @@ namespace FilmHaus.Services.FilmGenres
             return FilmHausDbContext.FilmGenres.AsExpandable().Where(fg => fg.MediaId == mediaId).Select(fg => fg.Genre).Select(GetGenreViewModel()).ToList();
         }
 
-        public List<GeneralFilmViewModel> GetAllFilmsForGenre(Guid genreId)
+        public List<FilmViewModel> GetAllFilmsForGenre(Guid genreId)
         {
             return FilmHausDbContext.FilmGenres.AsExpandable().Where(fg => fg.DetailId == genreId).Select(g => g.Film).Select(GetGeneralFilmViewModel()).ToList();
         }

@@ -70,7 +70,7 @@ namespace FilmHaus.Services.Titles
                 else
                     throw new ArgumentNullException();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
                 throw;
             }

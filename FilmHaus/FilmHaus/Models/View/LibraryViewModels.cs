@@ -11,15 +11,15 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public UserLibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        public UserLibraryViewModel(List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
         }
 
-        public List<UserFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
 
-        public List<UserShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 
     public class SearchUserLibraryViewModel
@@ -33,13 +33,13 @@ namespace FilmHaus.Models.View
             SearchViewModel = searchViewModel;
         }
 
-        public SearchUserLibraryViewModel(List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        public SearchUserLibraryViewModel(List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
         }
 
-        public SearchUserLibraryViewModel(SearchViewModel searchViewModel, List<UserFilmViewModel> films, List<UserShowViewModel> shows)
+        public SearchUserLibraryViewModel(SearchViewModel searchViewModel, List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             SearchViewModel = searchViewModel;
             Films = films;
@@ -48,9 +48,9 @@ namespace FilmHaus.Models.View
 
         public SearchViewModel SearchViewModel { get; set; }
 
-        public List<UserFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
 
-        public List<UserShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 
     public class SearchLibraryViewModel
@@ -64,13 +64,13 @@ namespace FilmHaus.Models.View
             SearchViewModel = searchViewModel;
         }
 
-        public SearchLibraryViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        public SearchLibraryViewModel(List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
         }
 
-        public SearchLibraryViewModel(SearchViewModel searchViewModel, List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        public SearchLibraryViewModel(SearchViewModel searchViewModel, List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             SearchViewModel = searchViewModel;
             Films = films;
@@ -79,9 +79,9 @@ namespace FilmHaus.Models.View
 
         public SearchViewModel SearchViewModel { get; set; }
 
-        public List<GeneralFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
 
-        public List<GeneralShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 
     public class ReviewLibraryViewModel
@@ -107,7 +107,7 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public ListLibraryViewModel(List<GeneralFilmViewModel> films, List<GeneralShowViewModel> shows)
+        public ListLibraryViewModel(List<FilmViewModel> films, List<ShowViewModel> shows)
         {
             Films = films;
             Shows = shows;
@@ -115,8 +115,8 @@ namespace FilmHaus.Models.View
 
         public ListViewModel List { get; set; }
 
-        public List<GeneralFilmViewModel> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
 
-        public List<GeneralShowViewModel> Shows { get; set; }
+        public List<ShowViewModel> Shows { get; set; }
     }
 }

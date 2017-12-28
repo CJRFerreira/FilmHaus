@@ -6,13 +6,13 @@ namespace FilmHaus.Services.Shows
 {
     public interface IShowService
     {
-        GeneralShowViewModel GetShowByMediaId(Guid mediaId);
+        ShowViewModel GetShowByMediaId(Guid mediaId);
 
-        List<GeneralShowViewModel> GetAllShows();
+        List<ShowViewModel> GetAllShows();
 
-        List<GeneralShowViewModel> GetShowsBySearchTerm(string searchTerm);
+        List<ShowViewModel> GetShowsBySearchTerm(string searchTerm);
 
-        List<GeneralShowViewModel> GetShowsByListId(Guid mediaId);
+        List<ShowViewModel> GetShowsByListId(Guid mediaId);
 
         void CreateShow(CreateShowViewModel show);
 

@@ -6,7 +6,7 @@ namespace FilmHaus.Services.ListShows
 {
     public interface IListShowService
     {
-        List<GeneralShowViewModel> GetAllShowsByListId(Guid listId);
+        List<ShowViewModel> GetAllShowsByListId(Guid listId);
 
         void AddShowToList(Guid listId, Guid mediaId);
 

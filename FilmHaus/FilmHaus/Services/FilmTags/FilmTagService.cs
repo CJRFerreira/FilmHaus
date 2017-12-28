@@ -24,7 +24,7 @@ namespace FilmHaus.Services.FilmTags
             throw new NotImplementedException();
         }
 
-        public List<GeneralFilmViewModel> GetAllFilmsWithTag(Guid tagId)
+        public List<FilmViewModel> GetAllFilmsWithTag(Guid tagId)
         {
             throw new NotImplementedException();
         }

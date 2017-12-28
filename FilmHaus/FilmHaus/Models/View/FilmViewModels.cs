@@ -7,60 +7,20 @@ using FilmHaus.Enums;
 
 namespace FilmHaus.Models.View
 {
-    public class UserFilmViewModel : MediaViewModel
+    public class FilmViewModel : MediaViewModel
     {
-        public UserFilmViewModel() : base()
+        public FilmViewModel() : base()
         {
         }
 
-        public UserFilmViewModel(Film film)
+        public FilmViewModel(Film film) : base(film)
         {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Accolades = film.Accolades;
         }
 
-        public UserFilmViewModel(EditFilmViewModel film)
+        public FilmViewModel(EditFilmViewModel film) : base(film)
         {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Accolades = film.Accolades;
-        }
-
-        [Display(Name = "Runtime", ResourceType = typeof(Locale))]
-        public int Runtime { get; set; }
-    }
-
-    public class GeneralFilmViewModel : MediaViewModel
-    {
-        public GeneralFilmViewModel() : base()
-        {
-        }
-
-        public GeneralFilmViewModel(Film film)
-        {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Accolades = film.Accolades;
-        }
-
-        public GeneralFilmViewModel(EditFilmViewModel film)
-        {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Accolades = film.Accolades;
         }
 
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]
@@ -83,34 +43,14 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public EditFilmViewModel(Film film)
+        public EditFilmViewModel(Film film) : base(film)
         {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Accolades = film.Accolades;
         }
 
-        public EditFilmViewModel(UserFilmViewModel film)
+        public EditFilmViewModel(FilmViewModel film) : base(film)
         {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
             Runtime = film.Runtime;
-            Accolades = film.Accolades;
-        }
-
-        public EditFilmViewModel(GeneralFilmViewModel film)
-        {
-            MediaId = film.MediaId;
-            PosterUri = film.PosterUri;
-            MediaName = film.MediaName;
-            DateOfRelease = film.DateOfRelease;
-            Runtime = film.Runtime;
-            Accolades = film.Accolades;
         }
 
         [Display(Name = "Runtime", ResourceType = typeof(Locale))]

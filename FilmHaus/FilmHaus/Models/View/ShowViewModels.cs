@@ -9,65 +9,27 @@ using FilmHaus.Enums;
 
 namespace FilmHaus.Models.View
 {
-    public class UserShowViewModel : MediaViewModel
+    public class ShowViewModel : MediaViewModel
     {
-        public UserShowViewModel() : base()
+        public ShowViewModel() : base()
         {
         }
 
-        public UserShowViewModel(Show show)
+        public ShowViewModel(Show show) : base(show)
         {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
         }
 
-        public UserShowViewModel(EditShowViewModel show)
+        public ShowViewModel(EditShowViewModel show) : base(show)
         {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
         }
 
         [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
         public int NumberOfSeasons { get; set; }
     }
 
-    public class GeneralShowViewModel : MediaViewModel
-    {
-        public GeneralShowViewModel() : base()
-        {
-        }
 
-        public GeneralShowViewModel(Show show)
-        {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
-            NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
-        }
-
-        public GeneralShowViewModel(EditShowViewModel show)
-        {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
-            NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
-        }
-
-        [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
-        public int NumberOfSeasons { get; set; }
-    }
 
     public class CreateShowViewModel : CreateMediaViewModel
     {
@@ -85,34 +47,14 @@ namespace FilmHaus.Models.View
         {
         }
 
-        public EditShowViewModel(Show show)
+        public EditShowViewModel(Show show) : base(show)
         {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
         }
 
-        public EditShowViewModel(UserShowViewModel show)
+        public EditShowViewModel(ShowViewModel show) : base(show)
         {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
             NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
-        }
-
-        public EditShowViewModel(GeneralShowViewModel show)
-        {
-            MediaId = show.MediaId;
-            PosterUri = show.PosterUri;
-            MediaName = show.MediaName;
-            DateOfRelease = show.DateOfRelease;
-            NumberOfSeasons = show.NumberOfSeasons;
-            Accolades = show.Accolades;
         }
 
         [Display(Name = "NumberOfSeasons", ResourceType = typeof(Locale))]
