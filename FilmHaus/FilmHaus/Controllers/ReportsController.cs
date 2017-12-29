@@ -10,11 +10,11 @@ namespace FilmHaus.Controllers
     [Authorize]
     [RoutePrefix("Reports")]
     [Route("Index")]
-    public class ReportController : Controller
+    public class ReportsController : Controller
     {
         private IReportService ReportService { get; }
 
-        public ReportController(IReportService reportService)
+        public ReportsController(IReportService reportService)
         {
             ReportService = reportService;
         }

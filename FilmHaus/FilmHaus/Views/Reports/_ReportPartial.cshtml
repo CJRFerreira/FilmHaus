@@ -1,15 +1,13 @@
 ﻿@using FilmHaus.Localization;
 @using FilmHaus.Models.View;
-@model BaseReviewViewModel
+@model ExpandedReportExpandedReviewViewModel
 
-<div id="reviewModal" class="modal fade" role="dialog">
-    @Html.BeginForm("Create", "Reviews", FormMethod.Post, new { @class = "form-horizontal" })
-    {
+<div id="reportModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" id="@Model.ReportId">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    @Locale.Create @Locale.Review
+                    @Locale.Report
                 </h4>
                 <button type="button" class="close pull-right" data-dismiss="modal">
                     &times;
@@ -17,17 +15,77 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                    <div class="col-md-12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.ReportedOn)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.ReportReason)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.ReportStatus)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.ResolvedOn)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ReportedOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ReportReason)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ReportStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ResolvedOn)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Shared, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Shared, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Shared, "", new { @class = "text-danger" })
+                <div class="form-group" id="@Model.Review.ReviewId">
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            @Html.DisplayNameFor(m => m.Review.Body)
+                        </div>
+                        <div class="col-md-10">
+                            @Html.DisplayFor(m => m.Review.Body)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="@Model.Review.Media.MediaId">
+                    <div class="col-md-12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.Review.Media.MediaName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(m => m.Review.Media.DateOfRelease)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Review.Media.MediaName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.Review.Media.DateOfRelease)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -35,11 +93,7 @@
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
                     @Locale.Close
                 </button>
-                <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">
-                    @Locale.Create
-                </button>
             </div>
         </div>
     </div>
-    }
 </div>

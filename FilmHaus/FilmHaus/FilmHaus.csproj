@@ -192,7 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
@@ -461,6 +461,7 @@
     <Content Include="Views\Reports\_CreateReportPartial.cshtml" />
     <Content Include="Views\Reports\_EditReportPartial.cshtml" />
     <Content Include="Views\Reports\_ReportPartial.cshtml" />
+    <Content Include="Views\Reports\_ResolveReportPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
