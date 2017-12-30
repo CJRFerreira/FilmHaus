@@ -307,6 +307,7 @@
     <Compile Include="Models\View\PersonViewModels.cs" />
     <Compile Include="Models\View\TitleViewModels.cs" />
     <Compile Include="Models\View\TagViewModels.cs" />
+    <Compile Include="Models\View\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilmGenres\IFilmGenreService.cs" />
     <Compile Include="Services\FilmGenres\FilmGenreService.cs" />
@@ -467,6 +468,7 @@
     <Content Include="Views\Lists\Details.cshtml" />
     <Content Include="Views\Lists\Edit.cshtml" />
     <Content Include="Views\Lists\Index.cshtml" />
+    <Content Include="Views\Films\Reviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

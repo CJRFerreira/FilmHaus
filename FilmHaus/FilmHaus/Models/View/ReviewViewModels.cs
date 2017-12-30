@@ -24,6 +24,7 @@ namespace FilmHaus.Models.View
             Flagged = review.Flagged;
             CreatedOn = review.CreatedOn;
             ReviewType = review.ReviewType;
+            User = new UserViewModel(review.User);
         }
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
@@ -31,6 +32,8 @@ namespace FilmHaus.Models.View
 
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public string Id { get; set; }
+
+        public UserViewModel User { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "Description", ResourceType = typeof(Locale))]

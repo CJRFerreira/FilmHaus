@@ -1,0 +1,63 @@
+﻿@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@model FilmViewModel
+
+@{
+    ViewBag.Title = Locale.Details;
+}
+
+<section>
+    <h2>@Locale.Reviews - @Model.MediaName </h2>
+    <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @if (this.User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        }
+
+        @Html.ActionLink(Locale.Index, "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</section>
+<hr />
+<section>
+    @if (Model.UserReview != null)
+    {
+        @Html.Partial("~/Views/Reviews/_EditReviewPartial.cshtml", new EditReviewViewModel(Model.UserReview))
+    }
+    else
+    {
+        @Html.Partial("~/Views/Reviews/_CreateReviewPartial.cshtml", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))
+    }
+</section>
+<hr />
+<section>
+    @if (Model.Reviews.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.From</th>
+                    <th>@Locale.Description</th>
+                    <th>@Locale.CreatedOn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Reviews)
+                {
+                    <tr>
+                        <td>@item.User.FullName</td>
+                        <td>@item.Body</td>
+                        <td>@item.CreatedOn</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="well">
+            <p class="text-info">
+                @Locale.NoFilms
+            </p>
+        </div>
+    }
+</section>

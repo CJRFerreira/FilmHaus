@@ -1,5 +1,6 @@
 ﻿using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
+using FilmHaus.Services.ReviewFilms;
 using System;
 using System.Web.Mvc;
 
@@ -10,11 +11,14 @@ namespace FilmHaus.Controllers
     [Route("Index")]
     public class FilmsController : Controller
     {
-        public IFilmService FilmService { get; private set; }
+        private IFilmService FilmService { get; }
 
-        public FilmsController(IFilmService filmService)
+        private IReviewFilmService ReviewFilmService { get; }
+
+        public FilmsController(IFilmService filmService, IReviewFilmService reviewFilmService)
         {
             FilmService = filmService;
+            ReviewFilmService = reviewFilmService;
         }
 
         // GET: Film
@@ -29,6 +33,19 @@ namespace FilmHaus.Controllers
         public ActionResult Details(Guid mediaId)
         {
             var result = FilmService.GetFilmByMediaId(mediaId);
+
+            if (result != null)
+                return View(result);
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Film/Details/5
+        [Route("Details/{mediaId:guid}/Reviews")]
+        public ActionResult Reviews(Guid mediaId)
+        {
+            var result = FilmService.GetFilmByMediaId(mediaId);
+            result.Reviews = ReviewFilmService.GetAllSharedReviewsByFilmId(mediaId);
 
             if (result != null)
                 return View(result);

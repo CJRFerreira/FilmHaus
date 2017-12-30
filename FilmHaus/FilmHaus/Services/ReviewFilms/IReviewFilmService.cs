@@ -6,11 +6,11 @@ namespace FilmHaus.Services.ReviewFilms
 {
     public interface IReviewFilmService
     {
-        List<ExpandedReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId);
+        List<BaseReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId);
 
-        List<ExpandedReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId);
+        List<BaseReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId);
 
-        List<ExpandedReviewViewModel> GetAllReviewsByFilmId(Guid mediaId);
+        List<BaseReviewViewModel> GetAllReviewsByFilmId(Guid mediaId);
 
         void CreateReviewFilm(Guid reviewId, Guid mediaId);
 

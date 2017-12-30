@@ -19,19 +19,19 @@ namespace FilmHaus.Services.ReviewFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<ExpandedReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllSharedReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
         }
 
-        public List<ExpandedReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllFlaggedReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
         }
 
-        public List<ExpandedReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
+        public List<BaseReviewViewModel> GetAllReviewsByFilmId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModelWithFilm()).ToList();
+            return FilmHausDbContext.ReviewFilms.AsExpandable().Where(rf => rf.MediaId == mediaId).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
         }
 
         public void CreateReviewFilm(Guid reviewId, Guid mediaId)
