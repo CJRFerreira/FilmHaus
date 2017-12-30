@@ -1,0 +1,52 @@
+﻿@using FilmHaus.Localization
+@using Microsoft.AspNet.Identity
+@model IEnumerable<FilmHaus.Models.View.ListViewModel>
+
+@{
+    ViewBag.Title = Locale.Index;
+}
+
+<h2>@Locale.Films @Html.ActionLink(Locale.CreateList, "Create", null, new { @class = "btn btn-primary pull-right" })</h2>
+<hr />
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.ListId">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.ActionLink(Locale.Details, "Details", new { listId = item.ListId }, new { @class = "btn btn-info" })
+                    @if (this.User.Identity.GetUserId() == item.UserId)
+                    {
+                        Html.ActionLink(Locale.Edit, "Edit", new { listId = item.ListId }, new { @class = "btn btn-primary" });
+                        Html.ActionLink(Locale.Delete, "Delete", new { listId = item.ListId }, new { @class = "btn btn-warning" });
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

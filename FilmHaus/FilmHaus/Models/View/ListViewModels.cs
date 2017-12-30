@@ -64,6 +64,7 @@ namespace FilmHaus.Models.View
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string Title { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Description", ResourceType = typeof(Locale))]
         public string Description { get; set; }
 
