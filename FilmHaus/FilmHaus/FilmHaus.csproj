@@ -469,6 +469,7 @@
     <Content Include="Views\Lists\Edit.cshtml" />
     <Content Include="Views\Lists\Index.cshtml" />
     <Content Include="Views\Films\Reviews.cshtml" />
+    <Content Include="Views\Shows\Reviews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
