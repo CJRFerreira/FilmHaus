@@ -1,7 +1,6 @@
 ﻿using FilmHaus.Models;
-using FilmHaus.Services.FilmPersonTitles;
 
-namespace FilmHaus.Services.ReviewFilms
+namespace FilmHaus.Services.FilmPersonTitles
 {
     public class FilmPersonTitleService : IFilmPersonTitleService
     {
