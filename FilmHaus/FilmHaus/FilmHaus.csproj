@@ -311,6 +311,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FilmGenres\IFilmGenreService.cs" />
     <Compile Include="Services\FilmGenres\FilmGenreService.cs" />
+    <Compile Include="Services\PersonTitleQueryExtensions.cs" />
+    <Compile Include="Services\TitleQueryExtensions.cs" />
+    <Compile Include="Services\TagQueryExtensions.cs" />
     <Compile Include="Services\ListTags\ListTagService.cs" />
     <Compile Include="Services\ListTags\IListTagService.cs" />
     <Compile Include="Services\GenreQueryExtensions.cs" />

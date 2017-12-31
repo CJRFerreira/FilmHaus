@@ -53,7 +53,7 @@ namespace FilmHaus.Models.View
 
         public BaseReviewViewModel UserReview { get; set; }
 
-        public ICollection<PersonViewModel> Collaborators { get; set; }
+        public ICollection<PersonTitleViewModel> Collaborators { get; set; }
 
         public ICollection<GenreViewModel> Genres { get; set; }
 

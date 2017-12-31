@@ -69,7 +69,7 @@ namespace FilmHaus.Models.View
             LastName = person.LastName;
         }
 
-        public EditPersonViewModel(PersonViewModel person)
+        public EditPersonViewModel(PersonTitleViewModel person)
         {
             PersonId = person.PersonId;
             FirstName = person.FirstName;
