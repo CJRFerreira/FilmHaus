@@ -12,11 +12,11 @@ namespace FilmHaus.Controllers
     [Authorize]
     public class ReviewsController : Controller
     {
-        public IReviewService ReviewService { get; private set; }
+        private IReviewService ReviewService { get; }
 
-        public IReviewFilmService ReviewFilmService { get; private set; }
+        private IReviewFilmService ReviewFilmService { get; }
 
-        public IReviewShowService ReviewShowService { get; private set; }
+        private IReviewShowService ReviewShowService { get; }
 
         public ReviewsController(IReviewService reviewService, IReviewFilmService reviewFilmService, IReviewShowService reviewShowService)
         {
@@ -26,18 +26,20 @@ namespace FilmHaus.Controllers
         }
 
         [HttpGet]
+        [ChildActionOnly]
         public ActionResult Details(string reviewId)
         {
             var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
 
             if (result != null)
-                return View(result);
+                return PartialView(result);
 
             return RedirectToAction("Index", "Library");
         }
 
         // GET: Reviews/Edit/5
         [HttpGet]
+        [ChildActionOnly]
         public ActionResult Edit(string reviewId)
         {
             var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
@@ -74,6 +76,7 @@ namespace FilmHaus.Controllers
         }
 
         [HttpGet]
+        [ChildActionOnly]
         public ActionResult Create(Guid mediaId, ReviewType reviewType)
         {
             return PartialView("CreateReviewPartial", new CreateReviewViewModel(mediaId, reviewType));

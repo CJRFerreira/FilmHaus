@@ -9,7 +9,7 @@ namespace FilmHaus.Services.Persons
     {
         void Create(CreatePersonViewModel person);
 
-        PersonTitleViewModel Retrieve(Guid personId);
+        PersonViewModel Retrieve(Guid personId);
 
         void Update(Guid personId, EditPersonViewModel person);
 

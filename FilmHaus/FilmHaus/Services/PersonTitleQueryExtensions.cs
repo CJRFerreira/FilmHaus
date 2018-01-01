@@ -15,7 +15,19 @@ namespace FilmHaus.Services
 {
     internal static class PersonTitleQueryExtensions
     {
-        public static Expression<Func<FilmPersonTitle, PersonTitleViewModel>> GetUserFilmViewModel()
+        public static Expression<Func<FilmPersonTitle, PersonTitleViewModel>> GetPersonTitleViewModelForFilm()
+        {
+            var person = GetPersonViewModel();
+            var title = GetTitleViewModel();
+
+            return f => new PersonTitleViewModel()
+            {
+                Person = person.Invoke(f.Person),
+                Title = title.Invoke(f.Title)
+            };
+        }
+
+        public static Expression<Func<ShowPersonTitle, PersonTitleViewModel>> GetPersonTitleViewModelForShow()
         {
             var person = GetPersonViewModel();
             var title = GetTitleViewModel();

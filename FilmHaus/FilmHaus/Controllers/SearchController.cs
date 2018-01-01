@@ -85,7 +85,7 @@ namespace FilmHaus.Controllers
             var results = FilmService.GetAllFilms();
 
             if (!String.IsNullOrEmpty(searchTerm))
-                results = results.Where(r => r.MediaName.Contains(searchTerm)).ToList();
+                results = results.Where(r => r.MediaName.ToUpperInvariant().Contains(searchTerm.ToUpperInvariant())).ToList();
 
             if (releaseYear != null)
                 results = results.Where(r => r.DateOfRelease.Year == releaseYear).ToList();
@@ -104,7 +104,7 @@ namespace FilmHaus.Controllers
             var results = ShowService.GetAllShows();
 
             if (!String.IsNullOrEmpty(searchTerm))
-                results = results.Where(r => r.MediaName.Contains(searchTerm)).ToList();
+                results = results.Where(r => r.MediaName.ToUpperInvariant().Contains(searchTerm.ToUpperInvariant())).ToList();
 
             if (releaseYear != null)
                 results = results.Where(r => r.DateOfRelease.Year == releaseYear).ToList();

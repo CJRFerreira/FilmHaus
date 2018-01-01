@@ -8,7 +8,6 @@ namespace FilmHaus.Controllers
 {
     [Authorize]
     [RoutePrefix("Films")]
-    [Route("Index")]
     public class FilmsController : Controller
     {
         private IFilmService FilmService { get; }
@@ -28,7 +27,7 @@ namespace FilmHaus.Controllers
             return View(FilmService.GetAllFilms());
         }
 
-        // GET: Film/Details/5
+        // GET: Film/Details/{mediaId}
         [Route("Details/{mediaId:guid}")]
         public ActionResult Details(Guid mediaId)
         {
@@ -40,7 +39,7 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Film/Details/5
+        // GET: Film/Details/{mediaId}/Reviews
         [Route("Details/{mediaId:guid}/Reviews")]
         public ActionResult Reviews(Guid mediaId)
         {
@@ -85,7 +84,7 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Films/Edit/5
+        // GET: Films/Edit/{mediaId}
         [Route("Edit/{mediaId:guid}")]
         public ActionResult Edit(Guid mediaId)
         {
@@ -113,7 +112,7 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Films/Delete/5
+        // GET: Films/Delete/{mediaId}
         [Route("Delete/{mediaId:guid}")]
         public ActionResult Delete(string id)
         {
@@ -125,7 +124,7 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: Films/Delete/5
+        // POST: Films/Delete/{mediaId}
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

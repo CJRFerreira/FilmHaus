@@ -9,7 +9,6 @@ namespace FilmHaus.Controllers
 {
     [Authorize]
     [RoutePrefix("Reports")]
-    [Route("Index")]
     public class ReportsController : Controller
     {
         private IReportService ReportService { get; }
@@ -24,7 +23,6 @@ namespace FilmHaus.Controllers
         [Route("Index")]
         public ActionResult Index()
         {
-
             return View();
         }
 

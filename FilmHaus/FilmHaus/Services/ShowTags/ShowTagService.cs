@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using FilmHaus.Models.View;
 using FilmHaus.Models;
-using FilmHaus.Models.Base;
 using FilmHaus.Models.Connector;
-using System.Data.Entity;
+using static FilmHaus.Services.TagQueryExtensions;
+using static FilmHaus.Services.ShowQueryExtensions;
 
 namespace FilmHaus.Services.ShowTags
 {
@@ -19,29 +19,65 @@ namespace FilmHaus.Services.ShowTags
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<GenreViewModel> GetAllTagsForShow(Guid mediaId)
+        public List<TagViewModel> GetAllTagsForShow(Guid mediaId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ShowTags.Where(st => st.MediaId == mediaId).Select(st => st.Tag).Select(GetTagViewModel()).ToList();
         }
 
-        public List<ListViewModel> GetAllShowsWithTag(Guid tagId)
+        public List<ShowViewModel> GetAllShowsWithTag(Guid tagId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ShowTags.Where(st => st.DetailId == tagId).Select(st => st.Show).Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public void AddTagToList(Guid genreId, Guid mediaId)
+        public void AddTagToShow(Guid genreId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.ShowTags.Add(new ShowTag
+            {
+                ShowTagId = Guid.NewGuid(),
+                DetailId = genreId,
+                MediaId = mediaId
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
-        public void RemoveTagFromList(Guid showTagId)
+        public void RemoveTagFromShow(Guid showTagId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ShowTags.Find(showTagId);
+
+                if (result != null)
+                {
+                    FilmHausDbContext.ShowTags.Remove(result);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public void RemoveTagFromList(Guid tagId, Guid mediaId)
+        public void RemoveTagFromShow(Guid tagId, Guid mediaId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ShowTags.Where(st => st.MediaId == mediaId && st.DetailId == tagId).FirstOrDefault();
+
+                if (result != null)
+                {
+                    FilmHausDbContext.ShowTags.Remove(result);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

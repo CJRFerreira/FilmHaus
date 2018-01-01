@@ -6,7 +6,8 @@ using FilmHaus.Models.View;
 using FilmHaus.Models;
 using FilmHaus.Models.Base;
 using FilmHaus.Models.Connector;
-using System.Data.Entity;
+using static FilmHaus.Services.TagQueryExtensions;
+using static FilmHaus.Services.ListQueryExtensions;
 
 namespace FilmHaus.Services.ListTags
 {
@@ -19,29 +20,65 @@ namespace FilmHaus.Services.ListTags
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public List<GenreViewModel> GetAllTagsForList(Guid listId)
+        public List<TagViewModel> GetAllTagsForList(Guid listId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ListTags.Where(st => st.ListId == listId).Select(st => st.Tag).Select(GetTagViewModel()).ToList();
         }
 
         public List<ListViewModel> GetAllListsWithTag(Guid tagId)
         {
-            throw new NotImplementedException();
+            return FilmHausDbContext.ListTags.Where(st => st.DetailId == tagId).Select(st => st.List).Select(GetListViewModel()).ToList();
         }
 
         public void AddTagToList(Guid genreId, Guid listId)
         {
-            throw new NotImplementedException();
+            FilmHausDbContext.ListTags.Add(new ListTag
+            {
+                ListTagId = Guid.NewGuid(),
+                DetailId = genreId,
+                ListId = listId
+            });
+            FilmHausDbContext.SaveChanges();
         }
 
         public void RemoveTagFromList(Guid listTagId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListTags.Find(listTagId);
+
+                if (result != null)
+                {
+                    FilmHausDbContext.ListTags.Remove(result);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public void RemoveTagFromList(Guid tagId, Guid listId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.ListTags.Where(st => st.ListId == listId && st.DetailId == tagId).FirstOrDefault();
+
+                if (result != null)
+                {
+                    FilmHausDbContext.ListTags.Remove(result);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

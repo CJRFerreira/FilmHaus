@@ -34,7 +34,7 @@ namespace FilmHaus.Services
                 DateOfRelease = s.Show.DateOfRelease,
                 Accolades = s.Show.Accolades,
                 NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = (double)userRating.Invoke(s)
+                Rating = userRating.Invoke(s)
             };
         }
 

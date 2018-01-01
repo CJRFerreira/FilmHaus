@@ -6,14 +6,14 @@ namespace FilmHaus.Services.ShowTags
 {
     public interface IShowTagService
     {
-        List<GenreViewModel> GetAllTagsForShow(Guid mediaId);
+        List<TagViewModel> GetAllTagsForShow(Guid mediaId);
 
-        List<ListViewModel> GetAllShowsWithTag(Guid tagId);
+        List<ShowViewModel> GetAllShowsWithTag(Guid tagId);
 
-        void AddTagToList(Guid genreId, Guid mediaId);
+        void AddTagToShow(Guid tagId, Guid mediaId);
 
-        void RemoveTagFromList(Guid showTagId);
+        void RemoveTagFromShow(Guid showTagId);
 
-        void RemoveTagFromList(Guid tagId, Guid mediaId);
+        void RemoveTagFromShow(Guid tagId, Guid mediaId);
     }
 }

@@ -10,16 +10,16 @@ namespace FilmHaus.Services.FilmPersonTitles
 
         List<FilmViewModel> GetAllFilmsForPerson(Guid personId);
 
-        List<FilmViewModel> GetAllTitlesForPerson(Guid personId);
+        List<TitleViewModel> GetAllTitlesForPerson(Guid personId);
 
-        List<FilmViewModel> GetAllPeopleForTitle(Guid personId);
+        List<PersonViewModel> GetAllPeopleForTitle(Guid titleId);
 
         List<FilmViewModel> GetAllFilmsForPersonAsTitle(Guid personId, Guid titleId);
 
         void AddPersonAsTitleToFilm(Guid mediaId, Guid personId, Guid titleId);
 
-        void RemovePersonAsTitleToFilm(Guid filmPersonTitleId);
+        void RemovePersonAsTitleFromFilm(Guid filmPersonTitleId);
 
-        void RemovePersonAsTitleToFilm(Guid mediaId, Guid personId, Guid titleId);
+        void RemovePersonAsTitleFromFilm(Guid mediaId, Guid personId, Guid titleId);
     }
 }

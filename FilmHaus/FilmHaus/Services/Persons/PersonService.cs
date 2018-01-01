@@ -27,14 +27,14 @@ namespace FilmHaus.Services.Persons
             FilmHausDbContext.SaveChanges();
         }
 
-        public PersonTitleViewModel Retrieve(Guid personId)
+        public PersonViewModel Retrieve(Guid personId)
         {
             var result = FilmHausDbContext.People.Find(personId);
 
             if (result == null)
                 throw new ArgumentNullException();
 
-            return new PersonTitleViewModel(result);
+            return new PersonViewModel(result);
         }
 
         public void Update(Guid personId, EditPersonViewModel person)

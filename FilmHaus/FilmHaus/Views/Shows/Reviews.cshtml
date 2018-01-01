@@ -7,13 +7,13 @@
 }
 
 <section>
-    <h2>@Locale.Reviews - @Model.MediaName </h2>
+    <h2>@Locale.Reviews - @Model.MediaName</h2>
     <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @Html.ActionLink(Locale.Details, "Details", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
         @if (this.User.IsInRole("Administrator"))
         {
             @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
         }
-
         @Html.ActionLink(Locale.Index, "Index", null, new { @class = "btn btn-danger" })
     </div>
 </section>
@@ -21,7 +21,7 @@
 <section>
     @if (Model.UserReview != null)
     {
-        @Html.Partial("~/Views/Reviews/_EditReviewPartial.cshtml", new EditReviewViewModel(Model.UserReview))
+        @Html.Partial("~/Views/Reviews/_ReviewPartial.cshtml", Model.UserReview)
     }
     else
     {

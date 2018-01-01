@@ -10,7 +10,6 @@ namespace FilmHaus.Controllers
 {
     [Authorize]
     [RoutePrefix("Reports")]
-    [Route("Index")]
     public class ListController : Controller
     {
         private IListService ListService { get; }

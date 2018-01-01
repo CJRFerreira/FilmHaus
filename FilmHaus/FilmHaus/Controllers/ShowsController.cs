@@ -1,4 +1,5 @@
 ﻿using FilmHaus.Models.View;
+using FilmHaus.Services.ReviewShows;
 using FilmHaus.Services.Shows;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,16 @@ namespace FilmHaus.Controllers
 {
     [Authorize]
     [RoutePrefix("Shows")]
-    [Route("Index")]
     public class ShowsController : Controller
     {
         private IShowService ShowService { get; }
 
-        public ShowsController(IShowService showService)
+        private IReviewShowService ReviewShowService { get; }
+
+        public ShowsController(IShowService showService, IReviewShowService reviewShowService)
         {
             ShowService = showService;
+            ReviewShowService = reviewShowService;
         }
 
         // GET: Show
@@ -40,6 +43,19 @@ namespace FilmHaus.Controllers
                 return View(result);
 
             return View("Index");
+        }
+
+        // GET: Show/Details/{mediaId}/Reviews
+        [Route("Details/{mediaId:guid}/Reviews")]
+        public ActionResult Reviews(Guid mediaId)
+        {
+            var result = ShowService.GetShowByMediaId(mediaId);
+            result.Reviews = ReviewShowService.GetAllSharedReviewsByShowId(mediaId);
+
+            if (result != null)
+                return View(result);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Shows/Create

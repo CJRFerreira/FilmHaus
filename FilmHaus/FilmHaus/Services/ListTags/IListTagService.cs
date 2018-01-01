@@ -6,7 +6,7 @@ namespace FilmHaus.Services.ListTags
 {
     public interface IListTagService
     {
-        List<GenreViewModel> GetAllTagsForList(Guid listId);
+        List<TagViewModel> GetAllTagsForList(Guid listId);
 
         List<ListViewModel> GetAllListsWithTag(Guid tagId);
 

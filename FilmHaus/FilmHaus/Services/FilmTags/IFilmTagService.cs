@@ -6,7 +6,7 @@ namespace FilmHaus.Services.FilmTags
 {
     public interface IFilmTagService
     {
-        List<GenreViewModel> GetAllTagsForFilm(Guid mediaId);
+        List<TagViewModel> GetAllTagsForFilm(Guid mediaId);
 
         List<FilmViewModel> GetAllFilmsWithTag(Guid tagId);
 
@@ -14,6 +14,6 @@ namespace FilmHaus.Services.FilmTags
 
         void RemoveTagFromFilm(Guid filmTagId);
 
-        void RemoveTagFromFilmm(Guid tagId, Guid mediaId);
+        void RemoveTagFromFilm(Guid tagId, Guid mediaId);
     }
 }

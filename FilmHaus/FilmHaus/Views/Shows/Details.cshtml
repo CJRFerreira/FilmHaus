@@ -7,9 +7,13 @@
 }
 
 <section>
-    <h2>@Locale.Details - @Model.MediaName </h2>
+    <h2>@Locale.Details - @Model.MediaName</h2>
     <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
-        @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        @Html.ActionLink(Locale.Reviews, "Reviews", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        @if (this.User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        }
         @Html.ActionLink(Locale.Index, "Index", null, new { @class = "btn btn-danger" })
     </div>
 </section>
