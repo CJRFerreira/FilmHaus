@@ -86,7 +86,7 @@ namespace FilmHaus.Controllers
         {
             var result = ListService.GetListByListId(listId);
 
-            if (result != null && this.User.Identity.GetUserId() == result.UserId)
+            if (result != null && this.User.Identity.GetUserId() == result.Id)
                 return View(new EditListViewModel(result));
 
             return RedirectToAction("Index");

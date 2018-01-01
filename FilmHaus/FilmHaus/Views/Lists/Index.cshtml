@@ -1,6 +1,7 @@
 ﻿@using FilmHaus.Localization
-@using Microsoft.AspNet.Identity
-@model IEnumerable<FilmHaus.Models.View.ListViewModel>
+@using FilmHaus.Models.View;
+@using Microsoft.AspNet.Identity;
+@model IEnumerable<ListViewModel>
 
 @{
     ViewBag.Title = Locale.Index;
@@ -40,7 +41,7 @@
                 </td>
                 <td>
                     @Html.ActionLink(Locale.Details, "Details", new { listId = item.ListId }, new { @class = "btn btn-info" })
-                    @if (this.User.Identity.GetUserId() == item.UserId)
+                    @if (this.User.Identity.GetUserId() == item.Id)
                     {
                         Html.ActionLink(Locale.Edit, "Edit", new { listId = item.ListId }, new { @class = "btn btn-primary" });
                         Html.ActionLink(Locale.Delete, "Delete", new { listId = item.ListId }, new { @class = "btn btn-warning" });
@@ -50,3 +51,4 @@
         }
     </tbody>
 </table>
+@Html.Partial("~/Views/Lists/_CreateListPartial.cshtml", new CreateListViewModel(this.User.Identity.GetUserId()))

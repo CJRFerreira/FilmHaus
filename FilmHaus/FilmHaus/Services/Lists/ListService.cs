@@ -30,7 +30,7 @@ namespace FilmHaus.Services.Lists
             FilmHausDbContext.Lists.Add(new List
             {
                 ListId = Guid.NewGuid(),
-                Id = userId,
+                Id = list.Id,
                 CreatedOn = DateTime.Now,
                 Title = list.Title,
                 Description = list.Description,
@@ -115,7 +115,7 @@ namespace FilmHaus.Services.Lists
                 .Select(l => new ListViewModel
                 {
                     ListId = l.ListId,
-                    UserId = l.Id,
+                    Id = l.Id,
                     Title = l.Title,
                     Description = l.Description,
                     Shared = l.Shared,
@@ -130,7 +130,7 @@ namespace FilmHaus.Services.Lists
                 .Select(l => new ListViewModel
                 {
                     ListId = l.ListId,
-                    UserId = l.Id,
+                    Id = l.Id,
                     Title = l.Title,
                     Description = l.Description,
                     Shared = l.Shared,
@@ -146,7 +146,7 @@ namespace FilmHaus.Services.Lists
                 .Select(l => new ListViewModel
                 {
                     ListId = l.ListId,
-                    UserId = l.Id,
+                    Id = l.Id,
                     Title = l.Title,
                     Description = l.Description,
                     Shared = l.Shared,

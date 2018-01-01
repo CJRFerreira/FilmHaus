@@ -12,7 +12,7 @@ namespace FilmHaus.Services
             return l => new ListViewModel()
             {
                 ListId = l.ListId,
-                UserId = l.Id,
+                Id = l.Id,
                 CreatedOn = l.CreatedOn,
                 Title = l.Title,
                 Description = l.Description,
