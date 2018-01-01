@@ -1,7 +1,9 @@
 ﻿using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
 using FilmHaus.Services.ReviewFilms;
+using Microsoft.AspNet.Identity;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
@@ -43,11 +45,15 @@ namespace FilmHaus.Controllers
         [Route("Details/{mediaId:guid}/Reviews")]
         public ActionResult Reviews(Guid mediaId)
         {
-            var result = FilmService.GetFilmByMediaId(mediaId);
-            result.Reviews = ReviewFilmService.GetAllSharedReviewsByFilmId(mediaId);
+            var film = FilmService.GetFilmByMediaId(mediaId);
+            var reviews = ReviewFilmService.GetAllSharedReviewsByFilmId(mediaId);
 
-            if (result != null)
-                return View(result);
+            film.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
+            film.Reviews = reviews.Where(r => r.Id != this.User.Identity.GetUserId()).ToList();
+
+
+            if (film != null)
+                return View(film);
 
             return RedirectToAction("Index");
         }

@@ -64,7 +64,7 @@ namespace FilmHaus.Controllers
                 if (viewModel.Id == this.User.Identity.GetUserId())
                 {
                     ReviewService.UpdateReviewByReviewId(viewModel.ReviewId, viewModel);
-                    return RedirectToAction("Details", "Films", new { mediaId = viewModel.MediaId });
+                    return RedirectToAction("Details", new { mediaId = viewModel.MediaId });
                 }
                 else
                     return RedirectToAction("Index", "Library");
@@ -83,6 +83,7 @@ namespace FilmHaus.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReviewViewModel viewModel)
         {
             switch (viewModel.ReviewType)
@@ -107,7 +108,7 @@ namespace FilmHaus.Controllers
                     break;
             }
 
-            return RedirectToAction("Details", "Films", new { mediaId = viewModel.MediaId });
+            return RedirectToAction("Details", new { mediaId = viewModel.MediaId });
         }
     }
 }

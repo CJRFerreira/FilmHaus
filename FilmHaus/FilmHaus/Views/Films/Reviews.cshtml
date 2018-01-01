@@ -1,5 +1,6 @@
 ﻿@using FilmHaus.Localization;
 @using FilmHaus.Models.View;
+@using Microsoft.AspNet.Identity;
 @model FilmViewModel
 
 @{
@@ -22,11 +23,36 @@
 <section>
     @if (Model.UserReview != null)
     {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.From</th>
+                    <th>@Locale.Description</th>
+                    <th>@Locale.CreatedOn</th>
+                    <th>@Locale.UserActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.UserReview.User.FullName</td>
+                    <td>@Model.UserReview.Body</td>
+                    <td>@Model.UserReview.CreatedOn</td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reviewModal">@Locale.Details</button>
+                        @if (User.Identity.GetUserId() == Model.UserReview.Id)
+                        {
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editReviewModal">@Locale.Edit</button>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         @Html.Partial("~/Views/Reviews/_ReviewPartial.cshtml", Model.UserReview)
+        @Html.Partial("~/Views/Reviews/_EditReviewPartial.cshtml", new EditReviewViewModel(Model.UserReview))
     }
     else
     {
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reviewModal">@Locale.Create @Locale.Review</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createReviewModal">@Locale.Create @Locale.Review</button>
         @Html.Partial("~/Views/Reviews/_CreateReviewPartial.cshtml", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))
     }
 </section>

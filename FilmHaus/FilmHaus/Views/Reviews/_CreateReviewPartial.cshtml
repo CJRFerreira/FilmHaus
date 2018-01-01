@@ -2,9 +2,10 @@
 @using FilmHaus.Models.View;
 @model CreateReviewViewModel
 
-<div id="reviewModal" class="modal fade" role="dialog">
+<div id="createReviewModal" class="modal fade" role="dialog">
     @Html.BeginForm("Create", "Reviews", FormMethod.Post, new { @class = "form-horizontal" })
     {
+    @Html.AntiForgeryToken()
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,6 +17,8 @@
                 </h4>
             </div>
             <div class="modal-body">
+                @Html.HiddenFor(m => m.MediaId)
+                @Html.HiddenFor(m => m.ReviewType)
                 <div class="form-group">
                     @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">

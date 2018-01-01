@@ -2,9 +2,10 @@
 @using FilmHaus.Models.View;
 @model EditReviewViewModel
 
-<div id="reviewModal" class="modal fade" role="dialog">
+<div id="editReviewModal" class="modal fade" role="dialog">
     @Html.BeginForm("Edit", "Reviews", FormMethod.Post, new { @class = "form-horizontal" })
     {
+    @Html.AntiForgeryToken()
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -16,17 +17,19 @@
                 </button>
             </div>
             <div class="modal-body">
+                @Html.HiddenFor(m => m.ReviewId)
+                @Html.HiddenFor(m => m.Id)
                 <div class="form-group">
                     @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Body, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Shared, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Shared, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Shared, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Shared, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -35,7 +38,7 @@
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
                     @Locale.Close
                 </button>
-                <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">
+                <button type="submit" class="btn btn-primary pull-right">
                     @Locale.Save
                 </button>
             </div>

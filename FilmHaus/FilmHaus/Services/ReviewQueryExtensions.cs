@@ -4,6 +4,7 @@ using LinqKit;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using static FilmHaus.Services.UserQueryExtensions;
 
 namespace FilmHaus.Services
 {
@@ -22,11 +23,14 @@ namespace FilmHaus.Services
         public static Expression<Func<Review, ExpandedReviewViewModel>> GetReviewViewModelWithFilm()
         {
             var getFilm = GetFilmFromReview();
+            var user = GetUserViewModel();
             var getFilmViewModel = FilmQueryExtensions.GetGeneralFilmViewModel();
 
             return r => new ExpandedReviewViewModel
             {
                 ReviewId = r.ReviewId,
+                Id = r.Id,
+                User = user.Invoke(r.User),
                 Body = r.Body,
                 Shared = r.Shared,
                 Flagged = r.Flagged,
@@ -39,11 +43,14 @@ namespace FilmHaus.Services
         public static Expression<Func<Review, ExpandedReviewViewModel>> GetReviewViewModelWithShow()
         {
             var getShow = GetShowFromReview();
+            var user = GetUserViewModel();
             var getShowViewModel = ShowQueryExtensions.GetGeneralShowViewModel();
 
             return r => new ExpandedReviewViewModel
             {
                 ReviewId = r.ReviewId,
+                Id = r.Id,
+                User = user.Invoke(r.User),
                 Body = r.Body,
                 Shared = r.Shared,
                 Flagged = r.Flagged,
@@ -55,9 +62,13 @@ namespace FilmHaus.Services
 
         public static Expression<Func<Review, BaseReviewViewModel>> GetReviewViewModel()
         {
+            var user = GetUserViewModel();
+
             return r => new BaseReviewViewModel
             {
                 ReviewId = r.ReviewId,
+                Id = r.Id,
+                User = user.Invoke(r.User),
                 Body = r.Body,
                 Shared = r.Shared,
                 Flagged = r.Flagged,
