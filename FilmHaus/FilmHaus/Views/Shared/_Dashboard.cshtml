@@ -21,7 +21,7 @@
                     <a href="#">@Locale.FilmHaus</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Locale.Hello @User.Identity.Name<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> @Locale.UserAccount <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">@Locale.UserActions</li>
                         <li>@Html.ActionLink(Locale.Manage, "Index", "Manage", routeValues: null, htmlAttributes: new { title = Locale.Manage })</li>
@@ -36,7 +36,6 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.Library <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">@Locale.UserActions</li>
-                        <li>@Html.ActionLink(Locale.Index, "Index", "Library")</li>
                         <li>@Html.ActionLink(Locale.MyFilms, "Films", "Library")</li>
                         <li>@Html.ActionLink(Locale.MyShows, "Shows", "Library")</li>
                     </ul>
@@ -50,14 +49,24 @@
                         <a href="@Url.Action("Index", "Shows")"><span class="glyphicon glyphicon-film"></span> @Locale.Shows</a>
                     </li>
                 }
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.Lists <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">@Locale.UserActions</li>
-                        <li>@Html.ActionLink(Locale.ViewLists, "Index", "Lists")</li>
-                        <li>@Html.ActionLink(Locale.MyLists, "MyLists", "Lists")</li>
-                    </ul>
-                </li>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> @Locale.Lists <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-header">@Locale.UserActions</li>
+                            <li>@Html.ActionLink(Locale.ViewLists, "Index", "Lists")</li>
+                            <li>@Html.ActionLink(Locale.MyLists, "MyLists", "Lists")</li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("MyLists", "Lists")"> <span class="glyphicon glyphicon-list"></span> @Locale.MyLists</a>
+                    </li>
+                }
+
                 <li>
                     <a href="@Url.Action("MyReviews", "Reviews")"> <span class="glyphicon glyphicon-pencil"></span> @Locale.MyReviews</a>
                 </li>

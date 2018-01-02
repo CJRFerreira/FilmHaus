@@ -23,7 +23,7 @@ namespace FilmHaus.Controllers
         [Route("Index")]
         public ActionResult Index()
         {
-            return View();
+            return View(ReportService.RetrieveAllActiveReports());
         }
 
         // GET: Reports/Details/5

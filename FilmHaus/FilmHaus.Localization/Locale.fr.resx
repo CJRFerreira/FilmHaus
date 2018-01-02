@@ -447,7 +447,13 @@
   <data name="Lists" xml:space="preserve">
     <value>Listes</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
   <data name="Resolve" xml:space="preserve">
     <value>Résoudre</value>
+  </data>
+  <data name="UserAccount" xml:space="preserve">
+    <value>Compte d'Utilisateur</value>
   </data>
 </root>

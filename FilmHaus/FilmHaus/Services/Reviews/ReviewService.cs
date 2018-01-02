@@ -172,7 +172,9 @@ namespace FilmHaus.Services.Reviews
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var shows = FilmHausDbContext.ReviewShows.AsExpandable().Where(r => r.Review.Id == userId)
+            var shows = FilmHausDbContext.ReviewShows
+                .AsExpandable()
+                .Where(r => r.Review.Id == userId)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();

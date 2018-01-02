@@ -453,7 +453,13 @@
   <data name="Lists" xml:space="preserve">
     <value>Lists</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="Resolve" xml:space="preserve">
     <value>Resolve</value>
+  </data>
+  <data name="UserAccount" xml:space="preserve">
+    <value>User Account</value>
   </data>
 </root>
