@@ -27,8 +27,6 @@ namespace FilmHaus.Services.Reports
 
         List<BaseReportViewModel> RetrieveAllActiveReportsByReview(Guid reviewId);
 
-        void Update(Guid reportId, EditReportViewModel viewModel);
-
         void Resolve(Guid reportId, ResolveReportViewModel viewModel);
 
         void Delete(Guid reportId);

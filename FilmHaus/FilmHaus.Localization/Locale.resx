@@ -462,4 +462,16 @@
   <data name="UserAccount" xml:space="preserve">
     <value>User Account</value>
   </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="ReportedOn" xml:space="preserve">
+    <value>Reported On</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+  <data name="ResolvedOn" xml:space="preserve">
+    <value>Resolved On</value>
+  </data>
 </root>

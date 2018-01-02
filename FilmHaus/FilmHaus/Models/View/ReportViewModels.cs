@@ -52,13 +52,17 @@ namespace FilmHaus.Models.View
         public UserViewModel UserReported { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Reported", ResourceType = typeof(Locale))]
         public DateTime ReportedOn { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "ResolvedOn", ResourceType = typeof(Locale))]
         public DateTime? ResolvedOn { get; set; }
 
+        [Display(Name = "Reason", ResourceType = typeof(Locale))]
         public ReportReason ReportReason { get; set; }
 
+        [Display(Name = "Resolution", ResourceType = typeof(Locale))]
         public ReportStatus ReportStatus { get; set; }
     }
 
@@ -112,6 +116,13 @@ namespace FilmHaus.Models.View
         {
         }
 
+        public CreateReportViewModel(Guid reviewReportedId, string reportingUserId, string userReportedId)
+        {
+            ReviewReportedId = reviewReportedId;
+            ReportingUserId = reportingUserId;
+            UserReportedId = userReportedId;
+        }
+
         public Guid ReviewReportedId { get; set; }
 
         public string ReportingUserId { get; set; }
@@ -119,23 +130,7 @@ namespace FilmHaus.Models.View
         public string UserReportedId { get; set; }
 
         [Required]
-        public ReportReason ReportReason { get; set; }
-    }
-
-    public class EditReportViewModel
-    {
-        public EditReportViewModel()
-        {
-        }
-
-        public EditReportViewModel(BaseReportViewModel viewModel)
-        {
-            ReportId = viewModel.ReportId;
-            ReportReason = viewModel.ReportReason;
-        }
-
-        public Guid ReportId { get; set; }
-
+        [Display(Name = "Reason", ResourceType = typeof(Locale))]
         public ReportReason ReportReason { get; set; }
     }
 
@@ -153,6 +148,7 @@ namespace FilmHaus.Models.View
 
         public Guid ReportId { get; set; }
 
+        [Display(Name = "Resolution", ResourceType = typeof(Locale))]
         public ReportStatus ReportStatus { get; set; }
     }
 }

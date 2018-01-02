@@ -16,10 +16,13 @@
                 </button>
             </div>
             <div class="modal-body">
+                @Html.HiddenFor(m => m.ReviewReportedId)
+                @Html.HiddenFor(m => m.ReportingUserId)
+                @Html.HiddenFor(m => m.UserReportedId)
                 <div class="form-group">
                     @Html.LabelFor(model => model.ReportReason, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ReportReason, new { @class = "form-control" })
+                        @Html.EnumDropDownListFor(model => model.ReportReason, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ReportReason, "", new { @class = "text-danger" })
                     </div>
                 </div>

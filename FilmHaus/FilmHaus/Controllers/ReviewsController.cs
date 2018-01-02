@@ -94,15 +94,18 @@ namespace FilmHaus.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReviewViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+                return View(viewModel);
+
             switch (viewModel.ReviewType)
             {
                 case ReviewType.Film:
                     ReviewService.CreateReviewForFilm(viewModel, this.User.Identity.GetUserId());
-                    break;
+                    return RedirectToAction("Details", "Films", new { mediaId = viewModel.MediaId });
 
                 case ReviewType.Show:
                     ReviewService.CreateReviewForShow(viewModel, this.User.Identity.GetUserId());
-                    break;
+                    return RedirectToAction("Details", "Shows", new { mediaId = viewModel.MediaId });
 
                 case ReviewType.Season:
                     //ReviewService.CreateReviewForSeason(viewModel, this.User.Identity.GetUserId());
@@ -113,10 +116,10 @@ namespace FilmHaus.Controllers
                     break;
 
                 default:
-                    break;
+                    return RedirectToAction("Index", "Library");
             }
 
-            return RedirectToAction("Details", "Films", new { mediaId = viewModel.MediaId });
+            return RedirectToAction("Index", "Library");
         }
     }
 }

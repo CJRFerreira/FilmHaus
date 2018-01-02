@@ -66,6 +66,7 @@
                     <th>@Locale.From</th>
                     <th>@Locale.Description</th>
                     <th>@Locale.CreatedOn</th>
+                    <th>@Locale.UserActions</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +76,9 @@
                         <td>@item.User.FullName</td>
                         <td>@item.Body</td>
                         <td>@item.CreatedOn</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReportModal">@Locale.Report</button></td>
                     </tr>
+                    @Html.Partial("~/Views/Reports/_CreateReportPartial.cshtml", new CreateReportViewModel(item.ReviewId, User.Identity.GetUserId(), item.Id))
                 }
             </tbody>
         </table>

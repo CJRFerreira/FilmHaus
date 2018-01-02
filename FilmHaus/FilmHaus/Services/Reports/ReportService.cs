@@ -52,6 +52,7 @@ namespace FilmHaus.Services.Reports
                 case ReviewType.Film:
                     var reportedFilmReview = GetReportForFilmReview();
                     return reportedFilmReview.Invoke(result);
+
                 case ReviewType.Show:
                     var reportedShowReview = GetReportForShowReview();
                     return reportedShowReview.Invoke(result);
@@ -78,6 +79,7 @@ namespace FilmHaus.Services.Reports
                     case ReviewType.Film:
                         reports.Add(GetReportForFilmReview().Invoke(result));
                         break;
+
                     case ReviewType.Show:
                         reports.Add(GetReportForShowReview().Invoke(result));
                         break;
@@ -109,26 +111,6 @@ namespace FilmHaus.Services.Reports
             return FilmHausDbContext.Reports.AsExpandable().Where(r => r.ReviewReportedId == reviewId).Select(GetBaseReportViewModel()).ToList();
         }
 
-        public void Update(Guid reportId, EditReportViewModel viewModel)
-        {
-            try
-            {
-                var result = FilmHausDbContext.Reports.Find(reportId);
-
-                if (result == null)
-                    throw new ArgumentNullException();
-
-                result.ReportReason = viewModel.ReportReason;
-
-                FilmHausDbContext.Entry(result).State = EntityState.Modified;
-                FilmHausDbContext.SaveChanges();
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw ex;
-            }
-        }
-
         public void Resolve(Guid reportId, ResolveReportViewModel viewModel)
         {
             try
@@ -146,10 +128,12 @@ namespace FilmHaus.Services.Reports
                         ReviewService.BanReviewByReviewId(result.ReviewReportedId, result.ReportReason);
                         result.ResolvedOn = DateTime.Now;
                         break;
+
                     case ReportStatus.Rejected:
                         ReviewService.UnflagReviewByReviewId(result.ReviewReportedId);
                         result.ResolvedOn = DateTime.Now;
                         break;
+
                     default:
                         break;
                 }
@@ -213,6 +197,7 @@ namespace FilmHaus.Services.Reports
                     case ReviewType.Film:
                         reports.Add(GetReportForFilmReview().Invoke(result));
                         break;
+
                     case ReviewType.Show:
                         reports.Add(GetReportForShowReview().Invoke(result));
                         break;
