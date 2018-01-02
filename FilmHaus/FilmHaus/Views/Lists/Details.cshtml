@@ -10,7 +10,7 @@
 <section>
     <h2>@Locale.Details - @Model.List.Title (@Model.List.CreatedOn)</h2>
     <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
-        @if (Model.List.UserId == this.User.Identity.GetUserId())
+        @if (Model.List.Id == this.User.Identity.GetUserId())
         {
             @Html.ActionLink(Locale.Edit, "Edit", new { listId = Model.List.ListId }, new { @class = "btn btn-info" })
         }
