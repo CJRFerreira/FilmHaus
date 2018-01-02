@@ -19,39 +19,71 @@ namespace FilmHaus.Services.UserShows
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddShowToUserLibrary(Guid mediaId, string userId)
-        {
-            FilmHausDbContext.UserShows.Add(new UserShow
-            {
-                UserShowId = Guid.NewGuid(),
-                MediaId = mediaId,
-                Id = userId,
-                CreatedOn = DateTime.Now
-            });
-            FilmHausDbContext.SaveChanges();
-        }
-
-        public void RemoveShowFromUserLibrary(Guid userShowId)
+        public bool AddShowToUserLibrary(Guid mediaId, string userId)
         {
             try
             {
-                var show = FilmHausDbContext.UserShows.Find(userShowId);
+                var possibleRecord = FilmHausDbContext.UserShows.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
 
-                if (show != null)
+                if (possibleRecord == null)
                 {
-                    FilmHausDbContext.UserShows.Remove(show);
+                    FilmHausDbContext.UserShows.Add(new UserShow
+                    {
+                        UserShowId = Guid.NewGuid(),
+                        MediaId = mediaId,
+                        Id = userId,
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null
+                    });
                     FilmHausDbContext.SaveChanges();
                 }
-                else
-                    throw new ArgumentNullException();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
-        public void ObsoleteShowInUserLibrary(Guid userShowId)
+        public bool RemoveShowFromUserLibrary(Guid userShowId)
+        {
+            try
+            {
+                var userShow = FilmHausDbContext.UserShows.Find(userShowId);
+
+                if (userShow != null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.UserShows.Remove(userShow);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool RemoveShowFromUserLibrary(Guid mediaId, string userId)
+        {
+            try
+            {
+                var userShow = FilmHausDbContext.UserShows.Where(uf => (uf.Id == userId && uf.MediaId == mediaId) && uf.ObsoletedOn == null).FirstOrDefault();
+
+                if (userShow != null)
+                    throw new ArgumentNullException();
+
+                FilmHausDbContext.UserShows.Remove(userShow);
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public bool ObsoleteShowInUserLibrary(Guid userShowId)
         {
             try
             {
@@ -65,22 +97,37 @@ namespace FilmHaus.Services.UserShows
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
-        public void ObsoleteShowInUserLibrary(Guid mediaId, string userId)
+        public bool ObsoleteShowInUserLibrary(Guid mediaId, string userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = FilmHausDbContext.UserShows.Where(uf => (uf.Id == userId && uf.MediaId == mediaId) && uf.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+            return true;
         }
 
         public List<ShowViewModel> GetAllShowsForUser(string userId)
         {
             return FilmHausDbContext.UserShows.AsExpandable().Where(us => us.Id == userId && us.ObsoletedOn == null).Select(GetUserShowViewModel()).ToList();
         }
-
-        
     }
 }

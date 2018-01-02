@@ -6,15 +6,15 @@ namespace FilmHaus.Services.UserFilms
 {
     public interface IUserFilmService
     {
-        void AddFilmToUserLibrary(Guid mediaId, string userId);
+        bool AddFilmToUserLibrary(Guid mediaId, string userId);
 
-        void RemoveFilmFromUserLibrary(Guid userFilmId);
+        bool RemoveFilmFromUserLibrary(Guid userFilmId);
 
-        void RemoveFilmFromUserLibrary(Guid mediaId, string userId);
+        bool RemoveFilmFromUserLibrary(Guid mediaId, string userId);
 
-        void ObsoleteFilmInUserLibrary(Guid userFilmId);
+        bool ObsoleteFilmInUserLibrary(Guid userFilmId);
 
-        void ObsoleteFilmInUserLibrary(Guid mediaId, string userId);
+        bool ObsoleteFilmInUserLibrary(Guid mediaId, string userId);
 
         List<FilmViewModel> GetAllFilmsForUser(string userId);
     }

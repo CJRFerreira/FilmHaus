@@ -16,19 +16,37 @@ namespace FilmHaus.Services.UserFilmRatings
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
+        public bool AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
         {
-            FilmHausDbContext.UserFilmRatings.Add(new UserFilmRating
+            try
             {
-                UserFilmRatingId = Guid.NewGuid(),
-                Id = userId,
-                MediaId = mediaId,
-                CreatedOn = DateTime.Now
-            });
-            FilmHausDbContext.SaveChanges();
+                var possibleRecord = FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (possibleRecord == null)
+                {
+                    FilmHausDbContext.UserFilmRatings.Add(new UserFilmRating
+                    {
+                        UserFilmRatingId = Guid.NewGuid(),
+                        Id = userId,
+                        MediaId = mediaId,
+                        CreatedOn = DateTime.Now
+                    });
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                {
+                    return ChangeRatingInUserLibrary(userId, mediaId, rating);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public void ChangeRatingInUserLibrary(Guid userFilmId, int rating)
+        public bool ChangeRatingInUserLibrary(Guid userFilmId, int rating)
         {
             try
             {
@@ -52,11 +70,43 @@ namespace FilmHaus.Services.UserFilmRatings
             }
             catch
             {
-                throw;
+                return false;
             }
+
+            return true;
         }
 
-        public void ObsoleteRatingInUserLibrary(Guid userFilmId)
+        public bool ChangeRatingInUserLibrary(string userId, Guid mediaId, int rating)
+        {
+            try
+            {
+                var oldRating = FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (oldRating == null)
+                    throw new ArgumentNullException();
+
+                oldRating.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.UserFilmRatings.Add(new UserFilmRating
+                {
+                    UserFilmRatingId = Guid.NewGuid(),
+                    Id = oldRating.Id,
+                    MediaId = oldRating.MediaId,
+                    CreatedOn = DateTime.Now
+                });
+
+                FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ObsoleteRatingInUserLibrary(Guid userFilmId)
         {
             try
             {
@@ -70,10 +120,34 @@ namespace FilmHaus.Services.UserFilmRatings
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                return false;
             }
+
+            return true;
+        }
+
+        public bool ObsoleteRatinginUserLibrary(string userId, Guid mediaId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public double? GetAverageFilmRating(Guid mediaId)

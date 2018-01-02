@@ -441,4 +441,13 @@
   <data name="Reports" xml:space="preserve">
     <value>Rapports</value>
   </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="Lists" xml:space="preserve">
+    <value>Listes</value>
+  </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Résoudre</value>
+  </data>
 </root>

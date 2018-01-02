@@ -19,20 +19,33 @@ namespace FilmHaus.Services.UserFilms
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddFilmToUserLibrary(Guid mediaId, string userId)
+        public bool AddFilmToUserLibrary(Guid mediaId, string userId)
         {
-            FilmHausDbContext.UserFilms.Add(new UserFilm
+            try
             {
-                UserFilmId = Guid.NewGuid(),
-                MediaId = mediaId,
-                Id = userId,
-                CreatedOn = DateTime.Now,
-                ObsoletedOn = null
-            });
-            FilmHausDbContext.SaveChanges();
+                var possibleRecord = FilmHausDbContext.UserShows.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (possibleRecord == null)
+                {
+                    FilmHausDbContext.UserFilms.Add(new UserFilm
+                    {
+                        UserFilmId = Guid.NewGuid(),
+                        MediaId = mediaId,
+                        Id = userId,
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null
+                    });
+                    FilmHausDbContext.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            return true;
         }
 
-        public void RemoveFilmFromUserLibrary(Guid userFilmId)
+        public bool RemoveFilmFromUserLibrary(Guid userFilmId)
         {
             try
             {
@@ -44,13 +57,14 @@ namespace FilmHaus.Services.UserFilms
                 FilmHausDbContext.UserFilms.Remove(userFilm);
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
-        public void RemoveFilmFromUserLibrary(Guid mediaId, string userId)
+        public bool RemoveFilmFromUserLibrary(Guid mediaId, string userId)
         {
             try
             {
@@ -62,13 +76,14 @@ namespace FilmHaus.Services.UserFilms
                 FilmHausDbContext.UserFilms.Remove(userFilm);
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
-        public void ObsoleteFilmInUserLibrary(Guid userFilmId)
+        public bool ObsoleteFilmInUserLibrary(Guid userFilmId)
         {
             try
             {
@@ -82,13 +97,14 @@ namespace FilmHaus.Services.UserFilms
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
-        public void ObsoleteFilmInUserLibrary(Guid mediaId, string userId)
+        public bool ObsoleteFilmInUserLibrary(Guid mediaId, string userId)
         {
             try
             {
@@ -102,10 +118,11 @@ namespace FilmHaus.Services.UserFilms
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch
             {
-                throw ex;
+                throw;
             }
+            return true;
         }
 
         public List<FilmViewModel> GetAllFilmsForUser(string userId)

@@ -26,14 +26,6 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        // GET: Reports/MyReports
-        [HttpGet]
-        [Route("MyReports")]
-        public ActionResult MyReports()
-        {
-            return View();
-        }
-
         // GET: Reports/Details/5
         [Route("Details/{reportId:guid}")]
         public ActionResult Details(Guid reportId)
@@ -69,39 +61,6 @@ namespace FilmHaus.Controllers
             try
             {
                 ReportService.Create(viewModel);
-            }
-            catch
-            {
-                throw;
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Reports/Edit/5
-        [Route("Edit/{reportId:guid}")]
-        public ActionResult Edit(Guid reportId)
-        {
-            var result = ReportService.RetrieveSpecificReport(reportId);
-
-            if (result != null && this.User.Identity.GetUserId() == result.ReportingUserId)
-                return PartialView(new EditReportViewModel(result));
-
-            return RedirectToAction("Index");
-        }
-
-        // POST: Reports/Edit/5 To protect from overposting attacks, please enable the specific
-        // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(EditReportViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-                return View(viewModel);
-
-            try
-            {
-                ReportService.Update(viewModel.ReportId, viewModel);
             }
             catch
             {

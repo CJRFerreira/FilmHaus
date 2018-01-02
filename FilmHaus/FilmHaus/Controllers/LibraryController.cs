@@ -1,16 +1,15 @@
 ﻿using FilmHaus.Models.View;
-using FilmHaus.Services.Films;
-using FilmHaus.Services.Shows;
 using FilmHaus.Services.UserFilms;
 using FilmHaus.Services.UserShows;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
 {
     [Authorize]
+    [RoutePrefix("Library")]
     public class LibraryController : Controller
     {
         private IUserFilmService UserFilmService { get; }
@@ -25,6 +24,7 @@ namespace FilmHaus.Controllers
 
         // GET: Library
         [HttpGet]
+        [Route("Index")]
         public ActionResult Index()
         {
             var userId = this.User.Identity.GetUserId();
@@ -36,50 +36,80 @@ namespace FilmHaus.Controllers
                 ));
         }
 
-        // GET: Library/MyFilms
+        // GET: Library/Films
         [HttpGet]
-        public ActionResult MyFilms()
+        [Route("Films")]
+        public ActionResult Films()
         {
             return View(UserFilmService.GetAllFilmsForUser(this.User.Identity.GetUserId()));
         }
 
-        // GET: Library/MyShows
+        // GET: Library/Shows
         [HttpGet]
-        public ActionResult MyShows()
+        [Route("Shows")]
+        public ActionResult Shows()
         {
             return View(UserShowService.GetAllShowsForUser(this.User.Identity.GetUserId()));
         }
 
         // POST: Library/AddFilmToLibrary
         [HttpPost]
-        public ActionResult AddFilmToLibrary(Guid mediaId, string userId)
+        [Route("AddFilmToLibrary/{mediaId:guid}")]
+        public ActionResult AddFilmToLibrary(Guid mediaId)
         {
-            UserFilmService.AddFilmToUserLibrary(mediaId, userId);
-            return View("MyFilms");
+            if (UserFilmService.AddFilmToUserLibrary(mediaId, this.User.Identity.GetUserId()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: Library/RemoveFilmFromLibrary
         [HttpPost]
-        public ActionResult RemoveFilmFromLibrary(Guid mediaId, string userId)
+        [Route("RemoveFilmFromLibrary/{mediaId:guid}")]
+        public ActionResult RemoveFilmFromLibrary(Guid mediaId)
         {
-            UserFilmService.ObsoleteFilmInUserLibrary(mediaId, userId);
-            return View("MyFilms");
+            if (UserFilmService.ObsoleteFilmInUserLibrary(mediaId, this.User.Identity.GetUserId()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: Library/AddShowToLibrary
         [HttpPost]
-        public ActionResult AddShowToLibrary(Guid mediaId, string userId)
+        [Route("AddShowToLibrary/{mediaId:guid}")]
+        public ActionResult AddShowToLibrary(Guid mediaId)
         {
-            UserShowService.AddShowToUserLibrary(mediaId, userId);
-            return View("MyShows");
+            if (UserShowService.AddShowToUserLibrary(mediaId, this.User.Identity.GetUserId()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: Library/RemoveShowFromLibrary
         [HttpPost]
-        public ActionResult RemoveShowFromLibrary(Guid mediaId, string userId)
+        [Route("RemoveShowFromLibrary/{mediaId:guid}")]
+        public ActionResult RemoveShowFromLibrary(Guid mediaId)
         {
-            UserShowService.ObsoleteShowInUserLibrary(mediaId, userId);
-            return View("MyShows");
+            if (UserShowService.ObsoleteShowInUserLibrary(mediaId, this.User.Identity.GetUserId()))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

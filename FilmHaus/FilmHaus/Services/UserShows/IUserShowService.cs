@@ -6,13 +6,13 @@ namespace FilmHaus.Services.UserShows
 {
     public interface IUserShowService
     {
-        void AddShowToUserLibrary(Guid mediaId, string userId);
+        bool AddShowToUserLibrary(Guid mediaId, string userId);
 
-        void RemoveShowFromUserLibrary(Guid userShowId);
+        bool RemoveShowFromUserLibrary(Guid userShowId);
 
-        void ObsoleteShowInUserLibrary(Guid userShowId);
+        bool ObsoleteShowInUserLibrary(Guid userShowId);
 
-        void ObsoleteShowInUserLibrary(Guid mediaId, string userId);
+        bool ObsoleteShowInUserLibrary(Guid mediaId, string userId);
 
         List<ShowViewModel> GetAllShowsForUser(string userId);
     }

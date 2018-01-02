@@ -110,12 +110,16 @@ namespace FilmHaus.Services.Reviews
 
         public ReviewLibraryViewModel GetAllFlaggedReviews()
         {
-            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true)
+            var films = FilmHausDbContext.ReviewFilms
+                .AsExpandable()
+                .Where(r => r.Review.Flagged == true)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true)
+            var shows = FilmHausDbContext.ReviewShows
+                .AsExpandable()
+                .Where(r => r.Review.Flagged == true)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -125,12 +129,16 @@ namespace FilmHaus.Services.Reviews
 
         public ReviewLibraryViewModel GetAllFlaggedReviewsByUserId(string userId)
         {
-            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+            var films = FilmHausDbContext.ReviewFilms
+                .AsExpandable()
+                .Where(r => r.Review.Flagged == true && r.Review.Id == userId)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+            var shows = FilmHausDbContext.ReviewShows
+                .AsExpandable()
+                .Where(r => r.Review.Flagged == true && r.Review.Id == userId)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -141,11 +149,13 @@ namespace FilmHaus.Services.Reviews
         public ReviewLibraryViewModel GetAllReviews()
         {
             var films = FilmHausDbContext.ReviewFilms
+                .AsExpandable()
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
             var shows = FilmHausDbContext.ReviewShows
+                .AsExpandable()
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -155,12 +165,14 @@ namespace FilmHaus.Services.Reviews
 
         public ReviewLibraryViewModel GetAllReviewsByUserId(string userId)
         {
-            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Id == userId)
+            var films = FilmHausDbContext.ReviewFilms
+                .AsExpandable()
+                .Where(r => r.Review.Id == userId)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Id == userId)
+            var shows = FilmHausDbContext.ReviewShows.AsExpandable().Where(r => r.Review.Id == userId)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -170,12 +182,16 @@ namespace FilmHaus.Services.Reviews
 
         public ReviewLibraryViewModel GetAllSharedReviews()
         {
-            var films = FilmHausDbContext.ReviewFilms.Where(r => r.Review.Shared == true)
+            var films = FilmHausDbContext.ReviewFilms
+                .AsExpandable()
+                .Where(r => r.Review.Shared == true)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
-            var shows = FilmHausDbContext.ReviewShows.Where(r => r.Review.Shared == true)
+            var shows = FilmHausDbContext.ReviewShows
+                .AsExpandable()
+                .Where(r => r.Review.Shared == true)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();

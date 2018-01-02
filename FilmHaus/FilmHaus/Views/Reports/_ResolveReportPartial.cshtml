@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
-                    @Locale.Report
+                    @Locale.Create @Locale.Report
                 </h4>
                 <button type="button" class="close pull-right" data-dismiss="modal">
                     &times;
@@ -19,7 +19,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ReportStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.ReportStatus, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ReportStatus, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
                     @Locale.Close
                 </button>
-                <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">
+                <button type="submit" class="btn btn-primary pull-right">
                     @Locale.Save
                 </button>
             </div>

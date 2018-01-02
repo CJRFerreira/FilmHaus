@@ -464,16 +464,19 @@
     <Content Include="Views\Reviews\_EditReviewPartial.cshtml" />
     <Content Include="Views\Reviews\_ReviewPartial.cshtml" />
     <Content Include="Views\Reports\_CreateReportPartial.cshtml" />
-    <Content Include="Views\Reports\_EditReportPartial.cshtml" />
     <Content Include="Views\Reports\_ReportPartial.cshtml" />
     <Content Include="Views\Reports\_ResolveReportPartial.cshtml" />
     <Content Include="Views\Lists\Delete.cshtml" />
     <Content Include="Views\Lists\Details.cshtml" />
-    <Content Include="Views\Lists\Edit.cshtml" />
     <Content Include="Views\Lists\Index.cshtml" />
     <Content Include="Views\Films\Reviews.cshtml" />
     <Content Include="Views\Shows\Reviews.cshtml" />
     <Content Include="Views\Lists\_CreateListPartial.cshtml" />
+    <Content Include="Views\Lists\_EditListPartial.cshtml" />
+    <Content Include="Views\Lists\MyLists.cshtml" />
+    <Content Include="Views\Reviews\MyReviews.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

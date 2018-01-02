@@ -42,6 +42,7 @@ namespace FilmHaus.Models.View
 
         [NotMapped]
         [DataType(DataType.Text)]
+        [Display(Name = "Name", ResourceType = typeof(Locale))]
         public string FullName
         {
             get

@@ -4,19 +4,22 @@ using FilmHaus.Services.Lists;
 using FilmHaus.Services.ListShows;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace FilmHaus.Controllers
 {
     [Authorize]
-    [RoutePrefix("Reports")]
-    public class ListController : Controller
+    [RoutePrefix("Lists")]
+    public class ListsController : Controller
     {
         private IListService ListService { get; }
+
         private IListFilmService ListFilmService { get; }
+
         private IListShowService ListShowService { get; }
 
-        public ListController(IListService listService, IListFilmService listFilmService, IListShowService listShowService)
+        public ListsController(IListService listService, IListFilmService listFilmService, IListShowService listShowService)
         {
             ListService = listService;
             ListFilmService = listFilmService;
@@ -24,7 +27,6 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Lists
-        [HttpGet]
         [Route("Index")]
         public ActionResult Index()
         {
@@ -32,7 +34,6 @@ namespace FilmHaus.Controllers
         }
 
         // GET: Lists/MyLists
-        [HttpGet]
         [Route("MyLists")]
         public ActionResult MyLists()
         {
@@ -43,7 +44,7 @@ namespace FilmHaus.Controllers
         [Route("Details/{listId:guid}")]
         public ActionResult Details(Guid listId)
         {
-            var result = ListService.GetListByListId(listId);
+            var result = ListService.GetListWithMediaByListId(listId);
 
             if (result != null)
                 return View(result);
@@ -115,34 +116,62 @@ namespace FilmHaus.Controllers
 
         // POST: Lists/AddFilmToList
         [HttpPost]
+        [Route("AddFilmToList/{mediaId:guid}/{listId:guid}")]
         public ActionResult AddFilmToList(Guid mediaId, Guid listId)
         {
-            ListFilmService.AddFilmToList(listId, mediaId);
-            return RedirectToAction("Details", new { listId });
+            if (ListFilmService.AddFilmToList(listId, mediaId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: List/RemoveFilmFromList
         [HttpPost]
+        [Route("RemoveFilmFromList/{mediaId:guid}/{listId:guid}")]
         public ActionResult RemoveFilmFromList(Guid mediaId, Guid listId)
         {
-            ListFilmService.ObsoleteFilmInList(listId, mediaId);
-            return RedirectToAction("Details", new { listId });
+            if (ListFilmService.ObsoleteFilmInList(listId, mediaId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: Lists/AddShowToList
         [HttpPost]
+        [Route("AddShowToList/{mediaId:guid}/{listId:guid}")]
         public ActionResult AddShowToList(Guid mediaId, Guid listId)
         {
-            ListShowService.AddShowToList(listId, mediaId);
-            return RedirectToAction("Details", new { listId });
+            if (ListShowService.AddShowToList(listId, mediaId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
 
         // POST: List/RemoveShowFromList
         [HttpPost]
+        [Route("RemoveShowFromList/{mediaId:guid}/{listId:guid}")]
         public ActionResult RemoveShowFromList(Guid mediaId, Guid listId)
         {
-            ListShowService.ObsoleteShowInList(listId, mediaId);
-            return RedirectToAction("Details", new { listId });
+            if (ListShowService.ObsoleteShowInList(listId, mediaId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

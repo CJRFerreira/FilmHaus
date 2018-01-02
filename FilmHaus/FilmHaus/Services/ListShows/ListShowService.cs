@@ -6,6 +6,7 @@ using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
 using static FilmHaus.Services.ShowQueryExtensions;
+using static FilmHaus.Services.ListQueryExtensions;
 using LinqKit;
 
 namespace FilmHaus.Services.ListShows
@@ -24,20 +25,40 @@ namespace FilmHaus.Services.ListShows
             return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == listId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
         }
 
-        public void AddShowToList(Guid listId, Guid mediaId)
+        public List<ListViewModel> GetAllListsWithShow(Guid mediaId)
         {
-            FilmHausDbContext.ListShows.Add(new ListShow
-            {
-                ListShowId = Guid.NewGuid(),
-                MediaId = mediaId,
-                ListId = listId,
-                CreatedOn = DateTime.Now,
-                ObsoletedOn = null
-            });
-            FilmHausDbContext.SaveChanges();
+            return FilmHausDbContext.ListShows.AsExpandable().Where(lf => lf.MediaId == mediaId).Select(lf => lf.List).Select(GetListViewModel()).ToList();
         }
 
-        public void RemoveShowInList(Guid listShowId)
+        public bool AddShowToList(Guid listId, Guid mediaId)
+        {
+            try
+            {
+                var possibleRecord = FilmHausDbContext.ListShows.Where(ufr => ufr.MediaId == mediaId && ufr.ListId == listId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (possibleRecord == null)
+                {
+                    FilmHausDbContext.ListShows.Add(new ListShow
+                    {
+                        ListShowId = Guid.NewGuid(),
+                        MediaId = mediaId,
+                        ListId = listId,
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null
+                    });
+                    FilmHausDbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return false;
+        }
+
+        public bool RemoveShowInList(Guid listShowId)
         {
             try
             {
@@ -48,6 +69,7 @@ namespace FilmHaus.Services.ListShows
 
                 FilmHausDbContext.ListShows.Remove(listShow);
                 FilmHausDbContext.SaveChanges();
+                return true;
             }
             catch (InvalidOperationException ex)
             {
@@ -55,7 +77,7 @@ namespace FilmHaus.Services.ListShows
             }
         }
 
-        public void RemoveShowInList(Guid listId, Guid mediaId)
+        public bool RemoveShowInList(Guid listId, Guid mediaId)
         {
             try
             {
@@ -71,9 +93,11 @@ namespace FilmHaus.Services.ListShows
             {
                 throw ex;
             }
+
+            return true;
         }
 
-        public void ObsoleteShowInList(Guid listShowId)
+        public bool ObsoleteShowInList(Guid listShowId)
         {
             try
             {
@@ -91,9 +115,11 @@ namespace FilmHaus.Services.ListShows
             {
                 throw ex;
             }
+
+            return true;
         }
 
-        public void ObsoleteShowInList(Guid listId, Guid mediaId)
+        public bool ObsoleteShowInList(Guid listId, Guid mediaId)
         {
             try
             {
@@ -111,6 +137,8 @@ namespace FilmHaus.Services.ListShows
             {
                 throw ex;
             }
+
+            return true;
         }
     }
 }

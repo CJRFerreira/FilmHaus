@@ -30,30 +30,46 @@ namespace FilmHaus.Services.ListFilms
             return FilmHausDbContext.ListFilms.AsExpandable().Where(lf => lf.MediaId == mediaId).Select(lf => lf.List).Select(GetListViewModel()).ToList();
         }
 
-        public void AddFilmToList(Guid listId, Guid mediaId)
+        public bool AddFilmToList(Guid listId, Guid mediaId)
         {
-            FilmHausDbContext.ListFilms.Add(new ListFilm
+            try
             {
-                ListFilmId = Guid.NewGuid(),
-                MediaId = mediaId,
-                ListId = listId,
-                CreatedOn = DateTime.Now,
-                ObsoletedOn = null
-            });
-            FilmHausDbContext.SaveChanges();
+                var possibleRecord = FilmHausDbContext.ListFilms.Where(ufr => ufr.MediaId == mediaId && ufr.ListId == listId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (possibleRecord == null)
+                {
+                    FilmHausDbContext.ListFilms.Add(new ListFilm
+                    {
+                        ListFilmId = Guid.NewGuid(),
+                        MediaId = mediaId,
+                        ListId = listId,
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null
+                    });
+                    FilmHausDbContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+
+            return false;
         }
 
-        public void RemoveFilmInList(Guid listFilmId)
+        public bool RemoveFilmInList(Guid listFilmId)
         {
             try
             {
                 var listFilm = FilmHausDbContext.ListFilms.Find(listFilmId);
 
                 if (listFilm == null)
-                    throw new KeyNotFoundException();
+                    throw new ArgumentNullException();
 
                 FilmHausDbContext.ListFilms.Remove(listFilm);
                 FilmHausDbContext.SaveChanges();
+                return true;
             }
             catch (InvalidOperationException ex)
             {
@@ -61,14 +77,14 @@ namespace FilmHaus.Services.ListFilms
             }
         }
 
-        public void RemoveFilmInList(Guid listId, Guid mediaId)
+        public bool RemoveFilmInList(Guid listId, Guid mediaId)
         {
             try
             {
                 var listFilm = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
 
                 if (listFilm != null)
-                    throw new KeyNotFoundException();
+                    throw new ArgumentNullException();
 
                 FilmHausDbContext.ListFilms.Remove(listFilm);
                 FilmHausDbContext.SaveChanges();
@@ -77,16 +93,18 @@ namespace FilmHaus.Services.ListFilms
             {
                 throw ex;
             }
+
+            return true;
         }
 
-        public void ObsoleteFilmInList(Guid listFilmId)
+        public bool ObsoleteFilmInList(Guid listFilmId)
         {
             try
             {
                 var result = FilmHausDbContext.ListFilms.Find(listFilmId);
 
                 if (result == null)
-                    throw new KeyNotFoundException();
+                    throw new ArgumentNullException();
 
                 result.ObsoletedOn = DateTime.Now;
 
@@ -97,16 +115,18 @@ namespace FilmHaus.Services.ListFilms
             {
                 throw ex;
             }
+
+            return true;
         }
 
-        public void ObsoleteFilmInList(Guid listId, Guid mediaId)
+        public bool ObsoleteFilmInList(Guid listId, Guid mediaId)
         {
             try
             {
                 var result = FilmHausDbContext.ListFilms.Where(lf => (lf.ListId == listId && lf.MediaId == mediaId) && lf.ObsoletedOn == null).FirstOrDefault();
 
                 if (result == null)
-                    throw new KeyNotFoundException();
+                    throw new ArgumentNullException();
 
                 result.ObsoletedOn = DateTime.Now;
 
@@ -117,6 +137,8 @@ namespace FilmHaus.Services.ListFilms
             {
                 throw ex;
             }
+
+            return true;
         }
     }
 }

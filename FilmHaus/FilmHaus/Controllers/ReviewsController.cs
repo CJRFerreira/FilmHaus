@@ -25,6 +25,14 @@ namespace FilmHaus.Controllers
             ReviewShowService = reviewShowService;
         }
 
+        // GET: Reviews/MyReviews
+        [HttpGet]
+        [Route("MyReviews")]
+        public ActionResult MyReviews()
+        {
+            return View(ReviewService.GetAllReviewsByUserId(this.User.Identity.GetUserId()));
+        }
+
         [HttpGet]
         [ChildActionOnly]
         public ActionResult Details(string reviewId)
@@ -45,7 +53,7 @@ namespace FilmHaus.Controllers
             var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
 
             if (result.Id == this.User.Identity.GetUserId())
-                return View(new EditReviewViewModel(result));
+                return PartialView(new EditReviewViewModel(result));
 
             return RedirectToAction("Index", "Library");
         }
@@ -108,7 +116,7 @@ namespace FilmHaus.Controllers
                     break;
             }
 
-            return RedirectToAction("Details", new { mediaId = viewModel.MediaId });
+            return RedirectToAction("Details", "Films", new { mediaId = viewModel.MediaId });
         }
     }
 }

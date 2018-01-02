@@ -4,11 +4,15 @@ namespace FilmHaus.Services.UserFilmRatings
 {
     public interface IUserFilmRatingService
     {
-        void AddRatingToUserLibrary(string userId, Guid mediaId, int rating);
+        bool AddRatingToUserLibrary(string userId, Guid mediaId, int rating);
 
-        void ChangeRatingInUserLibrary(Guid userFilmId, int rating);
+        bool ChangeRatingInUserLibrary(Guid userFilmId, int rating);
 
-        void ObsoleteRatingInUserLibrary(Guid userFilmId);
+        bool ChangeRatingInUserLibrary(string userId, Guid mediaId, int rating);
+
+        bool ObsoleteRatingInUserLibrary(Guid userFilmId);
+
+        bool ObsoleteRatinginUserLibrary(string userId, Guid mediaId);
 
         double? GetAverageFilmRating(Guid mediaId);
     }

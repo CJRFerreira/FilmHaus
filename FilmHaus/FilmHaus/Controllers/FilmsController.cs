@@ -51,7 +51,6 @@ namespace FilmHaus.Controllers
             film.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
             film.Reviews = reviews.Where(r => r.Id != this.User.Identity.GetUserId()).ToList();
 
-
             if (film != null)
                 return View(film);
 

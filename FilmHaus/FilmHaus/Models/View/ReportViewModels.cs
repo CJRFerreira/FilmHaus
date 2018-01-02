@@ -45,7 +45,11 @@ namespace FilmHaus.Models.View
 
         public string ReportingUserId { get; set; }
 
+        public UserViewModel ReportingUser { get; set; }
+
         public string UserReportedId { get; set; }
+
+        public UserViewModel UserReported { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReportedOn { get; set; }
@@ -62,12 +66,10 @@ namespace FilmHaus.Models.View
     {
         public ExpandedReportBaseReviewViewModel() : base()
         {
-
         }
 
         public ExpandedReportBaseReviewViewModel(BaseReportViewModel viewModel) : base(viewModel)
         {
-
         }
 
         public ExpandedReportBaseReviewViewModel(ExpandedReportBaseReviewViewModel viewModel) : base(viewModel)
@@ -77,7 +79,6 @@ namespace FilmHaus.Models.View
 
         public ExpandedReportBaseReviewViewModel(Report report) : base(report)
         {
-
         }
 
         public BaseReviewViewModel Review { get; set; }
@@ -87,12 +88,10 @@ namespace FilmHaus.Models.View
     {
         public ExpandedReportExpandedReviewViewModel() : base()
         {
-
         }
 
         public ExpandedReportExpandedReviewViewModel(BaseReportViewModel viewModel) : base(viewModel)
         {
-
         }
 
         public ExpandedReportExpandedReviewViewModel(ExpandedReportExpandedReviewViewModel viewModel) : base(viewModel)
@@ -102,7 +101,6 @@ namespace FilmHaus.Models.View
 
         public ExpandedReportExpandedReviewViewModel(Report report) : base(report)
         {
-
         }
 
         public ExpandedReviewViewModel Review { get; set; }
@@ -122,14 +120,12 @@ namespace FilmHaus.Models.View
 
         [Required]
         public ReportReason ReportReason { get; set; }
-
     }
 
     public class EditReportViewModel
     {
         public EditReportViewModel()
         {
-
         }
 
         public EditReportViewModel(BaseReportViewModel viewModel)
@@ -141,14 +137,12 @@ namespace FilmHaus.Models.View
         public Guid ReportId { get; set; }
 
         public ReportReason ReportReason { get; set; }
-
     }
 
     public class ResolveReportViewModel
     {
         public ResolveReportViewModel()
         {
-
         }
 
         public ResolveReportViewModel(BaseReportViewModel viewModel)
@@ -160,6 +154,5 @@ namespace FilmHaus.Models.View
         public Guid ReportId { get; set; }
 
         public ReportStatus ReportStatus { get; set; }
-
     }
 }

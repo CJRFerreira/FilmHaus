@@ -8,14 +8,16 @@ namespace FilmHaus.Services.ListShows
     {
         List<ShowViewModel> GetAllShowsByListId(Guid listId);
 
-        void AddShowToList(Guid listId, Guid mediaId);
+        List<ListViewModel> GetAllListsWithShow(Guid mediaId);
 
-        void RemoveShowInList(Guid listShowId);
+        bool AddShowToList(Guid listId, Guid mediaId);
 
-        void RemoveShowInList(Guid listId, Guid mediaId);
+        bool RemoveShowInList(Guid listShowId);
 
-        void ObsoleteShowInList(Guid listShowId);
+        bool RemoveShowInList(Guid listId, Guid mediaId);
 
-        void ObsoleteShowInList(Guid listId, Guid mediaId);
+        bool ObsoleteShowInList(Guid listShowId);
+
+        bool ObsoleteShowInList(Guid listId, Guid mediaId);
     }
 }

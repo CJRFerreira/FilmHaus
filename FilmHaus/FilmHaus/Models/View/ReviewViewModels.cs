@@ -27,6 +27,18 @@ namespace FilmHaus.Models.View
             User = new UserViewModel(review.User);
         }
 
+        public BaseReviewViewModel(BaseReviewViewModel review)
+        {
+            ReviewId = review.ReviewId;
+            Id = review.Id;
+            Body = review.Body;
+            Shared = review.Shared;
+            Flagged = review.Flagged;
+            CreatedOn = review.CreatedOn;
+            ReviewType = review.ReviewType;
+            User = review.User;
+        }
+
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public Guid ReviewId { get; set; }
 
@@ -56,6 +68,11 @@ namespace FilmHaus.Models.View
     {
         public ExpandedReviewViewModel() : base()
         {
+        }
+
+        public ExpandedReviewViewModel(ExpandedReviewViewModel review) : base(review)
+        {
+            Media = review.Media;
         }
 
         public ExpandedReviewViewModel(Review review) : base(review)

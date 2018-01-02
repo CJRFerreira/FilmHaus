@@ -15,19 +15,37 @@ namespace FilmHaus.Services.UserShowRatings
             FilmHausDbContext = filmHausDbContext;
         }
 
-        public void AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
+        public bool AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
         {
-            FilmHausDbContext.UserShowRatings.Add(new UserShowRating
+            try
             {
-                UserShowRatingId = Guid.NewGuid(),
-                Id = userId,
-                MediaId = mediaId,
-                CreatedOn = DateTime.Now
-            });
-            FilmHausDbContext.SaveChanges();
+                var possibleRecord = FilmHausDbContext.UserShowRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (possibleRecord == null)
+                {
+                    FilmHausDbContext.UserShowRatings.Add(new UserShowRating
+                    {
+                        UserShowRatingId = Guid.NewGuid(),
+                        Id = userId,
+                        MediaId = mediaId,
+                        CreatedOn = DateTime.Now
+                    });
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                {
+                    return ChangeRatingInUserLibrary(userId, mediaId, rating);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public void ChangeRatingInUserLibrary(Guid userShowId, int rating)
+        public bool ChangeRatingInUserLibrary(Guid userShowId, int rating)
         {
             try
             {
@@ -51,11 +69,43 @@ namespace FilmHaus.Services.UserShowRatings
             }
             catch
             {
-                throw;
+                return false;
             }
+
+            return true;
         }
 
-        public void ObsoleteRatingInUserLibrary(Guid userShowId)
+        public bool ChangeRatingInUserLibrary(string userId, Guid mediaId, int rating)
+        {
+            try
+            {
+                var oldRating = FilmHausDbContext.UserShowRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (oldRating == null)
+                    throw new ArgumentNullException();
+
+                oldRating.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.UserShowRatings.Add(new UserShowRating
+                {
+                    UserShowRatingId = Guid.NewGuid(),
+                    Id = oldRating.Id,
+                    MediaId = oldRating.MediaId,
+                    CreatedOn = DateTime.Now
+                });
+
+                FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool ObsoleteRatingInUserLibrary(Guid userShowId)
         {
             try
             {
@@ -71,8 +121,32 @@ namespace FilmHaus.Services.UserShowRatings
             }
             catch
             {
-                throw;
+                return false;
             }
+
+            return true;
+        }
+
+        public bool ObsoleteRatinginUserLibrary(string userId, Guid mediaId)
+        {
+            try
+            {
+                var result = FilmHausDbContext.UserShowRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
+
+                if (result == null)
+                    throw new ArgumentNullException();
+
+                result.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public double? GetAverageShowRating(Guid mediaId)

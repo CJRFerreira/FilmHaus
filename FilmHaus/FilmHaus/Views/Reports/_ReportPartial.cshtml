@@ -23,6 +23,12 @@
                                         @Html.DisplayNameFor(m => m.ReportedOn)
                                     </th>
                                     <th>
+                                        @Locale.Report @Locale.From
+                                    </th>
+                                    <th>
+                                        @Locale.To
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(m => m.ReportReason)
                                     </th>
                                     <th>
@@ -37,6 +43,12 @@
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(m => m.ReportedOn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.ReportingUser.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => m.UserReported.FullName)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(m => m.ReportReason)
