@@ -75,7 +75,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span> @Locale.AdminFunctions <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">@Locale.UserActions</li>
-                            <li>@Html.ActionLink(Locale.Reports, "Index", "Reports")</li>
+                            <li>@Html.ActionLink(Locale.ActiveReports, "Index", "Reports")</li>
+                            <li>@Html.ActionLink(Locale.Report + " " + Locale.History, "History", "Reports")</li>
                         </ul>
                     </li>
                 }

@@ -26,6 +26,14 @@ namespace FilmHaus.Controllers
             return View(ReportService.RetrieveAllActiveReports());
         }
 
+        // GET: Reports
+        [HttpGet]
+        [Route("History")]
+        public ActionResult History()
+        {
+            return View(ReportService.RetrieveAllReports());
+        }
+
         // GET: Reports/Details/5
         [Route("Details/{reportId:guid}")]
         public ActionResult Details(Guid reportId)

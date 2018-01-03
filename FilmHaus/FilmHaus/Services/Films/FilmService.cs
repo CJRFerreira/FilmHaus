@@ -58,6 +58,7 @@ namespace FilmHaus.Services.Films
             }
         }
 
+
         public List<FilmViewModel> GetAllFilms()
         {
             return FilmHausDbContext.Films.AsExpandable().Select(GetGeneralFilmViewModel()).ToList();

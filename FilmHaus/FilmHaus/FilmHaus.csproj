@@ -479,10 +479,10 @@
     <Content Include="Views\Lists\_EditListPartial.cshtml" />
     <Content Include="Views\Lists\MyLists.cshtml" />
     <Content Include="Views\Reviews\MyReviews.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Ratings\_CreateRatingPartial.cshtml" />
     <Content Include="Views\Ratings\_EditRatingPartial.cshtml" />
+    <Content Include="Views\Reports\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

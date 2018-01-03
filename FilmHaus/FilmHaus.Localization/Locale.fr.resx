@@ -483,4 +483,7 @@
   <data name="ReleaseYear" xml:space="preserve">
     <value>Année de sortie</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>Histoire</value>
+  </data>
 </root>
