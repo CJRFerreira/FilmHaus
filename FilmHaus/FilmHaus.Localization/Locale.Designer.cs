@@ -880,6 +880,15 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ReleaseYear.
+        /// </summary>
+        public static string ReleaseYear {
+            get {
+                return ResourceManager.GetString("ReleaseYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember Browser?.
         /// </summary>
         public static string RememberBrowser {

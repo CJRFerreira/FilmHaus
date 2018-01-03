@@ -36,7 +36,7 @@ namespace FilmHaus.Models.View
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus? Accolades { get; set; }
 
-        [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
+        [Display(Name = "ReleaseYear", ResourceType = typeof(Locale))]
         public int? ReleaseYear { get; set; }
 
         [Display(Name = "Rating", ResourceType = typeof(Locale))]

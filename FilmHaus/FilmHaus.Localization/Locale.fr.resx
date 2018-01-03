@@ -480,4 +480,7 @@
   <data name="NoShowsReview" xml:space="preserve">
     <value>Il n'y a actuellement aucune critique de émission télévision</value>
   </data>
+  <data name="ReleaseYear" xml:space="preserve">
+    <value>Année de sortie</value>
+  </data>
 </root>
