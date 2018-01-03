@@ -7,7 +7,7 @@ namespace FilmHaus.Services.Lists
 {
     public interface IListService
     {
-        void CreateList(CreateListViewModel list, string userId);
+        void CreateList(CreateListViewModel list);
 
         void DeleteListByListId(Guid listId);
 

@@ -59,11 +59,11 @@ namespace FilmHaus.Controllers
         public ActionResult Create(CreateListViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return RedirectToAction("Index", "Library");
 
             try
             {
-                ListService.CreateList(viewModel, this.User.Identity.GetUserId());
+                ListService.CreateList(viewModel);
             }
             catch
             {

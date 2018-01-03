@@ -25,7 +25,7 @@ namespace FilmHaus.Services.Lists
             ListFilmService = listFilmService;
         }
 
-        public void CreateList(CreateListViewModel list, string userId)
+        public void CreateList(CreateListViewModel list)
         {
             FilmHausDbContext.Lists.Add(new List
             {
