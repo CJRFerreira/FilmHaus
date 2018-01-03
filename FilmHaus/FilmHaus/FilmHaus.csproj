@@ -449,8 +449,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Library\Index.cshtml" />
-    <Content Include="Views\Library\MyFilms.cshtml" />
-    <Content Include="Views\Library\MyShows.cshtml" />
+    <Content Include="Views\Library\Films.cshtml" />
+    <Content Include="Views\Library\Shows.cshtml" />
     <Content Include="Views\Films\Create.cshtml" />
     <Content Include="Views\Films\Delete.cshtml" />
     <Content Include="Views\Films\Details.cshtml" />
