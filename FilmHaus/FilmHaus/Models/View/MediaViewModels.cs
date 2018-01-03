@@ -53,6 +53,8 @@ namespace FilmHaus.Models.View
 
         public BaseReviewViewModel UserReview { get; set; }
 
+        public bool InCurrentUserLibrary { get; set; }
+
         public ICollection<PersonTitleViewModel> Collaborators { get; set; }
 
         public ICollection<GenreViewModel> Genres { get; set; }
@@ -68,6 +70,7 @@ namespace FilmHaus.Models.View
         {
         }
 
+        [Required]
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Poster", ResourceType = typeof(Locale))]
         public string PosterUri { get; set; }
@@ -76,10 +79,12 @@ namespace FilmHaus.Models.View
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string MediaName { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTime DateOfRelease { get; set; } = DateTime.Now;
 
+        [Required]
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
     }
@@ -111,6 +116,7 @@ namespace FilmHaus.Models.View
         [Display(Name = "Id", ResourceType = typeof(Locale))]
         public Guid MediaId { get; set; }
 
+        [Required]
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Poster", ResourceType = typeof(Locale))]
         public string PosterUri { get; set; }
@@ -119,10 +125,12 @@ namespace FilmHaus.Models.View
         [Display(Name = "Title", ResourceType = typeof(Locale))]
         public string MediaName { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "ReleaseDate", ResourceType = typeof(Locale))]
         public DateTime DateOfRelease { get; set; }
 
+        [Required]
         [Display(Name = "Accolades", ResourceType = typeof(Locale))]
         public AwardStatus Accolades { get; set; }
     }

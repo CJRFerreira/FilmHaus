@@ -1,0 +1,63 @@
+﻿@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@using FilmHaus.Enums;
+@model ChangeRatingViewModel
+
+@{
+    string ratingAction = "";
+
+    switch (Model.MediaType)
+    {
+        case MediaType.Film:
+            ratingAction = "ChangeRatingForFilm";
+            break;
+        case MediaType.Show:
+            ratingAction = "ChangeRatingForShow";
+            break;
+        case MediaType.Season:
+            ratingAction = "ChangeRatingForSeason";
+            break;
+        case MediaType.Episode:
+            ratingAction = "ChangeRatingForEpisode";
+            break;
+        default:
+            break;
+    }
+}
+
+<div id="changeRatingModal" class="modal fade" role="dialog">
+    @Html.BeginForm(ratingAction, "Ratings", FormMethod.Post, new { @class = "form-horizontal" })
+    {
+    @Html.AntiForgeryToken()
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    @Locale.Edit @Locale.Rating
+                    <button type="button" class="close pull-right" data-dismiss="modal">
+                        &times;
+                    </button>
+                </h4>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(m => m.MediaId)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
+                    @Locale.Close
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Locale.Save
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FilmsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Enums\MediaType.cs" />
     <Compile Include="Enums\ReviewType.cs" />
     <Compile Include="Enums\AwardStatus.cs" />
     <Compile Include="Enums\ReportReason.cs" />
@@ -296,6 +298,7 @@
     <Compile Include="Models\View\MediaViewModels.cs" />
     <Compile Include="Models\View\LibraryViewModels.cs" />
     <Compile Include="Models\View\PersonTitleViewModels.cs" />
+    <Compile Include="Models\View\RatingViewModels.cs" />
     <Compile Include="Models\View\ReportViewModels.cs" />
     <Compile Include="Models\View\ReviewViewModels.cs" />
     <Compile Include="Models\View\SearchViewModels.cs" />
@@ -477,6 +480,8 @@
     <Content Include="Views\Reviews\MyReviews.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Ratings\_CreateRatingPartial.cshtml" />
+    <Content Include="Views\Ratings\_EditRatingPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
