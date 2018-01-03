@@ -34,7 +34,6 @@ namespace FilmHaus.Controllers
         }
 
         [HttpGet]
-        [ChildActionOnly]
         public ActionResult Details(string reviewId)
         {
             var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));

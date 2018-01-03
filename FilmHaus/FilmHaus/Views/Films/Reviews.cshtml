@@ -38,10 +38,10 @@
                     <td>@Model.UserReview.Body</td>
                     <td>@Model.UserReview.CreatedOn</td>
                     <td>
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reviewModal">@Locale.Details</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reviewModal">@Locale.Details</button>
                         @if (User.Identity.GetUserId() == Model.UserReview.Id)
                         {
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editReviewModal">@Locale.Edit</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editReviewModal">@Locale.Edit</button>
                         }
                     </td>
                 </tr>

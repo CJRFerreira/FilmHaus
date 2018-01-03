@@ -38,17 +38,6 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Reports/Create
-        [HttpGet]
-        [Route("Create")]
-        public ActionResult Create()
-        {
-            if (User.IsInRole("Administrator"))
-                return PartialView(new CreateReportViewModel());
-
-            return RedirectToAction("Index");
-        }
-
         // POST: Reports/Create To protect from overposting attacks, please enable the specific
         // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -56,7 +45,7 @@ namespace FilmHaus.Controllers
         public ActionResult Create(CreateReportViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return RedirectToAction("Index", "Library");
 
             try
             {
@@ -67,7 +56,7 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Search");
         }
 
         // GET: Reports/Resolve/5

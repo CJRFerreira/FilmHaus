@@ -52,14 +52,6 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Films/Create
-        [HttpGet]
-        [Route("Create")]
-        public ActionResult Create()
-        {
-            return View(new CreateListViewModel());
-        }
-
         // POST: Films/Create To protect from overposting attacks, please enable the specific
         // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
