@@ -20,22 +20,20 @@
 </section>
 <hr />
 <section>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.List.Description, htmlAttributes: new { @class = "control-label" })
-                    <p class="form-control-static">@Model.List.Description</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.List.Shared, htmlAttributes: new { @class = "control-label" })
-                    <p class="form-control-static">@Model.List.Shared</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class=" table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.List.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.List.Shared)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.List.Description</td>
+                <td>@Model.List.Shared</td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 <hr />
 <section>
@@ -58,16 +56,16 @@
                         <td>@item.MediaName</td>
                         <td>@item.DateOfRelease</td>
                         <td>
-                            @Html.ActionLink(Locale.Details, "Details", "Film", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
+                            @Html.ActionLink(Locale.Details, "Details", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
                             @if (User.Identity.GetUserId() == Model.List.Id)
                             {
                                 @Html.ActionLink(Locale.Remove, "RemoveFilmFromList", new { mediaId = item.MediaId, listId = Model.List.ListId }, new { @class = "btn btn-warning" });
                             }
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("Administrator"))
                             {
-                                Html.ActionLink(Locale.EditFilm, "Edit", "Film", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
-                                Html.ActionLink(Locale.Delete, "Delete", "Film", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
+                                Html.ActionLink(Locale.EditFilm, "Edit", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                                Html.ActionLink(Locale.Delete, "Delete", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
                             }
                         </td>
                     </tr>
@@ -79,7 +77,7 @@
     {
         <div class="well">
             <p class="text-info">
-                @Locale.NoFilms
+                @Locale.NoFilmsList
             </p>
         </div>
     }
@@ -103,16 +101,16 @@
                         <td>@item.MediaName</td>
                         <td>@item.DateOfRelease</td>
                         <td>
-                            @Html.ActionLink("Details", "Details", new { viewModel = item }, new { @class = "btn btn-info" })
+                            @Html.ActionLink(Locale.Details, "Details", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
                             @if (User.Identity.GetUserId() == Model.List.Id)
                             {
                                 @Html.ActionLink(Locale.Remove, "RemoveShowFromList", new { mediaId = item.MediaId, listId = Model.List.ListId }, new { @class = "btn btn-warning" });
                             }
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("Administrator"))
                             {
-                                Html.ActionLink("Edit", "Edit", new { viewModel = item }, new { @class = "btn btn-primary" });
-                                Html.ActionLink("Delete", "Delete", new { viewModel = item }, new { @class = "btn btn-warning" });
+                                Html.ActionLink(Locale.Edit, "Edit", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                                Html.ActionLink(Locale.Delete, "Delete", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
                             }
                         </td>
                     </tr>
@@ -124,7 +122,7 @@
     {
         <div class="well">
             <p class="text-info">
-                @Locale.NoShows
+                @Locale.NoShowsList
             </p>
         </div>
     }

@@ -392,6 +392,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\FilmHaus - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\10ae9fc7d453b0dd525d0edf2ede7961.jpg" />
     <Content Include="Images\18db9a4cbf129b80974088797eafe9c5.jpg" />

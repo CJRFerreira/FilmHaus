@@ -19,7 +19,7 @@ namespace FilmHaus.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Locale {
@@ -682,11 +682,47 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are currently no films in this list.
+        /// </summary>
+        public static string NoFilmsList {
+            get {
+                return ResourceManager.GetString("NoFilmsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are currently no film reviews.
+        /// </summary>
+        public static string NoFilmsReview {
+            get {
+                return ResourceManager.GetString("NoFilmsReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You currently have no shows in your library.
         /// </summary>
         public static string NoShows {
             get {
                 return ResourceManager.GetString("NoShows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are currently no shows in this list.
+        /// </summary>
+        public static string NoShowsList {
+            get {
+                return ResourceManager.GetString("NoShowsList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are currently no show reviews.
+        /// </summary>
+        public static string NoShowsReview {
+            get {
+                return ResourceManager.GetString("NoShowsReview", resourceCulture);
             }
         }
         

@@ -3,9 +3,9 @@
 @model CreateReviewViewModel
 
 <div id="createReviewModal" class="modal fade" role="dialog">
-    @Html.BeginForm("Create", "Reviews", FormMethod.Post, new { @class = "form-horizontal" })
+    @using (Html.BeginForm("Create", "Reviews", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

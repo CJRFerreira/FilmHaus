@@ -3,7 +3,8 @@
 @model CreateReportViewModel
 
 <div id="createReportModal" class="modal fade" role="dialog">
-    @Html.BeginForm("Create", "Reports", FormMethod.Post, new { @class = "form-horizontal" }){ 
+    @using (Html.BeginForm("Create", "Reports", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
     @Html.AntiForgeryToken()
     <div class="modal-dialog">
         <div class="modal-content">

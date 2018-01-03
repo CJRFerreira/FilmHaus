@@ -26,7 +26,7 @@
     </div>
     <input type="submit" value="@Locale.Search" class="btn btn-primary" />
 }
-@if (Model.Films.Count > 0)
+@if (Model.Films != null || Model.Films.Count > 0)
 {
     <table class="table table-striped">
         <thead>

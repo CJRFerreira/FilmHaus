@@ -4,6 +4,7 @@
 @model IEnumerable<ListViewModel>
 
 @{
+    Html.AntiForgeryToken();
     ViewBag.Title = Locale.Index;
 }
 

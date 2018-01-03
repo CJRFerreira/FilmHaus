@@ -27,7 +27,12 @@ namespace FilmHaus.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new SearchLibraryViewModel());
+            return View(new SearchLibraryViewModel()
+            {
+                SearchViewModel = new SearchViewModel(),
+                Films = new List<FilmViewModel>(),
+                Shows = new List<ShowViewModel>()
+            });
         }
 
         // POST: Search/Films

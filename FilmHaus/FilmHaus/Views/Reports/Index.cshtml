@@ -4,6 +4,7 @@
 @model IEnumerable<ExpandedReportExpandedReviewViewModel>
 
 @{
+    Html.AntiForgeryToken();
     ViewBag.Title = Locale.Reports;
 }
 

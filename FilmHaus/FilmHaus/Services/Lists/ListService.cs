@@ -7,6 +7,7 @@ using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
 using FilmHaus.Services.ListShows;
 using FilmHaus.Services.ListFilms;
+using LinqKit;
 
 namespace FilmHaus.Services.Lists
 {
@@ -111,47 +112,26 @@ namespace FilmHaus.Services.Lists
         public List<ListViewModel> GetAllSharedLists()
         {
             return FilmHausDbContext.Lists
+                .AsExpandable()
                 .Where(l => l.Shared)
-                .Select(l => new ListViewModel
-                {
-                    ListId = l.ListId,
-                    Id = l.Id,
-                    Title = l.Title,
-                    Description = l.Description,
-                    Shared = l.Shared,
-                    CreatedOn = l.CreatedOn
-                })
+                .Select(ListQueryExtensions.GetListViewModel())
                 .ToList();
         }
 
         public List<ListViewModel> GetAllLists()
         {
             return FilmHausDbContext.Lists
-                .Select(l => new ListViewModel
-                {
-                    ListId = l.ListId,
-                    Id = l.Id,
-                    Title = l.Title,
-                    Description = l.Description,
-                    Shared = l.Shared,
-                    CreatedOn = l.CreatedOn
-                })
+                .AsExpandable()
+                .Select(ListQueryExtensions.GetListViewModel())
                 .ToList();
         }
 
         public List<ListViewModel> GetAllListsByUserId(string userId)
         {
             return FilmHausDbContext.Lists
+                .AsExpandable()
                 .Where(l => l.Id == userId)
-                .Select(l => new ListViewModel
-                {
-                    ListId = l.ListId,
-                    Id = l.Id,
-                    Title = l.Title,
-                    Description = l.Description,
-                    Shared = l.Shared,
-                    CreatedOn = l.CreatedOn
-                })
+                .Select(ListQueryExtensions.GetListViewModel())
                 .ToList();
         }
     }

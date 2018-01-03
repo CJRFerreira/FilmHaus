@@ -2,8 +2,8 @@
 @using FilmHaus.Models.View;
 @model EditListViewModel
 
-<div id="createListModal" class="modal fade" role="dialog">
-    @Html.BeginForm("Edit", "Lists", FormMethod.Post, new { @class = "form-horizontal" })
+<div id="editListModal" class="modal fade" role="dialog">
+    @using (Html.BeginForm("Edit", "Lists", FormMethod.Post, new { @class = "form-horizontal" }))
     {
     @Html.AntiForgeryToken()
     <div class="modal-dialog">

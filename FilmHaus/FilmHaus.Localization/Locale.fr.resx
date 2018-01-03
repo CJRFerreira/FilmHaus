@@ -468,4 +468,16 @@
   <data name="ResolvedOn" xml:space="preserve">
     <value>Résolu</value>
   </data>
+  <data name="NoFilmsList" xml:space="preserve">
+    <value>Il n'y a actuellement aucun film dans cette liste</value>
+  </data>
+  <data name="NoFilmsReview" xml:space="preserve">
+    <value>Il n'y a actuellement aucune critique de film</value>
+  </data>
+  <data name="NoShowsList" xml:space="preserve">
+    <value>Il n'y a actuellement aucune émission télévision dans cette liste</value>
+  </data>
+  <data name="NoShowsReview" xml:space="preserve">
+    <value>Il n'y a actuellement aucune critique de émission télévision</value>
+  </data>
 </root>
