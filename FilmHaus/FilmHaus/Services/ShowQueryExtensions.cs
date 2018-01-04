@@ -15,17 +15,29 @@ namespace FilmHaus.Services
     {
         public static Expression<Func<Show, double?>> GetAverageShowRating()
         {
-            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Any() ? s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(usr => usr.Rating).Average() : new Double();
+            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(ufr => ufr.Rating).Cast<double?>().Average();
         }
 
         public static Expression<Func<UserShow, int>> GetUserShowRating()
         {
-            return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(usr => usr.Rating).FirstOrDefault();
+            return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(ufr => ufr.Rating).FirstOrDefault();
+        }
+
+        public static Expression<Func<Show, bool>> HasAverageShowRating()
+        {
+            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(ufr => ufr.Rating).Any();
+        }
+
+        public static Expression<Func<UserShow, bool>> HasUserShowRating()
+        {
+            return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(ufr => ufr.Rating).Any();
         }
 
         public static Expression<Func<UserShow, ShowViewModel>> GetUserShowViewModel()
         {
+            var hasRating = HasUserShowRating();
             var userRating = GetUserShowRating();
+
             return s => new ShowViewModel()
             {
                 MediaId = s.MediaId,
@@ -34,7 +46,8 @@ namespace FilmHaus.Services
                 DateOfRelease = s.Show.DateOfRelease,
                 Accolades = s.Show.Accolades,
                 NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = userRating.Invoke(s)
+                Rating = userRating.Invoke(s),
+                UserHasRated = hasRating.Invoke(s)
             };
         }
 

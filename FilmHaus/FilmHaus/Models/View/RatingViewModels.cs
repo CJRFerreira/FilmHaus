@@ -1,6 +1,7 @@
 ﻿using FilmHaus.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,7 @@ namespace FilmHaus.Models.View
 
         public MediaType MediaType { get; set; }
 
+        [Range(1,10)]
         public int Rating { get; set; } = 1;
     }
 
@@ -48,6 +50,7 @@ namespace FilmHaus.Models.View
 
         public MediaType MediaType { get; set; }
 
+        [Range(1, 10)]
         public int Rating { get; set; }
     }
 }

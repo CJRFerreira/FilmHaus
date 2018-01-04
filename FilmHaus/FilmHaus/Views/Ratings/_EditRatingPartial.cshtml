@@ -25,7 +25,7 @@
     }
 }
 
-<div id="changeRatingModal" class="modal fade" role="dialog">
+<div id="editRatingModal" class="modal fade" role="dialog">
     @using (Html.BeginForm(ratingAction, "Ratings", FormMethod.Post, new { @class = "form-horizontal" }))
     {
     @Html.AntiForgeryToken()

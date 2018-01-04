@@ -1,4 +1,5 @@
 ﻿@using FilmHaus.Localization;
+@using FilmHaus.Enums;
 @using FilmHaus.Models.View;
 @model FilmViewModel
 
@@ -7,7 +8,18 @@
 }
 
 <section>
-    <h2>@Locale.Details - @Model.MediaName</h2>
+    <h2>
+        @Locale.Details - @Model.MediaName
+
+        @if (Model.InCurrentUserLibrary)
+        {
+            @Html.ActionLink(Locale.Remove + " " + Locale.Film, "RemoveFilmFromLibrary", "Library", new { mediaId = Model.MediaId }, new { @class = "btn btn-danger pull-right" })
+        }
+        else if (!Model.InCurrentUserLibrary)
+        {
+            @Html.ActionLink(Locale.Save + " " + Locale.Film, "AddFilmToLibrary", "Library", new { mediaId = Model.MediaId }, new { @class = "btn btn-primary pull-right" })
+        }
+    </h2>
     <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
         @Html.ActionLink(Locale.Reviews, "Reviews", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
         @if (this.User.IsInRole("Administrator"))
@@ -41,6 +53,42 @@
                     @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label" })
                     <p class="form-control-static">@Model.Runtime</p>
                 </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">
+                        @if (Model.Rating != null)
+                        {
+                            @Model.Rating
+                        }
+                        else
+                        {
+                            @Locale.NoRatingFilm
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.UserHasRated)
+                {
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editRatingModal">@Locale.Edit @Locale.Rating</button>
+                    var changeModel = new ChangeRatingViewModel(Model.MediaId, MediaType.Film);
+
+                    if (Model.Rating != null)
+                    {
+                        changeModel.Rating = (int)Model.Rating;
+                    }
+
+                    @Html.Partial("~/Views/Ratings/_EditRatingPartial.cshtml", changeModel);
+                    @Html.ActionLink(Locale.Remove + " " + Locale.Rating, "RemoveRatingFromFilm", "Ratings", new { mediaId = Model.MediaId }, new { @class = "btn btn-danger" });
+
+                }
+                else
+                {
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createRatingModal">@Locale.Create @Locale.Rating</button>
+                    @Html.Partial("~/Views/Ratings/_CreateRatingPartial.cshtml", new AddRatingViewModel(Model.MediaId, MediaType.Film));
+                }
             </div>
         </div>
     </div>

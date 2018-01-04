@@ -709,6 +709,24 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This film currently has no rating.
+        /// </summary>
+        public static string NoRatingFilm {
+            get {
+                return ResourceManager.GetString("NoRatingFilm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This show currently has no rating.
+        /// </summary>
+        public static string NoRatingShow {
+            get {
+                return ResourceManager.GetString("NoRatingShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You currently have no shows in your library.
         /// </summary>
         public static string NoShows {

@@ -486,4 +486,10 @@
   <data name="History" xml:space="preserve">
     <value>Histoire</value>
   </data>
+  <data name="NoRatingFilm" xml:space="preserve">
+    <value>Ce film n'a aucune évaluation</value>
+  </data>
+  <data name="NoRatingShow" xml:space="preserve">
+    <value>Cette émission de télévision n'a pas d'évaluation</value>
+  </data>
 </root>

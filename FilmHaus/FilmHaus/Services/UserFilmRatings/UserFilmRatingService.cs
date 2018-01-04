@@ -36,7 +36,9 @@ namespace FilmHaus.Services.UserFilmRatings
                         UserFilmRatingId = Guid.NewGuid(),
                         Id = userId,
                         MediaId = mediaId,
-                        CreatedOn = DateTime.Now
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null,
+                        Rating = rating
                     });
                     FilmHausDbContext.SaveChanges();
                 }
@@ -164,7 +166,7 @@ namespace FilmHaus.Services.UserFilmRatings
 
         public bool DoesUserHaveRating(string userId, Guid mediaId)
         {
-            return FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn != null).Any();
+            return FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn == null).Any();
         }
     }
 }

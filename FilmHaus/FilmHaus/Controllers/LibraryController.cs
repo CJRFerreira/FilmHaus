@@ -54,62 +54,42 @@ namespace FilmHaus.Controllers
 
         // POST: Library/AddFilmToLibrary
         [HttpPost]
-        [Route("AddFilmToLibrary/{mediaId:guid}")]
         public ActionResult AddFilmToLibrary(Guid mediaId)
         {
             if (UserFilmService.AddFilmToUserLibrary(mediaId, this.User.Identity.GetUserId()))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+                return RedirectToAction("Details", "Films", new { mediaId });
+
+            return RedirectToAction("Films", "Library");
         }
 
         // POST: Library/RemoveFilmFromLibrary
         [HttpPost]
-        [Route("RemoveFilmFromLibrary/{mediaId:guid}")]
         public ActionResult RemoveFilmFromLibrary(Guid mediaId)
         {
             if (UserFilmService.ObsoleteFilmInUserLibrary(mediaId, this.User.Identity.GetUserId()))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+                return RedirectToAction("Details", "Films", new { mediaId });
+
+            return RedirectToAction("Films", "Library");
         }
 
         // POST: Library/AddShowToLibrary
         [HttpPost]
-        [Route("AddShowToLibrary/{mediaId:guid}")]
         public ActionResult AddShowToLibrary(Guid mediaId)
         {
             if (UserShowService.AddShowToUserLibrary(mediaId, this.User.Identity.GetUserId()))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+                return RedirectToAction("Details", "Shows", new { mediaId });
+
+            return RedirectToAction("Shows", "Library");
         }
 
         // POST: Library/RemoveShowFromLibrary
         [HttpPost]
-        [Route("RemoveShowFromLibrary/{mediaId:guid}")]
         public ActionResult RemoveShowFromLibrary(Guid mediaId)
         {
             if (UserShowService.ObsoleteShowInUserLibrary(mediaId, this.User.Identity.GetUserId()))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+                return RedirectToAction("Details", "Shows", new { mediaId });
+
+            return RedirectToAction("Shows", "Library");
         }
     }
 }

@@ -26,87 +26,57 @@ namespace FilmHaus.Controllers
         }
 
         [HttpPost]
-        [Route("AddRatingToFilm/{mediaId:guid}/{rating:int}")]
-        public ActionResult AddRatingToFilm(AddRatingViewModel rating)
+        public ActionResult AddRatingToFilm(Guid MediaId, int Rating)
         {
-            if (UserFilmRatingService.AddRatingToUserLibrary(User.Identity.GetUserId(), rating.MediaId, rating.Rating))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserFilmRatingService.AddRatingToUserLibrary(User.Identity.GetUserId(), MediaId, Rating))
+                return RedirectToAction("Details", "Films", new { mediaId = MediaId });
+
+            return RedirectToAction("Films", "Library");
         }
 
         [HttpPost]
-        [Route("ChangeRatingForFilm/{mediaId:guid}/{rating:int}")]
-        public ActionResult ChangeRatingForFilm(ChangeRatingViewModel rating)
+        public ActionResult ChangeRatingForFilm(Guid MediaId, int Rating)
         {
-            if (UserFilmRatingService.ChangeRatingInUserLibrary(User.Identity.GetUserId(), rating.MediaId, rating.Rating))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserFilmRatingService.ChangeRatingInUserLibrary(User.Identity.GetUserId(), MediaId, Rating))
+                return RedirectToAction("Details", "Films", new { mediaId = MediaId });
+
+            return RedirectToAction("Films", "Library");
         }
 
         [HttpPost]
-        [Route("RemoveRatingFromFilm/{mediaId:guid}")]
-        public ActionResult RemoveRatingFromFilm(Guid mediaId)
+        public ActionResult RemoveRatingFromFilm(Guid MediaId)
         {
-            if (UserFilmRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), mediaId))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserFilmRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), MediaId))
+                return RedirectToAction("Details", "Films", new { mediaId = MediaId });
+
+            return RedirectToAction("Films", "Library");
         }
 
         [HttpPost]
-        [Route("AddRatingToShow/{mediaId:guid}/{rating:int}")]
-        public ActionResult AddRatingToShow(AddRatingViewModel rating)
+        public ActionResult AddRatingToShow(Guid MediaId, int Rating)
         {
-            if (UserShowRatingService.AddRatingToUserLibrary(User.Identity.GetUserId(), rating.MediaId, rating.Rating))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserShowRatingService.AddRatingToUserLibrary(User.Identity.GetUserId(), MediaId, Rating))
+                return RedirectToAction("Details", "Shows", new { mediaId = MediaId });
+
+            return RedirectToAction("Shows", "Library");
         }
 
         [HttpPost]
-        [Route("ChangeRatingForShow/{mediaId:guid}/{rating:int}")]
-        public ActionResult ChangeRatingForShow(ChangeRatingViewModel rating)
+        public ActionResult ChangeRatingForShow(Guid MediaId, int Rating)
         {
-            if (UserShowRatingService.ChangeRatingInUserLibrary(User.Identity.GetUserId(), rating.MediaId, rating.Rating))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserShowRatingService.ChangeRatingInUserLibrary(User.Identity.GetUserId(), MediaId, Rating))
+                return RedirectToAction("Details", "Shows", new { mediaId = MediaId });
+
+            return RedirectToAction("Shows", "Library");
         }
 
         [HttpPost]
-        [Route("RemoveRatingFromShow/{mediaId:guid}")]
-        public ActionResult RemoveRatingFromShow(Guid mediaId)
+        public ActionResult RemoveRatingFromShow(Guid MediaId)
         {
-            if (UserShowRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), mediaId))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.OK);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-            }
+            if (UserShowRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), MediaId))
+                return RedirectToAction("Details", "Shows", new { mediaId = MediaId });
+
+            return RedirectToAction("Shows", "Library");
         }
     }
 }

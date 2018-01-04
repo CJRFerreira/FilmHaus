@@ -82,7 +82,21 @@ namespace FilmHaus.Services.Films
             var userFilm = GetUserFilmViewModel();
             var generalFilm = GetGeneralFilmViewModel();
 
-            return UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId) ? userFilm.Invoke(film.UserFilms.Where(uf => uf.Id == userId && uf.MediaId == film.MediaId).FirstOrDefault()) : generalFilm.Invoke(film);
+            var result = new FilmViewModel();
+
+            if (UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId))
+            {
+                result = userFilm.Invoke(film.UserFilms
+                         .Where(uf => uf.Id == userId && uf.MediaId == film.MediaId)
+                         .FirstOrDefault()
+                         );
+            }
+            else
+            {
+                result = generalFilm.Invoke(film);
+            }
+
+            return result;
         }
 
         public List<FilmViewModel> GetFilmsBySearchTerm(string userId, string searchTerm)

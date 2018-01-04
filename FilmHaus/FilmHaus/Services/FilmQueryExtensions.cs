@@ -15,7 +15,7 @@ namespace FilmHaus.Services
     {
         public static Expression<Func<Film, double?>> GetAverageFilmRating()
         {
-            return f => f.UserFilmRatings.Where(ufr => ufr.MediaId == f.MediaId).Any() ? f.UserFilmRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => ufr.Rating).Average() : new Double();
+            return f => f.UserFilmRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => ufr.Rating).Cast<double?>().Average();
         }
 
         public static Expression<Func<UserFilm, int>> GetUserFilmRating()
@@ -23,9 +23,21 @@ namespace FilmHaus.Services
             return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id).Select(ufr => ufr.Rating).FirstOrDefault();
         }
 
+        public static Expression<Func<Film, bool>> HasAverageFilmRating()
+        {
+            return f => f.UserFilmRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => ufr.Rating).Any();
+        }
+
+        public static Expression<Func<UserFilm, bool>> HasUserFilmRating()
+        {
+            return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id).Select(ufr => ufr.Rating).Any();
+        }
+
         public static Expression<Func<UserFilm, FilmViewModel>> GetUserFilmViewModel()
         {
+            var hasRating = HasUserFilmRating();
             var userRating = GetUserFilmRating();
+
             return f => new FilmViewModel()
             {
                 MediaId = f.MediaId,
@@ -34,13 +46,15 @@ namespace FilmHaus.Services
                 DateOfRelease = f.Film.DateOfRelease,
                 Accolades = f.Film.Accolades,
                 Runtime = f.Film.Runtime,
-                Rating = userRating.Invoke(f)
+                Rating = userRating.Invoke(f),
+                UserHasRated = hasRating.Invoke(f)
             };
         }
 
         public static Expression<Func<Film, FilmViewModel>> GetGeneralFilmViewModel()
         {
             var averageRating = GetAverageFilmRating();
+
             return f => new FilmViewModel()
             {
                 MediaId = f.MediaId,
