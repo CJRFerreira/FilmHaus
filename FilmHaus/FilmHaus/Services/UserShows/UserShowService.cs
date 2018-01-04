@@ -129,5 +129,10 @@ namespace FilmHaus.Services.UserShows
         {
             return FilmHausDbContext.UserShows.AsExpandable().Where(us => us.Id == userId && us.ObsoletedOn == null).Select(GetUserShowViewModel()).ToList();
         }
+
+        public bool IsShowInLibrary(Guid mediaId, string userId)
+        {
+            return FilmHausDbContext.UserShows.Where(uf => uf.Id == userId && uf.MediaId == mediaId && uf.ObsoletedOn == null).Any();
+        }
     }
 }

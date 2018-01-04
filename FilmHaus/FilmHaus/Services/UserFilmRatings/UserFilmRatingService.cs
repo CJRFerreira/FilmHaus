@@ -4,6 +4,7 @@ using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
 using System.Linq;
+using FilmHaus.Services.UserFilms;
 
 namespace FilmHaus.Services.UserFilmRatings
 {
@@ -11,15 +12,21 @@ namespace FilmHaus.Services.UserFilmRatings
     {
         private FilmHausDbContext FilmHausDbContext { get; }
 
-        public UserFilmRatingService(FilmHausDbContext filmHausDbContext)
+        private IUserFilmService UserFilmService { get; }
+
+        public UserFilmRatingService(FilmHausDbContext filmHausDbContext, IUserFilmService userFilmService)
         {
             FilmHausDbContext = filmHausDbContext;
+            UserFilmService = userFilmService;
         }
 
         public bool AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
         {
             try
             {
+                if (!UserFilmService.IsFilmInLibrary(mediaId, userId))
+                    UserFilmService.AddFilmToUserLibrary(mediaId, userId);
+
                 var possibleRecord = FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
 
                 if (possibleRecord == null)
@@ -153,6 +160,11 @@ namespace FilmHaus.Services.UserFilmRatings
         public double? GetAverageFilmRating(Guid mediaId)
         {
             return FilmHausDbContext.Films.Where(ufr => ufr.MediaId == mediaId).Select(FilmQueryExtensions.GetAverageFilmRating()).FirstOrDefault();
+        }
+
+        public bool DoesUserHaveRating(string userId, Guid mediaId)
+        {
+            return FilmHausDbContext.UserFilmRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn != null).Any();
         }
     }
 }

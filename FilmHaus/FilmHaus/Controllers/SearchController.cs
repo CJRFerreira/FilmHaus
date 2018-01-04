@@ -2,6 +2,7 @@
 using FilmHaus.Models.View;
 using FilmHaus.Services.Films;
 using FilmHaus.Services.Shows;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace FilmHaus.Controllers
         {
             return View(new SearchFilmsViewModel
             {
-                Films = FilmService.GetAllFilms()
+                Films = FilmService.GetAllFilms(User.Identity.GetUserId())
             });
         }
 
@@ -72,7 +73,7 @@ namespace FilmHaus.Controllers
         {
             return View(new SearchShowsViewModel
             {
-                Shows = ShowService.GetAllShows()
+                Shows = ShowService.GetAllShows(User.Identity.GetUserId())
             });
         }
 
@@ -87,7 +88,7 @@ namespace FilmHaus.Controllers
 
         private List<FilmViewModel> EnactFilmSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
         {
-            var results = FilmService.GetAllFilms();
+            var results = FilmService.GetAllFilms(User.Identity.GetUserId());
 
             if (!String.IsNullOrEmpty(searchTerm))
                 results = results.Where(r => r.MediaName.ToUpperInvariant().Contains(searchTerm.ToUpperInvariant())).ToList();
@@ -106,7 +107,7 @@ namespace FilmHaus.Controllers
 
         private List<ShowViewModel> EnactShowSearch(string searchTerm, int? releaseYear, int? rating, AwardStatus? accolades)
         {
-            var results = ShowService.GetAllShows();
+            var results = ShowService.GetAllShows(User.Identity.GetUserId());
 
             if (!String.IsNullOrEmpty(searchTerm))
                 results = results.Where(r => r.MediaName.ToUpperInvariant().Contains(searchTerm.ToUpperInvariant())).ToList();

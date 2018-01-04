@@ -14,6 +14,8 @@ namespace FilmHaus.Services.UserShowRatings
 
         bool ObsoleteRatinginUserLibrary(string userId, Guid mediaId);
 
+        bool DoesUserHaveRating(string userId, Guid mediaId);
+
         double? GetAverageShowRating(Guid mediaId);
     }
 }

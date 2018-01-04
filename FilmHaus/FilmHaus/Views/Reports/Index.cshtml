@@ -4,7 +4,6 @@
 @model IEnumerable<ExpandedReportExpandedReviewViewModel>
 
 @{
-    Html.AntiForgeryToken();
     ViewBag.Title = Locale.Reports;
 }
 
@@ -46,7 +45,7 @@
                 </td>
             </tr>
             @Html.Partial("~/Views/Reports/_ReportPartial.cshtml", item)
-            @Html.Partial("~/Views/Reports/_ResolveReviewPartial.cshtml", new ResolveReportViewModel(item))
+            @Html.Partial("~/Views/Reports/_ResolveReportPartial.cshtml", new ResolveReportViewModel(item))
         }
     </tbody>
 </table>

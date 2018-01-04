@@ -153,5 +153,10 @@ namespace FilmHaus.Services.UserShowRatings
         {
             return FilmHausDbContext.Shows.Where(ufr => ufr.MediaId == mediaId).Select(ShowQueryExtensions.GetAverageShowRating()).FirstOrDefault();
         }
+
+        public bool DoesUserHaveRating(string userId, Guid mediaId)
+        {
+            return FilmHausDbContext.UserShowRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn != null).Any();
+        }
     }
 }

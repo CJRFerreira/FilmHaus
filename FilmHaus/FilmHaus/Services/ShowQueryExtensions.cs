@@ -15,7 +15,7 @@ namespace FilmHaus.Services
     {
         public static Expression<Func<Show, double?>> GetAverageShowRating()
         {
-            return s => s.UserShowRatings.Select(usr => usr.Rating).Average();
+            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Any() ? s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(usr => usr.Rating).Average() : new Double();
         }
 
         public static Expression<Func<UserShow, int>> GetUserShowRating()

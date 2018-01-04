@@ -4,100 +4,43 @@
 
 <div id="reportModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content" id="@Model.ReportId">
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
                     @Locale.Report
+                    <button type="button" class="close pull-right" data-dismiss="modal">
+                        &times;
+                    </button>
                 </h4>
-                <button type="button" class="close pull-right" data-dismiss="modal">
-                    &times;
-                </button>
+
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.ReportedOn)
-                                    </th>
-                                    <th>
-                                        @Locale.Report @Locale.From
-                                    </th>
-                                    <th>
-                                        @Locale.To
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.ReportReason)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.ReportStatus)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.ResolvedOn)
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(m => m.ReportedOn)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.ReportingUser.FullName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.UserReported.FullName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.ReportReason)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.ReportStatus)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.ResolvedOn)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="row">
+                    @Html.LabelFor(m => m.ReportedOn, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-3">
+                        @Html.DisplayFor(m => m.ReportedOn)
+                    </div>
+                    @Html.LabelFor(m => m.ReportReason, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-3">
+                        @Html.DisplayFor(m => m.ReportReason)
                     </div>
                 </div>
-                <div class="form-group" id="@Model.Review.ReviewId">
-                    <div class="col-md-12">
-                        <div class="col-md-2">
-                            @Html.DisplayNameFor(m => m.Review.Body)
-                        </div>
-                        <div class="col-md-10">
+                <hr />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Review.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
                             @Html.DisplayFor(m => m.Review.Body)
                         </div>
                     </div>
                 </div>
-                <div class="form-group" id="@Model.Review.Media.MediaId">
-                    <div class="col-md-12">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.Review.Media.MediaName)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(m => m.Review.Media.DateOfRelease)
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(m => m.Review.Media.MediaName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(m => m.Review.Media.DateOfRelease)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <hr />
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Review.Shared, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            @Html.DisplayFor(m => m.Review.Shared)
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 using FilmHaus.Models.Base;
 using FilmHaus.Models.View;
 using FilmHaus.Services.UserShowRatings;
+using FilmHaus.Services.UserShows;
 using LinqKit;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,15 @@ namespace FilmHaus.Services.Shows
     {
         private FilmHausDbContext FilmHausDbContext { get; }
 
-        public ShowService(FilmHausDbContext filmHausDbContext)
+        private IUserShowService UserShowService { get; }
+
+        private IUserShowRatingService UserShowRatingService { get; }
+
+        public ShowService(FilmHausDbContext filmHausDbContext, IUserShowService userShowService, IUserShowRatingService userShowRatingService)
         {
             FilmHausDbContext = filmHausDbContext;
+            UserShowService = userShowService;
+            UserShowRatingService = userShowRatingService;
         }
 
         public void CreateShow(CreateShowViewModel show)
@@ -53,24 +60,41 @@ namespace FilmHaus.Services.Shows
             }
         }
 
-        public List<ShowViewModel> GetAllShows()
+        public List<ShowViewModel> GetAllShows(string userId)
         {
-            return FilmHausDbContext.Shows.AsExpandable().Select(GetGeneralShowViewModel()).ToList();
+            var shows = new List<ShowViewModel>();
+
+            var userShow = GetUserShowViewModel();
+            var generalShow = GetGeneralShowViewModel();
+
+            foreach (var show in FilmHausDbContext.Shows.ToList())
+                shows.Add(UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show));
+
+            return shows;
         }
 
-        public ShowViewModel GetShowByMediaId(Guid mediaId)
+        public ShowViewModel GetShowByMediaId(string userId, Guid mediaId)
         {
-            return FilmHausDbContext.Shows.AsExpandable().Where(f => f.MediaId == mediaId).Select(GetGeneralShowViewModel()).FirstOrDefault();
+            var show = FilmHausDbContext.Shows.AsExpandable().Where(f => f.MediaId == mediaId).FirstOrDefault();
+
+            var userShow = GetUserShowViewModel();
+            var generalShow = GetGeneralShowViewModel();
+
+            return UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show);
         }
 
-        public List<ShowViewModel> GetShowsByListId(Guid mediaId)
-        {
-            return FilmHausDbContext.ListShows.AsExpandable().Where(l => l.ListId == mediaId).Select(l => l.Show).Select(GetGeneralShowViewModel()).ToList();
-        }
 
-        public List<ShowViewModel> GetShowsBySearchTerm(string searchTerm)
+        public List<ShowViewModel> GetShowsBySearchTerm(string userId, string searchTerm)
         {
-            return FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).Select(GetGeneralShowViewModel()).ToList();
+            var shows = new List<ShowViewModel>();
+
+            var userShow = GetUserShowViewModel();
+            var generalShow = GetGeneralShowViewModel();
+
+            foreach (var show in FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).ToList())
+                shows.Add(UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show));
+
+            return shows;
         }
 
         public void UpdateShowByMediaId(Guid mediaId, EditShowViewModel show)

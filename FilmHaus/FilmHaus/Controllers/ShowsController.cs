@@ -31,14 +31,14 @@ namespace FilmHaus.Controllers
         [Route("Index")]
         public ActionResult Index()
         {
-            return View(ShowService.GetAllShows());
+            return View(ShowService.GetAllShows(User.Identity.GetUserId()));
         }
 
         // GET: Show/Details/5
         [Route("Details/{mediaId:guid}")]
         public ActionResult Details(Guid mediaId)
         {
-            var result = ShowService.GetShowByMediaId(mediaId);
+            var result = ShowService.GetShowByMediaId(User.Identity.GetUserId(), mediaId);
 
             if (result != null)
                 return View(result);
@@ -50,7 +50,7 @@ namespace FilmHaus.Controllers
         [Route("Details/{mediaId:guid}/Reviews")]
         public ActionResult Reviews(Guid mediaId)
         {
-            var show = ShowService.GetShowByMediaId(mediaId);
+            var show = ShowService.GetShowByMediaId(User.Identity.GetUserId(), mediaId);
             var reviews = ReviewShowService.GetAllSharedReviewsByShowId(mediaId);
 
             show.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
@@ -95,7 +95,7 @@ namespace FilmHaus.Controllers
         [Route("Edit/{mediaId:guid}")]
         public ActionResult Edit(Guid mediaId)
         {
-            return View(new EditShowViewModel(ShowService.GetShowByMediaId(mediaId)));
+            return View(new EditShowViewModel(ShowService.GetShowByMediaId(User.Identity.GetUserId(), mediaId)));
         }
 
         // POST: Shows/Edit/5 To protect from overposting attacks, please enable the specific
@@ -123,7 +123,7 @@ namespace FilmHaus.Controllers
         [Route("Delete/{mediaId:guid}")]
         public ActionResult Delete(Guid mediaId)
         {
-            var result = ShowService.GetShowByMediaId(mediaId);
+            var result = ShowService.GetShowByMediaId(User.Identity.GetUserId(), mediaId);
 
             if (result != null)
                 return View(result);

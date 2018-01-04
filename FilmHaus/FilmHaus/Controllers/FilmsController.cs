@@ -26,14 +26,14 @@ namespace FilmHaus.Controllers
         [Route("Index")]
         public ActionResult Index()
         {
-            return View(FilmService.GetAllFilms());
+            return View(FilmService.GetAllFilms(User.Identity.GetUserId()));
         }
 
         // GET: Film/Details/{mediaId}
         [Route("Details/{mediaId:guid}")]
         public ActionResult Details(Guid mediaId)
         {
-            var result = FilmService.GetFilmByMediaId(mediaId);
+            var result = FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId);
 
             if (result != null)
                 return View(result);
@@ -45,7 +45,7 @@ namespace FilmHaus.Controllers
         [Route("Details/{mediaId:guid}/Reviews")]
         public ActionResult Reviews(Guid mediaId)
         {
-            var film = FilmService.GetFilmByMediaId(mediaId);
+            var film = FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId);
             var reviews = ReviewFilmService.GetAllSharedReviewsByFilmId(mediaId);
 
             film.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
@@ -93,7 +93,7 @@ namespace FilmHaus.Controllers
         [Route("Edit/{mediaId:guid}")]
         public ActionResult Edit(Guid mediaId)
         {
-            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(mediaId)));
+            return View(new EditFilmViewModel(FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId)));
         }
 
         // POST: Films/Edit/5 To protect from overposting attacks, please enable the specific
@@ -119,9 +119,9 @@ namespace FilmHaus.Controllers
 
         // GET: Films/Delete/{mediaId}
         [Route("Delete/{mediaId:guid}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(Guid mediaId)
         {
-            var result = FilmService.GetFilmByMediaId(Guid.Parse(id));
+            var result = FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId);
 
             if (result != null)
                 return View(result);

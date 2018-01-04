@@ -6,11 +6,11 @@ namespace FilmHaus.Services.Films
 {
     public interface IFilmService
     {
-        FilmViewModel GetFilmByMediaId(Guid mediaId);
+        FilmViewModel GetFilmByMediaId(string userId, Guid mediaId);
 
-        List<FilmViewModel> GetAllFilms();
+        List<FilmViewModel> GetAllFilms(string userId);
 
-        List<FilmViewModel> GetFilmsBySearchTerm(string searchTerm);
+        List<FilmViewModel> GetFilmsBySearchTerm(string userId, string searchTerm);
 
         void CreateFilm(CreateFilmViewModel film);
 
