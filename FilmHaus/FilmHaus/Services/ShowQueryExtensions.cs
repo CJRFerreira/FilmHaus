@@ -15,27 +15,33 @@ namespace FilmHaus.Services
     {
         public static Expression<Func<Show, double?>> GetAverageShowRating()
         {
-            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(ufr => ufr.Rating).Cast<double?>().Average();
+            return f => f.UserShowRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => (double?)ufr.Rating).Average();
         }
 
         public static Expression<Func<UserShow, int>> GetUserShowRating()
         {
-            return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(ufr => ufr.Rating).FirstOrDefault();
+            return f => f.Show.UserShowRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).FirstOrDefault();
         }
 
         public static Expression<Func<Show, bool>> HasAverageShowRating()
         {
-            return s => s.UserShowRatings.Where(usr => usr.MediaId == s.MediaId).Select(ufr => ufr.Rating).Any();
+            return f => f.UserShowRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => ufr.Rating).Any();
         }
 
         public static Expression<Func<UserShow, bool>> HasUserShowRating()
         {
-            return s => s.Show.UserShowRatings.Where(usr => usr.Id == s.Id).Select(ufr => ufr.Rating).Any();
+            return f => f.Show.UserShowRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).Any();
+        }
+
+        public static Expression<Func<UserShow, bool>> IsInUserShows()
+        {
+            return f => f.Show.UserShows.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Any();
         }
 
         public static Expression<Func<UserShow, ShowViewModel>> GetUserShowViewModel()
         {
             var hasRating = HasUserShowRating();
+            var inLibrary = IsInUserShows();
             var userRating = GetUserShowRating();
 
             return s => new ShowViewModel()
@@ -47,13 +53,16 @@ namespace FilmHaus.Services
                 Accolades = s.Show.Accolades,
                 NumberOfSeasons = s.Show.NumberOfSeasons,
                 Rating = userRating.Invoke(s),
-                UserHasRated = hasRating.Invoke(s)
+                UserHasRated = hasRating.Invoke(s),
+                InCurrentUserLibrary = inLibrary.Invoke(s)
             };
         }
 
         public static Expression<Func<Show, ShowViewModel>> GetGeneralShowViewModel()
         {
+            var hasRating = HasAverageShowRating();
             var averageRating = GetAverageShowRating();
+
             return s => new ShowViewModel()
             {
                 MediaId = s.MediaId,
@@ -62,7 +71,7 @@ namespace FilmHaus.Services
                 DateOfRelease = s.DateOfRelease,
                 Accolades = s.Accolades,
                 NumberOfSeasons = s.NumberOfSeasons,
-                Rating = averageRating.Invoke(s)
+                Rating = hasRating.Invoke(s) ? averageRating.Invoke(s) : null
             };
         }
     }
