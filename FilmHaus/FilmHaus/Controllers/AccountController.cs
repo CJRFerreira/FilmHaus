@@ -96,7 +96,7 @@ namespace FilmHaus.Controllers
             {
                 case SignInStatus.Success:
                     if (String.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Library");
+                        return RedirectToAction("Films", "Library");
                     else
                         return RedirectToLocal(returnUrl);
 

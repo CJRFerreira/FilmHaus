@@ -22,20 +22,6 @@ namespace FilmHaus.Controllers
             UserShowService = userShowService;
         }
 
-        // GET: Library
-        [HttpGet]
-        [Route("Index")]
-        public ActionResult Index()
-        {
-            var userId = this.User.Identity.GetUserId();
-
-            return View(new UserLibraryViewModel
-                (
-                    films: UserFilmService.GetAllFilmsForUser(userId),
-                    shows: UserShowService.GetAllShowsForUser(userId)
-                ));
-        }
-
         // GET: Library/Films
         [HttpGet]
         [Route("Films")]

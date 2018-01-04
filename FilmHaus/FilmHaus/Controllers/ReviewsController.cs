@@ -33,30 +33,6 @@ namespace FilmHaus.Controllers
             return View(ReviewService.GetAllReviewsByUserId(this.User.Identity.GetUserId()));
         }
 
-        [HttpGet]
-        public ActionResult Details(string reviewId)
-        {
-            var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
-
-            if (result != null)
-                return PartialView(result);
-
-            return RedirectToAction("Index", "Library");
-        }
-
-        // GET: Reviews/Edit/5
-        [HttpGet]
-        [ChildActionOnly]
-        public ActionResult Edit(string reviewId)
-        {
-            var result = ReviewService.GetReviewByReviewId(Guid.Parse(reviewId));
-
-            if (result.Id == this.User.Identity.GetUserId())
-                return PartialView(new EditReviewViewModel(result));
-
-            return RedirectToAction("Index", "Library");
-        }
-
         // POST: Reviews/Edit/5 To protect from overposting attacks, please enable the specific
         // properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -74,7 +50,7 @@ namespace FilmHaus.Controllers
                     return RedirectToAction("Details", new { mediaId = viewModel.MediaId });
                 }
                 else
-                    return RedirectToAction("Index", "Library");
+                    return RedirectToAction("MyReviews", "Reviews");
             }
             catch (Exception)
             {
@@ -115,10 +91,10 @@ namespace FilmHaus.Controllers
                     break;
 
                 default:
-                    return RedirectToAction("Index", "Library");
+                    return RedirectToAction("MyReviews", "Reviews");
             }
 
-            return RedirectToAction("Index", "Library");
+            return RedirectToAction("MyReviews", "Reviews");
         }
     }
 }

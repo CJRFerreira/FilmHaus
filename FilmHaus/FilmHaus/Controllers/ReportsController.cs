@@ -53,7 +53,7 @@ namespace FilmHaus.Controllers
         public ActionResult Create(CreateReportViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return RedirectToAction("Index", "Library");
+                return RedirectToAction("MyReviews", "Reviews");
 
             try
             {

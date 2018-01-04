@@ -59,7 +59,7 @@ namespace FilmHaus.Controllers
         public ActionResult Create(CreateListViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return RedirectToAction("Index", "Library");
+                return RedirectToAction("MyLists");
 
             try
             {

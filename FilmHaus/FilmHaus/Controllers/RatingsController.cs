@@ -43,11 +43,10 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Films", "Library");
         }
 
-        [HttpPost]
-        public ActionResult RemoveRatingFromFilm(Guid MediaId)
+        public ActionResult RemoveRatingFromFilm(Guid mediaId)
         {
-            if (UserFilmRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), MediaId))
-                return RedirectToAction("Details", "Films", new { mediaId = MediaId });
+            if (UserFilmRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), mediaId))
+                return RedirectToAction("Details", "Films", new {  mediaId });
 
             return RedirectToAction("Films", "Library");
         }
@@ -70,11 +69,10 @@ namespace FilmHaus.Controllers
             return RedirectToAction("Shows", "Library");
         }
 
-        [HttpPost]
-        public ActionResult RemoveRatingFromShow(Guid MediaId)
+        public ActionResult RemoveRatingFromShow(Guid mediaId)
         {
-            if (UserShowRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), MediaId))
-                return RedirectToAction("Details", "Shows", new { mediaId = MediaId });
+            if (UserShowRatingService.ObsoleteRatinginUserLibrary(User.Identity.GetUserId(), mediaId))
+                return RedirectToAction("Details", "Shows", new { mediaId });
 
             return RedirectToAction("Shows", "Library");
         }

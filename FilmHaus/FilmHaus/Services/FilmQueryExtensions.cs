@@ -20,7 +20,7 @@ namespace FilmHaus.Services
 
         public static Expression<Func<UserFilm, int>> GetUserFilmRating()
         {
-            return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id).Select(ufr => ufr.Rating).FirstOrDefault();
+            return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).FirstOrDefault();
         }
 
         public static Expression<Func<Film, bool>> HasAverageFilmRating()
@@ -30,12 +30,18 @@ namespace FilmHaus.Services
 
         public static Expression<Func<UserFilm, bool>> HasUserFilmRating()
         {
-            return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id).Select(ufr => ufr.Rating).Any();
+            return f => f.Film.UserFilmRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).Any();
+        }
+
+        public static Expression<Func<UserFilm, bool>> IsInUserFilms()
+        {
+            return f => f.Film.UserFilms.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Any();
         }
 
         public static Expression<Func<UserFilm, FilmViewModel>> GetUserFilmViewModel()
         {
             var hasRating = HasUserFilmRating();
+            var inLibrary = IsInUserFilms();
             var userRating = GetUserFilmRating();
 
             return f => new FilmViewModel()
@@ -47,12 +53,14 @@ namespace FilmHaus.Services
                 Accolades = f.Film.Accolades,
                 Runtime = f.Film.Runtime,
                 Rating = userRating.Invoke(f),
-                UserHasRated = hasRating.Invoke(f)
+                UserHasRated = hasRating.Invoke(f),
+                InCurrentUserLibrary = inLibrary.Invoke(f)
             };
         }
 
         public static Expression<Func<Film, FilmViewModel>> GetGeneralFilmViewModel()
         {
+            var hasRating = HasAverageFilmRating();
             var averageRating = GetAverageFilmRating();
 
             return f => new FilmViewModel()
@@ -63,7 +71,7 @@ namespace FilmHaus.Services
                 DateOfRelease = f.DateOfRelease,
                 Accolades = f.Accolades,
                 Runtime = f.Runtime,
-                Rating = averageRating.Invoke(f)
+                Rating = hasRating.Invoke(f) ? averageRating.Invoke(f) : null
             };
         }
     }
