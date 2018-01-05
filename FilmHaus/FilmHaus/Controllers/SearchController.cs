@@ -24,30 +24,6 @@ namespace FilmHaus.Controllers
             FilmService = filmService;
         }
 
-        // GET: Search
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View(new SearchLibraryViewModel()
-            {
-                SearchViewModel = new SearchViewModel(),
-                Films = new List<FilmViewModel>(),
-                Shows = new List<ShowViewModel>()
-            });
-        }
-
-        // POST: Search/Films
-        [HttpPost]
-        public ActionResult SearchAll(SearchViewModel searchViewModel)
-        {
-            return View("Index", new SearchLibraryViewModel()
-            {
-                SearchViewModel = searchViewModel,
-                Films = EnactFilmSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades),
-                Shows = EnactShowSearch(searchViewModel.SearchTerm, searchViewModel.ReleaseYear, searchViewModel.Rating, searchViewModel.Accolades)
-            });
-        }
-
         // GET: Search/Films
         [HttpGet]
         public ActionResult Films()

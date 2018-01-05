@@ -64,7 +64,7 @@ namespace FilmHaus.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index", "Search");
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Reports/Resolve/5
@@ -76,7 +76,7 @@ namespace FilmHaus.Controllers
             if (result != null && this.User.IsInRole("Administrator"))
                 return PartialView(new ResolveReportViewModel(result));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Reports/Resolve/5 To protect from overposting attacks, please enable the specific
