@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             @foreach (var item in Model.FilmReviews)
-                {
+            {
                 <tr>
                     <td>@item.Body</td>
                     <td>@item.CreatedOn</td>
@@ -31,7 +31,7 @@
                         @if (this.User.Identity.GetUserId() == item.Id)
                         {
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editReviewModal">@Locale.Edit</button>
-                            Html.ActionLink(Locale.Delete + "" + Locale.Review, "Delete", "Reviews", new { reviewId = item.ReviewId }, new { @class = "btn btn-warning" });
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Reviews", new { reviewId = item.ReviewId })"> @Locale.Delete </a>
                         }
                     </td>
                 </tr>
@@ -62,7 +62,7 @@ else
         </thead>
         <tbody>
             @foreach (var item in Model.ShowReviews)
-                {
+            {
                 <tr>
                     <td>@item.Body</td>
                     <td>@item.CreatedOn</td>

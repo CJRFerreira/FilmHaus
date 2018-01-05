@@ -49,14 +49,12 @@
                         <a href="@Url.Action("Index", "Shows")"><span class="glyphicon glyphicon-film"></span> @Locale.Shows</a>
                     </li>
                 }
-                <li>
+                @*<li>
                     <a href="@Url.Action("Index", "Lists")"> <span class="glyphicon glyphicon-list"></span> @Locale.ViewLists</a>
                 </li>
                 <li>
                     <a href="@Url.Action("MyLists", "Lists")"> <span class="glyphicon glyphicon-list"></span> @Locale.MyLists</a>
-                </li>
-                
-
+                </li>*@
                 <li>
                     <a href="@Url.Action("MyReviews", "Reviews")"> <span class="glyphicon glyphicon-pencil"></span> @Locale.MyReviews</a>
                 </li>
@@ -69,7 +67,7 @@
                         <li>@Html.ActionLink(Locale.SearchShows, "Shows", "Search")</li>
                     </ul>
                 </li>
-                @if (User.IsInRole("Administrator"))
+                @if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
                 {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-eye-open"></span> @Locale.AdminFunctions <span class="caret"></span></a>

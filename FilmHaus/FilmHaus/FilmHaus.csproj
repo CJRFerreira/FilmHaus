@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.Designer.cs">
       <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.cs" />
+    <Compile Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.Designer.cs">
+      <DependentUpon>201801051608239_Update #13 - IsActive for Reviews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base\Detail.cs" />
     <Compile Include="Models\Base\Film.cs" />
@@ -535,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.resx">
       <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.resx">
+      <DependentUpon>201801051608239_Update #13 - IsActive for Reviews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

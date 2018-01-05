@@ -16,6 +16,10 @@ namespace FilmHaus.Services.ReviewShows
 
         void DeleteReviewShow(Guid reviewShowId);
 
+        void DeleteReviewShow(Guid reviewId, Guid mediaId);
+
         void ObsoleteReviewShow(Guid reviewShowId);
+
+        void ObsoleteReviewShow(Guid reviewId, Guid mediaId);
     }
 }

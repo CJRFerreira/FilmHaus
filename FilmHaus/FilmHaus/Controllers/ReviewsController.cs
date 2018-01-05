@@ -96,5 +96,30 @@ namespace FilmHaus.Controllers
 
             return RedirectToAction("MyReviews", "Reviews");
         }
+
+        public ActionResult Delete(Guid reviewId, Guid mediaId, ReviewType reviewType)
+        {
+            switch (reviewType)
+            {
+                case ReviewType.Film:
+                    ReviewService.ObsoleteReviewForFilm(reviewId, mediaId);
+                    return RedirectToAction("Reviews", "Films", new { mediaId });
+
+                case ReviewType.Show:
+                    ReviewService.ObsoleteReviewForShow(reviewId, mediaId);
+                    return RedirectToAction("Reviews", "Shows", new { mediaId });
+
+                case ReviewType.Season:
+                    break;
+
+                case ReviewType.Episode:
+                    break;
+
+                default:
+                    return RedirectToAction("MyReviews", "Reviews");
+            }
+
+            return RedirectToAction("MyReviews", "Reviews");
+        }
     }
 }

@@ -86,5 +86,45 @@ namespace FilmHaus.Services.ReviewFilms
                 throw ex;
             }
         }
+
+        public void DeleteReviewFilm(Guid reviewId, Guid mediaId)
+        {
+            try
+            {
+                var review = FilmHausDbContext.ReviewFilms.Where(rs => rs.ReviewId == reviewId && rs.MediaId == mediaId && rs.ObsoletedOn == null).FirstOrDefault();
+
+                if (review != null)
+                {
+                    FilmHausDbContext.ReviewFilms.Remove(review);
+                    FilmHausDbContext.SaveChanges();
+                }
+                else
+                    throw new ArgumentNullException();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ObsoleteReviewFilm(Guid reviewId, Guid mediaId)
+        {
+            try
+            {
+                var review = FilmHausDbContext.ReviewFilms.Where(rs => rs.ReviewId == reviewId && rs.MediaId == mediaId && rs.ObsoletedOn == null).FirstOrDefault();
+
+                if (review == null)
+                    throw new ArgumentNullException();
+
+                review.ObsoletedOn = DateTime.Now;
+
+                FilmHausDbContext.Entry(review).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

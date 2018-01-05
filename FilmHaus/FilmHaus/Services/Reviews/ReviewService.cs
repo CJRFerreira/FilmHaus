@@ -39,6 +39,7 @@ namespace FilmHaus.Services.Reviews
                 Shared = review.Shared,
                 CreatedOn = DateTime.Now,
                 Flagged = false,
+                IsActive = true,
                 ReviewType = review.ReviewType
             };
         }
@@ -112,7 +113,7 @@ namespace FilmHaus.Services.Reviews
         {
             var films = FilmHausDbContext.ReviewFilms
                 .AsExpandable()
-                .Where(r => r.Review.Flagged == true)
+                .Where(r => r.Review.Flagged == true && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
@@ -131,14 +132,14 @@ namespace FilmHaus.Services.Reviews
         {
             var films = FilmHausDbContext.ReviewFilms
                 .AsExpandable()
-                .Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+                .Where(r => r.Review.Flagged == true && r.Review.Id == userId && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
             var shows = FilmHausDbContext.ReviewShows
                 .AsExpandable()
-                .Where(r => r.Review.Flagged == true && r.Review.Id == userId)
+                .Where(r => r.Review.Flagged == true && r.Review.Id == userId && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -167,14 +168,14 @@ namespace FilmHaus.Services.Reviews
         {
             var films = FilmHausDbContext.ReviewFilms
                 .AsExpandable()
-                .Where(r => r.Review.Id == userId)
+                .Where(r => r.Review.Id == userId && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
             var shows = FilmHausDbContext.ReviewShows
                 .AsExpandable()
-                .Where(r => r.Review.Id == userId)
+                .Where(r => r.Review.Id == userId && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -186,14 +187,14 @@ namespace FilmHaus.Services.Reviews
         {
             var films = FilmHausDbContext.ReviewFilms
                 .AsExpandable()
-                .Where(r => r.Review.Shared == true)
+                .Where(r => r.Review.Shared == true && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithFilm())
                 .ToList();
 
             var shows = FilmHausDbContext.ReviewShows
                 .AsExpandable()
-                .Where(r => r.Review.Shared == true)
+                .Where(r => r.Review.Shared == true && r.Review.IsActive)
                 .Select(r => r.Review)
                 .Select(GetReviewViewModelWithShow())
                 .ToList();
@@ -282,15 +283,34 @@ namespace FilmHaus.Services.Reviews
         {
             try
             {
-                var result = FilmHausDbContext.Reviews.Find(reviewId);
-
-                if (result == null)
+                var review = FilmHausDbContext.Reviews.Find(reviewId);
+               
+                if (review == null)
                     throw new ArgumentNullException();
 
-                result.ReportReason = reportReason;
-                result.Shared = false;
+                switch (review.ReviewType)
+                {
+                    case ReviewType.Film:
+                        var reviewFilm = FilmHausDbContext.ReviewFilms.Where(rf => rf.ReviewId == reviewId && rf.ObsoletedOn == null).FirstOrDefault();
+                        ReviewFilmService.ObsoleteReviewFilm(reviewFilm.ReviewId, reviewFilm.MediaId);
+                        break;
+                    case ReviewType.Show:
+                        var reviewShow = FilmHausDbContext.ReviewShows.Where(rf => rf.ReviewId == reviewId && rf.ObsoletedOn == null).FirstOrDefault();
+                        ReviewShowService.ObsoleteReviewShow(reviewShow.ReviewId, reviewShow.MediaId);
+                        break;
+                    case ReviewType.Season:
+                        break;
+                    case ReviewType.Episode:
+                        break;
+                    default:
+                        break;
+                }
 
-                FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                review.ReportReason = reportReason;
+                review.Shared = false;
+                review.IsActive = false;
+
+                FilmHausDbContext.Entry(review).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
             catch
@@ -333,6 +353,50 @@ namespace FilmHaus.Services.Reviews
                 result.Shared = true;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void ObsoleteReviewForFilm(Guid reviewId, Guid mediaId)
+        {
+            try
+            {
+                ReviewFilmService.ObsoleteReviewFilm(reviewId, mediaId);
+
+                var review = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (review == null)
+                    throw new ArgumentNullException();
+
+                review.IsActive = false;
+
+                FilmHausDbContext.Entry(review).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void ObsoleteReviewForShow(Guid reviewId, Guid mediaId)
+        {
+            try
+            {
+                ReviewShowService.ObsoleteReviewShow(reviewId, mediaId);
+
+                var review = FilmHausDbContext.Reviews.Find(reviewId);
+
+                if (review == null)
+                    throw new ArgumentNullException();
+
+                review.IsActive = false;
+
+                FilmHausDbContext.Entry(review).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
             }
             catch

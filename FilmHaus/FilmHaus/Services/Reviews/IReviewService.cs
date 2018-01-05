@@ -11,6 +11,10 @@ namespace FilmHaus.Services.Reviews
 
         void CreateReviewForShow(CreateReviewViewModel review, string userId);
 
+        void ObsoleteReviewForFilm(Guid reviewId, Guid mediaId);
+
+        void ObsoleteReviewForShow(Guid reviewId, Guid mediaId);
+
         void DeleteReviewByReviewId(Guid reviewId);
 
         void UpdateReviewByReviewId(Guid reviewId, EditReviewViewModel review);
