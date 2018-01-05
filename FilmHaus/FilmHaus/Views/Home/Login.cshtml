@@ -1,0 +1,42 @@
+﻿@using FilmHaus.Localization
+@{
+    ViewBag.Title = Locale.FilmHaus;
+}
+
+<!-- Marketing Messages & Featurettes -->
+<div class="container">
+    <!-- Featurettes -->
+    <div class="row featurette">
+        <div class="col-md-12">
+            <h2>@Locale.UserAccount</h2>
+            <p class="lead">Username: john.doe@realemail.co.uk</p>
+            <p class="lead">Password: Mohawk_123</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-12">
+            <h2>@Locale.Moderator</h2>
+            <p class="lead">Username: bob.burger@bobsburgers.ca</p>
+            <p class="lead">Password: Mohawk_123</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-12">
+            <h2>@Locale.Administrator</h2>
+            <p class="lead">Username: christian.ferreira@mohawkcollege.ca</p>
+            <p class="lead">Password: Mohawk_123</p>
+        </div>
+    </div>
+
+    <!-- End Featurettes -->
+    <hr class="featurette-divider">
+    <footer>
+        <p>&copy; @DateTime.Now.Year - @Locale.FilmHaus</p>
+    </footer>
+</div>

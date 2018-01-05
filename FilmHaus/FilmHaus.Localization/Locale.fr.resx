@@ -492,4 +492,13 @@
   <data name="NoRatingShow" xml:space="preserve">
     <value>Cette émission de télévision n'a pas d'évaluation</value>
   </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrateur</value>
+  </data>
+  <data name="Moderator" xml:space="preserve">
+    <value>Modérateur</value>
+  </data>
+  <data name="Instructions" xml:space="preserve">
+    <value>Instructions</value>
+  </data>
 </root>

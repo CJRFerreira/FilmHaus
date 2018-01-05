@@ -486,6 +486,7 @@
     <Content Include="Views\Ratings\_CreateRatingPartial.cshtml" />
     <Content Include="Views\Ratings\_EditRatingPartial.cshtml" />
     <Content Include="Views\Reports\History.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

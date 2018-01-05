@@ -13,12 +13,7 @@ namespace FilmHaus.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
+        public ActionResult Login()
         {
             return View();
         }

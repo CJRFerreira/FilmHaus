@@ -498,4 +498,13 @@
   <data name="NoRatingShow" xml:space="preserve">
     <value>This show currently has no rating</value>
   </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Moderator" xml:space="preserve">
+    <value>Moderator</value>
+  </data>
+  <data name="Instructions" xml:space="preserve">
+    <value>Instructions</value>
+  </data>
 </root>
