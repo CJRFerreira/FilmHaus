@@ -10,6 +10,10 @@ namespace FilmHaus.Services
 {
     internal static class ReportQueryExtensions
     {
+        /// <summary>
+        /// Given a <see cref="Report"/>, return a view model
+        /// </summary>
+        /// <returns><see cref="BaseReportViewModel"/> representing the under lying <see cref="Report"/></returns>
         public static Expression<Func<Report, BaseReportViewModel>> GetBaseReportViewModel()
         {
             var reportingUser = GetUserViewModel();
@@ -30,6 +34,10 @@ namespace FilmHaus.Services
             };
         }
 
+        /// <summary>
+        /// Given a <see cref="Report"/>, return a view model with the <see cref="Review"/> attached
+        /// </summary>
+        /// <returns><see cref="ExpandedReportBaseReviewViewModel"/> representing the under lying <see cref="Report"/></returns>
         public static Expression<Func<Report, ExpandedReportBaseReviewViewModel>> GetExpandedReportViewModel()
         {
             var review = GetReviewViewModel();
@@ -52,6 +60,10 @@ namespace FilmHaus.Services
             };
         }
 
+        /// <summary>
+        /// Given a <see cref="Report"/>, return a view model with the <see cref="Review"/> and <see cref="Film"/> attached
+        /// </summary>
+        /// <returns><see cref="ExpandedReportExpandedReviewViewModel"/> representing the under lying <see cref="Report"/></returns>
         public static Expression<Func<Report, ExpandedReportExpandedReviewViewModel>> GetReportForFilmReview()
         {
             var review = GetReviewViewModelWithFilm();
@@ -74,6 +86,10 @@ namespace FilmHaus.Services
             };
         }
 
+        /// <summary>
+        /// Given a <see cref="Report"/>, return a view model with the <see cref="Review"/> and <see cref="Show"/> attached
+        /// </summary>
+        /// <returns><see cref="ExpandedReportExpandedReviewViewModel"/> representing the under lying <see cref="Report"/></returns>
         public static Expression<Func<Report, ExpandedReportExpandedReviewViewModel>> GetReportForShowReview()
         {
             var review = GetReviewViewModelWithShow();

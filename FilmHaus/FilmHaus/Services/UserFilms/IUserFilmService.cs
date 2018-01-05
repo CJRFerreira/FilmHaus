@@ -8,11 +8,7 @@ namespace FilmHaus.Services.UserFilms
     {
         bool AddFilmToUserLibrary(Guid mediaId, string userId);
 
-        bool RemoveFilmFromUserLibrary(Guid userFilmId);
-
         bool RemoveFilmFromUserLibrary(Guid mediaId, string userId);
-
-        bool ObsoleteFilmInUserLibrary(Guid userFilmId);
 
         bool ObsoleteFilmInUserLibrary(Guid mediaId, string userId);
 
