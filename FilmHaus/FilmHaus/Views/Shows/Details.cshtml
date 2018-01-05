@@ -71,7 +71,7 @@
             <div class="row">
                 @if (Model.UserHasRated)
                 {
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createRatingModal">@Locale.Edit @Locale.Rating</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editRatingModal">@Locale.Edit @Locale.Rating</button>
                     var changeModel = new ChangeRatingViewModel(Model.MediaId, MediaType.Show);
 
                     if (Model.Rating != null)
