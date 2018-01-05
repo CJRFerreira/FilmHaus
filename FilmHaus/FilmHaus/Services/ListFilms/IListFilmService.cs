@@ -12,11 +12,7 @@ namespace FilmHaus.Services.ListFilms
 
         bool AddFilmToList(Guid listId, Guid mediaId);
 
-        bool RemoveFilmInList(Guid listFilmId);
-
         bool RemoveFilmInList(Guid listId, Guid mediaId);
-
-        bool ObsoleteFilmInList(Guid listFilmId);
 
         bool ObsoleteFilmInList(Guid listId, Guid mediaId);
     }

@@ -18,8 +18,6 @@ namespace FilmHaus.Services.FilmPersonTitles
 
         void AddPersonAsTitleToFilm(Guid mediaId, Guid personId, Guid titleId);
 
-        void RemovePersonAsTitleFromFilm(Guid filmPersonTitleId);
-
         void RemovePersonAsTitleFromFilm(Guid mediaId, Guid personId, Guid titleId);
     }
 }

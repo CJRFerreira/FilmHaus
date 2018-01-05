@@ -10,9 +10,7 @@ namespace FilmHaus.Services.ListTags
 
         List<ListViewModel> GetAllListsWithTag(Guid tagId);
 
-        void AddTagToList(Guid genreId, Guid listId);
-
-        void RemoveTagFromList(Guid listTagId);
+        void AddTagToList(Guid tagId, Guid listId);
 
         void RemoveTagFromList(Guid tagId, Guid listId);
     }

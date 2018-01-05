@@ -907,7 +907,7 @@ namespace FilmHaus.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ReleaseYear.
+        ///   Looks up a localized string similar to Release Year.
         /// </summary>
         public static string ReleaseYear {
             get {
