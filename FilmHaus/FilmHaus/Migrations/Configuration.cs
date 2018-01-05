@@ -14,12 +14,6 @@ namespace FilmHaus.Migrations
 
         private List<Show> Shows { get; set; } = new List<Show>();
 
-        private List<List> Lists { get; set; } = new List<List>();
-
-        private List<Review> Reviews { get; set; } = new List<Review>();
-
-        private List<Report> Reports { get; set; } = new List<Report>();
-
         private List<Genre> Genres { get; set; } = new List<Genre>();
 
         private List<Person> People { get; set; } = new List<Person>();
@@ -32,31 +26,14 @@ namespace FilmHaus.Migrations
 
         private List<ShowPersonTitle> ShowPersonTitles { get; set; } = new List<ShowPersonTitle>();
 
-        private List<UserFilm> UserFilms { get; set; } = new List<UserFilm>();
-
-        private List<UserShow> UserShows { get; set; } = new List<UserShow>();
-
-        private List<UserFilmRating> UserFilmRatings { get; set; } = new List<UserFilmRating>();
-
-        private List<UserShowRating> UserShowRatings { get; set; } = new List<UserShowRating>();
-
         private List<FilmTag> FilmTags { get; set; } = new List<FilmTag>();
 
         private List<ShowTag> ShowTags { get; set; } = new List<ShowTag>();
-
-        private List<ListTag> ListTags { get; set; } = new List<ListTag>();
 
         private List<FilmGenre> FilmGenres { get; set; } = new List<FilmGenre>();
 
         private List<ShowGenre> ShowGenres { get; set; } = new List<ShowGenre>();
 
-        private List<ListFilm> ListFilms { get; set; } = new List<ListFilm>();
-
-        private List<ListShow> ListShows { get; set; } = new List<ListShow>();
-
-        private List<ReviewFilm> ReviewFilms { get; set; } = new List<ReviewFilm>();
-
-        private List<ReviewShow> ReviewShows { get; set; } = new List<ReviewShow>();
 
         public Configuration()
         {
@@ -98,33 +75,6 @@ namespace FilmHaus.Migrations
 
             foreach (var st in ShowTags)
                 filmHausDbContext.ShowTags.AddOrUpdate(st);
-
-            //foreach (var lf in ListFilms)
-            //    filmHausDbContext.ListFilms.AddOrUpdate(lf);
-
-            //foreach (var ls in ListShows)
-            //    filmHausDbContext.ListShows.AddOrUpdate(ls);
-
-            //foreach (var lt in ListTags)
-            //    filmHausDbContext.ListTags.AddOrUpdate(lt);
-
-            //foreach (var rf in ReviewFilms)
-            //    filmHausDbContext.ReviewFilms.AddOrUpdate(rf);
-
-            //foreach (var rs in ReviewShows)
-            //    filmHausDbContext.ReviewShows.AddOrUpdate(rs);
-
-            //foreach (var uf in UserFilms)
-            //    filmHausDbContext.UserFilms.AddOrUpdate(uf);
-
-            //foreach (var us in UserShows)
-            //    filmHausDbContext.UserShows.AddOrUpdate(us);
-
-            //foreach (var ufr in UserFilmRatings)
-            //    filmHausDbContext.UserFilmRatings.AddOrUpdate(ufr);
-
-            //foreach (var usr in UserShowRatings)
-            //    filmHausDbContext.UserShowRatings.AddOrUpdate(usr);
         }
 
         private void SeedBaseModels(FilmHausDbContext filmHausDbContext)
@@ -134,15 +84,6 @@ namespace FilmHaus.Migrations
 
             foreach (var show in Shows)
                 filmHausDbContext.Shows.AddOrUpdate(show);
-
-            //foreach (var list in Lists)
-            //    filmHausDbContext.Lists.AddOrUpdate(list);
-
-            //foreach (var review in Reviews)
-            //    filmHausDbContext.Reviews.AddOrUpdate(review);
-
-            //foreach (var report in Reports)
-            //    filmHausDbContext.Reports.AddOrUpdate(report);
 
             foreach (var genre in Genres)
                 filmHausDbContext.Genres.AddOrUpdate(genre);
@@ -285,9 +226,6 @@ namespace FilmHaus.Migrations
         {
             GenerateFilms();
             GenerateShows();
-            //GenerateLists();
-            //GenerateReviews();
-            //GenerateReports();
             GeneratePeople();
             GenerateGenres();
             GenerateTitles();
@@ -319,40 +257,6 @@ namespace FilmHaus.Migrations
                 NumberOfSeasons = 2,
                 DateOfRelease = DateTime.Parse("2014-01-12"),
                 CreatedOn = DateTime.Now
-            });
-        }
-
-        private void GenerateLists()
-        {
-            Lists.Add(new List
-            {
-                ListId = Guid.Parse("55747052-7799-4AB7-8035-9A539178A163")
-            });
-        }
-
-        private void GenerateReviews()
-        {
-            Reviews.Add(new Review
-            {
-                ReviewId = Guid.Parse("FDAC7BC5-AFA3-4720-AFB5-A5EF9243F10C")
-            });
-
-            Reviews.Add(new Review
-            {
-                ReviewId = Guid.Parse("CAE6B81F-F97F-42C8-AAF3-0E1FCF14D17C")
-            });
-        }
-
-        private void GenerateReports()
-        {
-            Reports.Add(new Report
-            {
-                ReportId = Guid.Parse("802A1F62-A801-4976-8597-CC8DF6BEF4FC")
-            });
-
-            Reports.Add(new Report
-            {
-                ReportId = Guid.Parse("21B8D2B0-8D2C-451C-9C5D-5BF325BAE522")
             });
         }
 
