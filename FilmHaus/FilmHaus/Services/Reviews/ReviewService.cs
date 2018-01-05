@@ -265,7 +265,9 @@ namespace FilmHaus.Services.Reviews
                     throw new ArgumentNullException();
 
                 result.Body = review.Body;
-                result.Shared = review.Shared;
+
+                if (!result.Flagged)
+                    result.Shared = review.Shared;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
@@ -286,6 +288,7 @@ namespace FilmHaus.Services.Reviews
                     throw new ArgumentNullException();
 
                 result.ReportReason = reportReason;
+                result.Shared = false;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
@@ -306,6 +309,7 @@ namespace FilmHaus.Services.Reviews
                     throw new ArgumentNullException();
 
                 result.Flagged = true;
+                result.Shared = false;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
@@ -326,6 +330,7 @@ namespace FilmHaus.Services.Reviews
                     throw new ArgumentNullException();
 
                 result.Flagged = false;
+                result.Shared = true;
 
                 FilmHausDbContext.Entry(result).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();

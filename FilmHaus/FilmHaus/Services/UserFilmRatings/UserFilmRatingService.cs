@@ -71,7 +71,9 @@ namespace FilmHaus.Services.UserFilmRatings
                     UserFilmRatingId = Guid.NewGuid(),
                     Id = oldRating.Id,
                     MediaId = oldRating.MediaId,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    ObsoletedOn = null,
+                    Rating = rating
                 });
 
                 FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
@@ -101,7 +103,9 @@ namespace FilmHaus.Services.UserFilmRatings
                     UserFilmRatingId = Guid.NewGuid(),
                     Id = oldRating.Id,
                     MediaId = oldRating.MediaId,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    ObsoletedOn = null,
+                    Rating = rating
                 });
 
                 FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;

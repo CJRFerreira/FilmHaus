@@ -32,7 +32,7 @@
     <hr />
     <div class="row">
         <div class="col-lg-6">
-            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image-large" />
+            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image" />
         </div>
         <div class="col-lg-6">
             <div class="row">
@@ -68,25 +68,27 @@
                     </p>
                 </div>
             </div>
-            @if (Model.UserHasRated)
-            {
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createRatingModal">@Locale.Edit @Locale.Rating</button>
-                var changeModel = new ChangeRatingViewModel(Model.MediaId, MediaType.Show);
-
-                if (Model.Rating != null)
+            <div class="row">
+                @if (Model.UserHasRated)
                 {
-                    changeModel.Rating = (int)Model.Rating;
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createRatingModal">@Locale.Edit @Locale.Rating</button>
+                    var changeModel = new ChangeRatingViewModel(Model.MediaId, MediaType.Show);
+
+                    if (Model.Rating != null)
+                    {
+                        changeModel.Rating = (int)Model.Rating;
+                    }
+
+                    @Html.Partial("~/Views/Ratings/_EditRatingPartial.cshtml", changeModel);
+                    <a class="btn btn-danger" href="@Url.Action("RemoveRatingFromShow", "Ratings", new { mediaId = Model.MediaId })"> @Locale.Remove @Locale.Rating </a>
+
                 }
-
-                @Html.Partial("~/Views/Ratings/_EditRatingPartial.cshtml", changeModel);
-                <a class="btn btn-danger" href="@Url.Action("RemoveRatingFromShow", "Ratings", new { mediaId = Model.MediaId })"> @Locale.Remove @Locale.Rating </a>
-
-            }
-            else
-            {
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createRatingModal">@Locale.Create @Locale.Rating</button>
-                @Html.Partial("~/Views/Ratings/_CreateRatingPartial.cshtml", new AddRatingViewModel(Model.MediaId, MediaType.Show));
-            }
+                else
+                {
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createRatingModal">@Locale.Create @Locale.Rating</button>
+                    @Html.Partial("~/Views/Ratings/_CreateRatingPartial.cshtml", new AddRatingViewModel(Model.MediaId, MediaType.Show));
+                }
+            </div>
         </div>
     </div>
 </section>

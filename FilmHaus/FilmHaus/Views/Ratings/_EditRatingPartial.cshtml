@@ -28,36 +28,36 @@
 <div id="editRatingModal" class="modal fade" role="dialog">
     @using (Html.BeginForm(ratingAction, "Ratings", FormMethod.Post, new { @class = "form-horizontal" }))
     {
-    @Html.AntiForgeryToken()
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    @Locale.Edit @Locale.Rating
-                    <button type="button" class="close pull-right" data-dismiss="modal">
-                        &times;
-                    </button>
-                </h4>
-            </div>
-            <div class="modal-body">
-                @Html.HiddenFor(m => m.MediaId)
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Rating, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        @Locale.Edit @Locale.Rating
+                        <button type="button" class="close pull-right" data-dismiss="modal">
+                            &times;
+                        </button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    @Html.HiddenFor(m => m.MediaId)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Rating, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
-                    @Locale.Close
-                </button>
-                <button type="submit" class="btn btn-primary pull-right">
-                    @Locale.Save
-                </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
+                        @Locale.Close
+                    </button>
+                    <button type="submit" class="btn btn-primary pull-right">
+                        @Locale.Save
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>

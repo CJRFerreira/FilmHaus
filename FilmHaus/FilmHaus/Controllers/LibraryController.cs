@@ -39,7 +39,6 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Library/AddFilmToLibrary
-        [HttpPost]
         public ActionResult AddFilmToLibrary(Guid mediaId)
         {
             if (UserFilmService.AddFilmToUserLibrary(mediaId, this.User.Identity.GetUserId()))
@@ -49,7 +48,6 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Library/RemoveFilmFromLibrary
-        [HttpPost]
         public ActionResult RemoveFilmFromLibrary(Guid mediaId)
         {
             if (UserFilmService.ObsoleteFilmInUserLibrary(mediaId, this.User.Identity.GetUserId()))
@@ -59,7 +57,6 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Library/AddShowToLibrary
-        [HttpPost]
         public ActionResult AddShowToLibrary(Guid mediaId)
         {
             if (UserShowService.AddShowToUserLibrary(mediaId, this.User.Identity.GetUserId()))
@@ -69,7 +66,6 @@ namespace FilmHaus.Controllers
         }
 
         // POST: Library/RemoveShowFromLibrary
-        [HttpPost]
         public ActionResult RemoveShowFromLibrary(Guid mediaId)
         {
             if (UserShowService.ObsoleteShowInUserLibrary(mediaId, this.User.Identity.GetUserId()))

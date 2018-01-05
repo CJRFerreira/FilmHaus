@@ -20,22 +20,22 @@ namespace FilmHaus.Services
 
         public static Expression<Func<UserShow, int>> GetUserShowRating()
         {
-            return f => f.Show.UserShowRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).FirstOrDefault();
+            return s => s.Show.UserShowRatings.Where(ufr => ufr.Id == s.Id && ufr.MediaId == s.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).FirstOrDefault();
         }
 
         public static Expression<Func<Show, bool>> HasAverageShowRating()
         {
-            return f => f.UserShowRatings.Where(ufr => ufr.MediaId == f.MediaId).Select(ufr => ufr.Rating).Any();
+            return s => s.UserShowRatings.Where(ufr => ufr.MediaId == s.MediaId).Select(ufr => ufr.Rating).Any();
         }
 
         public static Expression<Func<UserShow, bool>> HasUserShowRating()
         {
-            return f => f.Show.UserShowRatings.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).Any();
+            return s => s.Show.UserShowRatings.Where(ufr => ufr.Id == s.Id && ufr.MediaId == s.MediaId && ufr.ObsoletedOn == null).Select(ufr => ufr.Rating).Any();
         }
 
         public static Expression<Func<UserShow, bool>> IsInUserShows()
         {
-            return f => f.Show.UserShows.Where(ufr => ufr.Id == f.Id && ufr.MediaId == f.MediaId && ufr.ObsoletedOn == null).Any();
+            return s => s.Show.UserShows.Where(ufr => ufr.Id == s.Id && ufr.MediaId == s.MediaId && ufr.ObsoletedOn == null).Any();
         }
 
         public static Expression<Func<UserShow, ShowViewModel>> GetUserShowViewModel()

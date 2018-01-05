@@ -3,7 +3,7 @@
 @model CreateListViewModel
 
 <div id="createListModal" class="modal fade" role="dialog">
-    @Html.BeginForm("Create", "Lists", FormMethod.Post, new { @class = "form-horizontal" })
+    @using (Html.BeginForm("Create", "Lists", FormMethod.Post, new { @class = "form-horizontal" }))
     {
     @Html.AntiForgeryToken()
     <div class="modal-dialog">

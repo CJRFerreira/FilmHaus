@@ -3,6 +3,7 @@ using FilmHaus.Models;
 using FilmHaus.Models.Connector;
 using System.Data.Entity;
 using System.Linq;
+using FilmHaus.Services.UserShows;
 
 namespace FilmHaus.Services.UserShowRatings
 {
@@ -10,15 +11,21 @@ namespace FilmHaus.Services.UserShowRatings
     {
         private FilmHausDbContext FilmHausDbContext { get; }
 
-        public UserShowRatingService(FilmHausDbContext filmHausDbContext)
+        private IUserShowService UserShowService { get; }
+
+        public UserShowRatingService(FilmHausDbContext filmHausDbContext, IUserShowService userShowService)
         {
             FilmHausDbContext = filmHausDbContext;
+            UserShowService = userShowService;
         }
 
         public bool AddRatingToUserLibrary(string userId, Guid mediaId, int rating)
         {
             try
             {
+                if (!UserShowService.IsShowInLibrary(mediaId, userId))
+                    UserShowService.AddShowToUserLibrary(mediaId, userId);
+
                 var possibleRecord = FilmHausDbContext.UserShowRatings.Where(ufr => ufr.MediaId == mediaId && ufr.Id == userId && ufr.ObsoletedOn == null).FirstOrDefault();
 
                 if (possibleRecord == null)
@@ -28,7 +35,9 @@ namespace FilmHaus.Services.UserShowRatings
                         UserShowRatingId = Guid.NewGuid(),
                         Id = userId,
                         MediaId = mediaId,
-                        CreatedOn = DateTime.Now
+                        CreatedOn = DateTime.Now,
+                        ObsoletedOn = null,
+                        Rating = rating
                     });
                     FilmHausDbContext.SaveChanges();
                 }
@@ -61,7 +70,9 @@ namespace FilmHaus.Services.UserShowRatings
                     UserShowRatingId = Guid.NewGuid(),
                     Id = oldRating.Id,
                     MediaId = oldRating.MediaId,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    ObsoletedOn = null,
+                    Rating = rating
                 });
 
                 FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
@@ -86,16 +97,20 @@ namespace FilmHaus.Services.UserShowRatings
 
                 oldRating.ObsoletedOn = DateTime.Now;
 
+                FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
+                FilmHausDbContext.SaveChanges();
+
                 FilmHausDbContext.UserShowRatings.Add(new UserShowRating
                 {
                     UserShowRatingId = Guid.NewGuid(),
                     Id = oldRating.Id,
                     MediaId = oldRating.MediaId,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    ObsoletedOn = null,
+                    Rating = rating
                 });
-
-                FilmHausDbContext.Entry(oldRating).State = EntityState.Modified;
                 FilmHausDbContext.SaveChanges();
+
             }
             catch
             {
@@ -156,7 +171,7 @@ namespace FilmHaus.Services.UserShowRatings
 
         public bool DoesUserHaveRating(string userId, Guid mediaId)
         {
-            return FilmHausDbContext.UserShowRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn != null).Any();
+            return FilmHausDbContext.UserShowRatings.Where(ufr => ufr.Id == userId && ufr.MediaId == mediaId && ufr.ObsoletedOn == null).Any();
         }
     }
 }
