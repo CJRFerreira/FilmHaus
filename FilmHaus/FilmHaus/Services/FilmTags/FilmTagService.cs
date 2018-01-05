@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using FilmHaus.Models.View;
 using FilmHaus.Models;
 using FilmHaus.Models.Base;
+using FilmHaus.Models.View;
 using FilmHaus.Models.Connector;
 using static FilmHaus.Services.TagQueryExtensions;
 using static FilmHaus.Services.FilmQueryExtensions;
@@ -22,7 +22,7 @@ namespace FilmHaus.Services.FilmTags
         private FilmHausDbContext FilmHausDbContext { get; }
 
         /// <summary>
-        /// Constructor for the <see cref="FilmGenreService"/> class
+        /// Constructor for the <see cref="FilmTagService"/> class
         /// </summary>
         /// <param name="filmHausDbContext">Accessor for the Db, used for DI</param>
         public FilmTagService(FilmHausDbContext filmHausDbContext)

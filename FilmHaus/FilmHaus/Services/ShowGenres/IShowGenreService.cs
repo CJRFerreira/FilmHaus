@@ -12,8 +12,6 @@ namespace FilmHaus.Services.ShowGenres
 
         void AddGenreToShow(Guid genreId, Guid mediaId);
 
-        void RemoveGenreFromShow(Guid filmGenreId);
-
         void RemoveGenreFromShow(Guid genreId, Guid mediaId);
     }
 }

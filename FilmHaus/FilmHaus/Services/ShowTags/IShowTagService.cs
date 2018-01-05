@@ -12,8 +12,6 @@ namespace FilmHaus.Services.ShowTags
 
         void AddTagToShow(Guid tagId, Guid mediaId);
 
-        void RemoveTagFromShow(Guid showTagId);
-
         void RemoveTagFromShow(Guid tagId, Guid mediaId);
     }
 }
