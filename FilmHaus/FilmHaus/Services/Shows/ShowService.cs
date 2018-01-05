@@ -68,7 +68,24 @@ namespace FilmHaus.Services.Shows
             var generalShow = GetGeneralShowViewModel();
 
             foreach (var show in FilmHausDbContext.Shows.ToList())
-                shows.Add(UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show));
+            {
+                var result = new ShowViewModel();
+
+                if (UserShowRatingService.DoesUserHaveRating(userId, show.MediaId))
+                {
+                    result = userShow.Invoke(show.UserShows
+                             .Where(uf => uf.Id == userId && uf.MediaId == show.MediaId)
+                             .FirstOrDefault()
+                             );
+                }
+                else
+                {
+                    result = generalShow.Invoke(show);
+                    result.InCurrentUserLibrary = UserShowService.IsShowInLibrary(show.MediaId, userId);
+                }
+
+                shows.Add(result);
+            }
 
             return shows;
         }
@@ -80,7 +97,20 @@ namespace FilmHaus.Services.Shows
             var userShow = GetUserShowViewModel();
             var generalShow = GetGeneralShowViewModel();
 
-            return UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show);
+            if (UserShowRatingService.DoesUserHaveRating(userId, show.MediaId))
+            {
+                return userShow.Invoke(show.UserShows
+                         .Where(uf => uf.Id == userId && uf.MediaId == show.MediaId)
+                         .FirstOrDefault()
+                         );
+            }
+            else
+            {
+                var result = generalShow.Invoke(show);
+                result.InCurrentUserLibrary = UserShowService.IsShowInLibrary(mediaId, userId);
+
+                return result;
+            }
         }
 
 
@@ -92,7 +122,24 @@ namespace FilmHaus.Services.Shows
             var generalShow = GetGeneralShowViewModel();
 
             foreach (var show in FilmHausDbContext.Shows.Where(f => f.MediaName.Contains(searchTerm)).ToList())
-                shows.Add(UserShowRatingService.DoesUserHaveRating(userId, show.MediaId) ? userShow.Invoke(show.UserShows.Where(uf => uf.Id == userId && uf.MediaId == show.MediaId).FirstOrDefault()) : generalShow.Invoke(show));
+            {
+                var result = new ShowViewModel();
+
+                if (UserShowRatingService.DoesUserHaveRating(userId, show.MediaId))
+                {
+                    result = userShow.Invoke(show.UserShows
+                             .Where(uf => uf.Id == userId && uf.MediaId == show.MediaId)
+                             .FirstOrDefault()
+                             );
+                }
+                else
+                {
+                    result = generalShow.Invoke(show);
+                    result.InCurrentUserLibrary = UserShowService.IsShowInLibrary(show.MediaId, userId);
+                }
+
+                shows.Add(result);
+            }
 
             return shows;
         }

@@ -40,9 +40,13 @@ namespace FilmHaus.Services
 
         public static Expression<Func<UserShow, ShowViewModel>> GetUserShowViewModel()
         {
-            var hasRating = HasUserShowRating();
+            var hasUserRating = HasUserShowRating();
+            var hasAverageRating = HasAverageShowRating();
+
             var inLibrary = IsInUserShows();
+
             var userRating = GetUserShowRating();
+            var averageRating = GetAverageShowRating();
 
             return s => new ShowViewModel()
             {
@@ -52,8 +56,8 @@ namespace FilmHaus.Services
                 DateOfRelease = s.Show.DateOfRelease,
                 Accolades = s.Show.Accolades,
                 NumberOfSeasons = s.Show.NumberOfSeasons,
-                Rating = userRating.Invoke(s),
-                UserHasRated = hasRating.Invoke(s),
+                Rating = hasUserRating.Invoke(s) ? userRating.Invoke(s) : hasAverageRating.Invoke(s.Show) ? averageRating.Invoke(s.Show) : null,
+                UserHasRated = hasUserRating.Invoke(s),
                 InCurrentUserLibrary = inLibrary.Invoke(s)
             };
         }
@@ -71,7 +75,8 @@ namespace FilmHaus.Services
                 DateOfRelease = s.DateOfRelease,
                 Accolades = s.Accolades,
                 NumberOfSeasons = s.NumberOfSeasons,
-                Rating = hasRating.Invoke(s) ? averageRating.Invoke(s) : null
+                Rating = hasRating.Invoke(s) ? averageRating.Invoke(s) : null,
+                UserHasRated = false
             };
         }
     }

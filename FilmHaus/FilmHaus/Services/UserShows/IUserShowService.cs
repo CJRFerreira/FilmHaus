@@ -10,6 +10,8 @@ namespace FilmHaus.Services.UserShows
 
         bool RemoveShowFromUserLibrary(Guid userShowId);
 
+        bool RemoveShowFromUserLibrary(Guid mediaId, string userId);
+
         bool ObsoleteShowInUserLibrary(Guid userShowId);
 
         bool ObsoleteShowInUserLibrary(Guid mediaId, string userId);

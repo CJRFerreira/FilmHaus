@@ -70,7 +70,24 @@ namespace FilmHaus.Services.Films
             var generalFilm = GetGeneralFilmViewModel();
 
             foreach (var film in FilmHausDbContext.Films.ToList())
-                films.Add(UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId) ? userFilm.Invoke(film.UserFilms.Where(uf => uf.Id == userId && uf.MediaId == film.MediaId).FirstOrDefault()) : generalFilm.Invoke(film));
+            {
+                var result = new FilmViewModel();
+
+                if (UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId))
+                {
+                    result = userFilm.Invoke(film.UserFilms
+                             .Where(uf => uf.Id == userId && uf.MediaId == film.MediaId)
+                             .FirstOrDefault()
+                             );
+                }
+                else
+                {
+                    result = generalFilm.Invoke(film);
+                    result.InCurrentUserLibrary = UserFilmService.IsFilmInLibrary(film.MediaId, userId);
+                }
+
+                films.Add(result);
+            }
 
             return films;
         }
@@ -90,8 +107,12 @@ namespace FilmHaus.Services.Films
                          );
             }
             else
-                return generalFilm.Invoke(film);
+            {
+                var result = generalFilm.Invoke(film);
+                result.InCurrentUserLibrary = UserFilmService.IsFilmInLibrary(mediaId, userId);
 
+                return result;
+            }
         }
 
         public List<FilmViewModel> GetFilmsBySearchTerm(string userId, string searchTerm)
@@ -102,7 +123,24 @@ namespace FilmHaus.Services.Films
             var generalFilm = GetGeneralFilmViewModel();
 
             foreach (var film in FilmHausDbContext.Films.Where(f => f.MediaName.Contains(searchTerm)).ToList())
-                films.Add(UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId) ? userFilm.Invoke(film.UserFilms.Where(uf => uf.Id == userId && uf.MediaId == film.MediaId).FirstOrDefault()) : generalFilm.Invoke(film));
+            {
+                var result = new FilmViewModel();
+
+                if (UserFilmRatingService.DoesUserHaveRating(userId, film.MediaId))
+                {
+                    result = userFilm.Invoke(film.UserFilms
+                             .Where(uf => uf.Id == userId && uf.MediaId == film.MediaId)
+                             .FirstOrDefault()
+                             );
+                }
+                else
+                {
+                    result = generalFilm.Invoke(film);
+                    result.InCurrentUserLibrary = UserFilmService.IsFilmInLibrary(film.MediaId, userId);
+                }
+
+                films.Add(result);
+            }
 
             return films;
         }
