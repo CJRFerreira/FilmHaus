@@ -116,34 +116,5 @@ namespace FilmHaus.Controllers
 
             return RedirectToAction("Index");
         }
-
-        // GET: Films/Delete/{mediaId}
-        [Route("Delete/{mediaId:guid}")]
-        public ActionResult Delete(Guid mediaId)
-        {
-            var result = FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId);
-
-            if (result != null)
-                return View(result);
-
-            return RedirectToAction("Index");
-        }
-
-        // POST: Films/Delete/{mediaId}
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid mediaId)
-        {
-            try
-            {
-                FilmService.DeleteFilmByMediaId(mediaId);
-            }
-            catch
-            {
-                throw;
-            }
-            return RedirectToAction("Index");
-        }
     }
 }
