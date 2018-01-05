@@ -21,12 +21,12 @@ namespace FilmHaus.Services.ReviewShows
 
         public List<BaseReviewViewModel> GetAllSharedReviewsByShowId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewShows.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
+            return FilmHausDbContext.ReviewShows.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.Shared && rf.Review.IsActive && rf.ObsoletedOn == null).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
         }
 
         public List<BaseReviewViewModel> GetAllFlaggedReviewsByShowId(Guid mediaId)
         {
-            return FilmHausDbContext.ReviewShows.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
+            return FilmHausDbContext.ReviewShows.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.Review.IsActive && rf.Review.Flagged == true).Select(rf => rf.Review).Select(GetReviewViewModel()).ToList();
         }
 
         public List<BaseReviewViewModel> GetAllReviewsByShowId(Guid mediaId)
@@ -44,46 +44,6 @@ namespace FilmHaus.Services.ReviewShows
                 CreatedOn = DateTime.Now
             });
             FilmHausDbContext.SaveChanges();
-        }
-
-        public void DeleteReviewShow(Guid reviewShowId)
-        {
-            try
-            {
-                var review = FilmHausDbContext.ReviewShows.Find(reviewShowId);
-
-                if (review != null)
-                {
-                    FilmHausDbContext.ReviewShows.Remove(review);
-                    FilmHausDbContext.SaveChanges();
-                }
-                else
-                    throw new ArgumentNullException();
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void ObsoleteReviewShow(Guid reviewShowId)
-        {
-            try
-            {
-                var result = FilmHausDbContext.ReviewShows.Find(reviewShowId);
-
-                if (result == null)
-                    throw new ArgumentNullException();
-
-                result.ObsoletedOn = DateTime.Now;
-
-                FilmHausDbContext.Entry(result).State = EntityState.Modified;
-                FilmHausDbContext.SaveChanges();
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw ex;
-            }
         }
 
         public void DeleteReviewShow(Guid reviewId, Guid mediaId)
@@ -124,6 +84,11 @@ namespace FilmHaus.Services.ReviewShows
             {
                 throw ex;
             }
+        }
+
+        public BaseReviewViewModel GetUserReviewByShowId(Guid mediaId, string userId)
+        {
+            return FilmHausDbContext.ReviewShows.AsExpandable().Where(rf => rf.MediaId == mediaId && rf.ObsoletedOn == null && rf.Review.IsActive && rf.Review.Id == userId).Select(rf => rf.Review).Select(GetReviewViewModel()).FirstOrDefault();
         }
     }
 }

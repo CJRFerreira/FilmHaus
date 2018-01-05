@@ -53,9 +53,8 @@ namespace FilmHaus.Controllers
             var show = ShowService.GetShowByMediaId(User.Identity.GetUserId(), mediaId);
             var reviews = ReviewShowService.GetAllSharedReviewsByShowId(mediaId);
 
-            show.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
+            show.UserReview = ReviewShowService.GetUserReviewByShowId(mediaId, this.User.Identity.GetUserId());
             show.Reviews = reviews.Where(r => r.Id != this.User.Identity.GetUserId()).ToList();
-
 
             if (show != null)
                 return View(show);

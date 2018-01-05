@@ -48,7 +48,7 @@ namespace FilmHaus.Controllers
             var film = FilmService.GetFilmByMediaId(User.Identity.GetUserId(), mediaId);
             var reviews = ReviewFilmService.GetAllSharedReviewsByFilmId(mediaId);
 
-            film.UserReview = reviews.Where(r => r.Id == this.User.Identity.GetUserId()).FirstOrDefault();
+            film.UserReview = ReviewFilmService.GetUserReviewByFilmId(mediaId, this.User.Identity.GetUserId());
             film.Reviews = reviews.Where(r => r.Id != this.User.Identity.GetUserId()).ToList();
 
             if (film != null)

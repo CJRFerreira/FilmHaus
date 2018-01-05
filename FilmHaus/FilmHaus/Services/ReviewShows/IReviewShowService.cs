@@ -12,13 +12,11 @@ namespace FilmHaus.Services.ReviewShows
 
         List<BaseReviewViewModel> GetAllReviewsByShowId(Guid mediaId);
 
+        BaseReviewViewModel GetUserReviewByShowId(Guid mediaId, string userId);
+
         void CreateReviewShow(Guid reviewId, Guid mediaId);
 
-        void DeleteReviewShow(Guid reviewShowId);
-
         void DeleteReviewShow(Guid reviewId, Guid mediaId);
-
-        void ObsoleteReviewShow(Guid reviewShowId);
 
         void ObsoleteReviewShow(Guid reviewId, Guid mediaId);
     }
