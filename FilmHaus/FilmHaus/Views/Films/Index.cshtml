@@ -1,0 +1,51 @@
+﻿@using FilmHaus.Localization
+@model IEnumerable<FilmHaus.Models.View.FilmViewModel>
+
+@{
+    ViewBag.Title = Locale.Index;
+}
+
+<h2>@Locale.Films @Html.ActionLink(Locale.CreateFilm, "Create", null, new { @class = "btn btn-primary pull-right" })</h2>
+<hr />
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PosterUri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRelease)
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.MediaId">
+                <td>
+                    <img src="@Url.Content(item.PosterUri.ToString())" alt="@item.MediaName" class="featurette-image" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MediaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfRelease)
+                </td>
+                <td>
+                    @Html.ActionLink(Locale.Details, "Details", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        Html.ActionLink(Locale.Edit, "Edit", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                        Html.ActionLink(Locale.Delete, "Delete", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

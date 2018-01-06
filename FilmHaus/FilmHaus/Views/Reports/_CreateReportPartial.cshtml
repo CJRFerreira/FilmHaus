@@ -1,0 +1,42 @@
+﻿@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@model CreateReportViewModel
+
+<div id="createReportModal" class="modal fade" role="dialog">
+    @using (Html.BeginForm("Create", "Reports", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+    @Html.AntiForgeryToken()
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    @Locale.Create @Locale.Report
+                </h4>
+                <button type="button" class="close pull-right" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(m => m.ReviewReportedId)
+                @Html.HiddenFor(m => m.ReportingUserId)
+                @Html.HiddenFor(m => m.UserReportedId)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReportReason, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.ReportReason, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ReportReason, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">
+                    @Locale.Close
+                </button>
+                <button type="submit" class="btn btn-primary pull-right">
+                    @Locale.Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

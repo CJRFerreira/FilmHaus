@@ -1,0 +1,129 @@
+﻿@using FilmHaus.Localization;
+@using Microsoft.AspNet.Identity;
+@using FilmHaus.Models.View;
+@model ListLibraryViewModel
+
+@{
+    ViewBag.Title = Locale.Details;
+}
+
+<section>
+    <h2>@Locale.Details - @Model.List.Title (@Model.List.CreatedOn)</h2>
+    <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @if (Model.List.Id == this.User.Identity.GetUserId())
+        {
+            @Html.ActionLink(Locale.Edit, "Edit", new { listId = Model.List.ListId }, new { @class = "btn btn-info" })
+        }
+
+        @Html.ActionLink(Locale.Index, "Index", null, new { @class = "btn btn-danger" })
+    </div>
+</section>
+<hr />
+<section>
+    <table class=" table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.List.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.List.Shared)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.List.Description</td>
+                <td>@Model.List.Shared</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<hr />
+<section>
+    @if (Model.Films.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.Poster</th>
+                    <th>@Locale.Name</th>
+                    <th>@Locale.ReleaseDate</th>
+                    <th>@Locale.UserActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Films)
+                {
+                    <tr>
+                        <td>@item.PosterUri</td>
+                        <td>@item.MediaName</td>
+                        <td>@item.DateOfRelease</td>
+                        <td>
+                            @Html.ActionLink(Locale.Details, "Details", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
+                            @if (User.Identity.GetUserId() == Model.List.Id)
+                            {
+                                @Html.ActionLink(Locale.Remove, "RemoveFilmFromList", new { mediaId = item.MediaId, listId = Model.List.ListId }, new { @class = "btn btn-warning" });
+                            }
+
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                Html.ActionLink(Locale.EditFilm, "Edit", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                                Html.ActionLink(Locale.Delete, "Delete", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="well">
+            <p class="text-info">
+                @Locale.NoFilmsList
+            </p>
+        </div>
+    }
+
+    @if (Model.Shows.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.Poster</th>
+                    <th>@Locale.Name</th>
+                    <th>@Locale.ReleaseDate</th>
+                    <th>@Locale.UserActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Shows)
+                {
+                    <tr>
+                        <td>@item.PosterUri</td>
+                        <td>@item.MediaName</td>
+                        <td>@item.DateOfRelease</td>
+                        <td>
+                            @Html.ActionLink(Locale.Details, "Details", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
+                            @if (User.Identity.GetUserId() == Model.List.Id)
+                            {
+                                @Html.ActionLink(Locale.Remove, "RemoveShowFromList", new { mediaId = item.MediaId, listId = Model.List.ListId }, new { @class = "btn btn-warning" });
+                            }
+
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                Html.ActionLink(Locale.Edit, "Edit", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                                Html.ActionLink(Locale.Delete, "Delete", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="well">
+            <p class="text-info">
+                @Locale.NoShowsList
+            </p>
+        </div>
+    }
+</section>

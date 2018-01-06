@@ -1,0 +1,49 @@
+﻿@using FilmHaus.Localization
+@model IEnumerable<FilmHaus.Models.View.ShowViewModel>
+@{
+    ViewBag.Title = Locale.MyShows;
+}
+
+<h2>@Locale.MyShows</h2>
+<hr />
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PosterUri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MediaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRelease)
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@item.MediaId">
+                <td>
+                    <img src="@Url.Content(item.PosterUri.ToString())" class="featurette-image" alt="@item.MediaName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MediaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfRelease)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        Html.ActionLink("Edit", "Edit", "Shows", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

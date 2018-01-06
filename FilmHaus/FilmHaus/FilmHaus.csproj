@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,16 +15,19 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FilmHaus</RootNamespace>
     <AssemblyName>FilmHaus</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,23 +47,82 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.9.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.1.1.9.0\lib\net45\LinqKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -102,25 +164,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -133,71 +183,241 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Facebook">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Twitter">
-      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
-      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\FilmsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Enums\MediaType.cs" />
+    <Compile Include="Enums\ReviewType.cs" />
+    <Compile Include="Enums\AwardStatus.cs" />
+    <Compile Include="Enums\ReportReason.cs" />
+    <Compile Include="Enums\ReportStatus.cs" />
+    <Compile Include="Exceptions\InvalidReviewTypeException.cs" />
+    <Compile Include="Filters\LanguageActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Migrations\201710181857220_Initial.cs" />
+    <Compile Include="Migrations\201710181857220_Initial.Designer.cs">
+      <DependentUpon>201710181857220_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251307479_Update #1.cs" />
+    <Compile Include="Migrations\201710251307479_Update #1.Designer.cs">
+      <DependentUpon>201710251307479_Update #1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710251520161_Update #2 - Table Rename.cs" />
+    <Compile Include="Migrations\201710251520161_Update #2 - Table Rename.Designer.cs">
+      <DependentUpon>201710251520161_Update #2 - Table Rename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711012011219_Review Model Changes.cs" />
+    <Compile Include="Migrations\201711012011219_Review Model Changes.Designer.cs">
+      <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711110057176_Update #4 - Drop ListTag.cs" />
+    <Compile Include="Migrations\201711110057176_Update #4 - Drop ListTag.Designer.cs">
+      <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711172036462_Update #5 - Updated DbContext.cs" />
+    <Compile Include="Migrations\201711172036462_Update #5 - Updated DbContext.Designer.cs">
+      <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711201826129_Update #6 - Removed Media Index.cs" />
+    <Compile Include="Migrations\201711201826129_Update #6 - Removed Media Index.Designer.cs">
+      <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711291621349_Update #7 - Created ListTag.cs" />
+    <Compile Include="Migrations\201711291621349_Update #7 - Created ListTag.Designer.cs">
+      <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711292032385_Update #8 - Created ListTag 2.cs" />
+    <Compile Include="Migrations\201711292032385_Update #8 - Created ListTag 2.Designer.cs">
+      <DependentUpon>201711292032385_Update #8 - Created ListTag 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.cs" />
+    <Compile Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.Designer.cs">
+      <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712261755468_Update #10 - Review Expansion.cs" />
+    <Compile Include="Migrations\201712261755468_Update #10 - Review Expansion.Designer.cs">
+      <DependentUpon>201712261755468_Update #10 - Review Expansion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712261806595_Update #11 - Report Index.cs" />
+    <Compile Include="Migrations\201712261806595_Update #11 - Report Index.Designer.cs">
+      <DependentUpon>201712261806595_Update #11 - Report Index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.cs" />
+    <Compile Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.Designer.cs">
+      <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.cs" />
+    <Compile Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.Designer.cs">
+      <DependentUpon>201801051608239_Update #13 - IsActive for Reviews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Base\Detail.cs" />
+    <Compile Include="Models\Base\Film.cs" />
+    <Compile Include="Models\Base\Media.cs" />
+    <Compile Include="Models\Base\Title.cs" />
+    <Compile Include="Models\Base\Genre.cs" />
+    <Compile Include="Models\Base\List.cs" />
+    <Compile Include="Models\Base\Person.cs" />
+    <Compile Include="Models\Base\Report.cs" />
+    <Compile Include="Models\Base\Review.cs" />
+    <Compile Include="Models\Base\Show.cs" />
+    <Compile Include="Models\Connector\ListTag.cs" />
+    <Compile Include="Models\Connector\ReviewShow.cs" />
+    <Compile Include="Models\Connector\ReviewFilm.cs" />
+    <Compile Include="Models\Connector\ListShow.cs" />
+    <Compile Include="Models\Connector\ShowGenre.cs" />
+    <Compile Include="Models\Connector\ShowPersonTitle.cs" />
+    <Compile Include="Models\Connector\ShowTag.cs" />
+    <Compile Include="Models\Base\Tag.cs" />
+    <Compile Include="Models\Connector\FilmGenre.cs" />
+    <Compile Include="Models\Connector\FilmPersonTitle.cs" />
+    <Compile Include="Models\Connector\FilmTag.cs" />
+    <Compile Include="Models\Connector\ListFilm.cs" />
+    <Compile Include="Models\Connector\UserFilmRating.cs" />
+    <Compile Include="Models\Connector\UserShowRating.cs" />
+    <Compile Include="Models\Connector\UserShow.cs" />
+    <Compile Include="Models\Connector\UserFilm.cs" />
+    <Compile Include="Models\FilmHausDbContext.cs" />
+    <Compile Include="Models\View\AccountViewModels.cs" />
+    <Compile Include="Models\Base\Identity.cs" />
+    <Compile Include="Models\View\DetailViewModels.cs" />
+    <Compile Include="Models\View\MediaViewModels.cs" />
+    <Compile Include="Models\View\LibraryViewModels.cs" />
+    <Compile Include="Models\View\PersonTitleViewModels.cs" />
+    <Compile Include="Models\View\RatingViewModels.cs" />
+    <Compile Include="Models\View\ReportViewModels.cs" />
+    <Compile Include="Models\View\ReviewViewModels.cs" />
+    <Compile Include="Models\View\SearchViewModels.cs" />
+    <Compile Include="Models\View\ShowViewModels.cs" />
+    <Compile Include="Models\View\FilmViewModels.cs" />
+    <Compile Include="Models\View\GenreViewModels.cs" />
+    <Compile Include="Models\View\ListViewModels.cs" />
+    <Compile Include="Models\View\ManageViewModels.cs" />
+    <Compile Include="Models\View\PersonViewModels.cs" />
+    <Compile Include="Models\View\TitleViewModels.cs" />
+    <Compile Include="Models\View\TagViewModels.cs" />
+    <Compile Include="Models\View\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FilmGenres\IFilmGenreService.cs" />
+    <Compile Include="Services\FilmGenres\FilmGenreService.cs" />
+    <Compile Include="Services\UserQueryExtensions.cs" />
+    <Compile Include="Services\PersonTitleQueryExtensions.cs" />
+    <Compile Include="Services\TitleQueryExtensions.cs" />
+    <Compile Include="Services\TagQueryExtensions.cs" />
+    <Compile Include="Services\ListTags\ListTagService.cs" />
+    <Compile Include="Services\ListTags\IListTagService.cs" />
+    <Compile Include="Services\GenreQueryExtensions.cs" />
+    <Compile Include="Services\ReportQueryExtensions.cs" />
+    <Compile Include="Services\PersonQueryExtensions.cs" />
+    <Compile Include="Services\Reports\IReportService.cs" />
+    <Compile Include="Services\Reports\ReportService.cs" />
+    <Compile Include="Services\ShowPersonTitles\IShowPersonTitleService.cs" />
+    <Compile Include="Services\ShowPersonTitles\ShowPersonTitleService.cs" />
+    <Compile Include="Services\FilmTags\IFilmTagService.cs" />
+    <Compile Include="Services\FilmTags\FilmTagService.cs" />
+    <Compile Include="Services\FilmPersonTitles\IFilmPersonTitleService.cs" />
+    <Compile Include="Services\FilmPersonTitles\FilmPersonTitleService.cs" />
+    <Compile Include="Services\ListFilms\IListFilmService.cs" />
+    <Compile Include="Services\ListFilms\ListFilmService.cs" />
+    <Compile Include="Services\ReviewQueryExtensions.cs" />
+    <Compile Include="Services\ListQueryExtensions.cs" />
+    <Compile Include="Services\Lists\IListService.cs" />
+    <Compile Include="Services\Lists\ListService.cs" />
+    <Compile Include="Services\ListShows\IListShowService.cs" />
+    <Compile Include="Services\ListShows\ListShowService.cs" />
+    <Compile Include="Services\Genres\IGenreService.cs" />
+    <Compile Include="Services\Genres\GenreService.cs" />
+    <Compile Include="Services\Persons\IPersonService.cs" />
+    <Compile Include="Services\Persons\PersonService.cs" />
+    <Compile Include="Services\Titles\ITitleService.cs" />
+    <Compile Include="Services\Titles\TitleService.cs" />
+    <Compile Include="Services\Tags\ITagService.cs" />
+    <Compile Include="Services\Tags\TagService.cs" />
+    <Compile Include="Services\ShowTags\IShowTagService.cs" />
+    <Compile Include="Services\ShowTags\ShowTagService.cs" />
+    <Compile Include="Services\ShowGenres\IShowGenreService.cs" />
+    <Compile Include="Services\ShowGenres\ShowGenreService.cs" />
+    <Compile Include="Services\ShowQueryExtensions.cs" />
+    <Compile Include="Services\FilmQueryExtensions.cs" />
+    <Compile Include="Services\ReviewShows\IReviewShowService.cs" />
+    <Compile Include="Services\ReviewShows\ReviewShowService.cs" />
+    <Compile Include="Services\ReviewFilms\IReviewFilmService.cs" />
+    <Compile Include="Services\ReviewFilms\ReviewFilmService.cs" />
+    <Compile Include="Services\Reviews\ReviewService.cs" />
+    <Compile Include="Services\UserFilmRatings\IUserFilmRatingService.cs" />
+    <Compile Include="Services\UserFilmRatings\UserFilmRatingService.cs" />
+    <Compile Include="Services\UserFilms\UserFilmService.cs" />
+    <Compile Include="Services\UserFilms\IUserFilmService.cs" />
+    <Compile Include="Services\Films\FilmService.cs" />
+    <Compile Include="Services\Films\IFilmService.cs" />
+    <Compile Include="Services\Reviews\IReviewService.cs" />
+    <Compile Include="Services\UserShowRatings\IUserShowRatingService.cs" />
+    <Compile Include="Services\UserShowRatings\UserShowRatingService.cs" />
+    <Compile Include="Services\UserShows\IUserShowService.cs" />
+    <Compile Include="Services\UserShows\UserShowService.cs" />
+    <Compile Include="Services\Shows\ShowService.cs" />
+    <Compile Include="Services\Shows\IShowService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Generic\Helper.css" />
+    <Content Include="Content\Layout\Dashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Layout\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\FilmHaus - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Images\10ae9fc7d453b0dd525d0edf2ede7961.jpg" />
+    <Content Include="Images\18db9a4cbf129b80974088797eafe9c5.jpg" />
+    <Content Include="Images\8be518b57145907b8019fa684076a407.png" />
+    <Content Include="Images\94acf9fef510cbffa0074c1525d0345f.jpg" />
+    <Content Include="login_instructions.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -211,9 +431,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -221,7 +438,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -233,18 +449,99 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_NavbarPartial.cshtml" />
+    <Content Include="Views\Shared\_Dashboard.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Library\Films.cshtml" />
+    <Content Include="Views\Library\Shows.cshtml" />
+    <Content Include="Views\Films\Create.cshtml" />
+    <Content Include="Views\Films\Details.cshtml" />
+    <Content Include="Views\Films\Edit.cshtml" />
+    <Content Include="Views\Films\Index.cshtml" />
+    <Content Include="Views\Shows\Create.cshtml" />
+    <Content Include="Views\Shows\Details.cshtml" />
+    <Content Include="Views\Shows\Edit.cshtml" />
+    <Content Include="Views\Shows\Index.cshtml" />
+    <Content Include="Views\Reviews\_CreateReviewPartial.cshtml" />
+    <Content Include="Views\Search\Films.cshtml" />
+    <Content Include="Views\Search\Shows.cshtml" />
+    <Content Include="Views\Reviews\_EditReviewPartial.cshtml" />
+    <Content Include="Views\Reviews\_ReviewPartial.cshtml" />
+    <Content Include="Views\Reports\_CreateReportPartial.cshtml" />
+    <Content Include="Views\Reports\_ReportPartial.cshtml" />
+    <Content Include="Views\Reports\_ResolveReportPartial.cshtml" />
+    <Content Include="Views\Lists\Delete.cshtml" />
+    <Content Include="Views\Lists\Details.cshtml" />
+    <Content Include="Views\Lists\Index.cshtml" />
+    <Content Include="Views\Films\Reviews.cshtml" />
+    <Content Include="Views\Shows\Reviews.cshtml" />
+    <Content Include="Views\Lists\_CreateListPartial.cshtml" />
+    <Content Include="Views\Lists\_EditListPartial.cshtml" />
+    <Content Include="Views\Lists\MyLists.cshtml" />
+    <Content Include="Views\Reviews\MyReviews.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Ratings\_CreateRatingPartial.cshtml" />
+    <Content Include="Views\Ratings\_EditRatingPartial.cshtml" />
+    <Content Include="Views\Reports\History.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilmHaus.Localization\FilmHaus.Localization.csproj">
+      <Project>{76A34CF2-D8E5-427B-881B-098B7818DA89}</Project>
+      <Name>FilmHaus.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710181857220_Initial.resx">
+      <DependentUpon>201710181857220_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251307479_Update #1.resx">
+      <DependentUpon>201710251307479_Update #1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710251520161_Update #2 - Table Rename.resx">
+      <DependentUpon>201710251520161_Update #2 - Table Rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711012011219_Review Model Changes.resx">
+      <DependentUpon>201711012011219_Review Model Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711110057176_Update #4 - Drop ListTag.resx">
+      <DependentUpon>201711110057176_Update #4 - Drop ListTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711172036462_Update #5 - Updated DbContext.resx">
+      <DependentUpon>201711172036462_Update #5 - Updated DbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711201826129_Update #6 - Removed Media Index.resx">
+      <DependentUpon>201711201826129_Update #6 - Removed Media Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711291621349_Update #7 - Created ListTag.resx">
+      <DependentUpon>201711291621349_Update #7 - Created ListTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711292032385_Update #8 - Created ListTag 2.resx">
+      <DependentUpon>201711292032385_Update #8 - Created ListTag 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301829184_Update #9 - Required ReportReason, Index Changes.resx">
+      <DependentUpon>201711301829184_Update #9 - Required ReportReason, Index Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261755468_Update #10 - Review Expansion.resx">
+      <DependentUpon>201712261755468_Update #10 - Review Expansion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261806595_Update #11 - Report Index.resx">
+      <DependentUpon>201712261806595_Update #11 - Report Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712271736184_Update #12 - ReportStatus Fix.resx">
+      <DependentUpon>201712271736184_Update #12 - ReportStatus Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801051608239_Update #13 - IsActive for Reviews.resx">
+      <DependentUpon>201801051608239_Update #13 - IsActive for Reviews.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -278,8 +575,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

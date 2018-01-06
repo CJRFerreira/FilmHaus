@@ -1,0 +1,68 @@
+﻿@using FilmHaus.Localization
+@model FilmHaus.Models.View.CreateFilmViewModel
+
+@{
+    ViewBag.Title = Locale.Create;
+}
+
+<h2>@Locale.Create @Locale.Film</h2>
+<hr />
+
+@using (Html.BeginForm("Create", "Films", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PosterUri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.PosterUri, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PosterUri, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MediaName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.MediaName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MediaName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfRelease, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.DateOfRelease, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DateOfRelease, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Accolades, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EnumDropDownListFor(model => model.Accolades, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Accolades, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Runtime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Runtime, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Runtime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@Locale.Create" class="btn btn-primary" />
+                @Html.ActionLink(Locale.Cancel, "Index", null, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

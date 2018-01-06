@@ -1,0 +1,94 @@
+﻿@using FilmHaus.Enums;
+@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@model ShowViewModel
+
+@{
+    ViewBag.Title = Locale.Details;
+}
+
+<section>
+    <h2>
+        @Locale.Details - @Model.MediaName
+        @if (Model.InCurrentUserLibrary)
+        {
+            <a class="btn btn-danger pull-right" href="@Url.Action("RemoveShowFromLibrary", "Library", new { mediaId = Model.MediaId })"> @Locale.Remove @Locale.Show </a>
+        }
+        else if (!Model.InCurrentUserLibrary)
+        {
+            <a class="btn btn-primary pull-right" href="@Url.Action("AddShowToLibrary", "Library", new { mediaId = Model.MediaId })"> @Locale.Save @Locale.Show </a>
+        }
+    </h2>
+    <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @Html.ActionLink(Locale.Reviews, "Reviews", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        @if (this.User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        }
+        @Html.ActionLink(Locale.Index, "Shows", "Library", null, new { @class = "btn btn-danger" })
+    </div>
+</section>
+<section>
+    <hr />
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="@Url.Content(Model.PosterUri.ToString())" alt="@Model.MediaName" class="featurette-image" />
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DateOfRelease, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.DateOfRelease</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Accolades, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.Accolades</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumberOfSeasons, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">@Model.NumberOfSeasons</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label" })
+                    <p class="form-control-static">
+                        @if (Model.Rating != null)
+                        {
+                            @Model.Rating
+                        }
+                        else
+                        {
+                            @Locale.NoRatingShow
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.UserHasRated)
+                {
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editRatingModal">@Locale.Edit @Locale.Rating</button>
+                    var changeModel = new ChangeRatingViewModel(Model.MediaId, MediaType.Show);
+
+                    if (Model.Rating != null)
+                    {
+                        changeModel.Rating = (int)Model.Rating;
+                    }
+
+                    @Html.Partial("~/Views/Ratings/_EditRatingPartial.cshtml", changeModel);
+                    <a class="btn btn-danger" href="@Url.Action("RemoveRatingFromShow", "Ratings", new { mediaId = Model.MediaId })"> @Locale.Remove @Locale.Rating </a>
+
+                }
+                else
+                {
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createRatingModal">@Locale.Create @Locale.Rating</button>
+                    @Html.Partial("~/Views/Ratings/_CreateRatingPartial.cshtml", new AddRatingViewModel(Model.MediaId, MediaType.Show));
+                }
+            </div>
+        </div>
+    </div>
+</section>

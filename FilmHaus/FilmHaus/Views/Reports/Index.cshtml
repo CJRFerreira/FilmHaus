@@ -1,0 +1,51 @@
+﻿@using FilmHaus.Localization
+@using FilmHaus.Models.View;
+@using Microsoft.AspNet.Identity;
+@model IEnumerable<ExpandedReportExpandedReviewViewModel>
+
+@{
+    ViewBag.Title = Locale.Reports;
+}
+
+<h2>@Locale.ReportedReviews</h2>
+<hr />
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Locale.Report @Locale.From
+            </th>
+            <th>
+                @Locale.To
+            </th>
+            <th>
+                @Locale.Film
+            </th>
+            <th>
+                @Locale.UserActions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr id="@item.ReportId">
+                <td>
+                    @item.ReportingUser.FullName
+                </td>
+                <td>
+                    @item.UserReported.FullName
+                </td>
+                <td>
+                    @item.Review.Media.MediaName
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reportModal">@Locale.Details</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#resolveReportModal">@Locale.Resolve</button>
+                </td>
+            </tr>
+            @Html.Partial("~/Views/Reports/_ReportPartial.cshtml", item)
+            @Html.Partial("~/Views/Reports/_ResolveReportPartial.cshtml", new ResolveReportViewModel(item))
+        }
+    </tbody>
+</table>

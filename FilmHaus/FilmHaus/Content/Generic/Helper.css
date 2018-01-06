@@ -1,0 +1,25 @@
+﻿#footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: auto;
+    width: auto;
+}
+
+.featurette-image-large {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.featurette-image {
+    max-width: 25%;
+    max-height: 25%;
+    overflow: hidden;
+}
+
+.featurette-image-small {
+    max-width: 15%;
+    max-height: 15%;
+    overflow: hidden;
+}

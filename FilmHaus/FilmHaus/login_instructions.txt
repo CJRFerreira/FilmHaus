@@ -1,0 +1,15 @@
+Website: http://filmhaus.azurewebsites.net/
+
+Login Instructions
+------------------
+	Administrator:
+		Username - christian.ferreira@mohawkcollege.ca
+		Password - Mohawk_123
+
+	Moderator:
+		Username - bob.burger@bobsburgers.com
+		Password - Mohawk_123
+
+	User:
+		Username - john.doe@realemail.co.uk
+		Password - Mohawk_123

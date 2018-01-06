@@ -1,0 +1,87 @@
+﻿@using FilmHaus.Localization;
+@using FilmHaus.Models.View;
+@using Microsoft.AspNet.Identity;
+@model FilmViewModel
+
+@{
+    ViewBag.Title = Locale.Reviews;
+}
+
+<section>
+    <h2>@Locale.Reviews - @Model.MediaName</h2>
+    <div class="btn-group bg-danger btn-group-lg" role="group" aria-label="...">
+        @Html.ActionLink(Locale.Details, "Details", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        @if (this.User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink(Locale.Edit, "Edit", new { mediaId = Model.MediaId }, new { @class = "btn btn-info" })
+        }
+
+        @Html.ActionLink(Locale.Index, "Films", "Library", null, new { @class = "btn btn-danger" })
+    </div>
+</section>
+<hr />
+<section>
+    @if (Model.UserReview != null)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.From</th>
+                    <th>@Locale.Description</th>
+                    <th>@Locale.CreatedOn</th>
+                    <th>@Locale.UserActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.UserReview.User.FullName</td>
+                    <td>@Model.UserReview.Body</td>
+                    <td>@Model.UserReview.CreatedOn</td>
+                    <td>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#reviewModal">@Locale.Details</button>
+                        @if (User.Identity.GetUserId() == Model.UserReview.Id)
+                        {
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editReviewModal">@Locale.Edit</button>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", "Reviews", new { reviewId = Model.UserReview.ReviewId , mediaId = Model.MediaId, reviewType = Model.UserReview.ReviewType })"> @Locale.Delete </a>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        @Html.Partial("~/Views/Reviews/_ReviewPartial.cshtml", Model.UserReview)
+        @Html.Partial("~/Views/Reviews/_EditReviewPartial.cshtml", new EditReviewViewModel(Model.UserReview))
+    }
+    else
+    {
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createReviewModal">@Locale.Create @Locale.Review</button>
+        @Html.Partial("~/Views/Reviews/_CreateReviewPartial.cshtml", new CreateReviewViewModel(Model.MediaId, FilmHaus.Enums.ReviewType.Film))
+    }
+</section>
+<hr />
+<section>
+    @if (Model.Reviews.Count > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Locale.From</th>
+                    <th>@Locale.Description</th>
+                    <th>@Locale.CreatedOn</th>
+                    <th>@Locale.UserActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Reviews)
+                {
+                    <tr>
+                        <td>@item.User.FullName</td>
+                        <td>@item.Body</td>
+                        <td>@item.CreatedOn</td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createReportModal">@Locale.Report</button></td>
+                    </tr>
+                    @Html.Partial("~/Views/Reports/_CreateReportPartial.cshtml", new CreateReportViewModel(item.ReviewId, User.Identity.GetUserId(), item.Id))
+                }
+            </tbody>
+        </table>
+    }
+</section>
