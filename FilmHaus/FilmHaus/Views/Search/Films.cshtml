@@ -63,8 +63,7 @@
                     @Html.ActionLink(Locale.Details, "Details", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-info" })
                     @if (User.IsInRole("Administrator"))
                     {
-                        Html.ActionLink(Locale.Edit, "Edit", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
-                        Html.ActionLink(Locale.Delete, "Delete", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-warning" });
+                        @Html.ActionLink(Locale.Edit, "Edit", "Films", new { mediaId = item.MediaId }, new { @class = "btn btn-primary" });
                     }
                 </td>
             </tr>
